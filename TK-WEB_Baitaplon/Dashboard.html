@@ -25,11 +25,11 @@
       /*----------Header----------*/
       .developed-by {
         position: absolute;
-        left: 40%;
-        transform: translate(-50%, -50%);
+        left: 280px;
+        top: 7px;
         color: #ffffff;
-        font-size: 15px;
-        z-index: 3;
+        font-size: 14px;
+        z-index: 2;
       }
       .navbar-top {
         background-color: #1565c0;
@@ -39,7 +39,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        height: 80px;
+        height: 75px;
       }
       .navbar-bottom {
         position: relative;
@@ -52,15 +52,15 @@
         left: 170px;
       }
       .logo img {
-        height: 60px;
+        height: 65px;
         max-width: 100%;
         margin-right: 10px;
       }
 
       /* Menu chính */
       .navbar-collapse {
-        background-color: #ff6f00; /*#FF6F00 */
-        padding: 15px 0px;
+        background-color: #ff6f00;
+        padding: 6px 0px;
         height: 5px;
         display: flex;
         align-items: center;
@@ -73,13 +73,14 @@
         position: absolute;
         top: -40px;
         left: -15px;
-        width: 450%;
-        height: 60px;
+        width: 400%;
+        height: 50px;
         background-color: #ff6f00;
         clip-path: polygon(0 350%, 4% 0, 100% 0, 100% 100%);
       }
       .navbar-nav {
         display: flex;
+        margin-left: -200px;
       }
       .navbar-nav li a {
         left: 10px;
@@ -91,20 +92,17 @@
         z-index: 2;
         font-size: 17px;
       }
-      .navbar-nav li {
-        list-style: none;
-      }
 
       .nav-item {
         padding: 0 15px;
+        list-style: none;
+      }
+      .navbar-nav a:hover {
+        text-decoration: underline;
       }
 
       /* Responsive cho Mobile */
       @media (max-width: 768px) {
-        .navbar-toggler {
-          display: block;
-        }
-
         .navbar-collapse {
           display: none;
           flex-direction: column;
@@ -178,7 +176,7 @@
         flex: 1;
       }
       .fa-solid.fa-tachometer-alt {
-        color: red;
+        color: #ff6f00;
       }
 
       /* Ẩn submenu ban đầu */
@@ -251,7 +249,7 @@
         font-family: "Source Sans Pro", sans-serif !important;
       }
       .fa-solid.fa-list {
-        color: #f34541;
+        color: #ff6f00;
         margin-right: 5px;
         font-size: 25px;
       }
