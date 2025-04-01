@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Quản Lý</title>
+    <style>
+      /* Ẩn tất cả các trang con */
+      .page {
+        display: none;
+      }
+      /* Mặc định hiển thị trang đầu tiên */
+      .page.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Trang Quản Lý</h1>
+    </header>
+
+    <nav>
+      <button onclick="showPage('home')">Trang Chủ</button>
+      <button onclick="showPage('addleague')">Thêm Giải Đấu</button>
+      <button onclick="showPage('dsdoiqly')">Danh Sách Đội Quản Lý</button>
+      <button onclick="showPage('dsdoitgia')">Danh Sách Đội Tham Gia</button>
+    </nav>
+
+    <main>
+      <!-- Trang chủ -->
+      <section id="home" class="page active">
+        <h2>Trang Chủ</h2>
+        <p>Chào mừng đến với trang quản lý.</p>
+      </section>
+
+      <!-- Trang thêm giải đấu -->
+      <section id="addleague" class="page">
+        <h2>Tạo Giải Đấu Mới</h2>
+        <p>Đây là trang thêm giải đấu mới.</p>
+      </section>
+
+      <!-- Trang danh sách đội quản lý -->
+      <section id="dsdoiqly" class="page">
+        <h2>Danh Sách Đội Quản Lý</h2>
+        <p>Danh sách các đội bóng mà bạn đang quản lý.</p>
+      </section>
+
+      <!-- Trang danh sách đội tham gia -->
+      <section id="dsdoitgia" class="page">
+        <h2>Danh Sách Đội Tham Gia</h2>
+        <p>Danh sách các đội bóng tham gia.</p>
+      </section>
+    </main>
+
+    <script>
+      function showPage(pageId) {
+        // Ẩn tất cả các trang
+        let pages = document.querySelectorAll(".page");
+        pages.forEach((page) => page.classList.remove("active"));
+
+        // Hiện trang được chọn
+        document.getElementById(pageId).classList.add("active");
+      }
+    </script>
+  </body>
+</html>
