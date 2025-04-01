@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang Danh sách Đội Tham Gia</title>
+    <title>Trang Danh Sách Độ Quản Lý</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
       rel="stylesheet"
@@ -185,6 +185,19 @@
       .list-league_left {
         flex-grow: 1;
       }
+      .add {
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: rgb(0, 172, 236);
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+      }
+      .add:hover {
+        background-color: #428bca;
+      }
       /* --------------------- FOOTER -------------------- */
       .footer {
         box-sizing: border-box;
@@ -261,14 +274,68 @@
       <a href="#">TIN TỨC</a>
     </nav>
     <div class="container">
-      <div id="sidebar-container"></div>
+      <aside class="sidebar">
+        <ul>
+          <li><i class="fa-solid fa-tachometer-alt"></i> Dashboard</li>
 
+          <li class="menu-item">
+            <i class="fa-solid fa-gear"></i> Quản lý giải đấu
+            <i class="fa-solid fa-chevron-down"></i>
+          </li>
+          <ul class="submenu">
+            <li>
+              <i class="fa-solid fa-play"></i><a href="#">Danh sách giải đấu</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-play"></i
+              ><a href="addleague.html">Tạo giải đấu mới</a>
+            </li>
+          </ul>
+
+          <li class="menu-item">
+            <i class="fa-solid fa-gear"></i> Quản lý đội
+            <i class="fa-solid fa-chevron-down"></i>
+          </li>
+          <ul class="submenu">
+            <li>
+              <i class="fa-solid fa-play"></i
+              ><a href="dsdoiqly.html">Danh sách đội quản lý</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-play"></i
+              ><a href="dsdoitgia.html">Danh sách đội tham gia</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-play"></i><a href="#">Tạo đội bóng mới</a>
+            </li>
+          </ul>
+
+          <li><i class="fa-solid fa-gear"></i> Yêu cầu tham gia đội</li>
+          <li><i class="fa-solid fa-gear"></i> Quản lý cuộc thi</li>
+
+          <li class="menu-item">
+            <i class="fa-solid fa-user"></i> Quản lý tài khoản
+            <i class="fa-solid fa-chevron-down"></i>
+          </li>
+          <ul class="submenu">
+            <li>
+              <i class="fa-solid fa-play"></i
+              ><a href="#">Thông tin tài khoản</a>
+            </li>
+          </ul>
+        </ul>
+      </aside>
 
       <div class="content-wrapper">
         <section class="content">
           <div class="list-league">
             <i class="fa-solid fa-list"></i>
-            <span class="list-league_left">Danh sách đội bạn tham gia</span>
+            <span class="list-league_left">Danh sách đội bóng</span>
+            <a href="#">
+              <button class="add">
+                <i class="fa-solid fa-plus"></i> Thêm mới
+              </button>
+            </a>
           </div>
 
           <div class="footer">
@@ -312,24 +379,16 @@
     </div>
 
     <script>
-      // Load sidebar.html into the sidebar-container
-      fetch("sidebar.html")
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("sidebar-container").innerHTML = data;
-        })
-        .catch(error => console.error("Error loading sidebar:", error));
-    
-      // Sidebar menu toggle functionality
-      document.addEventListener("DOMContentLoaded", function () {
-        document.body.addEventListener("click", function (event) {
-          let menuItem = event.target.closest(".menu-item");
-          if (menuItem) {
-            let submenu = menuItem.nextElementSibling;
-            if (submenu && submenu.classList.contains("submenu")) {
-              submenu.style.display = submenu.style.display === "block" ? "none" : "block";
-            }
-          }
+      // Lấy tất cả các menu cha
+      let menuItems = document.querySelectorAll(".menu-item");
+
+      menuItems.forEach((item) => {
+        item.addEventListener("click", function () {
+          let submenu = this.nextElementSibling;
+
+          // Chỉ toggle submenu hiện tại, không đóng các submenu khác
+          submenu.style.display =
+            submenu.style.display === "block" ? "none" : "block";
         });
       });
     </script>
