@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trang Quản Lý</title>
+    <link rel="icon" type="logo.png" href="images/logo.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
       rel="stylesheet"
@@ -29,7 +30,7 @@
         top: 7px;
         color: #ffffff;
         font-size: 14px;
-        z-index: 2;
+        z-index: 0;
       }
       .navbar-top {
         background-color: #1565c0;
@@ -173,7 +174,6 @@
       }
       .sidebar a {
         text-decoration: none;
-        color: #222222;
         flex: 1;
         color: #b8c7ce;
       }
@@ -197,11 +197,14 @@
         width: 100%;
         height: 32px;
       }
+      .submenu a {
+        color: #222222 !important;
+      }
       .submenu li:hover {
         background: #ffffff;
       }
       .submenu a:hover {
-        color: rgb(250, 55, 25);
+        color: rgb(250, 55, 25) !important;
       }
 
       /* Bật submenu khi click */

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý giải đấu</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .form-section {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        min-width: 300px;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-section">
+        <label>Tên mùa giải</label>
+        <input type="text" placeholder="Nhập tên mùa giải" />
+
+        <label>Thời gian bắt đầu</label>
+        <input type="date" id="startDate" />
+
+        <label>Số đội tham dự</label>
+        <input type="number" />
+
+        <label>Thể thức thi đấu</label>
+        <select>
+          <option>Vòng tròn</option>
+        </select>
+
+        <label>Môn đấu</label>
+        <select>
+          <option>Bóng đá</option>
+        </select>
+
+        <label>Điểm thắng</label>
+        <input type="number" value="3" />
+        <label>Điểm hòa</label>
+        <input type="number" value="1" />
+        <label>Điểm thua</label>
+        <input type="number" value="0" />
+      </div>
+
+      <div class="form-section">
+        <label>Thời gian kết thúc</label>
+        <input type="date" id="endDate" />
+
+        <label>Màu Website</label>
+        <input type="color" value="#B81E1F" />
+
+        <label>Số lượt đá vòng tròn</label>
+        <select>
+          <option>1 lượt</option>
+        </select>
+
+        <label>Loại giải đấu</label>
+        <select>
+          <option>Đồng đội</option>
+        </select>
+
+        <label>Đăng ký trực tuyến</label>
+        <input type="checkbox" id="onlineReg" />
+
+        <label>Tranh giải 3</label>
+        <input type="checkbox" id="thirdPlace" />
+      </div>
+
+      <div class="form-section">
+        <label>Logo</label>
+        <input type="file" id="logoUpload" />
+
+        <label>Hình nền</label>
+        <input type="file" id="backgroundUpload" />
+
+        <label>Địa điểm thi đấu</label>
+        <input type="text" placeholder="Nhập vị trí" />
+
+        <label>Fanpage giải đấu</label>
+        <input type="text" />
+      </div>
+    </div>
+
+    <script>
+      document
+        .getElementById("startDate")
+        .addEventListener("change", function () {
+          document.getElementById("endDate").setAttribute("min", this.value);
+        });
+
+      document
+        .getElementById("onlineReg")
+        .addEventListener("change", function () {
+          alert(
+            this.checked
+              ? "Đăng ký trực tuyến được bật"
+              : "Đăng ký trực tuyến bị tắt"
+          );
+        });
+
+      document
+        .getElementById("thirdPlace")
+        .addEventListener("change", function () {
+          alert(this.checked ? "Tranh giải 3 được bật" : "Tranh giải 3 bị tắt");
+        });
+    </script>
+  </body>
+</html>

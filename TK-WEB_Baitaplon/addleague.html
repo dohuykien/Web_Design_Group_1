@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang Quản Lý</title>
+    <title>Trang tạo giải đấu mới</title>
+    <link rel="icon" type="logo.png" href="images/logo.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
       rel="stylesheet"
@@ -22,7 +23,7 @@
       body {
         background-color: white;
       }
-      /*----------Header----------*/
+      /*-------------------------Header---------------------------*/
       .developed-by {
         position: absolute;
         left: 250px;
@@ -44,7 +45,7 @@
       .navbar-bottom {
         position: relative;
       }
-      /*------------------------- Logo ---------------------------------*/
+      /*Logo*/
       .logo {
         display: flex;
         align-items: center;
@@ -56,7 +57,6 @@
         max-width: 100%;
         margin-right: 10px;
       }
-
       /* Menu chính */
       .navbar-collapse {
         background-color: #ff6f00;
@@ -92,7 +92,6 @@
         z-index: 2;
         font-size: 16px;
       }
-
       .nav-item {
         padding: 0 15px;
         list-style: none;
@@ -135,8 +134,9 @@
         width: 30px;
         height: 30px;
       }
+      /*-------------------End Header---------------------- */
 
-      /*------------Layout------------*/
+      /*----------------------Layout-------------------------*/
       .container {
         display: flex;
         width: 100%;
@@ -197,11 +197,14 @@
         width: 100%;
         height: 32px;
       }
+      .submenu a {
+        color: #222222 !important;
+      }
       .submenu li:hover {
         background: #ffffff;
       }
       .submenu a:hover {
-        color: rgb(250, 55, 25);
+        color: rgb(250, 55, 25) !important;
       }
 
       /* Bật submenu khi click */
@@ -230,7 +233,8 @@
         margin-left: auto;
       }
       /* -------------------sidebar-end------------------- */
-      /*content: list-league + footer */
+
+      /*----------content: list-league + footer------------ */
       .content-wrapper {
         flex: 1;
         display: block;
