@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang Danh Sách Độ Quản Lý</title>
+    <title>Trang Quản Lý</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
       rel="stylesheet"
@@ -22,52 +22,121 @@
       body {
         background-color: white;
       }
-      /* Header */
-      .header {
-        background: #0047ab;
+      /*----------Header----------*/
+      .developed-by {
+        position: absolute;
+        left: 250px;
+        top: 7px;
+        color: #ffffff;
+        font-size: 14px;
+        z-index: 2;
+      }
+      .navbar-top {
+        background-color: #1565c0;
         color: white;
-        padding: 0 20px;
+        padding: 10px 20px;
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        height: 75px;
+      }
+      .navbar-bottom {
         position: relative;
       }
-      .header .logo img {
-        height: 50px;
+      /*------------------------- Logo ---------------------------------*/
+      .logo {
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        left: 170px;
       }
-      .header .developed-by {
-        font-size: 15px;
-        flex-grow: 1;
-        text-align: center;
+      .logo img {
+        height: 65px;
+        max-width: 100%;
+        margin-right: 10px;
+      }
+
+      /* Menu chính */
+      .navbar-collapse {
+        background-color: #ff6f00;
+        padding: 7px 0px;
+        height: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+      }
+      .navbar-collapse::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        left: -15px;
+        width: 101%;
+        height: 50px;
+        background-color: #ff6f00;
+        clip-path: polygon(0 350%, 15% 0, 100% 0, 100% 100%);
+      }
+      .navbar-nav {
+        display: flex;
+        margin-left: -200px;
+      }
+      .navbar-nav li a {
+        left: 10px;
+        color: white;
+        text-decoration: none;
+        /* margin: 0 7px; */
+        top: -20px;
+        position: relative;
+        z-index: 2;
+        font-size: 16px;
+      }
+
+      .nav-item {
+        padding: 0 15px;
+        list-style: none;
+      }
+      .navbar-nav a:hover {
+        text-decoration: underline;
+      }
+
+      /* Responsive cho Mobile */
+      @media (max-width: 768px) {
+        .navbar-collapse {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          background: #fff;
+          position: absolute;
+          top: 50px;
+          left: 0;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-collapse.active {
+          display: flex;
+        }
+
+        .nav-item {
+          text-align: center;
+          padding: 10px 0;
+        }
       }
       .header .user-info {
         display: flex;
         align-items: center;
         gap: 10px;
+        position: relative; /* Đổi từ absolute sang relative */
+        right: 0; /* Đưa về bên phải */
+        top: -20px;
       }
       .header .user-info img {
         width: 30px;
         height: 30px;
       }
-      /* Navbar */
-      .navbar {
-        background: #b81e1f;
-        display: flex;
-        justify-content: flex-start;
-        gap: 20px;
-      }
-      .navbar a {
-        color: white;
-        text-decoration: none;
-        padding: 7px 15px;
-        font-size: 16px;
-        transition: color 0.3s;
-        margin: 3px;
-      }
-      .navbar a:hover {
-        text-decoration: underline;
-      }
-      /* Layout */
+
+      /*------------Layout------------*/
       .container {
         display: flex;
         width: 100%;
@@ -77,9 +146,10 @@
         width: 230px;
         background: #333333;
         color: #b8c7ce;
-        height: 638px;
+        height: 650px;
         position: relative;
-        bottom: 3px;
+        bottom: 2px;
+        z-index: 1;
       }
       .sidebar ul {
         list-style: none;
@@ -95,7 +165,7 @@
         transition: color 0.2s;
       }
       .sidebar ul li:hover {
-        color: gray;
+        color: #ffffff;
       }
       .sidebar ul li i {
         width: 20px;
@@ -105,15 +175,20 @@
         text-decoration: none;
         color: #222222;
         flex: 1;
+        color: #b8c7ce;
       }
+      .sidebar a:hover {
+        color: #ffffff;
+      }
+
       .fa-solid.fa-tachometer-alt {
-        color: red;
+        color: #ff6f00;
       }
 
       /* Ẩn submenu ban đầu */
       .submenu {
         display: none;
-        background: #b81e1f !important;
+        background: #ff6f00 !important;
       }
 
       .submenu li {
@@ -126,7 +201,7 @@
         background: #ffffff;
       }
       .submenu a:hover {
-        color: rgb(243, 194, 81);
+        color: rgb(250, 55, 25);
       }
 
       /* Bật submenu khi click */
@@ -169,7 +244,6 @@
       /* list-league */
       .list-league {
         color: rgb(34, 34, 34);
-        font-family: "Source Sans Pro", sans-serif !important;
         font-size: 24px;
         font-weight: normal;
         padding: 12px;
@@ -177,8 +251,11 @@
         justify-content: space-between;
         align-items: center;
       }
+      .list-league_left {
+        font-family: "Source Sans Pro", sans-serif !important;
+      }
       .fa-solid.fa-list {
-        color: #f34541;
+        color: #ff6f00;
         margin-right: 5px;
         font-size: 25px;
       }
@@ -194,6 +271,7 @@
         border-width: 0.8px;
         cursor: pointer;
         text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
       }
       .add:hover {
         background-color: #428bca;
@@ -219,7 +297,7 @@
         color: rgb(51, 51, 51);
         font-size: 14px;
         text-shadow: rgb(255, 255, 255) 2px 2px 2px;
-        margin: 42px 10px 10px 10px;
+        margin: 40px 10px 10px 10px;
         display: block;
         border-top-color: rgb(255, 255, 255);
         border-top-style: solid;
@@ -254,37 +332,69 @@
   </head>
   <body>
     <header class="header">
-      <div class="logo">
-        <a href="#"><img src="images/logo.png" alt="Logo" /></a>
-      </div>
-      <span class="developed-by">Hệ thống được phát triển bởi HD</span>
-      <div class="user-info">
-        <img src="images/dhk.jpg" />
-        <span>Hải Đăng Nguyễn <i class="fa-solid fa-chevron-down"></i></span>
+      <div class="navbar">
+        <div class="navbar-top">
+          <div class="logo">
+            <a href="#"><img src="images/logo.png" alt="Logo" /></a>
+          </div>
+          <span class="developed-by">
+            Hệ thống được phát triển bởi HD Promotion</span
+          >
+          <div class="user-info">
+            <img src="images/dhk.jpg" />
+            <span
+              >Hải Đăng Nguyễn <i class="fa-solid fa-chevron-down"></i
+            ></span>
+          </div>
+        </div>
+        <div class="navbar-bottom">
+          <div class="navbar-collapse">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="#" class="nav-link">TRANG CHỦ</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">GIẢI ĐANG DIỄN RA</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">GIẢI ĐANG THEO DÕI</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">ĐỘI BÓNG</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">BẮT ĐỐI</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">HƯỚNG DẪN</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">CUỘC THI</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">TIN TỨC</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </header>
-    <nav class="navbar">
-      <a href="#">TRANG CHỦ</a>
-      <a href="#">GIẢI ĐANG DIỄN RA</a>
-      <a href="#">GIẢI ĐANG THEO DÕI</a>
-      <a href="#">ĐỘI BÓNG</a>
-      <a href="#">BẮT ĐỐI</a>
-      <a href="#">HƯỚNG DẪN</a>
-      <a href="#">CUỘC THI</a>
-      <a href="#">TIN TỨC</a>
-    </nav>
     <div class="container">
       <aside class="sidebar">
         <ul>
-          <li><i class="fa-solid fa-tachometer-alt"></i> Dashboard</li>
+          <li>
+            <i class="fa-solid fa-tachometer-alt"></i>
+            <a href="Dashboard.html">Dashboard</a>
+          </li>
 
           <li class="menu-item">
-            <i class="fa-solid fa-gear"></i> Quản lý giải đấu
+            <i class="fa-solid fa-gear"></i>Quản lý giải đấu
             <i class="fa-solid fa-chevron-down"></i>
           </li>
           <ul class="submenu">
             <li>
-              <i class="fa-solid fa-play"></i><a href="#">Danh sách giải đấu</a>
+              <i class="fa-solid fa-play"></i
+              ><a href="Dashboard.html">Danh sách giải đấu</a>
             </li>
             <li>
               <i class="fa-solid fa-play"></i
@@ -310,8 +420,13 @@
             </li>
           </ul>
 
-          <li><i class="fa-solid fa-gear"></i> Yêu cầu tham gia đội</li>
-          <li><i class="fa-solid fa-gear"></i> Quản lý cuộc thi</li>
+          <li>
+            <i class="fa-solid fa-gear"></i>
+            <a href="#"> Yêu cầu tham gia đội</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-gear"></i> <a href="#">Quản lý cuộc thi</a>
+          </li>
 
           <li class="menu-item">
             <i class="fa-solid fa-user"></i> Quản lý tài khoản
@@ -331,7 +446,7 @@
           <div class="list-league">
             <i class="fa-solid fa-list"></i>
             <span class="list-league_left">Danh sách đội bóng</span>
-            <a href="#">
+            <a href="addleague.html">
               <button class="add">
                 <i class="fa-solid fa-plus"></i> Thêm mới
               </button>

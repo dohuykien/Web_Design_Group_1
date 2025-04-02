@@ -60,8 +60,8 @@
       /* Menu chính */
       .navbar-collapse {
         background-color: #ff6f00;
-        padding: 6px 0px;
-        height: 5px;
+        padding: 7px 0px;
+        height: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -73,10 +73,10 @@
         position: absolute;
         top: -40px;
         left: -15px;
-        width: 400%;
+        width: 101%;
         height: 50px;
         background-color: #ff6f00;
-        clip-path: polygon(0 350%, 4% 0, 100% 0, 100% 100%);
+        clip-path: polygon(0 350%, 15% 0, 100% 0, 100% 100%);
       }
       .navbar-nav {
         display: flex;
@@ -90,7 +90,7 @@
         top: -20px;
         position: relative;
         z-index: 2;
-        font-size: 17px;
+        font-size: 16px;
       }
 
       .nav-item {
@@ -146,9 +146,10 @@
         width: 230px;
         background: #333333;
         color: #b8c7ce;
-        height: 638px;
+        height: 650px;
         position: relative;
         bottom: 2px;
+        z-index: 1;
       }
       .sidebar ul {
         list-style: none;
@@ -174,7 +175,12 @@
         text-decoration: none;
         color: #222222;
         flex: 1;
+        color: #b8c7ce;
       }
+      .sidebar a:hover {
+        color: #ffffff;
+      }
+
       .fa-solid.fa-tachometer-alt {
         color: #ff6f00;
       }
@@ -182,7 +188,7 @@
       /* Ẩn submenu ban đầu */
       .submenu {
         display: none;
-        background: #b81e1f !important;
+        background: #ff6f00 !important;
       }
 
       .submenu li {
@@ -195,7 +201,7 @@
         background: #ffffff;
       }
       .submenu a:hover {
-        color: rgb(243, 194, 81);
+        color: rgb(250, 55, 25);
       }
 
       /* Bật submenu khi click */
@@ -325,34 +331,14 @@
     </style>
   </head>
   <body>
-    <!-- <header class="header">
-      <div class="logo">
-        <a href="#"><img src="images/logo.png" alt="Logo" /></a>
-      </div>
-      <span class="developed-by">Hệ thống được phát triển bởi HD</span>
-      <div class="user-info">
-        <img src="images/dhk.jpg" />
-        <span>Hải Đăng Nguyễn <i class="fa-solid fa-chevron-down"></i></span>
-      </div>
-    </header>
-    <nav class="navbar">
-      <a href="#">TRANG CHỦ</a>
-      <a href="#">GIẢI ĐANG DIỄN RA</a>
-      <a href="#">GIẢI ĐANG THEO DÕI</a>
-      <a href="#">ĐỘI BÓNG</a>
-      <a href="#">BẮT ĐỐI</a>
-      <a href="#">HƯỚNG DẪN</a>
-      <a href="#">CUỘC THI</a>
-      <a href="#">TIN TỨC</a>
-    </nav> -->
     <header class="header">
       <div class="navbar">
         <div class="navbar-top">
           <div class="logo">
             <a href="#"><img src="images/logo.png" alt="Logo" /></a>
           </div>
-          <span class="developed-by"
-            >Hệ thống được phát triển bởi Eternal Phoenix</span
+          <span class="developed-by">
+            Hệ thống được phát triển bởi HD Promotion</span
           >
           <div class="user-info">
             <img src="images/dhk.jpg" />
@@ -396,15 +382,19 @@
     <div class="container">
       <aside class="sidebar">
         <ul>
-          <li><i class="fa-solid fa-tachometer-alt"></i> Dashboard</li>
+          <li>
+            <i class="fa-solid fa-tachometer-alt"></i>
+            <a href="Dashboard.html">Dashboard</a>
+          </li>
 
           <li class="menu-item">
-            <i class="fa-solid fa-gear"></i> Quản lý giải đấu
+            <i class="fa-solid fa-gear"></i>Quản lý giải đấu
             <i class="fa-solid fa-chevron-down"></i>
           </li>
           <ul class="submenu">
             <li>
-              <i class="fa-solid fa-play"></i><a href="#">Danh sách giải đấu</a>
+              <i class="fa-solid fa-play"></i
+              ><a href="Dashboard.html">Danh sách giải đấu</a>
             </li>
             <li>
               <i class="fa-solid fa-play"></i
@@ -430,8 +420,13 @@
             </li>
           </ul>
 
-          <li><i class="fa-solid fa-gear"></i> Yêu cầu tham gia đội</li>
-          <li><i class="fa-solid fa-gear"></i> Quản lý cuộc thi</li>
+          <li>
+            <i class="fa-solid fa-gear"></i>
+            <a href="#"> Yêu cầu tham gia đội</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-gear"></i> <a href="#">Quản lý cuộc thi</a>
+          </li>
 
           <li class="menu-item">
             <i class="fa-solid fa-user"></i> Quản lý tài khoản
