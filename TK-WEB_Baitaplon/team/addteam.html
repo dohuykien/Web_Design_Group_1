@@ -9,8 +9,6 @@
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
       rel="stylesheet"
     />
-     <!-- Add Source Sans Pro font -->
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -260,7 +258,7 @@
         }
         .fa-solid.fa-check {
           color: #ff6f00;
-          margin-right: 8px;
+          margin-right: 5px;
           font-size: 25px;
         }
         .list-league_left {
@@ -587,12 +585,11 @@
                     <div>
                         <!-- Links around buttons are optional depending on how you handle actions -->
                         <!-- Using button type="button" is generally safer if not submitting a form -->
+                        <button id="saveButton" type="button" class="save"><i class="fas fa-save"></i> Lưu</button>
+                        
+                        <button type="button" class="retry"><i class="fas fa-sync-alt"></i> Nhập lại</button>
                         <a href ="dsdoiqly.html" style="text-decoration: none;">
-                            <button type="button" class="add save"><i class="fas fa-save"></i> Lưu</button>
-                        </a>
-                        <button type="button" class="add retry"><i class="fas fa-sync-alt"></i> Nhập lại</button>
-                        <a href ="dsdoiqly.html" style="text-decoration: none;">
-                           <button type="button" class="add return"><i class="fas fa-arrow-left"></i> Danh sách đội bóng</button> <!-- Changed text -->
+                           <button type="button" class="return"><i class="fas fa-arrow-left"></i> Danh sách đội bóng</button> <!-- Changed text -->
                         </a>
                     </div>
                 </div>
@@ -839,7 +836,7 @@
             if(coverInput) coverInput.addEventListener("change", function () { previewImage(this, "coverPreview"); });
 
             // Reset button functionality
-             const retryButton = document.querySelector(".add.retry");
+             const retryButton = document.querySelector(".retry");
              const form = document.querySelector('form'); // Get the form element
              if(retryButton && form) {
                  retryButton.addEventListener('click', () => {
@@ -854,6 +851,86 @@
              }
 
         });
+
+
+
+        document.getElementById("saveButton").addEventListener("click", async function () {
+    let teams = JSON.parse(localStorage.getItem("teams")) || [];
+    
+    let teamNameInput = document.getElementById("teamName");
+    if (teamNameInput.value.trim() === "") {
+        alert("Vui lòng nhập tên đội bóng!"); // Show alert
+        teamNameInput.focus(); // Focus on the input field
+        return; // Stop the function from proceeding
+    }
+
+    // Collect form data
+    const teamData = {
+        teamName: document.getElementById("teamName").value,
+        managerName: document.getElementById("managerName").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        facebook: document.getElementById("facebook").value,
+        logo: await getImageData("logoFile"),
+        cover: await getImageData("coverFile"),
+        homeKit: await getImageData("homeKitFile"),
+        awayKit: await getImageData("awayKitFile")
+    };
+
+    // Add new team to array
+    teams.push(teamData);
+
+    // Store updated data in localStorage
+    localStorage.setItem("teams", JSON.stringify(teams));
+
+    // Alert success and clear form
+    alert("Đội bóng đã được lưu!");
+    resetForm();
+});
+
+// Convert image to Base64
+function getImageData(inputId) {
+    return new Promise((resolve) => {
+        const fileInput = document.getElementById(inputId);
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.readAsDataURL(file);
+        } else {
+            fetch("images/logo.png")
+                .then(response => response.blob())  // Convert response to Blob
+                .then(blob => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.readAsDataURL(blob);
+                });
+        }
+    });
+}
+
+// Function to clear form after saving
+function resetForm() {
+    document.querySelector('form').reset(); // Reset form fields
+    ["logoPreview", "coverPreview", "homeKitPreview", "awayKitPreview"].forEach(id => {
+        document.getElementById(id).innerHTML = ""; // Clear image previews
+    });
+    document.getElementById('logoPreview').innerHTML = `<img src="images/logo.png" alt="Default Logo Preview" style="max-width: 150px; max-height: 150px; border-radius: 5px;"/>`;
+
+}
+
+
+
+
+
+// Function to display images from Base64
+function displayImage(previewElementId, imageData) {
+    if (imageData) {
+        document.getElementById(previewElementId).innerHTML = `<img src="${imageData}" style="max-width: 150px; max-height: 150px; border-radius: 5px;"/>`;
+    }
+}
+
+
     </script>
 
 </body>

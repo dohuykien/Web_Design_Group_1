@@ -149,7 +149,6 @@
         color: #b8c7ce;
         height: 650px;
         position: relative;
-        bottom: 2px;
         z-index: 1;
       }
       .sidebar ul {
@@ -332,6 +331,125 @@
       .footer-apps img {
         height: 30px;
       }
+
+            /* ------------- Team Card Styles ------------- */
+            #team-list-container {
+          display: flex;
+          flex-wrap: wrap;
+          padding: 15px; /* Add padding inside the container */
+          gap: 15px; /* Space between cards */
+          background-color: #ecf0f5; /* Match outer background */
+          flex-grow: 1; /* Allow this container to fill space */
+      }
+
+      .team-card {
+          background-color: #ffffff;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          width: calc(25% - 12px); /* Adjust width for 4 cards per row, considering gap */
+          box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding-top: 20px;
+          text-align: center;
+          overflow: hidden; /* Ensure buttons don't overflow */
+      }
+
+      .team-logo {
+          width: 150px; /* Adjust size */
+          height: 150px;
+          border-radius: 50%; /* Make it circular */
+          object-fit: cover; /* Ensure image covers the area */
+          margin-bottom: 15px;
+          border: 1px solid #eee; /* Subtle border */
+      }
+
+      .team-name {
+          font-size: 16px;
+          font-weight: 600; /* Bold name */
+          color: #333;
+          margin-bottom: 5px;
+      }
+
+      .team-members {
+          font-size: 13px;
+          color: #777;
+          margin-bottom: 15px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+      }
+       .team-members i.fa-users {
+           font-size: 12px; /* Adjust icon size */
+       }
+
+      .card-actions {
+          display: flex;
+          width: 100%;
+          margin-top: auto; /* Push actions to the bottom */
+          border-top: 1px solid #eee; /* Separator */
+      }
+
+      .action-btn {
+          flex: 1; /* Each button takes half the width */
+          padding: 8px 0;
+          border: none;
+          cursor: pointer;
+          color: white;
+          font-size: 14px;
+          transition: background-color 0.2s;
+      }
+
+      .edit-btn {
+          background-color: #9ccc65; /* Light green like image */
+          border-bottom-left-radius: 5px; /* Round bottom-left */
+      }
+      .edit-btn:hover {
+          background-color: #8bc34a; /* Darker green */
+      }
+
+      .delete-btn {
+          background-color: #e57373; /* Light red like image */
+          border-bottom-right-radius: 5px; /* Round bottom-right */
+      }
+       .delete-btn:hover {
+           background-color: #ef5350; /* Darker red */
+       }
+
+      .action-btn i {
+          pointer-events: none; /* Ensure icon doesn't interfere with button click */
+      }
+
+      /* Responsive adjustments for cards */
+       @media (max-width: 1200px) {
+           .team-card {
+               width: calc(33.333% - 10px); /* 3 cards per row */
+           }
+       }
+       @media (max-width: 768px) {
+           .team-card {
+               width: calc(50% - 8px); /* 2 cards per row */
+           }
+           .sidebar {
+                /* Adjust sidebar for mobile if needed */
+           }
+           .content-wrapper {
+               padding: 10px;
+           }
+            #team-list-container {
+                padding: 10px;
+                gap: 10px;
+            }
+       }
+       @media (max-width: 480px) {
+           .team-card {
+               width: 100%; /* 1 card per row */
+           }
+            .navbar-nav { padding-left: 10px; margin-left: 0;} /* Adjust mobile nav */
+            .developed-by { display: none; } /* Hide on very small screens */
+            .header .user-info { margin-right: 10px;}
+       }
     </style>
   </head>
   <body>
@@ -420,7 +538,7 @@
               ><a href="dsdoitgia.html">Danh sách đội tham gia</a>
             </li>
             <li>
-              <i class="fa-solid fa-play"></i><a href="#">Tạo đội bóng mới</a>
+              <i class="fa-solid fa-play"></i><a href="addteam.html">Tạo đội bóng mới</a>
             </li>
           </ul>
 
@@ -456,6 +574,9 @@
               </button>
             </a>
           </div>
+          <div id="team-list-container">
+            <!-- Team cards will be inserted here by JavaScript -->
+         </div>
 
           <div class="footer">
             <div class="footer-container">
@@ -498,18 +619,179 @@
     </div>
 
     <script>
-      // Lấy tất cả các menu cha
-      let menuItems = document.querySelectorAll(".menu-item");
-
-      menuItems.forEach((item) => {
-        item.addEventListener("click", function () {
-          let submenu = this.nextElementSibling;
-
-          // Chỉ toggle submenu hiện tại, không đóng các submenu khác
-          submenu.style.display =
-            submenu.style.display === "block" ? "none" : "block";
+        // Sidebar Menu Toggle Logic
+        let menuItems = document.querySelectorAll(".menu-item");
+    
+        menuItems.forEach((item) => {
+            item.addEventListener("click", function () {
+                // Toggle active class on the clicked menu item
+                this.classList.toggle("active");
+    
+                let submenu = this.nextElementSibling;
+                if (submenu && submenu.classList.contains('submenu')) {
+                    submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+                }
+    
+                // Optional: Close other submenus when one is opened
+                menuItems.forEach(otherItem => {
+                    if (otherItem !== this && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                        let otherSubmenu = otherItem.nextElementSibling;
+                        if (otherSubmenu && otherSubmenu.classList.contains('submenu')) {
+                            otherSubmenu.style.display = 'none';
+                        }
+                    }
+                });
+            });
         });
-      });
+    
+        // ----- Team Card Generation and Deletion Logic -----
+    
+        // Global variable to hold team data
+        let teams = [];
+    
+        // Function to load teams from localStorage
+        function loadTeams() {
+            const storedTeams = localStorage.getItem("teams");
+            try {
+                teams = storedTeams ? JSON.parse(storedTeams) : [];
+                if (!Array.isArray(teams)) { // Basic validation
+                    console.warn("Invalid data found in localStorage for 'teams', resetting.");
+                    teams = [];
+                    localStorage.setItem("teams", JSON.stringify(teams));
+                }
+            } catch (error) {
+                console.error("Error parsing teams from localStorage:", error);
+                teams = []; // Reset to empty array on error
+            }
+        }
+    
+        // Function to save teams back to localStorage
+        function saveTeams() {
+            localStorage.setItem("teams", JSON.stringify(teams));
+        }
+    
+    
+        // Function to create and display team cards
+        function displayTeams() {
+            const container = document.getElementById('team-list-container');
+            if (!container) {
+                console.error("Team list container not found!");
+                return; // Exit if container not found
+            }
+    
+            container.innerHTML = ''; // Clear existing cards
+    
+            if (teams.length === 0) {
+                 container.innerHTML = '<p style="text-align: center; width: 100%; padding: 20px;">No teams found.</p>';
+                 return;
+            }
+    
+            teams.forEach((team, index) => {
+                const teamIdentifier = team.teamName || `team-${index}`; // Use name or index as identifier
+                let imgSrc = team.logo || 'images/fag_logo_placeholder.png'; // Default placeholder
+    
+                 // Handle potential Base64 prefix (as added in previous steps)
+                 if (team.logo && typeof team.logo === 'string' && team.logo.trim() !== '' && !team.logo.startsWith('data:image') && !team.logo.startsWith('images/')) {
+                     // Assume raw Base64 if it's not a Data URL or placeholder path
+                     imgSrc = `data:image/png;base64,${team.logo}`; // Assuming PNG, adjust if needed
+                 }
+    
+                // Add data-identifier attribute to the card
+                const cardHTML = `
+                    <div class="team-card" data-identifier="${teamIdentifier}">
+                        <img src="${imgSrc}" alt="${team.teamName || 'Team'} Logo" class="team-logo" onerror="this.onerror=null; this.src='images/fag_logo_placeholder.png';">
+                        <h3 class="team-name">${team.teamName || 'Unnamed Team'}</h3>
+                        <p class="team-members"><i class="fa-solid fa-users"></i> ${team.members !== undefined ? team.members : '0'} Thành viên</p>
+                        <div class="card-actions">
+                            <button class="action-btn edit-btn" title="Chỉnh sửa"><i class="fa-solid fa-gear"></i></button>
+                            <button class="action-btn delete-btn" title="Xóa"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHTML);
+            });
+    
+             // --- DO NOT add listeners here anymore ---
+        }
+    
+        // Function to attach the delete event listener using delegation ONCE
+        function addDeleteEventListeners() {
+            const container = document.getElementById('team-list-container');
+            if (!container) return;
+    
+            // Prevent attaching multiple listeners if this function were accidentally called again
+            if (container.dataset.deleteListenerAttached === 'true') {
+                console.log("Delete listener already attached.");
+                return;
+            }
+            container.dataset.deleteListenerAttached = 'true'; // Mark as attached
+    
+            console.log("Attaching delete listener to container."); // For debugging
+    
+            // Use event delegation on the container
+            container.addEventListener('click', function(event) {
+                // Check if the clicked element *or its parent* is a delete button
+                const deleteButton = event.target.closest('.delete-btn');
+                if (!deleteButton) {
+                    return; // Click wasn't on or inside a delete button
+                }
+    
+                console.log("Delete button clicked."); // For debugging
+    
+                const card = deleteButton.closest('.team-card');
+                if (!card) {
+                    console.error("Could not find parent card for delete button.");
+                    return;
+                }
+    
+                const teamIdentifier = card.dataset.identifier;
+                const teamName = card.querySelector('.team-name')?.textContent || teamIdentifier;
+    
+                // --- Confirmation ---
+                // This should now only appear once per click
+                if (confirm(`Are you sure you want to delete the team "${teamName}"?`)) {
+                    console.log(`Confirmed deletion for: ${teamName}`); // For debugging
+    
+                    // --- Find and remove team from array ---
+                    const initialLength = teams.length;
+                    teams = teams.filter((team, index) => {
+                        const currentIdentifier = team.teamName || `team-${index}`;
+                        return currentIdentifier !== teamIdentifier;
+                    });
+    
+                    if (teams.length < initialLength) {
+                        // --- Update localStorage ---
+                        saveTeams();
+    
+                        // --- Remove card from DOM ---
+                        card.remove(); // Remove the card visually
+                        console.log(`Team "${teamName}" removed from DOM and localStorage.`);
+    
+                        // Optional: Show a message if list becomes empty
+                        if(teams.length === 0 && container.firstChild) { // Check if container is truly empty
+                             container.innerHTML = '<p style="text-align: center; width: 100%; padding: 20px;">No teams left.</p>';
+                        }
+    
+                    } else {
+                        console.warn(`Could not find team with identifier "${teamIdentifier}" in the 'teams' array to delete.`);
+                    }
+                } else {
+                    // User clicked Cancel
+                    console.log('Deletion cancelled.');
+                }
+            }); // End of container event listener
+        } // End of addDeleteEventListeners
+    
+        // --- Initial Page Load Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log("DOM fully loaded."); // For debugging
+            loadTeams();             // Load data from localStorage
+            displayTeams();          // Display the loaded or initial teams
+            addDeleteEventListeners(); // Attach the delete listener ONCE
+            // addEditEventListeners(); // Attach edit listeners ONCE here too, if/when implemented
+        });
+    
     </script>
   </body>
 </html>
