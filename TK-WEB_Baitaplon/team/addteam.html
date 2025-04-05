@@ -489,7 +489,7 @@
          }
 
         /* Button styles in the header bar */
-        .save, .retry {
+        .retry {
         color: rgb(255, 255, 255);
         padding: 7px 12px 6px 12px;
         background-color: rgb(0, 172, 236);
@@ -500,8 +500,22 @@
         text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
         box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
       }
-      .save:hover, .retry:hover {
+      .retry:hover {
         background-color: #428bca;
+      }
+      .save {
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: rgb(76, 175, 80);
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .save:hover {
+        background-color: #4d9e51;
       }
       .return {
         color: rgb(255, 255, 255);
@@ -604,7 +618,7 @@
                             <!-- Team Name on its own row -->
                             <div class="form-group">
                                 <label for="teamName">Tên đội bóng</label>
-                                <input type="text" id="teamName" name="teamName" class="form-control" required> <!-- Added required -->
+                                <input type="text" id="teamName" name="teamName" class="form-control" placeholder="Nhập tên đội bóng (Bắt buộc)" required> <!-- Added required -->
                             </div>
 
                             <!-- Grid for the rest of the fields -->
@@ -856,7 +870,9 @@
 
         document.getElementById("saveButton").addEventListener("click", async function () {
     let teams = JSON.parse(localStorage.getItem("teams")) || [];
-    
+    const currentUser = {
+            id: 1,
+            name: "Nguyen Hai Dang",};
     let teamNameInput = document.getElementById("teamName");
     if (teamNameInput.value.trim() === "") {
         alert("Vui lòng nhập tên đội bóng!"); // Show alert
@@ -866,6 +882,8 @@
 
     // Collect form data
     const teamData = {
+        id: `team-${teams.length + 1}`,
+        userId: currentUser.id,
         teamName: document.getElementById("teamName").value,
         managerName: document.getElementById("managerName").value,
         email: document.getElementById("email").value,
@@ -897,7 +915,7 @@ function getImageData(inputId) {
             const reader = new FileReader();
             reader.onloadend = () => resolve(reader.result);
             reader.readAsDataURL(file);
-        } else {
+        } else if (inputId === "logoFile") {
             fetch("images/logo.png")
                 .then(response => response.blob())  // Convert response to Blob
                 .then(blob => {
@@ -905,6 +923,9 @@ function getImageData(inputId) {
                     reader.onloadend = () => resolve(reader.result);
                     reader.readAsDataURL(blob);
                 });
+        } else 
+        {
+            resolve(null);
         }
     });
 }

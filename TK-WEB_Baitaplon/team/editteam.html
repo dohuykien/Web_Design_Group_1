@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa Thông Tin Đội Bóng</title>
+    <link rel="icon" type="logo.png" href="images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: Oswald, sans-serif; /* Default font */
+        }
+        body {
+          background-color: white;
+        }
+        /*-------------------------Header---------------------------*/
+        .developed-by {
+          position: absolute;
+          left: 250px;
+          top: 7px;
+          color: #ffffff;
+          font-size: 14px;
+          z-index: 2;
+        }
+        .navbar-top {
+          background-color: #1565c0;
+          color: white;
+          padding: 10px 20px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 75px;
+        }
+        .navbar-bottom {
+          position: relative;
+        }
+        /*Logo*/
+        .logo {
+          display: flex;
+          align-items: center;
+          z-index: 2;
+          left: 170px;
+        }
+        .logo img {
+          height: 65px;
+          max-width: 100%;
+          margin-right: 10px;
+        }
+        /* Menu chính */
+        .navbar-collapse {
+          background-color: #ff6f00;
+          padding: 7px 0px;
+          height: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          z-index: 1;
+        }
+        .navbar-collapse::before {
+          content: "";
+          position: absolute;
+          top: -40px;
+          left: -15px;
+          width: 101%;
+          height: 50px;
+          background-color: #ff6f00;
+          clip-path: polygon(0 350%, 15% 0, 100% 0, 100% 100%);
+        }
+        .navbar-nav {
+          display: flex;
+          margin-left: -200px;
+        }
+        .navbar-nav li a {
+          left: 10px;
+          color: white;
+          text-decoration: none;
+          /* margin: 0 7px; */
+          top: -20px;
+          position: relative;
+          z-index: 2;
+          font-size: 16px;
+        }
+        .nav-item {
+          padding: 0 15px;
+          list-style: none;
+        }
+        .navbar-nav a:hover {
+          text-decoration: underline;
+        }
+
+        /* Responsive cho Mobile */
+        @media (max-width: 768px) {
+          .navbar-collapse {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: #fff;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          }
+
+          .navbar-collapse.active {
+            display: flex;
+          }
+
+          .nav-item {
+            text-align: center;
+            padding: 10px 0;
+          }
+        }
+        .header .user-info {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          position: relative; /* Đổi từ absolute sang relative */
+          right: 0; /* Đưa về bên phải */
+          top: -20px;
+        }
+        .header .user-info img {
+          width: 30px;
+          height: 30px;
+        }
+        /*-------------------End Header---------------------- */
+
+        /*----------------------Layout-------------------------*/
+        .container {
+          display: flex;
+          width: 100%;
+        }
+        /*-------------------Sidebar--------------------- */
+        .sidebar {
+        width: 230px;
+        background: #333333;
+        color: #b8c7ce;
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        min-height: 650px;
+      }
+      .sidebar ul {
+        list-style: none;
+        background-color: #2c3b41;
+      }
+      .sidebar ul li {
+        padding: 9px 5px 9px 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid #ffffff;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      .sidebar ul li:hover {
+        color: #ffffff;
+      }
+      .sidebar ul li i {
+        width: 20px;
+        text-align: center;
+      }
+      .sidebar a {
+        text-decoration: none;
+        flex: 1;
+        color: #b8c7ce;
+      }
+      .sidebar a:hover {
+        color: #ffffff;
+      }
+
+      .fa-solid.fa-tachometer-alt {
+        color: #ff6f00;
+      }
+
+      /* Ẩn submenu ban đầu */
+      .submenu {
+        display: none;
+        background: #ff6f00 !important;
+      }
+
+      .submenu li {
+        padding: 12px 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+        height: 32px;
+      }
+      .submenu a {
+        color: #222222 !important;
+      }
+      .submenu li:hover {
+        background: #ffffff;
+      }
+      .submenu a:hover {
+        color: rgb(250, 55, 25) !important;
+      }
+
+      /* Bật submenu khi click */
+      .menu-item.active + .submenu {
+        display: block;
+      }
+
+      /* Định dạng cho menu cha */
+      .menu-item {
+        display: flex;
+        align-items: center;
+        padding: 15px 15px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .menu-item i {
+        margin-right: 10px;
+      }
+      .fa-solid.fa-play {
+        font-size: 9px;
+        color: #222222;
+      }
+      .fa-solid.fa-chevron-down {
+        font-size: 12px;
+        margin-left: auto;
+      }
+      /* -------------------sidebar-end------------------- */
+      /*content: list-league + footer */
+      .content-wrapper {
+        flex: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      .content {
+        background-color: #ecf0f5;
+      }
+        /* list-league */
+        .list-league {
+        color: rgb(34, 34, 34);
+        font-size: 24px;
+        font-weight: normal;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        }
+        .list-league_left {
+            font-family: "Source Sans Pro", sans-serif !important;
+        }
+        .fa-solid.fa-check {
+          color: #ff6f00;
+          margin-right: 5px;
+          font-size: 25px;
+        }
+        .list-league_left {
+          flex-grow: 1;
+        }
+        /* Buttons styling moved to form layout section for consistency */
+
+        /* --------------------- FOOTER -------------------- */
+        .footer {
+        box-sizing: border-box;
+        background-color: #ecf0f5;
+        color: rgb(51, 51, 51);
+        font-size: 14px;
+        font-weight: 500;
+        text-shadow: rgb(255, 255, 255) 1px 1px 1px;
+        box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.1);
+        display: block;
+        border-top-color: rgb(255, 255, 255);
+        border-top-style: solid;
+        border-top-width: 0.8px;
+      }
+
+      .footer-container {
+        box-sizing: border-box;
+        background-color: #ecf0f5;
+        color: rgb(51, 51, 51);
+        font-size: 14px;
+        text-shadow: rgb(255, 255, 255) 2px 2px 2px;
+        margin: 40px 10px 10px 10px;
+        display: block;
+        border-top-color: rgb(255, 255, 255);
+        border-top-style: solid;
+        border-top-width: 0.8px;
+        line-height: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+      }
+
+      .footer-left,
+      .footer-right {
+        flex: 1;
+      }
+
+      .footer-left p,
+      .footer-right p {
+        margin: 19px 0;
+      }
+
+      .footer-apps {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .footer-apps img {
+        height: 30px;
+      }
+
+      /* --- Top Green Buttons --- */
+      .team-management-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .nav-button {
+            flex: 1; /* Distribute space */
+            min-width: 120px; /* Minimum width before wrapping */
+            background-color: #5cb85c; /* Green background */
+            color: white;
+            text-align: center;
+            padding: 15px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            border: none; /* Remove default button border */
+            cursor: pointer;
+        }
+
+        .nav-button i {
+            font-size: 28px; /* Icon size */
+            opacity: 0.9;
+        }
+
+        .nav-button:hover {
+            background-color: #4cae4c; /* Darker green on hover */
+        }
+
+        .nav-button.active {
+            background-color: #449d44; /* Even darker for active */
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+             cursor: default;
+        }
+
+
+        /* list-league */
+        .list-league {
+        color: rgb(34, 34, 34);
+        font-size: 24px;
+        font-weight: normal;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        }
+        .list-league_left {
+            font-family: "Source Sans Pro", sans-serif !important;
+        }
+        .fa-solid.fa-check {
+          color: #ff6f00;
+          margin-right: 5px;
+          font-size: 25px;
+        }
+        .list-league_left {
+          flex-grow: 1;
+        }
+
+        /* Button styles in the header bar */
+        .retry {
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: rgb(0, 172, 236);
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .retry:hover {
+        background-color: #428bca;
+      }
+      .save {
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: rgb(76, 175, 80);
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .save:hover {
+        background-color: #4d9e51;
+      }
+      .return {
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: #f34541;
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .return:hover {
+        background-color: #dd1b18;
+      }
+
+        .list-league i {
+            margin-right: 5px;
+        }
+        /* --- Tab Interface --- */
+        .edit-content-box {
+             background-color: #ffffff;
+             border-radius: 0 0 5px 5px; /* Rounded bottom corners */
+             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+             margin-top: 10px;
+             /* No top border needed as it connects to title bar */
+        }
+
+        .nav-tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            background-color: #f8f8f8; /* Light background for tab bar */
+            padding-left: 15px; /* Align with content padding */
+             border-radius: 0; /* Override any global nav styles */
+             list-style: none; /* Remove list bullets */
+             margin: 0; /* Reset margin */
+        }
+
+        .nav-tabs .nav-item {
+             margin-bottom: -1px; /* Overlap border */
+        }
+
+        .nav-tabs .nav-link {
+            border: 1px solid transparent;
+            padding: 10px 15px;
+            font-size: 15px;
+            color: #0275d8; /* Blue for inactive tabs */
+            background-color: transparent;
+            text-decoration: none;
+            cursor: pointer;
+            display: block;
+        }
+
+        .nav-tabs .nav-link:hover {
+            border-color: #eee ;
+            background-color: #eee; /* Slight hover effect */
+        }
+
+        .nav-tabs .nav-link.active {
+            color: #464a4e; /* Darker text for active */
+            background-color: #fff; /* White background for active tab */
+            border-color: #ddd; /* Border connects */
+        }
+
+        /* --- Tab Content --- */
+        .tab-content {
+            padding: 20px;
+        }
+
+        .tab-pane {
+            display: none; /* Hide inactive panes */
+        }
+
+        .tab-pane.active {
+            display: block; /* Show active pane */
+        }
+
+        /* --- Form Layout Specifics for Edit Page --- */
+        .form-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .form-fields-area {
+            flex: 2; /* Takes more space */
+            min-width: 400px;
+        }
+
+        .form-upload-area {
+            flex: 1; /* Takes less space */
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-grid {
+             display: grid;
+             grid-template-columns: auto 1fr; /* Label takes auto width, input takes rest */
+             gap: 15px 10px; /* Row gap, Column gap */
+             align-items: center; /* Align items vertically in each row */
+        }
+
+        .form-grid label {
+            text-align: right; /* Align labels to the right */
+            font-weight: 500;
+            color: #333;
+            padding-right: 5px; /* Space between label and input */
+            font-size: 15px;
+        }
+
+        .form-grid input[type="text"],
+        .form-grid input[type="email"],
+        .form-grid input[type="tel"],
+        .form-grid input[type="url"] {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        }
+         .form-grid input:focus {
+            border-color: #66afe9;
+            outline: 0;
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+         }
+
+
+        /* --- Upload Section Specifics --- */
+        .upload-section {
+             background-color: #fdfdfd; /* Slightly different background */
+             border: 1px solid #eee;
+             border-radius: 4px;
+             padding: 0; /* Remove padding, header/body have it */
+        }
+        .upload-header {
+            background-color: rgb(76, 175, 80); /* Green header */
+            color: white;
+            padding: 8px 15px;
+            font-size: 15px;
+            font-weight: 500;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .upload-header:hover {
+            background-color: #4d9e51;
+        }
+        .upload-body {
+             padding: 15px;
+        }
+        .image-preview {
+            border: 1px dashed #ccc;
+            border-radius: 4px;
+            min-height: 180px; /* Adjust as needed */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff; /* White background for preview */
+            overflow: hidden;
+            position: relative;
+        }
+        /* Remove placeholder text if image exists */
+        .image-preview:not(:empty)::before {
+             display: none;
+        }
+        .image-preview::before {
+            content: "Chưa có ảnh";
+            color: #aaa;
+            font-size: 13px;
+            position: absolute;
+        }
+
+        .image-preview img {
+             max-width: 100%;
+             max-height: 200px; /* Max height for preview */
+             display: block;
+             object-fit: contain;
+             position: relative;
+             z-index: 1;
+        }
+         /* Specific style for circular logo preview */
+        #logoPreview img {
+            border-radius: 50%;
+            width: 150px; /* Match FAG logo size approx */
+            height: 150px;
+            object-fit: cover;
+             border: 1px solid #eee;
+        }
+        /* Hidden file input */
+        .file-input { display: none; }
+
+         /* We don't need a separate button, the header acts as the trigger area */
+         /* Make header clickable to trigger file input */
+         .upload-header { cursor: pointer; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="navbar">
+          <div class="navbar-top">
+            <div class="logo">
+              <a href="#"><img src="images/logo.png" alt="Logo" /></a>
+            </div>
+            <span class="developed-by">
+              Hệ thống được phát triển bởi HD Promotion</span
+            >
+            <div class="user-info">
+              <img src="images/dhk.jpg" alt="User Avatar"/> <!-- Added alt text -->
+              <span
+                >Hải Đăng Nguyễn <i class="fa-solid fa-chevron-down"></i
+              ></span>
+            </div>
+          </div>
+          <div class="navbar-bottom">
+            <div class="navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">TRANG CHỦ</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">GIẢI ĐANG DIỄN RA</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">GIẢI ĐANG THEO DÕI</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">ĐỘI BÓNG</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">BẮT ĐỐI</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">HƯỚNG DẪN</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">CUỘC THI</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">TIN TỨC</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+
+    <div class="container">
+        <div id="sidebar-container">
+             <!-- Sidebar will be loaded here -->
+        </div>
+        <div class="content-wrapper">
+            <section class="content">
+                <!-- Title and Action Buttons -->
+                <nav class="team-management-nav">
+                    <a href="#" class="nav-button"> <!-- Link to actual members page -->
+                        <i class="fa-solid fa-users"></i>
+                        <span>THÀNH VIÊN</span>
+                    </a>
+                    <a href="#" class="nav-button"> <!-- Link to squad page -->
+                        <i class="fa-solid fa-crosshairs"></i> <!-- Or fa-clipboard-list -->
+                        <span>ĐỘI HÌNH</span>
+                    </a>
+                    <a href="#" class="nav-button"> <!-- Link to tournaments page -->
+                        <i class="fa-solid fa-trophy"></i>
+                        <span>GIẢI THAM DỰ</span>
+                    </a>
+                    <a href="#" class="nav-button"> <!-- Link to finances page -->
+                        <i class="fa-solid fa-dollar-sign"></i> <!-- Or fa-wallet -->
+                        <span>SỔ QUỸ</span>
+                    </a>
+                    <a href="#" class="nav-button"> <!-- Link to permissions page -->
+                        <i class="fa-solid fa-shield-alt"></i>
+                        <span>PHÂN QUYỀN</span>
+                    </a>
+                    <!-- Current Page - Marked Active -->
+                    <button type="button" class="nav-button active" disabled> <!-- Disabled button for current page -->
+                        <i class="fa-solid fa-cogs"></i>
+                        <span>CẤU HÌNH</span>
+                    </button>
+                    <button type="button" class="nav-button"> 
+                        <i class="fa-solid fa-calendar"></i>
+                        <span>LỊCH THI ĐẤU</span>
+                    </button>
+                    <button type="button" class="nav-button"> 
+                        <i class="fa-solid fa-clipboard-user"></i>
+                        <span>YÊU CẦU THAM GIA</span>
+                    </button>
+                </nav>
+                <div class="list-league">
+                    <span class="list-league_left"><i class="fa-solid fa-check"></i>Sửa thông tin đội bóng</span>
+                    <div>
+                        <button type="submit" form="editTeamForm" class="save"><i class="fas fa-save"></i> Lưu</button>
+                        
+                        <button type="button" id="resetButton" class="retry"><i class="fas fa-sync-alt"></i> Nhập lại</button>
+                        <a href ="dsdoiqly.html" style="text-decoration: none;">
+                           <button type="button" class="return"><i class="fas fa-arrow-left"></i> Danh sách đội bóng</button> <!-- Changed text -->
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- Content Box with Tabs -->
+                <div class="edit-content-box">
+                    <!-- Tab Navigation -->
+                    <ul class="nav nav-tabs" id="editTeamTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="general-info-tab" data-bs-toggle="tab" data-bs-target="#tab-general-info" type="button" role="tab" aria-controls="tab-general-info" aria-selected="true">Thông tin chung</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="kits-tab" data-bs-toggle="tab" data-bs-target="#tab-kits" type="button" role="tab" aria-controls="tab-kits" aria-selected="false">Trang phục thi đấu</button>
+                        </li>
+                    </ul>
+
+                    <!-- Tab Content Panes -->
+                    <div class="tab-content" id="editTeamTabContent">
+                        <!-- General Info Pane -->
+                        <div class="tab-pane active" id="tab-general-info" role="tabpanel" aria-labelledby="general-info-tab">
+                            <!-- Use a single form across tabs -->
+                            <form id="editTeamForm">
+                                <div class="form-layout">
+                                    <!-- Left: Form Fields -->
+                                    <div class="form-fields-area">
+                                        <div class="form-grid">
+                                            <label for="teamName" class="required">Tên đội bóng</label>
+                                            <input type="text" id="teamName" name="teamName" required placeholder="Nhập tên đầy đủ của đội">
+
+                                            <label for="managerName">Người quản lý</label>
+                                            <input type="text" id="managerName" name="managerName" placeholder="Tên người quản lý (nếu có)">
+
+                                            <label for="email">Email</label>
+                                            <input type="email" id="email" name="email" placeholder="Địa chỉ email liên hệ">
+
+                                            <label for="phone">Điện thoại</label>
+                                            <input type="tel" id="phone" name="phone" placeholder="Số điện thoại liên hệ">
+
+                                            <label for="facebook">Facebook</label>
+                                            <input type="url" id="facebook" name="facebook" placeholder="Link trang Facebook (https://...)">
+                                        </div>
+                                    </div>
+
+                                    <!-- Right: Upload Area -->
+                                    <div class="form-upload-area">
+                                        <!-- Logo Upload -->
+                                        <div class="upload-section">
+                                            <label for="logoFile" class="upload-header" id="logoUploadHeader">
+                                                 <i class="fa-solid fa-upload"></i> Upload ảnh Logo...
+                                            </label>
+                                            <input type="file" id="logoFile" name="logoFile" accept="image/*" class="file-input">
+                                            <div class="upload-body">
+                                                <div class="image-preview" id="logoPreview">
+                                                    <!-- Default HD Logo -->
+                                                     <img src="images/logo.png" alt="Logo mặc định" style="max-width: 150px; max-height: 150px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Cover Upload -->
+                                         <div class="upload-section">
+                                             <label for="coverFile" class="upload-header" id="coverUploadHeader">
+                                                 <i class="fa-solid fa-upload"></i> Upload ảnh bìa...
+                                             </label>
+                                             <input type="file" id="coverFile" name="coverFile" accept="image/*" class="file-input">
+                                             <div class="upload-body">
+                                                 <div class="image-preview" id="coverPreview">
+                                                     <!-- Placeholder text shown via CSS -->
+                                                 </div>
+                                             </div>
+                                         </div>
+                                    </div>
+                                </div>
+                                <!-- Kit fields are in the other tab, but part of the same form -->
+                            </form>
+                        </div>
+
+                        <!-- Kits Pane -->
+                        <div class="tab-pane" id="tab-kits" role="tabpanel" aria-labelledby="kits-tab">
+                            <div class="form-layout">
+                               <div class="form-upload-area" style="flex: 1;">
+                                    <div class="upload-section">
+                                         <label for="homeKitFile" class="upload-header" id="homeKitUploadHeader">
+                                              <i class="fa-solid fa-tshirt"></i> Upload trang phục sân nhà...
+                                         </label>
+                                         <input type="file" id="homeKitFile" name="homeKitFile" accept="image/*" class="file-input" form="editTeamForm"> <!-- Associate with form -->
+                                         <div class="upload-body">
+                                              <div class="image-preview kit-preview" id="homeKitPreview"></div>
+                                         </div>
+                                    </div>
+                               </div>
+                                <div class="form-upload-area" style="flex: 1;">
+                                    <div class="upload-section">
+                                         <label for="awayKitFile" class="upload-header" id="awayKitUploadHeader">
+                                              <i class="fa-solid fa-tshirt"></i> Upload trang phục sân khách...
+                                         </label>
+                                         <input type="file" id="awayKitFile" name="awayKitFile" accept="image/*" class="file-input" form="editTeamForm"> <!-- Associate with form -->
+                                         <div class="upload-body">
+                                              <div class="image-preview kit-preview" id="awayKitPreview"></div>
+                                         </div>
+                                    </div>
+                               </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- End Content Box -->
+
+            </section>
+
+            <footer class="footer"> <!-- Changed to footer tag -->
+                <div class="footer-container">
+                  <div class="footer-left">
+                    <p>Bản quyền thuộc HD Promotion</p>
+                    <p>Nguyen Hai Dang</p>
+                    <p>
+                      Chỉ được phát hành lại nội dung khi có sự đồng ý của HD
+                      Promotion
+                    </p>
+                    <div class="footer-apps">
+                      <a href="#"><img src="images/logo.png" alt="IT League" /></a>
+                      <a href="#"
+                        ><img src="images/googleplay.png" alt="Google Play"
+                      /></a>
+                      <a href="#"
+                        ><img src="images/appstore.png" alt="App Store"
+                      /></a>
+                    </div>
+                  </div>
+                  <div class="footer-right">
+                    <p>
+                      <i class="fa fa-building" aria-hidden="true"></i> CÔNG TY CỔ
+                      PHẦN TỔ CHỨC SỰ KIỆN VÀ TRUYỀN THÔNG HD Promotion
+                    </p>
+                    <p>
+                      <i class="fa fa-map-marker" aria-hidden="true"></i> Số 185,
+                      Trần Đại Nghĩa, phường Đồng Tâm, quận Hai Bà Trưng, Hà Nội
+                    </p>
+                    <p><i class="fa fa-phone" aria-hidden="true"></i> 0797102555</p>
+                    <p>
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                      nguyenstorm2k5@gmail.com
+                    </p>
+                  </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // Load sidebar.html into the sidebar-container
+        fetch("sidebar.html")
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              return response.text();
+          })
+          .then(data => {
+            const sidebarContainer = document.getElementById("sidebar-container");
+            if (sidebarContainer) {
+                sidebarContainer.innerHTML = data;
+                // Re-attach sidebar menu toggle functionality AFTER loading content
+                attachSidebarToggle();
+            } else {
+                console.error("Sidebar container not found!");
+            }
+          })
+          .catch(error => console.error("Error loading sidebar:", error));
+
+        // Function to attach sidebar toggle listeners
+        function attachSidebarToggle() {
+            const sidebarContainer = document.getElementById("sidebar-container");
+            if (!sidebarContainer) return;
+
+            sidebarContainer.addEventListener("click", function (event) {
+                let menuItem = event.target.closest(".menu-item");
+                if (menuItem) {
+                    // Find the next sibling that is a submenu
+                    let submenu = menuItem.nextElementSibling;
+                    while(submenu && !submenu.classList.contains('submenu')) {
+                        submenu = submenu.nextElementSibling;
+                    }
+
+                    if (submenu && submenu.classList.contains("submenu")) {
+                        // Toggle active class on the menu item
+                        // menuItem.classList.toggle("active"); // Optional: for styling active menu
+
+                        // Toggle display of the submenu
+                        if (submenu.style.display === "block") {
+                            submenu.style.display = "none";
+                            menuItem.querySelector('.fa-chevron-down')?.classList.remove('fa-rotate-180'); // Optional: rotate arrow
+                        } else {
+                            submenu.style.display = "block";
+                            menuItem.querySelector('.fa-chevron-down')?.classList.add('fa-rotate-180'); // Optional: rotate arrow
+                             // Optional: Close other open submenus
+                            closeOtherSubmenus(sidebarContainer, submenu);
+                        }
+                    }
+                }
+            });
+        }
+
+        // Optional: Function to close other submenus
+        function closeOtherSubmenus(container, currentSubmenu) {
+            container.querySelectorAll('.submenu').forEach(submenu => {
+                if (submenu !== currentSubmenu) {
+                    submenu.style.display = 'none';
+                    // Also remove active class and reset arrow if using them
+                    const previousMenuItem = submenu.previousElementSibling;
+                    if(previousMenuItem && previousMenuItem.classList.contains('menu-item')) {
+                       // previousMenuItem.classList.remove('active');
+                       previousMenuItem.querySelector('.fa-chevron-down')?.classList.remove('fa-rotate-180');
+                    }
+                }
+            });
+        }
+
+// --- Start of new JavaScript ---
+document.addEventListener("DOMContentLoaded", () => {
+            const editTeamForm = document.getElementById("editTeamForm");
+            const teamNameInput = document.getElementById("teamName");
+            const managerNameInput = document.getElementById("managerName");
+            const emailInput = document.getElementById("email");
+            const phoneInput = document.getElementById("phone");
+            const facebookInput = document.getElementById("facebook");
+
+            const logoFileInput = document.getElementById("logoFile");
+            const coverFileInput = document.getElementById("coverFile");
+            const homeKitFileInput = document.getElementById("homeKitFile");
+            const awayKitFileInput = document.getElementById("awayKitFile");
+
+            const logoPreview = document.getElementById("logoPreview");
+            const coverPreview = document.getElementById("coverPreview");
+            const homeKitPreview = document.getElementById("homeKitPreview");
+            const awayKitPreview = document.getElementById("awayKitPreview");
+
+            const logoUploadHeader = document.getElementById("logoUploadHeader");
+            const coverUploadHeader = document.getElementById("coverUploadHeader");
+            const homeKitUploadHeader = document.getElementById("homeKitUploadHeader");
+            const awayKitUploadHeader = document.getElementById("awayKitUploadHeader");
+
+            const resetButton = document.getElementById("resetButton");
+
+            const tabs = document.querySelectorAll('#editTeamTabs .nav-link');
+            const tabPanes = document.querySelectorAll('.tab-content .tab-pane');
+
+            let currentTeamId = null;
+            let originalTeamData = null; // Store original data for reset
+
+            // --- Helper: Read File as Data URL ---
+            function readFileAsDataURL(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            // --- Helper: Get Image Data (returns base64 or null) ---
+            async function getImageData(fileInputId) {
+                const fileInput = document.getElementById(fileInputId);
+                if (fileInput && fileInput.files && fileInput.files[0]) {
+                    try {
+                        return await readFileAsDataURL(fileInput.files[0]);
+                    } catch (error) {
+                        console.error("Error reading file:", error);
+                        return null;
+                    }
+                }
+                return null; // No new file selected
+            }
+
+             // --- Helper: Display Image Preview ---
+            function displayImage(previewElement, imageData) {
+                previewElement.innerHTML = ''; // Clear previous preview/placeholder
+                if (imageData) {
+                    const img = document.createElement('img');
+                    img.src = imageData;
+                     // Apply specific styles if needed (like for logo)
+                    if (previewElement.id === 'logoPreview') {
+                         img.style.maxWidth = '150px';
+                         img.style.maxHeight = '150px';
+                         img.style.borderRadius = '50%';
+                         img.style.objectFit = 'cover';
+                         img.style.border = '1px solid #eee';
+                    } else if (previewElement.classList.contains('kit-preview')) {
+                         img.style.maxHeight = '200px'; // Example for kit previews
+                         img.style.maxWidth = '100%';
+                         img.style.objectFit = 'contain';
+                    } else if (previewElement.id === 'coverPreview') {
+                        img.style.maxHeight = '200px';
+                        img.style.maxWidth = '100%';
+                        img.style.objectFit = 'contain';
+                    }
+
+                    previewElement.appendChild(img);
+                } else {
+                     // Re-add placeholder text if no image data
+                     if (previewElement !== logoPreview) { // Don't add text to logo preview if empty
+                         previewElement.style.display = 'flex'; // Ensure ::before pseudo-element shows
+                     } else {
+                         // Optionally put back the default HD logo if logo becomes null
+                         // const defaultLogo = document.createElement('img');
+                         // defaultLogo.src = 'images/logo.png';
+                         // defaultLogo.alt = 'Logo mặc định';
+                         // defaultLogo.style.maxWidth = '150px'; /* styles */
+                         // previewElement.appendChild(defaultLogo);
+                     }
+                }
+            }
+
+
+            // --- Load Team Data ---
+            function loadTeamData(teamId) {
+                const teams = JSON.parse(localStorage.getItem("teams") || "[]");
+                const team = teams.find(t => t.id === teamId);
+
+                if (team) {
+                    originalTeamData = { ...team }; // Store a copy for reset
+
+                    teamNameInput.value = team.teamName || '';
+                    managerNameInput.value = team.managerName || '';
+                    emailInput.value = team.email || '';
+                    phoneInput.value = team.phone || '';
+                    facebookInput.value = team.facebook || '';
+
+                    displayImage(logoPreview, team.logo);
+                    displayImage(coverPreview, team.cover);
+                    displayImage(homeKitPreview, team.homeKit);
+                    displayImage(awayKitPreview, team.awayKit);
+
+                } else {
+                    console.error("Team not found with ID:", teamId);
+                    alert("Không tìm thấy thông tin đội bóng!");
+                    // Optionally redirect back to the list
+                    // window.location.href = 'dsdoiqly.html';
+                }
+            }
+
+            // --- Handle Form Submission (Save) ---
+            async function handleFormSubmit(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                if (!currentTeamId) {
+                    alert("Lỗi: Không xác định được ID đội bóng.");
+                    return;
+                }
+
+                const teams = JSON.parse(localStorage.getItem("teams") || "[]");
+                const teamIndex = teams.findIndex(t => t.id === currentTeamId);
+
+                if (teamIndex === -1) {
+                    alert("Lỗi: Không tìm thấy đội bóng để cập nhật.");
+                    return;
+                }
+
+                 // Get potentially new image data, only if a new file was selected
+                 const newLogoData = await getImageData("logoFile");
+                 const newCoverData = await getImageData("coverFile");
+                 const newHomeKitData = await getImageData("homeKitFile");
+                 const newAwayKitData = await getImageData("awayKitFile");
+
+                 // Create updated data object
+                 const updatedTeamData = {
+                     ...originalTeamData, // Start with original data
+                     teamName: teamNameInput.value,
+                     managerName: managerNameInput.value,
+                     email: emailInput.value,
+                     phone: phoneInput.value,
+                     facebook: facebookInput.value,
+                     // Update images ONLY if a new file was uploaded, otherwise keep original
+                     logo: newLogoData !== null ? newLogoData : originalTeamData.logo,
+                     cover: newCoverData !== null ? newCoverData : originalTeamData.cover,
+                     homeKit: newHomeKitData !== null ? newHomeKitData : originalTeamData.homeKit,
+                     awayKit: newAwayKitData !== null ? newAwayKitData : originalTeamData.awayKit
+                 };
+
+
+                // Update the team in the array
+                teams[teamIndex] = updatedTeamData;
+
+                // Store updated data back in localStorage
+                try {
+                    localStorage.setItem("teams", JSON.stringify(teams));
+                    alert("Cập nhật thông tin đội bóng thành công!");
+                    // Optionally refresh data shown or redirect
+                    originalTeamData = { ...updatedTeamData }; // Update original data after successful save
+                    loadTeamData(currentTeamId); // Reload to show saved state consistently
+                } catch (e) {
+                    console.error("Error saving to localStorage:", e);
+                    alert("Có lỗi xảy ra khi lưu thông tin. Vui lòng thử lại.");
+                }
+            }
+
+           // --- Handle Clickable Upload Headers ---
+           function setupUploadTrigger(headerElement, fileInputElement) {
+                headerElement.addEventListener("click", (event) => { // Add event parameter
+                    console.log(`Upload header clicked for: ${fileInputElement.id}`);
+
+                    // Prevent any default label behavior that might interfere
+                    event.preventDefault();
+                    event.stopPropagation(); // Stop event from bubbling further up
+
+                    // Reset the input's value before triggering the click.
+                    console.log(`Value before reset for ${fileInputElement.id}:`, fileInputElement.value);
+                    try {
+                         // Some browsers might throw an error if you try to set value directly on file input
+                         // although null is usually safe. Wrapping in try-catch just in case.
+                        fileInputElement.value = null;
+                    } catch (e) {
+                        console.warn(`Could not reset value for ${fileInputElement.id}:`, e);
+                    }
+                    console.log(`Value after reset for ${fileInputElement.id}:`, fileInputElement.value);
+
+                    // Programmatically click the hidden file input
+                    fileInputElement.click();
+                    console.log(`Programmatic click triggered for: ${fileInputElement.id}`);
+                });
+            }
+
+            // --- Handle File Input Changes (Live Preview) ---
+            function setupPreviewListener(fileInput, previewElement) {
+                fileInput.addEventListener("change", async (event) => {
+                    // *** ADD DETAILED LOGGING HERE ***
+                    console.log(`--- CHANGE EVENT START for ${fileInput.id} ---`);
+                    console.log("Target files:", event.target.files);
+
+                    if (event.target.files && event.target.files[0]) {
+                        console.log(`File selected for ${fileInput.id}:`, event.target.files[0].name);
+                        try {
+                            console.log(`Reading file for ${fileInput.id}...`);
+                            const imageData = await readFileAsDataURL(event.target.files[0]);
+                            console.log(`File read success for ${fileInput.id}. Displaying image.`);
+                            displayImage(previewElement, imageData);
+                        } catch (error) {
+                            console.error(`Error processing file for ${fileInput.id}:`, error);
+                            displayImage(previewElement, null); // Clear preview on error
+                        }
+                    } else {
+                        console.log(`No file selected or selection cancelled for ${fileInput.id}.`);
+                        // If user cancels file selection, revert to original or clear
+                         if (originalTeamData) {
+                              const originalImageKey = fileInput.id.replace('File', ''); // logo, cover, homeKit, awayKit
+                              console.log(`Reverting preview for ${fileInput.id} to original data.`);
+                              displayImage(previewElement, originalTeamData[originalImageKey]);
+                         } else {
+                             console.log(`Clearing preview for ${fileInput.id}.`);
+                             displayImage(previewElement, null);
+                         }
+                    }
+                     console.log(`--- CHANGE EVENT END for ${fileInput.id} ---`);
+                });
+            }
+            // --- Handle Tab Switching ---
+             function handleTabClick(event) {
+                // Remove active class from all tabs and panes
+                tabs.forEach(t => t.classList.remove('active'));
+                tabPanes.forEach(p => p.classList.remove('active'));
+
+                // Add active class to the clicked tab
+                event.target.classList.add('active');
+
+                // Add active class to the corresponding pane
+                const targetPaneId = event.target.getAttribute('data-bs-target');
+                const targetPane = document.querySelector(targetPaneId);
+                if (targetPane) {
+                    targetPane.classList.add('active');
+                }
+             }
+
+            // --- Initialization ---
+            // Get team ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            currentTeamId = urlParams.get('id');
+
+            if (currentTeamId) {
+                loadTeamData(currentTeamId); // Load data when page loads
+            } else {
+                alert("Không tìm thấy ID đội bóng trong URL!");
+                // Redirect or disable form
+                editTeamForm.style.display = 'none';
+            }
+
+            // Attach event listeners
+            editTeamForm.addEventListener("submit", handleFormSubmit);
+
+            setupPreviewListener(logoFileInput, logoPreview);
+            setupPreviewListener(coverFileInput, coverPreview);
+            setupPreviewListener(homeKitFileInput, homeKitPreview);
+            setupPreviewListener(awayKitFileInput, awayKitPreview);
+
+            setupUploadTrigger(logoUploadHeader, logoFileInput);
+            setupUploadTrigger(coverUploadHeader, coverFileInput);
+            setupUploadTrigger(homeKitUploadHeader, homeKitFileInput);
+            setupUploadTrigger(awayKitUploadHeader, awayKitFileInput);
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', handleTabClick);
+            });
+
+            // Reset Button Listener
+            resetButton.addEventListener("click", () => {
+                 if (currentTeamId && originalTeamData) {
+                     console.log("Resetting form to original data...");
+                     loadTeamData(currentTeamId); // Reload original data
+                     // Reset file inputs visually (though the actual file selection remains until new selection/save)
+                     logoFileInput.value = '';
+                     coverFileInput.value = '';
+                     homeKitFileInput.value = '';
+                     awayKitFileInput.value = '';
+                 } else {
+                    editTeamForm.reset(); // Basic form reset if original data wasn't loaded
+                 }
+            });
+
+             // Activate the correct tab on initial load (if needed, though CSS handles it here)
+             // const initialActiveTab = document.querySelector('#editTeamTabs .nav-link.active');
+             // if (initialActiveTab) {
+             //    const initialPaneId = initialActiveTab.getAttribute('data-bs-target');
+             //    document.querySelector(initialPaneId)?.classList.add('active');
+             // }
+
+        });
+        // --- End of new JavaScript ---
+    </script>
+
+</body>
+</html>
