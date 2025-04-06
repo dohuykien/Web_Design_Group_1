@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang tạo giải đấu mới</title>
+    <title>Trang thông tin tài khoản</title>
     <link rel="icon" type="logo.png" href="images/logo.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
@@ -251,7 +251,7 @@
         color: rgb(34, 34, 34);
         font-size: 24px;
         font-weight: normal;
-        padding: 12px;
+        padding: 14px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -260,148 +260,171 @@
       .list-league_left {
         font-family: "Source Sans Pro", sans-serif !important;
       }
-      .fa-solid.fa-check {
+      .list-league .fa-solid.fa-user {
         color: #ff6f00;
         margin-right: 8px;
-        font-size: 25px;
+        font-size: 22px;
       }
       .list-league_left {
         flex-grow: 1;
       }
-
-      .addother {
-        color: rgb(255, 255, 255);
-        padding: 7px 12px 6px 12px;
-        background-color: #f34541;
-        border-color: rgba(0, 0, 0, 0.25);
-        border-style: solid;
-        border-width: 0.8px;
-        cursor: pointer;
-        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
-        text-decoration: none !important;
-      }
-      .addother:hover {
-        background-color: #dd1b18;
-      }
-      .fa-solid.fa-plus {
-        margin-right: 3px;
-        font-size: 15px;
-      }
-      .save {
-        color: rgb(255, 255, 255);
-        padding: 7px 12px 6px 12px;
-        background-color: rgb(0, 172, 236);
-        border-color: rgba(0, 0, 0, 0.25);
-        border-style: solid;
-        border-width: 0.8px;
-        cursor: pointer;
-        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
-      }
-      .save:hover {
-        background-color: #428bca;
-      }
-      .fa-solid.fa-rotate {
-        margin-right: 3px;
-        font-size: 15px;
-      }
-      .fa-regular.fa-floppy-disk {
-        margin-right: 3px;
-        font-size: 15px;
-      }
-      .Nhaplai {
-        color: rgb(255, 255, 255);
-        padding: 7px 12px 6px 12px;
-        background-color: rgb(0, 172, 236);
-        border-color: rgba(0, 0, 0, 0.25);
-        border-style: solid;
-        border-width: 0.8px;
-        cursor: pointer;
-        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
-      }
-      .Nhaplai:hover {
-        background-color: #428bca;
-      }
-      .return {
-        color: rgb(255, 255, 255);
-        padding: 7px 12px 6px 12px;
-        background-color: #f34541;
-        border-color: rgba(0, 0, 0, 0.25);
-        border-style: solid;
-        border-width: 0.8px;
-        cursor: pointer;
-        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
-      }
-      .return:hover {
-        background-color: #dd1b18;
-      }
-
       /*---------------------inputleague------------------*/
       .kienngu {
         background-color: #ecf0f5;
         padding-top: 10px;
+        border-top: 1px solid #e4e2e2;
       }
       .box {
-        max-width: 1250px;
-        margin: 10px auto 0;
-        padding: 20px 20px 5px 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      /*------------------- Box-left-------------------- */
+      .file-preview {
+        width: 130%; /* Make the container full width */
+        margin: 10px 10px 1px 18px; /* Space above the preview */
+        padding: 5px;
+        border: 1px solid #e4e2e2;
+        border-radius: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .file-preview:empty {
+        min-height: 36px; /* Explicitly set for empty kit preview */
+      }
+      .file-preview img {
+        max-width: 100%; /* Image fits container width */
+        max-height: 80px;
+        display: block;
+        border-radius: 8px;
+        object-fit: contain; /* Maintain aspect ratio */
+        border: none; /* Remove inner border if not needed */
+      }
+      .box-right {
+        margin: 10px 15px 0 10px;
+        padding: 30px 30px 5px 30px;
         background: #ffffff;
         border-radius: 3px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-      .forminput {
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        padding-left: 200px;
-      }
-      .forminput label {
-        width: 100px;
-        font-size: 17px;
-        text-align: right;
-        margin-right: 20px;
-      }
-      input[type="text"] {
-        width: 60%;
-        padding: 3px;
-        border: 1px solid #d0d0d0;
-        font-size: 16px;
-        box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px 0px inset;
-      }
-      input:focus {
-        outline: 0;
-        border-color: #969696;
-      }
-      /* Ẩn nút file mặc định */
-      #fileInput {
-        display: none;
+        width: 80%;
       }
 
       /* Nút tùy chỉnh */
       .custom-button {
-        background-color: rgb(76, 175, 80);
+        background-color: #5cb85c;
         color: white;
-        padding: 5px 15px;
-        border: 1px solid #ccc;
+        margin-left: 18px;
+        padding: 10px 0px 10px 15px;
+        border-color: #4cae4c;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         cursor: pointer;
-        font-size: 16px;
+        font-size: 14px;
+        width: 100%;
+        display: block;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
 
       .custom-button:hover {
         background-color: #4d9e51;
       }
-      .fa-solid.fa-arrow-left {
-        margin-right: 3px;
-        font-size: 15px;
-      }
-      .fa-solid.fa-upload {
+      .fas.fa-upload {
         margin-right: 3px;
         font-size: 14px;
         position: relative;
         bottom: 3px;
+      }
+      .section {
+        display: flex;
+        margin-bottom: 40px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 30px;
+        flex-wrap: wrap;
+      }
+      .section-left {
+        width: 400px;
+        padding-right: 30px;
+      }
+      .section-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 5px;
+      }
+      .section-header i {
+        color: #ff6f00;
+        margin-right: 8px;
+      }
+      .section-header h2 {
+        font-size: 20px;
+        margin: 0;
+        color: #333;
+        font-weight: normal;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      .section-description {
+        color: #888;
+        font-size: 12px;
+        margin-top: 15px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      .section-right {
+        flex: 1;
+      }
+      .form-group {
+        align-items: center;
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: bold;
+        font-size: 14px;
+      }
+      .form-group input[type="text"],
+      .form-group input[type="email"],
+      .form-group input[type="password"] {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        margin-top: 5px;
+        box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px 0px inset;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        width: 100%;
+      }
+      .checkbox {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        padding-top: 20px;
+        border-top: 1px solid #e8e5e5;
+      }
+      .checkbox input {
+        margin-right: 7px;
+        margin-bottom: 7px;
+      }
+      .save-section {
+        background: #f5f5f5;
+        padding: 20px;
+        text-align: right;
+        margin-bottom: 30px;
+      }
+      .save-button {
+        background-color: #00acec;
+        color: white;
+        padding: 5px 15px;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+        font-size: 20px;
+      }
+      .save-button i {
+        margin-right: 3px;
+      }
+      .save-button:hover {
+        background-color: #0087b9;
       }
       /* --------------------- FOOTER --------------------*/
       .footer {
@@ -568,62 +591,106 @@
       <div class="content-wrapper">
         <section class="content">
           <div class="list-league">
-            <i class="fa-solid fa-check"></i>
-            <span class="list-league_left">Tạo giải đấu</span>
-
-            <div class="wrap">
-              <a href="addleague.html">
-                <button class="addother">
-                  <i class="fa-solid fa-plus"></i> Tạo giải đấu khác
-                </button>
-              </a>
-              <a href="#">
-                <button class="save">
-                  <i class="fa-regular fa-floppy-disk"></i> Lưu
-                </button>
-              </a>
-              <a href="addleague.html">
-                <button class="Nhaplai">
-                  <i class="fa-solid fa-rotate"></i> Nhập lại
-                </button>
-              </a>
-              <a href="Dashboard.html">
-                <button class="return">
-                  <i class="fa-solid fa-arrow-left"></i> Quay lại
-                </button>
-              </a>
-            </div>
+            <i class="fa-solid fa-user"></i>
+            <span class="list-league_left">Thông tin tài khoản</span>
           </div>
 
           <div class="kienngu">
             <div class="box">
-              <div>
-                <div class="forminput">
-                  <label for="nameleague">Tên giải đấu</label>
-                  <input type="text" name="#" id="nameleague" />
+              <div class="box-left">
+                <div id="logoPreview" class="file-preview">
+                  <img src="dangoai" alt="avatar" />
                 </div>
-                <div class="forminput">
-                  <label for="fileInput">Logo</label>
-                  <!-- Nút tùy chỉnh để chọn ảnh -->
+                <!-- Preview area -->
+                <div>
+                  <label for="logoFile" class="custom-button">
+                    <i class="fas fa-upload"></i> Chọn ảnh...
+                  </label>
+                </div>
+                <input
+                  type="file"
+                  id="logoFile"
+                  name="imageFile"
+                  accept="image/*"
+                  style="display: none"
+                />
+              </div>
+              <div class="box-right">
+                <div class="section">
+                  <div class="section-left">
+                    <div class="section-header">
+                      <i class="fa-brands fa-github"></i>
+                      <h2>Thông tin tài khoản</h2>
+                    </div>
+                    <div class="section-description">
+                      Thông tin tài khoản của bạn
+                    </div>
+                  </div>
+                  <div class="section-right">
+                    <div class="form-group">
+                      <label>Username</label>
+                      <input type="text" placeholder="Username" />
+                    </div>
+                    <div class="form-group">
+                      <label>E-mail</label>
+                      <input type="email" value="haidangvv201205@gmail.com" />
+                    </div>
+                    <div class="checkbox">
+                      <input type="checkbox" id="changePassword" />
+                      <label for="changePassword" style="margin-bottom: 7px"
+                        >Change password?</label
+                      >
+                    </div>
+                    <div class="changePassword">
+                      <div class="form-group">
+                        <label>Password</label>
+                        <input type="text" placeholder="Password" />
+                      </div>
+                      <div class="form-group">
+                        <label>Passwword confirmation</label>
+                        <input
+                          type="text"
+                          placeholder="Passwword confirmation"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                  <button
-                    class="custom-button"
-                    onclick="document.getElementById('fileInput').click()"
-                  >
-                    <i class="fa-solid fa-upload"></i>
-                    Chọn ảnh
+                <div class="section">
+                  <div class="section-left">
+                    <div class="section-header">
+                      <i class="fa fa-user"></i>
+                      <h2>Thông tin cá nhân</h2>
+                    </div>
+                    <div class="section-description">
+                      Thông tin cá nhân của bạn
+                    </div>
+                  </div>
+                  <div class="section-right">
+                    <div class="form-group">
+                      <label>First name</label>
+                      <input type="text" value="Hải Đăng" />
+                    </div>
+                    <div class="form-group">
+                      <label>Last name</label>
+                      <input type="text" value="Nguyễn" />
+                    </div>
+                    <div class="form-group">
+                      <label>Điện thoại</label>
+                      <input type="text" placeholder="Phone" />
+                    </div>
+                    <div class="form-group">
+                      <label>Địa chỉ</label>
+                      <input type="text" placeholder="Address" />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="save-section">
+                  <button class="save-button">
+                    <i class="fa fa-save"></i> Save
                   </button>
-
-                  <!-- Input file bị ẩn -->
-                  <input type="file" id="fileInput" accept="image/*" />
-
-                  <br /><br />
-                  <img
-                    id="preview"
-                    src=""
-                    alt="Ảnh xem trước"
-                    style="max-width: 300px; display: none; margin-left: 50px"
-                  />
                 </div>
               </div>
             </div>
@@ -685,21 +752,39 @@
             submenu.style.display === "block" ? "none" : "block";
         });
       });
+      // upload avatar
+      document
+        .getElementById("logoFile")
+        .addEventListener("change", function (e) {
+          var file = e.target.files[0];
+          if (!file) return;
 
-      // Input logo league
-      let fileInput = document.getElementById("fileInput");
-      let preview = document.getElementById("preview");
-
-      fileInput.addEventListener("change", function () {
-        let file = this.files[0];
-        if (file) {
-          let reader = new FileReader();
-          reader.onload = function (e) {
-            preview.src = e.target.result;
-            preview.style.display = "block";
+          var reader = new FileReader();
+          reader.onload = function (event) {
+            var img = document.createElement("img");
+            img.src = event.target.result;
+            var preview = document.getElementById("logoPreview");
+            preview.innerHTML = "";
+            preview.appendChild(img);
           };
           reader.readAsDataURL(file);
-        }
+        });
+
+      // changePassword
+      document
+        .getElementById("changePassword")
+        .addEventListener("change", function () {
+          var changePasswordBox = document.querySelector(".changePassword");
+          if (this.checked) {
+            changePasswordBox.style.display = "block";
+          } else {
+            changePasswordBox.style.display = "none";
+          }
+        });
+
+      // Ẩn mặc định khi load trang
+      window.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".changePassword").style.display = "none";
       });
     </script>
   </body>

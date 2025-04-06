@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang tạo giải đấu mới</title>
+    <title>Trang tạo mùa giải</title>
     <link rel="icon" type="logo.png" href="images/logo.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
@@ -148,7 +148,7 @@
         background: #333333;
         color: #b8c7ce;
         min-height: 648px;
-        height: 100%;
+        height: 99.5%;
         position: relative;
         bottom: 2px;
         z-index: 1;
@@ -269,30 +269,11 @@
         flex-grow: 1;
       }
 
-      .addother {
-        color: rgb(255, 255, 255);
-        padding: 7px 12px 6px 12px;
-        background-color: #f34541;
-        border-color: rgba(0, 0, 0, 0.25);
-        border-style: solid;
-        border-width: 0.8px;
-        cursor: pointer;
-        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
-        text-decoration: none !important;
-      }
-      .addother:hover {
-        background-color: #dd1b18;
-      }
-      .fa-solid.fa-plus {
-        margin-right: 3px;
-        font-size: 15px;
-      }
       .save {
         color: rgb(255, 255, 255);
         padding: 7px 12px 6px 12px;
-        background-color: rgb(0, 172, 236);
-        border-color: rgba(0, 0, 0, 0.25);
+        background-color: #49bf67;
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
         border-style: solid;
         border-width: 0.8px;
         cursor: pointer;
@@ -300,7 +281,7 @@
         box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
       }
       .save:hover {
-        background-color: #428bca;
+        background-color: #379e51;
       }
       .fa-solid.fa-rotate {
         margin-right: 3px;
@@ -314,7 +295,7 @@
         color: rgb(255, 255, 255);
         padding: 7px 12px 6px 12px;
         background-color: rgb(0, 172, 236);
-        border-color: rgba(0, 0, 0, 0.25);
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
         border-style: solid;
         border-width: 0.8px;
         cursor: pointer;
@@ -328,7 +309,7 @@
         color: rgb(255, 255, 255);
         padding: 7px 12px 6px 12px;
         background-color: #f34541;
-        border-color: rgba(0, 0, 0, 0.25);
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
         border-style: solid;
         border-width: 0.8px;
         cursor: pointer;
@@ -339,70 +320,179 @@
         background-color: #dd1b18;
       }
 
-      /*---------------------inputleague------------------*/
+      /*---------------------inputseason------------------*/
       .kienngu {
         background-color: #ecf0f5;
         padding-top: 10px;
+        border-top: 1px solid #e4e2e2;
       }
       .box {
+        display: flex;
+      }
+      .box-left {
         max-width: 1250px;
-        margin: 10px auto 0;
-        padding: 20px 20px 5px 20px;
+        margin: 12px 15px 0 30px;
+        padding: 0 20px 5px 20px;
         background: #ffffff;
+        border: 1px solid #e4e2e2;
         border-radius: 3px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex: 2;
       }
-      .forminput {
-        margin-bottom: 12px;
+      .nguyenkhi {
+        max-width: 1250px;
+        margin: 20px 15px 0 30px;
+        padding: 5px 10px;
+        background: #ccc;
+        color: #fff;
+        border: 1px solid #e4e2e2;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        flex: 2;
+      }
+      .chiabang {
+        max-width: 1250px;
+        margin: -1px 15px 0 30px;
+        padding: 0 20px 5px 20px;
+        background: #ffffff;
+        border: 1px solid #e4e2e2;
+        border-radius: 3px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex: 2;
+        transition: opacity 0.3s ease;
+      }
+      .box-right {
+        max-width: 1000px;
+        margin: 12px 30px 0 15px;
+        padding: 5px 15px 30px 15px;
+        background: #ffffff;
+        border: 1px solid #e4e2e2;
+        border-radius: 3px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        max-height: fit-content;
+      }
+      .row {
         display: flex;
-        align-items: center;
-        padding-left: 200px;
+        flex-wrap: wrap;
+        margin-bottom: 0;
       }
-      .forminput label {
-        width: 100px;
-        font-size: 17px;
-        text-align: right;
-        margin-right: 20px;
+      .col {
+        flex: 1;
+        padding: 10px;
+        min-width: 230px;
       }
-      input[type="text"] {
-        width: 60%;
-        padding: 3px;
-        border: 1px solid #d0d0d0;
-        font-size: 16px;
+      .box-left label {
+        font-size: 14px;
+        display: block;
+        margin-bottom: 5px;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 8px 6px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
         box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px 0px inset;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
       input:focus {
         outline: 0;
         border-color: #969696;
       }
-      /* Ẩn nút file mặc định */
-      #fileInput {
+      .toggle {
+        width: 60px;
+        height: 20px;
+        background-color: rgb(240, 22, 17);
+        border-radius: 100rem;
+        transition: all 0.1s linear;
+      }
+      .spinner {
+        border-radius: 100rem;
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        transition: all 0.1s linear;
+      }
+      .toggle-label input {
         display: none;
       }
-
-      /* Nút tùy chỉnh */
-      .custom-button {
-        background-color: rgb(76, 175, 80);
-        color: white;
-        padding: 5px 15px;
-        border: 1px solid #ccc;
+      toggle-label {
         cursor: pointer;
-        font-size: 16px;
+        display: inline-block;
       }
-
-      .custom-button:hover {
+      .toggle-label input:checked + .toggle {
+        background-color: #49bf67;
+      }
+      .toggle-label input:checked + .toggle .spinner {
+        transform: translateX(40px);
+      }
+      /*-----------------General File Upload Label-------------------*/
+      .file-upload-label {
+        display: inline-block; /* Default */
+        padding: 8px 15px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        font-size: 15px;
+        text-align: center;
+        border: 1px solid transparent;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      .file-upload-label i {
+        margin-right: 5px;
+      }
+      .file-upload-label:hover {
+        background-color: #0056b3; /* Darker hover */
+      }
+      .file-upload-label.file-upload {
+        display: block; /* Make it block level */
+        width: 100%; /* Make it full width */
+        box-sizing: border-box; /* Include padding in width */
+        margin-top: 5px; /* Add space below the main label */
+        background-color: #49bf67; /* Info color */
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .file-upload-label.file-upload:hover {
         background-color: #4d9e51;
       }
-      .fa-solid.fa-arrow-left {
-        margin-right: 3px;
-        font-size: 15px;
+      /* Specific Kit Preview Area - NOW FULL WIDTH */
+      .file-preview {
+        width: 100%; /* Make the container full width */
+        margin-top: 15px; /* Space above the preview */
+        border: 1px dashed #ccc;
+        border-radius: 6px;
+        min-height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+        box-sizing: border-box;
+        background-color: #fff;
       }
-      .fa-solid.fa-upload {
-        margin-right: 3px;
-        font-size: 14px;
-        position: relative;
-        bottom: 3px;
+      .file-preview:empty {
+        min-height: 100px; /* Explicitly set for empty kit preview */
       }
+      .file-preview img {
+        max-width: 100%; /* Image fits container width */
+        max-height: 80px;
+        display: block;
+        border-radius: 8px;
+        object-fit: contain; /* Maintain aspect ratio */
+        border: none; /* Remove inner border if not needed */
+      }
+
+      .location,
+      .fanpage {
+        margin-top: 10px;
+      }
+      .location input,
+      .fanpage input {
+        margin-top: 8px;
+      }
+      /* ------------------inputseason-end-----------------*/
       /* --------------------- FOOTER --------------------*/
       .footer {
         box-sizing: border-box;
@@ -569,27 +659,22 @@
         <section class="content">
           <div class="list-league">
             <i class="fa-solid fa-check"></i>
-            <span class="list-league_left">Tạo giải đấu</span>
+            <span class="list-league_left">Thêm mùa giải</span>
 
             <div class="wrap">
-              <a href="addleague.html">
-                <button class="addother">
-                  <i class="fa-solid fa-plus"></i> Tạo giải đấu khác
-                </button>
-              </a>
               <a href="#">
                 <button class="save">
                   <i class="fa-regular fa-floppy-disk"></i> Lưu
                 </button>
               </a>
-              <a href="addleague.html">
+              <a href="addseason.html">
                 <button class="Nhaplai">
                   <i class="fa-solid fa-rotate"></i> Nhập lại
                 </button>
               </a>
               <a href="Dashboard.html">
                 <button class="return">
-                  <i class="fa-solid fa-arrow-left"></i> Quay lại
+                  <i class="fa-solid fa-arrow-left"></i> Danh sách mùa giải
                 </button>
               </a>
             </div>
@@ -598,36 +683,196 @@
           <div class="kienngu">
             <div class="box">
               <div>
-                <div class="forminput">
-                  <label for="nameleague">Tên giải đấu</label>
-                  <input type="text" name="#" id="nameleague" />
+                <div class="box-left">
+                  <div class="row">
+                    <div class="col">
+                      <label>Tên mùa giải</label>
+                      <input type="text" />
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <label>Thời gian bắt đầu</label>
+                      <input
+                        type="text"
+                        id="dateInput"
+                        placeholder="Thời gian bắt đầu"
+                        onfocus="(this.type='date')"
+                        onblur="if(!this.value) this.type='text'"
+                        style="background-color: #eeeeee"
+                      />
+                    </div>
+                    <div class="col">
+                      <label>Thời gian kết thúc</label>
+                      <input
+                        type="text"
+                        id="dateInput"
+                        placeholder="Thời gian kết thúc"
+                        onfocus="(this.type='date')"
+                        onblur="if(!this.value) this.type='text'"
+                        style="background-color: #eeeeee"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <label>Số đội tham dự</label>
+                      <input type="number" />
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <label>Thể thức thi đấu</label>
+                      <select>
+                        <option>Vòng tròn</option>
+                        <option>Chia bảng</option>
+                      </select>
+                    </div>
+                    <div class="col">
+                      <label>Số lượt đá vòng tròn</label>
+                      <select>
+                        <option>1 lượt</option>
+                        <option>2 lượt</option>
+                        <option>3 lượt</option>
+                        <option>4 lượt</option>
+                        <option>5 lượt</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <label>Điểm thắng</label>
+                      <input type="number" value="3" />
+                    </div>
+                    <div class="col">
+                      <label>Điểm hòa</label>
+                      <input type="number" value="1" />
+                    </div>
+                    <div class="col">
+                      <label>Điểm thua</label>
+                      <input type="number" value="0" />
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <label
+                        for="toggle"
+                        class="toggle-label"
+                        style="display: flex"
+                        >Tranh giải ba
+                        <input type="checkbox" name="" id="toggle" />
+                        <div class="toggle" style="margin-left: 20px">
+                          <div class="spinner"></div>
+                        </div>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <label>Số cầu thủ 1 đội</label>
+                      <input type="number" />
+                    </div>
+                    <div class="col">
+                      <label>Số thành viên ban huấn luyện</label>
+                      <input type="number" />
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <label>Số hiệp - set 1 trận</label>
+                      <input type="number" />
+                    </div>
+                    <div class="col">
+                      <label>Thời gian 1 hiệp - set (phút)</label>
+                      <input type="number" />
+                    </div>
+                  </div>
                 </div>
-                <div class="forminput">
-                  <label for="fileInput">Logo</label>
-                  <!-- Nút tùy chỉnh để chọn ảnh -->
+                <div class="nguyenkhi">CẤU HÌNH BẢNG ĐẤU VÀ VÒNG KNOCKOUT</div>
+                <div class="chiabang">
+                  <div class="row">
+                    <div class="col">
+                      <label>Tổng số bảng</label>
+                    </div>
+                    <div class="col">
+                      <input type="number" value="1" />
+                    </div>
+                  </div>
 
-                  <button
-                    class="custom-button"
-                    onclick="document.getElementById('fileInput').click()"
-                  >
-                    <i class="fa-solid fa-upload"></i>
-                    Chọn ảnh
-                  </button>
+                  <div class="row">
+                    <div class="col">
+                      <label>Số đội nhất bảng</label>
+                      <input type="number" value="0" />
+                    </div>
+                    <div class="col">
+                      <label>Số đội nhì bảng</label>
+                      <input type="number" value="0" />
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <label>Số đội thứ ba bảng</label>
+                      <input type="number" value="0" />
+                    </div>
+                    <div class="col">
+                      <label>Số đội thứ tư bảng</label>
+                      <input type="number" value="0" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- end box-left-->
 
-                  <!-- Input file bị ẩn -->
-                  <input type="file" id="fileInput" accept="image/*" />
-
-                  <br /><br />
-                  <img
-                    id="preview"
-                    src=""
-                    alt="Ảnh xem trước"
-                    style="max-width: 300px; display: none; margin-left: 50px"
+              <!-- box-right -->
+              <div class="box-right">
+                <div>
+                  <label>Logo</label>
+                  <label for="logoFile" class="file-upload-label file-upload">
+                    <i class="fas fa-upload"></i> Chọn ảnh...
+                  </label>
+                  <input
+                    type="file"
+                    id="logoFile"
+                    name="imageFile"
+                    accept="image/*"
+                    style="display: none"
                   />
+                  <div id="logoPreview" class="file-preview"></div>
+                  <!-- Preview area -->
+                </div>
+
+                <div>
+                  <label>Hình nền</label>
+                  <label for="wpFile" class="file-upload-label file-upload">
+                    <i class="fas fa-upload"></i> Chọn ảnh...
+                  </label>
+                  <input
+                    type="file"
+                    id="wpFile"
+                    name="imageFile"
+                    accept="image/*"
+                    style="display: none"
+                  />
+                  <div id="wpPreview" class="file-preview"></div>
+                  <!-- Preview area -->
+                </div>
+                <div class="location">
+                  <label for="location">Địa điểm thi đấu</label>
+                  <input type="text" id="location" placeholder="Nhập vị trí" />
+                </div>
+                <div class="fanpage">
+                  <label for="fanpage">Fanpage giải đấu</label>
+                  <input type="text" id="fanpage" />
                 </div>
               </div>
             </div>
-
             <div class="footer">
               <div class="footer-container">
                 <div class="footer-left">
@@ -686,21 +931,56 @@
         });
       });
 
-      // Input logo league
-      let fileInput = document.getElementById("fileInput");
-      let preview = document.getElementById("preview");
+      // Hiển thị preview logo and wallpaper
+      function previewImage(inputId, previewId) {
+        var input = document.getElementById(inputId);
+        var preview = document.getElementById(previewId);
 
-      fileInput.addEventListener("change", function () {
-        let file = this.files[0];
-        if (file) {
-          let reader = new FileReader();
-          reader.onload = function (e) {
-            preview.src = e.target.result;
-            preview.style.display = "block";
-          };
-          reader.readAsDataURL(file);
+        input.addEventListener("change", function () {
+          var file = this.files[0];
+          if (file && file.type.startsWith("image/")) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+              preview.innerHTML =
+                '<img src="' +
+                e.target.result +
+                '" style="max-width: 200px; max-height: 200px;" />';
+            };
+            reader.readAsDataURL(file);
+          } else {
+            preview.innerHTML = "File không hợp lệ!";
+          }
+        });
+      }
+
+      // Gọi cho từng input
+      previewImage("logoFile", "logoPreview");
+      previewImage("wpFile", "wpPreview");
+
+      // vòng tròn or chia bảng
+      var formatSelect = document.querySelector("select"); // cái thẻ <select> đầu tiên là "Thể thức thi đấu"
+      var thirdPlaceRow = document.querySelector("#toggle").closest(".row"); // dòng chứa toggle tranh giải ba
+      var groupConfigSection = document.querySelector(".chiabang"); // phần cấu hình bảng đấu
+      var nhd = document.querySelector(".nguyenkhi");
+
+      function updateUIBasedOnFormat() {
+        var selectedFormat = formatSelect.value;
+        if (selectedFormat === "Vòng tròn") {
+          thirdPlaceRow.style.display = "none";
+          groupConfigSection.style.display = "none";
+          nhd.style.display = "none";
+        } else if (selectedFormat === "Chia bảng") {
+          thirdPlaceRow.style.display = "";
+          groupConfigSection.style.display = "";
+          nhd.style.display = "";
         }
-      });
+      }
+
+      // Gọi lúc load trang
+      updateUIBasedOnFormat();
+
+      // Gọi mỗi khi select thay đổi
+      formatSelect.addEventListener("change", updateUIBasedOnFormat);
     </script>
   </body>
 </html>
