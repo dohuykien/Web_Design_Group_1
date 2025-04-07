@@ -128,13 +128,52 @@
         align-items: center;
         gap: 10px;
         position: relative; /* Đổi từ absolute sang relative */
-        right: 0; /* Đưa về bên phải */
+        right: 60px;
         top: -20px;
+        cursor: pointer;
+        z-index: 1000;
       }
       .header .user-info img {
         width: 30px;
         height: 30px;
       }
+      .user-info span i {
+        position: relative;
+        top: -2px;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        min-width: 160px;
+        z-index: 1000;
+        padding: 5px 0px;
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 5px 15px;
+        color: #333333;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        font-size: 14px;
+      }
+
+      .dropdown-menu a:hover {
+        background-color: #f34541;
+        color: #ffffff;
+      }
+      .fa-solid.fa-caret-down {
+        color: #333333;
+        font-size: 12px;
+        margin-top: 10px;
+      }
+
       /*-------------------End Header---------------------- */
 
       /*----------------------Layout-------------------------*/
@@ -281,7 +320,8 @@
         box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
         text-decoration: none !important;
       }
-      .addother:hover {
+      .addother:hover,
+      .addseason:hover {
         background-color: #dd1b18;
       }
       .fa-solid.fa-plus {
@@ -351,6 +391,35 @@
         background: #ffffff;
         border-radius: 3px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .box-success {
+        max-width: 1250px;
+        margin: 10px auto 0;
+        padding: 10px;
+        background: #ffffff;
+        border-radius: 3px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .box-success p {
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 14px;
+        font-style: italic;
+        color: rgb(1, 167, 1);
+      }
+      .addseason {
+        color: rgb(255, 255, 255);
+        display: block;
+        margin: 0 auto;
+        padding: 7px 12px 6px 12px;
+        background-color: #f34541;
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+        text-decoration: none !important;
       }
       .forminput {
         margin-bottom: 12px;
@@ -463,11 +532,16 @@
           <span class="developed-by">
             Hệ thống được phát triển bởi HD Promotion</span
           >
-          <div class="user-info">
+          <div class="user-info" onclick="toggleDropdown()">
             <img src="images/dhk.jpg" />
             <span
-              >Hải Đăng Nguyễn <i class="fa-solid fa-chevron-down"></i
-            ></span>
+              >Hải Đăng Nguyễn
+              <i class="fa-solid fa-caret-down"></i>
+            </span>
+            <div class="dropdown-menu" id="dropdownMenu">
+              <a href="Dashboard.html">Trang quản lý</a>
+              <a href="#">Đăng xuất</a>
+            </div>
           </div>
         </div>
         <div class="navbar-bottom">
@@ -627,6 +701,15 @@
                 </div>
               </div>
             </div>
+            <div class="box-success">
+              <div class="success">
+                <p id="success-message"></p>
+                <!-- chỗ hiện thông báo -->
+                <a href="addseason.html">
+                  <button class="addseason">Tạo mùa giải</button>
+                </a>
+              </div>
+            </div>
 
             <div class="footer">
               <div class="footer-container">
@@ -699,6 +782,56 @@
             preview.style.display = "block";
           };
           reader.readAsDataURL(file);
+        }
+      });
+
+      //------------ save-success----------------
+      window.onload = function () {
+        document.querySelector(".box-success").style.display = "none";
+      };
+
+      document.querySelector(".save").addEventListener("click", function (e) {
+        e.preventDefault();
+
+        var nameInput = document.getElementById("nameleague").value.trim();
+
+        if (nameInput === "") {
+          alert("Bạn chưa nhập tên giải đấu!");
+          return;
+        }
+
+        // Ẩn box cũ
+        var box = document.querySelector(".box");
+        if (box) {
+          box.style.display = "none";
+        }
+
+        // Ghi thông báo vào box-success, chỉ bold tên giải
+        var successMessage = document.getElementById("success-message");
+        successMessage.innerHTML =
+          "Bạn đã tạo thành công mùa giải <strong>" +
+          nameInput +
+          "</strong>. Bước tiếp thep bạn hãy tạo mùa giải cho giải đấu này";
+
+        // Hiện box-success
+        var boxSuccess = document.querySelector(".box-success");
+        if (boxSuccess) {
+          boxSuccess.style.display = "block";
+        }
+      });
+
+      //----------------submenu-user_infor-----------------
+      function toggleDropdown() {
+        var menu = document.getElementById("dropdownMenu");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+      }
+
+      // Ẩn dropdown nếu click ra ngoài
+      window.addEventListener("click", function (e) {
+        var menu = document.getElementById("dropdownMenu");
+        var userInfo = document.querySelector(".user-info");
+        if (!userInfo.contains(e.target)) {
+          menu.style.display = "none";
         }
       });
     </script>

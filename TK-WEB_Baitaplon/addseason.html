@@ -128,12 +128,50 @@
         align-items: center;
         gap: 10px;
         position: relative; /* Đổi từ absolute sang relative */
-        right: 0; /* Đưa về bên phải */
+        right: 60px;
         top: -20px;
+        cursor: pointer;
+        z-index: 1000;
       }
       .header .user-info img {
         width: 30px;
         height: 30px;
+      }
+      .user-info span i {
+        position: relative;
+        top: -2px;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        min-width: 160px;
+        z-index: 1000;
+        padding: 5px 0px;
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 5px 15px;
+        color: #333333;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        font-size: 14px;
+      }
+
+      .dropdown-menu a:hover {
+        background-color: #f34541;
+        color: #ffffff;
+      }
+      .fa-solid.fa-caret-down {
+        color: #333333;
+        font-size: 12px;
+        margin-top: 10px;
       }
       /*-------------------End Header---------------------- */
 
@@ -553,11 +591,16 @@
           <span class="developed-by">
             Hệ thống được phát triển bởi HD Promotion</span
           >
-          <div class="user-info">
+          <div class="user-info" onclick="toggleDropdown()">
             <img src="images/dhk.jpg" />
             <span
-              >Hải Đăng Nguyễn <i class="fa-solid fa-chevron-down"></i
-            ></span>
+              >Hải Đăng Nguyễn
+              <i class="fa-solid fa-caret-down"></i>
+            </span>
+            <div class="dropdown-menu" id="dropdownMenu">
+              <a href="Dashboard.html">Trang quản lý</a>
+              <a href="#">Đăng xuất</a>
+            </div>
           </div>
         </div>
         <div class="navbar-bottom">
@@ -981,6 +1024,21 @@
 
       // Gọi mỗi khi select thay đổi
       formatSelect.addEventListener("change", updateUIBasedOnFormat);
+
+      //----------------submenu-user_infor-----------------
+      function toggleDropdown() {
+        var menu = document.getElementById("dropdownMenu");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+      }
+
+      // Ẩn dropdown nếu click ra ngoài
+      window.addEventListener("click", function (e) {
+        var menu = document.getElementById("dropdownMenu");
+        var userInfo = document.querySelector(".user-info");
+        if (!userInfo.contains(e.target)) {
+          menu.style.display = "none";
+        }
+      });
     </script>
   </body>
 </html>
