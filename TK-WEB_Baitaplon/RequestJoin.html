@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang danh sách đội quản lý</title>
+    <title>Trang yêu cầu tham gia đội</title>
     <link rel="icon" type="logo.png" href="images/logo.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
@@ -129,12 +129,50 @@
         align-items: center;
         gap: 10px;
         position: relative; /* Đổi từ absolute sang relative */
-        right: 0; /* Đưa về bên phải */
+        right: 60px;
         top: -20px;
+        cursor: pointer;
+        z-index: 1000;
       }
       .header .user-info img {
         width: 30px;
         height: 30px;
+      }
+      .user-info span i {
+        position: relative;
+        top: -2px;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        min-width: 160px;
+        z-index: 1000;
+        padding: 5px 0px;
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 5px 15px;
+        color: #333333;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        font-size: 14px;
+      }
+
+      .dropdown-menu a:hover {
+        background-color: #f34541;
+        color: #ffffff;
+      }
+      .fa-solid.fa-caret-down {
+        color: #333333;
+        font-size: 12px;
+        margin-top: 10px;
       }
 
       /*------------Layout------------*/
@@ -147,8 +185,8 @@
         width: 230px;
         background: #333333;
         color: #b8c7ce;
-        min-height: 648px;
         height: 100%;
+        min-height: 648px;
         position: relative;
         bottom: 2px;
         z-index: 1;
@@ -267,20 +305,6 @@
       .list-league_left {
         flex-grow: 1;
       }
-      .add {
-        color: rgb(255, 255, 255);
-        padding: 7px 12px 6px 12px;
-        background-color: rgb(0, 172, 236);
-        border-color: rgba(0, 0, 0, 0.25);
-        border-style: solid;
-        border-width: 0.8px;
-        cursor: pointer;
-        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
-      }
-      .add:hover {
-        background-color: #428bca;
-      }
       /* --------------------- FOOTER -------------------- */
       .footer {
         box-sizing: border-box;
@@ -345,11 +369,16 @@
           <span class="developed-by">
             Hệ thống được phát triển bởi HD Promotion</span
           >
-          <div class="user-info">
+          <div class="user-info" onclick="toggleDropdown()">
             <img src="images/dhk.jpg" />
             <span
-              >Hải Đăng Nguyễn <i class="fa-solid fa-chevron-down"></i
-            ></span>
+              >Hải Đăng Nguyễn
+              <i class="fa-solid fa-caret-down"></i>
+            </span>
+            <div class="dropdown-menu" id="dropdownMenu">
+              <a href="Dashboard.html">Trang quản lý</a>
+              <a href="#">Đăng xuất</a>
+            </div>
           </div>
         </div>
         <div class="navbar-bottom">
@@ -450,12 +479,7 @@
         <section class="content">
           <div class="list-league">
             <i class="fa-solid fa-list"></i>
-            <span class="list-league_left">Danh sách đội bóng</span>
-            <a href="addleague.html">
-              <button class="add">
-                <i class="fa-solid fa-plus"></i> Thêm mới
-              </button>
-            </a>
+            <span class="list-league_left">Yêu cầu tham gia đội</span>
           </div>
 
           <div class="footer">
@@ -510,6 +534,21 @@
           submenu.style.display =
             submenu.style.display === "block" ? "none" : "block";
         });
+      });
+
+      //----------------submenu-user_infor-----------------
+      function toggleDropdown() {
+        var menu = document.getElementById("dropdownMenu");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+      }
+
+      // Ẩn dropdown nếu click ra ngoài
+      window.addEventListener("click", function (e) {
+        var menu = document.getElementById("dropdownMenu");
+        var userInfo = document.querySelector(".user-info");
+        if (!userInfo.contains(e.target)) {
+          menu.style.display = "none";
+        }
       });
     </script>
   </body>
