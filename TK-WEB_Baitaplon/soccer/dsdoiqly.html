@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang danh sách đội quản lý</title>
+    <title>Danh sách đội quản lý</title>
     <link rel="icon" type="logo.png" href="images/logo.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
@@ -795,7 +795,7 @@
                 if (teamId) {
                     console.log(`Redirecting to edit page for team ID: ${teamId}`);
                     // Construct the URL for the edit page
-                    const editUrl = `editteam.html?id=${encodeURIComponent(teamId)}`;
+                    const editUrl = `./teamManagement/edit.html?id=${encodeURIComponent(teamId)}`;
                     // Redirect the browser
                     window.location.href = editUrl;
                 } else {

@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yêu cầu tham gia đội</title>
+    <link rel="icon" type="logo.png" href="../images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: Oswald, sans-serif; /* Default font */
+        }
+        body {
+          background-color: white;
+        }
+        /*-------------------------Header---------------------------*/
+        .developed-by {
+          position: absolute;
+          left: 250px;
+          top: 7px;
+          color: #ffffff;
+          font-size: 14px;
+          z-index: 2;
+        }
+        .navbar-top {
+          background-color: #1565c0;
+          color: white;
+          padding: 10px 20px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 75px;
+        }
+        .navbar-bottom {
+          position: relative;
+        }
+        /*Logo*/
+        .logo {
+          display: flex;
+          align-items: center;
+          z-index: 2;
+          left: 170px;
+        }
+        .logo img {
+          height: 65px;
+          max-width: 100%;
+          margin-right: 10px;
+        }
+        /* Menu chính */
+        .navbar-collapse {
+          background-color: #ff6f00;
+          padding: 7px 0px;
+          height: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          z-index: 1;
+        }
+        .navbar-collapse::before {
+          content: "";
+          position: absolute;
+          top: -40px;
+          left: -15px;
+          width: 101%;
+          height: 50px;
+          background-color: #ff6f00;
+          clip-path: polygon(0 350%, 15% 0, 100% 0, 100% 100%);
+        }
+        .navbar-nav {
+          display: flex;
+          margin-left: -200px;
+        }
+        .navbar-nav li a {
+          left: 10px;
+          color: white;
+          text-decoration: none;
+          /* margin: 0 7px; */
+          top: -20px;
+          position: relative;
+          z-index: 2;
+          font-size: 16px;
+        }
+        .nav-item {
+          padding: 0 15px;
+          list-style: none;
+        }
+        .navbar-nav a:hover {
+          text-decoration: underline;
+        }
+
+        /* Responsive cho Mobile */
+        @media (max-width: 768px) {
+          .navbar-collapse {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: #fff;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          }
+
+          .navbar-collapse.active {
+            display: flex;
+          }
+
+          .nav-item {
+            text-align: center;
+            padding: 10px 0;
+          }
+        }
+        .header .user-info {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          position: relative; /* Đổi từ absolute sang relative */
+          right: 0; /* Đưa về bên phải */
+          top: -20px;
+        }
+        .header .user-info img {
+          width: 30px;
+          height: 30px;
+        }
+        /*-------------------End Header---------------------- */
+
+        /*----------------------Layout-------------------------*/
+        .container {
+          display: flex;
+          width: 100%;
+        }
+        /*-------------------Sidebar--------------------- */
+        .sidebar {
+        width: 230px;
+        background: #333333;
+        color: #b8c7ce;
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        min-height: 650px;
+      }
+      .sidebar ul {
+        list-style: none;
+        background-color: #2c3b41;
+      }
+      .sidebar ul li {
+        padding: 9px 5px 9px 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid #ffffff;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      .sidebar ul li:hover {
+        color: #ffffff;
+      }
+      .sidebar ul li i {
+        width: 20px;
+        text-align: center;
+      }
+      .sidebar a {
+        text-decoration: none;
+        flex: 1;
+        color: #b8c7ce;
+      }
+      .sidebar a:hover {
+        color: #ffffff;
+      }
+
+      .fa-solid.fa-tachometer-alt {
+        color: #ff6f00;
+      }
+
+      /* Ẩn submenu ban đầu */
+      .submenu {
+        display: none;
+        background: #ff6f00 !important;
+      }
+
+      .submenu li {
+        padding: 12px 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+        height: 32px;
+      }
+      .submenu a {
+        color: #222222 !important;
+      }
+      .submenu li:hover {
+        background: #ffffff;
+      }
+      .submenu a:hover {
+        color: rgb(250, 55, 25) !important;
+      }
+
+      /* Bật submenu khi click */
+      .menu-item.active + .submenu {
+        display: block;
+      }
+
+      /* Định dạng cho menu cha */
+      .menu-item {
+        display: flex;
+        align-items: center;
+        padding: 15px 15px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .menu-item i {
+        margin-right: 10px;
+      }
+      .fa-solid.fa-play {
+        font-size: 9px;
+        color: #222222;
+      }
+      .fa-solid.fa-chevron-down {
+        font-size: 12px;
+        margin-left: auto;
+      }
+      /* -------------------sidebar-end------------------- */
+      /*content: list-league + footer */
+      .content-wrapper {
+        flex: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+        background-color: #ecf0f5;
+      }
+      .content {
+        background-color: #ecf0f5;
+      }
+        /* list-league */
+        .list-league {
+        color: rgb(34, 34, 34);
+        font-size: 24px;
+        font-weight: normal;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        min-height: 70px;
+        }
+        .list-league_left {
+          font-family: "Source Sans Pro", sans-serif !important;
+        }
+        .fa-solid.fa-list {
+          color: #ff6f00;
+          margin-right: 5px;
+          font-size: 25px;
+        }
+        .list-league_left {
+          flex-grow: 1;
+        }
+        .list-league i {
+            margin-right: 5px;
+        }
+
+        /* Buttons styling moved to form layout section for consistency */
+
+        /* --------------------- FOOTER -------------------- */
+        .footer {
+        box-sizing: border-box;
+        background-color: #ecf0f5;
+        color: rgb(51, 51, 51);
+        font-size: 14px;
+        font-weight: 500;
+        text-shadow: rgb(255, 255, 255) 1px 1px 1px;
+        box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.1);
+        display: block;
+        border-top-color: rgb(255, 255, 255);
+        border-top-style: solid;
+        border-top-width: 0.8px;
+      }
+
+      .footer-container {
+        box-sizing: border-box;
+        background-color: #ecf0f5;
+        color: rgb(51, 51, 51);
+        font-size: 14px;
+        text-shadow: rgb(255, 255, 255) 2px 2px 2px;
+        margin: 40px 10px 10px 10px;
+        display: block;
+        border-top-color: rgb(255, 255, 255);
+        border-top-style: solid;
+        border-top-width: 0.8px;
+        line-height: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+      }
+
+      .footer-left,
+      .footer-right {
+        flex: 1;
+      }
+
+      .footer-left p,
+      .footer-right p {
+        margin: 19px 0;
+      }
+
+      .footer-apps {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .footer-apps img {
+        height: 30px;
+      }
+
+      /* --- Top Green Buttons --- */
+      .team-management-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .nav-button {
+            flex: 1; /* Distribute space */
+            min-width: 120px; /* Minimum width before wrapping */
+            background-color: #5cb85c; /* Green background */
+            color: white;
+            text-align: center;
+            padding: 15px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            border: none; /* Remove default button border */
+            cursor: pointer;
+        }
+
+        .nav-button i {
+            font-size: 28px; /* Icon size */
+            opacity: 0.9;
+        }
+
+        .nav-button:hover {
+            background-color: #4cae4c; /* Darker green on hover */
+        }
+
+        .nav-button.active {
+            background-color: #449d44; /* Even darker for active */
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+             cursor: default;
+        }
+
+
+
+        /* Button styles in the header bar */
+
+
+
+        /* Styling for the content box and table */
+        .content-box {
+            background-color: #ffffff; /* White background for the box */
+            padding: 20px;
+            margin: 15px; /* Adjust margin to remove top margin */
+            border-radius: 5px; /* Round bottom corners only */
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1); /* Subtle shadow */
+            border-top: 1px solid #f4f4f4; /* Separator from title */
+            font-family: "Source Sans Pro", sans-serif;
+            flex-grow: 1; /* Make content box fill remaining space */
+        }
+
+        .table-responsive {
+            overflow-x: auto; /* Allows horizontal scrolling on small screens */
+            position: relative; /* For potential scroll indicators */
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            color: #333;
+            font-family: "Source Sans Pro", sans-serif !important; /* Consistent font */
+        }
+
+        .data-table th,
+        .data-table td {
+            border: 1px solid #f4f4f4; /* Lighter borders */
+            padding: 10px 12px; /* More padding */
+            text-align: left;
+            font-family: "Source Sans Pro", sans-serif !important; /* Consistent font */
+
+            vertical-align: middle; /* Align content vertically */
+        }
+
+        .data-table thead th {
+            background-color: #f8f9fa; /* Lighter header background */
+            font-weight: 600; /* Slightly bolder */
+            color: #495057;
+            border-bottom: 2px solid #dee2e6; /* Stronger bottom border for header */
+            white-space: nowrap; /* Prevent header text wrapping */
+        }
+
+        /* Style specific columns */
+        .data-table td:nth-child(1) { /* STT column */
+            width: 50px;
+            text-align: center;
+        }
+
+         /* Status Column Styling */
+        .data-table .status-badge {
+            padding: 4px 8px;
+            border-radius: 10px; /* More rounded */
+            font-size: 12px;
+            font-family: "Source Sans Pro", sans-serif !important; /* Consistent font */
+            font-weight: 600;
+            white-space: nowrap;
+            display: inline-block; /* Ensure padding works correctly */
+        }
+
+        .data-table .status-pending {
+            background-color: #007bff; /* Blue */
+            color: white;
+        }
+        .data-table .status-approved {
+            background-color: #28a745; /* Green */
+            color: white;
+        }
+        .data-table .status-rejected {
+             background-color: #dc3545; /* Red */
+             color: white;
+        }
+
+
+        .data-table td:nth-child(5) { /* Action column */
+            width: 80px;
+            text-align: center;
+        }
+         .action-icon {
+            color: #dc3545; /* Red color like the image */
+            font-size: 18px;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .action-icon:hover {
+            color: #a71d2a; /* Darker red on hover */
+        }
+
+        /* Optional: Add alternating row colors */
+        .data-table tbody tr:nth-of-type(odd) {
+            background-color: #fdfdfd;
+        }
+        .data-table tbody tr:hover {
+            background-color: #f1f1f1; /* Highlight on hover */
+        }
+
+        /* --- Modal Styling --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1050; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+            align-items: center; /* Vertical center */
+            justify-content: center; /* Horizontal center */
+            font-family: "Source Sans Pro", sans-serif;
+        }
+
+        .modal-dialog {
+             /* Use flexbox for centering */
+            display: flex;
+            align-items: center;
+            min-height: calc(100% - 3.5rem); /* Allow vertical scroll */
+            margin: 1.75rem auto; /* Centering */
+            position: relative; /* Needed for positioning content */
+            width: 80%;
+            max-width: 800px; /* Adjust max width as needed */
+            pointer-events: none; /* Let clicks pass through backdrop */
+
+        }
+
+         /* Make modal scrollable */
+        .modal.fade .modal-dialog {
+            transition: transform .3s ease-out;
+            transform: translate(0,-50px);
+        }
+        .modal.show .modal-dialog {
+            transform: none;
+        }
+
+        .modal-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 100%; /* Within modal-dialog */
+            pointer-events: auto; /* Enable interactions on content */
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0,0,0,.2);
+            border-radius: .3rem;
+            outline: 0;
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,.5);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            padding: 1rem 1rem;
+            border-bottom: 1px solid #dee2e6;
+            border-top-left-radius: calc(.3rem - 1px);
+            border-top-right-radius: calc(.3rem - 1px);
+        }
+
+        .modal-header .close-button {
+            padding: 1rem 1rem;
+            margin: -1rem -1rem -1rem auto;
+            background-color: transparent;
+            border: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+            color: #000;
+            text-shadow: 0 1px 0 #fff;
+            opacity: .5;
+            cursor: pointer;
+        }
+         .modal-header .close-button:hover {
+            opacity: .75;
+         }
+
+        .modal-title {
+            margin-bottom: 0;
+            line-height: 1.5;
+            font-size: 1.5rem; /* Larger title */
+            font-weight: 500;
+        }
+
+        .modal-body {
+            position: relative;
+            flex: 1 1 auto;
+            padding: 1.5rem; /* More padding */
+        }
+
+        /* Form layout inside modal */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            gap: 1rem 1.5rem; /* Row and column gap */
+        }
+        .form-group {
+            margin-bottom: 0; /* Grid handles spacing */
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: .5rem;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .form-control, .form-select {
+            display: block;
+            width: 100%;
+            padding: .5rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+
+        /* Readonly/disabled styling */
+        .form-control:read-only, .form-select:disabled {
+            background-color: #e9ecef;
+            opacity: 1;
+            cursor: not-allowed;
+        }
+         .form-select:disabled {
+             color: #6c757d;
+         }
+
+
+        .avatar-upload-group {
+            grid-column: 1 / -1; /* Span both columns */
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .avatar-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%; /* Circular preview */
+            border: 1px solid #dee2e6;
+            object-fit: cover; /* Ensure image covers the area */
+            background-color: #f8f9fa; /* Placeholder background */
+        }
+         /* Hide the actual file input button */
+        #modal-avatar-upload {
+             display: none;
+        }
+        /* Style the label to look like a button */
+        .upload-button-label {
+            display: inline-block;
+            padding: .5rem 1rem;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #fff;
+            background-color: #28a745; /* Green */
+            border: 1px solid #28a745;
+            border-radius: .25rem;
+            cursor: pointer;
+            transition: background-color .15s ease-in-out, border-color .15s ease-in-out;
+        }
+        .upload-button-label:hover {
+             background-color: #218838;
+             border-color: #1e7e34;
+        }
+
+
+        .modal-footer {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between; /* Align buttons to the right */
+            padding: .75rem;
+            border-top: 1px solid #dee2e6;
+            border-bottom-right-radius: calc(.3rem - 1px);
+            border-bottom-left-radius: calc(.3rem - 1px);
+        }
+        .modal-footer > * {
+            margin: .25rem; /* Spacing between buttons */
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            color: #212529;
+            text-align: center;
+            vertical-align: middle;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            background-color: transparent;
+            border: 1px solid transparent;
+            padding: .5rem 1rem; /* Standard padding */
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+        .btn-secondary { /* Close Button */
+            color: #fff;
+            background-color: #6c757d; /* Gray */
+            border-color: #6c757d;
+        }
+        .btn-secondary:hover {
+             background-color: #5a6268;
+             border-color: #545b62;
+        }
+        .btn-success { /* Accept Button */
+             color: #fff;
+             background-color: #28a745; /* Green */
+             border-color: #28a745;
+        }
+         .btn-success:hover {
+             background-color: #218838;
+             border-color: #1e7e34;
+         }
+
+         /* Specific button styles like image */
+         #modalCloseButton {
+            background-color: #dc3545; /* Red */
+            border-color: #dc3545;
+         }
+         #modalCloseButton:hover {
+             background-color: #c82333;
+             border-color: #bd2130;
+         }
+         #modalAcceptButton {
+             background-color: #28a745; /* Green */
+             border-color: #28a745;
+         }
+         #modalAcceptButton:hover {
+             background-color: #218838;
+             border-color: #1e7e34;
+         }
+         /* Danger Button Styling (for Reject) */
+         .btn-danger {
+             color: #fff;
+             background-color: #dc3545; /* Red */
+             border-color: #dc3545;
+         }
+         .btn-danger:hover {
+             background-color: #c82333;
+             border-color: #bd2130;
+         }
+
+         /* Ensure consistent spacing if needed */
+         .modal-footer > .btn + .btn {
+             margin-left: .5rem; /* Adjust spacing */
+         }
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="navbar">
+          <div class="navbar-top">
+            <div class="logo">
+              <a href="#"><img src="../images/logo.png" alt="Logo" /></a>
+            </div>
+            <span class="developed-by">
+              Hệ thống được phát triển bởi HD Promotion</span
+            >
+            <div class="user-info">
+              <img src="images/dhk.jpg" alt="User Avatar"/> <!-- Added alt text -->
+              <span
+                >Hải Đăng Nguyễn <i class="fa-solid fa-chevron-down"></i
+              ></span>
+            </div>
+          </div>
+          <div class="navbar-bottom">
+            <div class="navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">TRANG CHỦ</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">GIẢI ĐANG DIỄN RA</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">GIẢI ĐANG THEO DÕI</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">ĐỘI BÓNG</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">BẮT ĐỐI</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">HƯỚNG DẪN</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">CUỘC THI</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">TIN TỨC</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+
+    <div class="container">
+        <div id="sidebar-container">
+             <!-- Sidebar will be loaded here -->
+        </div>
+        <div class="content-wrapper">
+            <section class="content">
+                <!-- Title and Action Buttons -->
+                <div id="management-nav-placeholder">
+                    <!-- Nav will load here -->
+                </div>
+                <div class="list-league">
+                    <span class="list-league_left"><i class="fa-solid fa-list"></i>Yêu cầu tham gia đội</span>
+                </div>
+
+
+                <div class="content-box"> <!-- Existing container -->
+                    <div class="table-responsive">
+                        <table id="joinRequestTable" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Người gửi</th>
+                                    <th>Ngày gửi</th>
+                                    <th>Trạng thái</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="joinRequestTableBody">
+                                <!-- User rows will be inserted here by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+              </div>
+
+            </section>
+
+            <footer class="footer"> <!-- Changed to footer tag -->
+                <div class="footer-container">
+                  <div class="footer-left">
+                    <p>Bản quyền thuộc HD Promotion</p>
+                    <p>Nguyen Hai Dang</p>
+                    <p>
+                      Chỉ được phát hành lại nội dung khi có sự đồng ý của HD
+                      Promotion
+                    </p>
+                    <div class="footer-apps">
+                      <a href="#"><img src="../images/logo.png" alt="IT League" /></a>
+                      <a href="#"
+                        ><img src="images/googleplay.png" alt="Google Play"
+                      /></a>
+                      <a href="#"
+                        ><img src="images/appstore.png" alt="App Store"
+                      /></a>
+                    </div>
+                  </div>
+                  <div class="footer-right">
+                    <p>
+                      <i class="fa fa-building" aria-hidden="true"></i> CÔNG TY CỔ
+                      PHẦN TỔ CHỨC SỰ KIỆN VÀ TRUYỀN THÔNG HD Promotion
+                    </p>
+                    <p>
+                      <i class="fa fa-map-marker" aria-hidden="true"></i> Số 185,
+                      Trần Đại Nghĩa, phường Đồng Tâm, quận Hai Bà Trưng, Hà Nội
+                    </p>
+                    <p><i class="fa fa-phone" aria-hidden="true"></i> 0797102555</p>
+                    <p>
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                      nguyenstorm2k5@gmail.com
+                    </p>
+                  </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!-- Member Details Modal -->
+    <div id="memberDetailsModal" class="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thông tin thành viên</h5>
+                    <button type="button" class="close-button" aria-label="Close" onclick="closeModal()">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="memberDetailsForm">
+                         <input type="hidden" id="modal-request-id"> <!-- Store request ID -->
+                         <input type="hidden" id="modal-user-id">   <!-- Store user ID -->
+                         <input type="hidden" id="modal-team-id">   <!-- Store team ID -->
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="modal-name">Tên thành viên</label>
+                                <input type="text" class="form-control" id="modal-name" readonly>
+                            </div>
+                             <div class="form-group">
+                                <label for="modal-jerseyNumber">Số áo</label>
+                                <input type="number" class="form-control" id="modal-jerseyNumber" readonly>
+                                 <!-- Note: Jersey number might not be in the initial request -->
+                            </div>
+                             <div class="form-group">
+                                <label for="modal-role">Chức vụ</label>
+                                <select class="form-select" id="modal-role" disabled>
+                                    <option value="">Chọn chức vụ</option>
+                                    <option value="Cầu thủ">Cầu thủ</option>
+                                    <option value="Huấn luyện viên">Huấn luyện viên</option>
+                                    <option value="Quản lý">Quản lý</option>
+                                    <!-- Add other roles as needed -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="modal-positionField">Vị trí</label>
+                                <select class="form-select" id="modal-positionField" disabled>
+                                     <option value="">Chọn vị trí</option>
+                                     <option value="Thủ môn">Thủ môn (GK)</option>
+                                     <option value="Hậu vệ">Hậu vệ (DF)</option>
+                                     <option value="Tiền vệ">Tiền vệ (MF)</option>
+                                     <option value="Tiền đạo">Tiền đạo (FW)</option>
+                                     <!-- Add other positions as needed -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="modal-dob">Ngày sinh</label>
+                                <input type="text" class="form-control" id="modal-dob" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="modal-phone">Điện thoại</label>
+                                <input type="tel" class="form-control" id="modal-phone" readonly>
+                            </div>
+                             <div class="form-group">
+                                <label for="modal-address">Địa chỉ</label>
+                                <input type="text" class="form-control" id="modal-address" readonly>
+                            </div>
+                             <div class="form-group">
+                                <label for="modal-facebook">Facebook</label>
+                                <input type="text" class="form-control" id="modal-facebook" readonly>
+                            </div>
+                            <div class="form-group" style="grid-column: 1 / -1;"> <!-- Span both columns -->
+                                <label for="modal-email">Email</label>
+                                <input type="email" class="form-control" id="modal-email" readonly>
+                            </div>
+
+                            <!-- Avatar Display -->
+                             <div class="form-group avatar-upload-group">
+                                <label>Ảnh</label>
+                                <img id="modal-avatar-img" src="images/placeholder-avatar.png" alt="Avatar" class="avatar-preview">
+                                <!-- Optional: If you wanted to allow upload here -->
+                                <!-- <input type="file" id="modal-avatar-upload" accept="image/*">
+                                <label for="modal-avatar-upload" class="upload-button-label">Chọn ảnh...</label> -->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="modalCloseButton" onclick="closeModal()">Đóng</button>
+                    <!-- Add the Reject Button -->
+                    <div>
+                        <button type="button" class="btn btn-danger" id="modalRejectButton" onclick="rejectMember()" style="display: none;">Từ chối</button>
+                        <button type="button" class="btn btn-success" id="modalAcceptButton" onclick="acceptMember()" style="display: none;">Lưu</button> <!-- Keep 'Lưu' or change to 'Duyệt' -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/managementNav.js"></script> <!-- Adjust path if needed -->
+
+    <script>
+        // Load sidebar.html into the sidebar-container
+        fetch("sidebar.html")
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              return response.text();
+          })
+          .then(data => {
+            const sidebarContainer = document.getElementById("sidebar-container");
+            if (sidebarContainer) {
+                sidebarContainer.innerHTML = data;
+                // Re-attach sidebar menu toggle functionality AFTER loading content
+                attachSidebarToggle();
+            } else {
+                console.error("Sidebar container not found!");
+            }
+          })
+          .catch(error => console.error("Error loading sidebar:", error));
+
+        // Function to attach sidebar toggle listeners
+        function attachSidebarToggle() {
+            const sidebarContainer = document.getElementById("sidebar-container");
+            if (!sidebarContainer) return;
+
+            sidebarContainer.addEventListener("click", function (event) {
+                let menuItem = event.target.closest(".menu-item");
+                if (menuItem) {
+                    // Find the next sibling that is a submenu
+                    let submenu = menuItem.nextElementSibling;
+                    while(submenu && !submenu.classList.contains('submenu')) {
+                        submenu = submenu.nextElementSibling;
+                    }
+
+                    if (submenu && submenu.classList.contains("submenu")) {
+                        // Toggle active class on the menu item
+                        // menuItem.classList.toggle("active"); // Optional: for styling active menu
+
+                        // Toggle display of the submenu
+                        if (submenu.style.display === "block") {
+                            submenu.style.display = "none";
+                            menuItem.querySelector('.fa-chevron-down')?.classList.remove('fa-rotate-180'); // Optional: rotate arrow
+                        } else {
+                            submenu.style.display = "block";
+                            menuItem.querySelector('.fa-chevron-down')?.classList.add('fa-rotate-180'); // Optional: rotate arrow
+                             // Optional: Close other open submenus
+                            closeOtherSubmenus(sidebarContainer, submenu);
+                        }
+                    }
+                }
+            });
+        }
+
+        // Optional: Function to close other submenus
+        function closeOtherSubmenus(container, currentSubmenu) {
+            container.querySelectorAll('.submenu').forEach(submenu => {
+                if (submenu !== currentSubmenu) {
+                    submenu.style.display = 'none';
+                    // Also remove active class and reset arrow if using them
+                    const previousMenuItem = submenu.previousElementSibling;
+                    if(previousMenuItem && previousMenuItem.classList.contains('menu-item')) {
+                       // previousMenuItem.classList.remove('active');
+                       previousMenuItem.querySelector('.fa-chevron-down')?.classList.remove('fa-rotate-180');
+                    }
+                }
+            });
+        }
+
+        // --- JOIN REQUEST LOGIC ---
+
+        const TEAM_MEMBERS_STORAGE_KEY = 'teamMembersData';
+
+        // Sample Data (Updated with jerseyNumber)
+        const allJoinRequests = [
+            {
+                id: 1, userId: 101, teamId: 'team-1', name: 'Khải Dương', dob: '2005-04-05', positionField: 'Tiền vệ', positionRole: 'Cầu thủ',
+                jerseyNumber: 7, // Added
+                avatar: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...',
+                address: '123 Đường ABC, Quận XYZ, TP HCM', phone: '0901234567', facebook: 'khai.duong.fb', email: 'khai2892005@gmail.com',
+                requestDate: '2025-04-05', status: 'pending'
+            },
+            {
+                id: 2, userId: 102, teamId: 'team-1', name: 'Trần Văn B', dob: '1999-11-20', positionField: 'Hậu vệ', positionRole: 'Cầu thủ',
+                jerseyNumber: 4, // Added
+                avatar: 'images/avatar2.png',
+                address: '456 Đường DEF, Quận UVW, Hà Nội', phone: '0987654321', facebook: 'tran.van.b', email: 'van.b@email.com',
+                requestDate: '2025-04-06', status: 'pending'
+            },
+             {
+                id: 3, userId: 103, teamId: 'team-2', name: 'Lê Thị C', dob: '2001-01-15', positionField: '', positionRole: 'Quản lý',
+                jerseyNumber: null, // Added
+                avatar: null,
+                address: '789 Đường GHI, Quận RST, Đà Nẵng', phone: '0123456789', facebook: '', email: 'le.thi.c@email.com',
+                requestDate: '2025-04-07', status: 'pending'
+            },
+            {
+                id: 4, userId: 104, teamId: 'team-1', name: 'Phạm Văn D', dob: '2003-07-10', positionField: 'Tiền đạo', positionRole: 'Cầu thủ',
+                jerseyNumber: 11, // Added
+                avatar: null,
+                address: '101 Đường JKL, Quận MNO, TP HCM', phone: '0112233445', facebook: 'pham.van.d', email: 'van.d@email.com',
+                requestDate: '2025-04-08', status: 'pending'
+            },
+            {
+                id: 5, userId: 105, teamId: 'team-3', name: 'Hoàng Văn E', dob: '2000-02-29', positionField: 'Thủ môn', positionRole: 'Cầu thủ',
+                jerseyNumber: 1, // Added
+                avatar: 'images/avatar5.png',
+                address: '202 Đường PQR, Quận STU, Hà Nội', phone: '0556677889', facebook: 'hoang.van.e', email: 'van.e@email.com',
+                requestDate: '2025-04-09', status: 'pending'
+            }
+        ];
+
+        // --- Global variable to store the current team ID filter ---
+        let currentTeamIdFilter = null;
+
+
+        // DOM Elements
+        const tableBody = document.getElementById('joinRequestTableBody');
+        const modal = document.getElementById('memberDetailsModal');
+        const modalRequestId = document.getElementById('modal-request-id');
+        const modalUserId = document.getElementById('modal-user-id');
+        const modalTeamId = document.getElementById('modal-team-id');
+        const modalName = document.getElementById('modal-name');
+        const modalJerseyNumber = document.getElementById('modal-jerseyNumber');
+        const modalRole = document.getElementById('modal-role');
+        const modalPositionField = document.getElementById('modal-positionField');
+        const modalDob = document.getElementById('modal-dob');
+        const modalPhone = document.getElementById('modal-phone');
+        const modalAddress = document.getElementById('modal-address');
+        const modalFacebook = document.getElementById('modal-facebook');
+        const modalEmail = document.getElementById('modal-email');
+        const modalAvatarImg = document.getElementById('modal-avatar-img');
+        const modalAcceptButton = document.getElementById('modalAcceptButton');
+
+
+        // --- Functions ---
+
+        function getTeamIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
+
+        function filterRequestsByTeam(teamId) {
+            if (!teamId) {
+                console.warn("No teamId found in URL. Showing no requests.");
+                return [];
+            }
+            return allJoinRequests.filter(request => request.teamId === teamId);
+        }
+
+
+        function formatDate(dateString) {
+            if (!dateString) return 'N/A';
+            try {
+                const date = new Date(dateString);
+                const day = String(date.getDate()).padStart(2, '0');
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const year = date.getFullYear();
+                 if (isNaN(day) || isNaN(month) || isNaN(year)) return dateString; // Basic check
+                return `${day}-${month}-${year}`;
+            } catch (e) {
+                console.error("Error formatting date:", dateString, e);
+                return dateString;
+            }
+        }
+
+        function renderJoinRequestsTable(requestsToRender) {
+            if (!tableBody) return;
+            tableBody.innerHTML = '';
+
+            if (!requestsToRender || requestsToRender.length === 0) {
+                 const row = tableBody.insertRow();
+                 const cell = row.insertCell();
+                 cell.colSpan = 5;
+                 cell.textContent = "Không có yêu cầu tham gia nào cho đội này.";
+                 cell.style.textAlign = 'center';
+                 cell.style.padding = '20px';
+                 cell.style.color = '#666';
+                 return;
+            }
+
+            requestsToRender.forEach((request, index) => {
+                const row = tableBody.insertRow();
+                row.setAttribute('data-request-id', request.id);
+
+                // Cells...
+                const cellStt = row.insertCell();
+                cellStt.textContent = index + 1;
+
+                const cellName = row.insertCell();
+                cellName.textContent = request.name || 'N/A';
+
+                const cellDate = row.insertCell();
+                cellDate.textContent = formatDate(request.requestDate);
+
+                const cellStatus = row.insertCell();
+                const statusBadge = document.createElement('span');
+                statusBadge.classList.add('status-badge');
+                if (request.status === 'pending') {
+                    statusBadge.classList.add('status-pending');
+                    statusBadge.textContent = 'Đang duyệt';
+                } else if (request.status === 'approved') {
+                     statusBadge.classList.add('status-approved');
+                     statusBadge.textContent = 'Đã duyệt';
+                } else if (request.status === 'rejected') {
+                     statusBadge.classList.add('status-rejected');
+                     statusBadge.textContent = 'Từ chối';
+                } else {
+                     statusBadge.textContent = request.status;
+                }
+                cellStatus.appendChild(statusBadge);
+
+                const cellAction = row.insertCell();
+                 if (request.status === 'pending') {
+                    const actionIcon = document.createElement('i');
+                    actionIcon.className = 'fas fa-eye action-icon';
+                    actionIcon.title = 'Xem chi tiết';
+                    actionIcon.onclick = () => openMemberDetailsModal(request.id);
+                    cellAction.appendChild(actionIcon);
+                 } else {
+                    cellAction.textContent = '-';
+                 }
+            });
+        }
+
+        function openMemberDetailsModal(requestId) {
+            const request = allJoinRequests.find(req => req.id === requestId);
+            if (!request) {
+                console.error("Request not found:", requestId);
+                alert("Không thể tải thông tin yêu cầu.");
+                return;
+            }
+
+            // ... (populate form fields as before) ...
+            modalRequestId.value = request.id;
+            modalUserId.value = request.userId;
+            modalTeamId.value = request.teamId;
+            modalName.value = request.name || '';
+            modalRole.value = request.positionRole || '';
+            modalPositionField.value = request.positionField || '';
+            modalDob.value = formatDate(request.dob) || '';
+            modalPhone.value = request.phone || '';
+            modalAddress.value = request.address || '';
+            modalFacebook.value = request.facebook || '';
+            modalEmail.value = request.email || '';
+            modalAvatarImg.src = request.avatar || 'images/placeholder-avatar.png';
+            modalJerseyNumber.value = request.jerseyNumber !== null ? request.jerseyNumber : '';
+
+
+            // Get the reject button element
+            const modalRejectButton = document.getElementById('modalRejectButton');
+
+            // Show/Hide Accept and Reject buttons based on status
+            if (request.status === 'pending') {
+                if (modalAcceptButton) modalAcceptButton.style.display = 'inline-block';
+                if (modalRejectButton) modalRejectButton.style.display = 'inline-block'; // Show Reject button
+            } else {
+                if (modalAcceptButton) modalAcceptButton.style.display = 'none';
+                if (modalRejectButton) modalRejectButton.style.display = 'none'; // Hide Reject button
+            }
+
+            // Show the modal
+            if(modal) {
+                modal.style.display = 'flex';
+                setTimeout(() => modal.classList.add('show'), 10);
+            }
+        }
+
+        function closeModal() {
+            if(modal) {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300); // Match CSS transition duration
+            }
+        }
+
+        function acceptMember() {
+            const requestId = parseInt(modalRequestId.value, 10);
+            if (!requestId) {
+                alert("Không tìm thấy thông tin yêu cầu.");
+                return;
+            }
+
+            const requestIndex = allJoinRequests.findIndex(req => req.id === requestId);
+            if (requestIndex === -1) {
+                alert("Yêu cầu không tồn tại hoặc đã được xử lý.");
+                closeModal();
+                return;
+            }
+
+            const requestData = allJoinRequests[requestIndex];
+
+            // Prepare data for localStorage
+            const memberData = {
+                id: Date.now(),
+                teamId: requestData.teamId,
+                userId: requestData.userId,
+                name: requestData.name,
+                dob: requestData.dob,
+                positionField: requestData.positionField,
+                positionRole: requestData.positionRole,
+                avatar: requestData.avatar,
+                address: requestData.address,
+                phone: requestData.phone,
+                facebook: requestData.facebook,
+                email: requestData.email,
+                height: null,
+                weight: null,
+                shirtSize: null,
+                // Get jersey number from the modal input (which was populated from the request)
+                jerseyNumber: modalJerseyNumber.value !== '' ? parseInt(modalJerseyNumber.value, 10) : null,
+                isForeigner: false,
+            };
+
+            try {
+                const existingMembers = JSON.parse(localStorage.getItem(TEAM_MEMBERS_STORAGE_KEY) || '[]');
+                const alreadyExists = existingMembers.some(member => member.userId === memberData.userId && member.teamId === memberData.teamId);
+
+                if (alreadyExists) {
+                     alert(`Thành viên ${memberData.name} (ID: ${memberData.userId}) đã tồn tại trong đội ${memberData.teamId}. Yêu cầu sẽ được đánh dấu đã duyệt.`);
+                } else {
+                    existingMembers.push(memberData);
+                    localStorage.setItem(TEAM_MEMBERS_STORAGE_KEY, JSON.stringify(existingMembers));
+                     console.log('Member added to localStorage:', memberData);
+                     console.log('Updated teamMembersData:', existingMembers);
+                     alert(`Đã duyệt và thêm thành viên "${requestData.name}" vào đội ${requestData.teamId}.`);
+                }
+
+                 // Update status in the master list
+                 allJoinRequests[requestIndex].status = 'approved';
+
+                 // Re-filter and re-render the table for the current team view
+                 const updatedFilteredRequests = filterRequestsByTeam(currentTeamIdFilter);
+                 renderJoinRequestsTable(updatedFilteredRequests);
+
+            } catch (error) {
+                console.error("Error saving member to localStorage:", error);
+                alert("Có lỗi xảy ra khi lưu thông tin thành viên. Trạng thái yêu cầu chưa được cập nhật.");
+                // Don't update status if save fails
+            }
+
+            closeModal();
+        }
+
+        function rejectMember() {
+            const requestId = parseInt(modalRequestId.value, 10);
+            if (!requestId) {
+                alert("Không tìm thấy thông tin yêu cầu.");
+                return;
+            }
+
+            // Find the request index in the *original* master list
+            const requestIndex = allJoinRequests.findIndex(req => req.id === requestId);
+            if (requestIndex === -1) {
+                alert("Yêu cầu không tồn tại hoặc đã được xử lý.");
+                closeModal();
+                return;
+            }
+
+            // Confirm rejection (optional but recommended)
+            const requestData = allJoinRequests[requestIndex];
+            if (!confirm(`Bạn có chắc chắn muốn từ chối yêu cầu tham gia của "${requestData.name}"?`)) {
+                return; // User cancelled
+            }
+
+            try {
+                // --- Update status in the master list ---
+                allJoinRequests[requestIndex].status = 'rejected'; // Change status
+
+                // --- Re-filter and re-render the table for the *current* team view ---
+                const updatedFilteredRequests = filterRequestsByTeam(currentTeamIdFilter);
+                renderJoinRequestsTable(updatedFilteredRequests); // Update the table UI
+
+                console.log(`Request ID ${requestId} status updated to 'rejected'.`);
+                alert(`Đã từ chối yêu cầu tham gia của "${requestData.name}".`);
+
+            } catch (error) {
+                console.error("Error updating request status:", error);
+                alert("Có lỗi xảy ra khi cập nhật trạng thái yêu cầu.");
+                // Optional: Revert status if needed, though unlikely necessary here
+                // allJoinRequests[requestIndex].status = 'pending';
+            }
+
+            closeModal();
+        }
+
+
+        // --- Initial Setup ---
+        document.addEventListener("DOMContentLoaded", () => {
+            // Load Nav (Placeholder/Actual)
+             loadAndSetupManagementNav('management-nav-placeholder', 'managementNav.html');
+
+            // Get teamId and filter
+            currentTeamIdFilter = getTeamIdFromUrl();
+            const filteredRequests = filterRequestsByTeam(currentTeamIdFilter);
+
+            // Render table
+            renderJoinRequestsTable(filteredRequests);
+
+            // Setup modal close listener
+            window.addEventListener('click', (event) => {
+                if (event.target == modal) {
+                    closeModal();
+                }
+            });
+            // Note: Sidebar loading is handled by its own fetch block now
+        });
+    </script>
+
+</body>
+</html>

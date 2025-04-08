@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách thành viên</title>
+    <link rel="icon" type="logo.png" href="../images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: Oswald, sans-serif; /* Default font */
+        }
+        body {
+          background-color: white;
+        }
+        /*-------------------------Header---------------------------*/
+        .developed-by {
+          position: absolute;
+          left: 250px;
+          top: 7px;
+          color: #ffffff;
+          font-size: 14px;
+          z-index: 2;
+        }
+        .navbar-top {
+          background-color: #1565c0;
+          color: white;
+          padding: 10px 20px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 75px;
+        }
+        .navbar-bottom {
+          position: relative;
+        }
+        /*Logo*/
+        .logo {
+          display: flex;
+          align-items: center;
+          z-index: 2;
+          left: 170px;
+        }
+        .logo img {
+          height: 65px;
+          max-width: 100%;
+          margin-right: 10px;
+        }
+        /* Menu chính */
+        .navbar-collapse {
+          background-color: #ff6f00;
+          padding: 7px 0px;
+          height: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          z-index: 1;
+        }
+        .navbar-collapse::before {
+          content: "";
+          position: absolute;
+          top: -40px;
+          left: -15px;
+          width: 101%;
+          height: 50px;
+          background-color: #ff6f00;
+          clip-path: polygon(0 350%, 15% 0, 100% 0, 100% 100%);
+        }
+        .navbar-nav {
+          display: flex;
+          margin-left: -200px;
+        }
+        .navbar-nav li a {
+          left: 10px;
+          color: white;
+          text-decoration: none;
+          /* margin: 0 7px; */
+          top: -20px;
+          position: relative;
+          z-index: 2;
+          font-size: 16px;
+        }
+        .nav-item {
+          padding: 0 15px;
+          list-style: none;
+        }
+        .navbar-nav a:hover {
+          text-decoration: underline;
+        }
+
+        /* Responsive cho Mobile */
+        @media (max-width: 768px) {
+          .navbar-collapse {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: #fff;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          }
+
+          .navbar-collapse.active {
+            display: flex;
+          }
+
+          .nav-item {
+            text-align: center;
+            padding: 10px 0;
+          }
+        }
+        .header .user-info {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          position: relative; /* Đổi từ absolute sang relative */
+          right: 0; /* Đưa về bên phải */
+          top: -20px;
+        }
+        .header .user-info img {
+          width: 30px;
+          height: 30px;
+        }
+        /*-------------------End Header---------------------- */
+
+        /*----------------------Layout-------------------------*/
+        .container {
+          display: flex;
+          width: 100%;
+        }
+        /*-------------------Sidebar--------------------- */
+        .sidebar {
+        width: 230px;
+        background: #333333;
+        color: #b8c7ce;
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        min-height: 650px;
+      }
+      .sidebar ul {
+        list-style: none;
+        background-color: #2c3b41;
+      }
+      .sidebar ul li {
+        padding: 9px 5px 9px 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid #ffffff;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      .sidebar ul li:hover {
+        color: #ffffff;
+      }
+      .sidebar ul li i {
+        width: 20px;
+        text-align: center;
+      }
+      .sidebar a {
+        text-decoration: none;
+        flex: 1;
+        color: #b8c7ce;
+      }
+      .sidebar a:hover {
+        color: #ffffff;
+      }
+
+      .fa-solid.fa-tachometer-alt {
+        color: #ff6f00;
+      }
+
+      /* Ẩn submenu ban đầu */
+      .submenu {
+        display: none;
+        background: #ff6f00 !important;
+      }
+
+      .submenu li {
+        padding: 12px 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+        height: 32px;
+      }
+      .submenu a {
+        color: #222222 !important;
+      }
+      .submenu li:hover {
+        background: #ffffff;
+      }
+      .submenu a:hover {
+        color: rgb(250, 55, 25) !important;
+      }
+
+      /* Bật submenu khi click */
+      .menu-item.active + .submenu {
+        display: block;
+      }
+
+      /* Định dạng cho menu cha */
+      .menu-item {
+        display: flex;
+        align-items: center;
+        padding: 15px 15px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .menu-item i {
+        margin-right: 10px;
+      }
+      .fa-solid.fa-play {
+        font-size: 9px;
+        color: #222222;
+      }
+      .fa-solid.fa-chevron-down {
+        font-size: 12px;
+        margin-left: auto;
+      }
+      /* -------------------sidebar-end------------------- */
+      /*content: list-league + footer */
+      .content-wrapper {
+        flex: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+        background-color: #ecf0f5;
+      }
+      .content {
+        background-color: #ecf0f5;
+      }
+        /* list-league */
+        .list-league {
+        color: rgb(34, 34, 34);
+        font-size: 24px;
+        font-weight: normal;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        min-height: 70px;
+        }
+        .list-league_left {
+          font-family: "Source Sans Pro", sans-serif !important;
+        }
+        .fa-solid.fa-list {
+          color: #ff6f00;
+          margin-right: 5px;
+          font-size: 25px;
+        }
+        .list-league_left {
+          flex-grow: 1;
+        }
+
+        /* Buttons styling moved to form layout section for consistency */
+
+        /* --------------------- FOOTER -------------------- */
+        .footer {
+        box-sizing: border-box;
+        background-color: #ecf0f5;
+        color: rgb(51, 51, 51);
+        font-size: 14px;
+        font-weight: 500;
+        text-shadow: rgb(255, 255, 255) 1px 1px 1px;
+        box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.1);
+        display: block;
+        border-top-color: rgb(255, 255, 255);
+        border-top-style: solid;
+        border-top-width: 0.8px;
+      }
+
+      .footer-container {
+        box-sizing: border-box;
+        background-color: #ecf0f5;
+        color: rgb(51, 51, 51);
+        font-size: 14px;
+        text-shadow: rgb(255, 255, 255) 2px 2px 2px;
+        margin: 40px 10px 10px 10px;
+        display: block;
+        border-top-color: rgb(255, 255, 255);
+        border-top-style: solid;
+        border-top-width: 0.8px;
+        line-height: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+      }
+
+      .footer-left,
+      .footer-right {
+        flex: 1;
+      }
+
+      .footer-left p,
+      .footer-right p {
+        margin: 19px 0;
+      }
+
+      .footer-apps {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .footer-apps img {
+        height: 30px;
+      }
+
+      /* --- Top Green Buttons --- */
+      .team-management-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .nav-button {
+            flex: 1; /* Distribute space */
+            min-width: 120px; /* Minimum width before wrapping */
+            background-color: #5cb85c; /* Green background */
+            color: white;
+            text-align: center;
+            padding: 15px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            border: none; /* Remove default button border */
+            cursor: pointer;
+        }
+
+        .nav-button i {
+            font-size: 28px; /* Icon size */
+            opacity: 0.9;
+        }
+
+        .nav-button:hover {
+            background-color: #4cae4c; /* Darker green on hover */
+        }
+
+        .nav-button.active {
+            background-color: #449d44; /* Even darker for active */
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+             cursor: default;
+        }
+
+
+
+        /* Button styles in the header bar */
+
+        .list-league i {
+            margin-right: 5px;
+        }
+
+
+        /* Styles for Content Box within the main layout */
+.content-box {
+    padding: 20px;
+    font-family: "Source Sans Pro", sans-serif;
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow items to wrap */
+    gap: 20px; /* Spacing between cards */
+    align-content: flex-start; /* Align wrapped items to the top */
+}
+.content-box label, .content-box input, .content-box select, .content-box button {
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+/* Add Member Card */
+.add-member-card {
+    border: 2px dashed #bdc3c7;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    text-align: center;
+    width: 200px; /* Fixed width */
+    height: 270px; /* Fixed height to match member cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.add-member-card:hover {
+    background-color: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.add-member-card button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px; /* Space from placeholder */
+}
+.add-member-card button i {
+    font-size: 16px;
+}
+
+.add-member-card .placeholder-icon {
+     width: 80px;
+     height: 80px;
+     border-radius: 50%;
+     background-color: #e9ecef;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     margin-bottom: 15px;
+     border: 3px solid #bdc3c7;
+}
+.add-member-card .placeholder-icon i {
+    font-size: 35px;
+    color: #7f8c8d;
+}
+
+
+/* Member Card */
+.member-card {
+    border: 2px solid #5cb85c; /* Green border */
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #fff;
+    text-align: center;
+    width: 200px; /* Fixed width */
+    height: 270px; /* Fixed height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes actions to the bottom */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    position: relative; /* For potential absolute positioning inside */
+}
+
+.member-avatar {
+    margin-bottom: 10px;
+}
+
+.member-avatar img,
+.member-avatar .placeholder-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #5cb85c; /* Green border for avatar */
+    object-fit: cover; /* Crop image nicely */
+    background-color: #ecf0f5; /* Placeholder background */
+    display: inline-flex; /* Use flex to center icon */
+    justify-content: center;
+    align-items: center;
+}
+.member-avatar .placeholder-avatar i {
+     font-size: 40px;
+     color: #bdc3c7;
+}
+
+
+.member-name {
+    font-weight: bold;
+    color: #c0392b; /* Reddish color */
+    margin-bottom: 5px;
+    font-size: 16px;
+    word-wrap: break-word; /* Prevent long names from breaking layout */
+    min-height: 38px; /* Reserve space for two lines */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.member-number {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #c0392b; /* Reddish color */
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.member-actions {
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+    margin-top: auto; /* Push actions to bottom */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.member-actions button {
+    background: none;
+    border: none;
+    color: #5cb85c; /* Green icons */
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.member-actions button:hover {
+    color: #4cae4c; /* Darker green on hover */
+}
+.member-actions button.delete-btn {
+    color: #e74c3c; /* Red for delete */
+}
+.member-actions button.delete-btn:hover {
+    color: #c0392b; /* Darker red */
+}
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1050; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.5); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; /* 5% from the top and centered */
+  padding: 0; /* Remove padding, header/body/footer will have it */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 700px; /* Maximum width */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}
+
+.modal-header {
+  padding: 15px 20px;
+  background-color: #5cb85c; /* Green header */
+  color: white;
+  border-bottom: 1px solid #e5e5e5;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.7em;
+    font-weight: 500;
+}
+
+.close-button {
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #eee;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 1;
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 60vh; /* Limit height and allow scrolling */
+    overflow-y: auto;
+}
+
+.modal-body h3 {
+    font-size: 1.2em;
+    color: #333;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+.modal-body h3:first-child {
+    margin-top: 0;
+}
+
+/* Styles for search results */
+.search-results {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position below the input */
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    max-height: 150px; /* Limit height */
+    overflow-y: auto; /* Add scroll if needed */
+    z-index: 1060; /* Ensure it's above other elements but below modal header potentially */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 0 0 4px 4px;
+}
+
+.search-result-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+}
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: #f0f0f0;
+}
+
+
+#addMemberForm .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 15px 20px; /* Row and column gap */
+}
+
+#addMemberForm .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+#addMemberForm label {
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #555;
+}
+
+#addMemberForm input[type="text"],
+#addMemberForm input[type="number"],
+#addMemberForm input[type="email"],
+#addMemberForm input[type="date"],
+#addMemberForm select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%; /* Take full width of grid cell */
+    box-sizing: border-box;
+}
+#addMemberForm input:focus, #addMemberForm select:focus {
+    border-color: #5cb85c;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(92, 184, 92, 0.2);
+}
+
+/* Input groups for cm, kg */
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-group input {
+    flex: 1 1 auto;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.input-group-append {
+    display: flex;
+}
+.input-group-text {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #e9ecef;
+    border: 1px solid #ccc;
+    border-left: none; /* Remove left border because it's adjacent to the input */
+    border-radius: 4px;
+    font-family: "Source Sans Pro", sans-serif;
+}
+/* Date picker icon */
+.date-input-group {
+    position: relative;
+}
+.date-input-group input[type="date"] {
+    padding-right: 35px; /* Make space for icon */
+}
+
+/* Custom styling for file input */
+.file-input-group label { /* Style the label as a button */
+    display: inline-block;
+    background-color: #5cb85c;
+    color: white !important;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-weight: normal !important;
+}
+.file-input-group label:hover {
+    background-color: #4cae4c;
+}
+.file-input-group input[type="file"] {
+    display: none; /* Hide the actual file input */
+}
+
+#avatarPreview {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-left: 15px;
+    vertical-align: middle;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    display: none; /* Hidden initially */
+    margin-top: 10px;
+}
+
+
+.modal-footer {
+  padding: 15px 20px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+  text-align: right;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.modal-footer button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    margin-left: 10px;
+}
+
+.modal-footer .btn-save {
+    background-color: #5cb85c;
+    color: white;
+}
+.modal-footer .btn-save:hover {
+    background-color: #4cae4c;
+}
+
+.modal-footer .btn-cancel {
+    background-color: #f0ad4e;
+    color: white;
+}
+.modal-footer .btn-cancel:hover {
+    background-color: #ec971f;
+}
+
+/* Ngoai binh toggle button */
+#ngoaiBinhToggle {
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid;
+    border-radius: 4px;
+}
+.ngoai-binh-no {
+    background-color: #d9534f;
+    color: white;
+    border-color: #d43f3a;
+}
+.ngoai-binh-yes {
+    background-color: #5cb85c;
+    color: white;
+    border-color: #4cae4c;
+}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="navbar">
+          <div class="navbar-top">
+            <div class="logo">
+              <a href="#"><img src="../images/logo.png" alt="Logo" /></a>
+            </div>
+            <span class="developed-by">
+              Hệ thống được phát triển bởi HD Promotion</span
+            >
+            <div class="user-info">
+              <img src="images/dhk.jpg" alt="User Avatar"/> <!-- Added alt text -->
+              <span
+                >Hải Đăng Nguyễn <i class="fa-solid fa-chevron-down"></i
+              ></span>
+            </div>
+          </div>
+          <div class="navbar-bottom">
+            <div class="navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">TRANG CHỦ</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">GIẢI ĐANG DIỄN RA</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">GIẢI ĐANG THEO DÕI</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">ĐỘI BÓNG</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">BẮT ĐỐI</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">HƯỚNG DẪN</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">CUỘC THI</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">TIN TỨC</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+
+    <div class="container">
+        <div id="sidebar-container">
+             <!-- Sidebar will be loaded here -->
+        </div>
+        <div class="content-wrapper">
+            <section class="content">
+                <!-- Title and Action Buttons -->
+                <div id="management-nav-placeholder">
+                    <!-- Nav will load here -->
+                </div>
+                <div class="list-league">
+                    <span class="list-league_left"><i class="fa-solid fa-list"></i>Danh sách thành viên </span>
+                </div>
+                <div class = "content-box">
+                    <div class="add-member-card" id="addMemberCardTrigger">
+                        <div class="placeholder-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <button id="addMemberButton">
+                           <i class="fas fa-plus"></i> Thêm thành viên
+                        </button>
+                    </div>
+                    <!-- Member cards will be dynamically added here -->
+
+                    <!-- The Modal -->
+                    <div id="addMemberModal" class="modal">
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 id="modalTitle">Thông tin thành viên</h2>
+                            <span class="close-button" id="closeModalButton">×</span>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addMemberForm">
+                            <!-- Hidden input for editing -->
+                            <input type="hidden" id="memberId" name="memberId">
+                    
+                            <h3>THÔNG TIN CÁ NHÂN</h3>
+                            <div class="form-grid">
+                                <div class="form-group" style="position: relative;"> <!-- Added position relative -->
+                                    <label for="tenCauThu">Tên cầu thủ <span style="color:red">*</span></label>
+                                    <input type="text" id="tenCauThu" name="name" required autocomplete="off"> <!-- Added autocomplete="off" -->
+                                    <!-- Hidden input to store the selected user's ID -->
+                                    <input type="hidden" id="selectedUserId" name="selectedUserId">
+                                    <!-- Container for search results -->
+                                    <div id="searchResultsContainer" class="search-results"></div>
+                                </div>
+                                <!-- End Modified Tên cầu thủ form group -->
+                
+                                <div class="form-group">
+                                    <label for="chieuCao">Chiều cao</label>
+                                    <div class="input-group">
+                                        <input type="number" id="chieuCao" name="height" min="0" step="0.1">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">cm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sizeAo">Size Áo</label>
+                                    <input type="text" id="sizeAo" name="shirtSize">
+                                </div>
+                                <div class="form-group">
+                                    <label for="soAo">Số áo</label>
+                                    <input type="number" id="soAo" name="jerseyNumber" min="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="chucVu">Chức vụ</label>
+                                    <select id="chucVu" name="positionRole">
+                                        <option value="Cầu thủ">Cầu thủ</option>
+                                        <option value="Huấn luyện viên">Huấn luyện viên</option>
+                                        <option value="Quản lý">Quản lý</option>
+                                        <option value="Trợ lý">Trợ lý</option>
+                                        <option value="Khác">Khác</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="canNang">Cân nặng</label>
+                                    <div class="input-group">
+                                        <input type="number" id="canNang" name="weight" min="0" step="0.1">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">kg</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="viTri">Vị trí</label>
+                                    <select id="viTri" name="positionField">
+                                        <option value="">Chọn vị trí</option>
+                                        <option value="Thủ môn">Thủ môn (GK)</option>
+                                        <option value="Hậu vệ">Hậu vệ (DF)</option>
+                                        <option value="Tiền vệ">Tiền vệ (MF)</option>
+                                        <option value="Tiền đạo">Tiền đạo (ST/FW)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ngaySinh">Ngày sinh</label>
+                                    <div class="date-input-group">
+                                        <input type="date" id="ngaySinh" name="dob" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ngoaiBinh">Ngoại binh</label>
+                                    <button type="button" id="ngoaiBinhToggle" class="ngoai-binh-no">Không</button>
+                                    <input type="hidden" id="ngoaiBinh" name="isForeigner" value="false"> <!-- Hidden input to store value -->
+                                </div>
+                    
+                                <div class="form-group">
+                                    <label for="anhDaiDien">Ảnh </label>
+                                    <div class="file-input-group">
+                                        <label for="anhDaiDienInput"><i class="fas fa-upload"></i> Chọn ảnh...</label>
+                                        <input type="file" id="anhDaiDienInput" name="avatarFile" accept="image/*">
+                                    </div>
+                                    <img id="avatarPreview" src="#" alt="Xem trước">
+                                    <!-- Hidden field to store Base64 data URL -->
+                                    <input type="hidden" id="avatarDataUrl" name="avatar">
+                                </div>
+                            </div>
+                    
+                            <h3>THÔNG TIN LIÊN HỆ</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="diaChi">Địa chỉ</label>
+                                    <input type="text" id="diaChi" name="address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dienThoai">Điện thoại</label>
+                                    <input type="text" id="dienThoai" name="phone"> <!-- Make sure this has id="dienThoai" -->
+                                </div>
+                                    <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email"> <!-- Make sure this has id="email" -->
+                                </div>
+                                    <div class="form-group">
+                                    <label for="facebook">Facebook</label>
+                                    <input type="text" id="facebook" name="facebook"> <!-- Make sure this has id="facebook" -->
+                                </div>
+                            </div>
+                            
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn-cancel" id="cancelModalButton">Hủy</button>
+                            <button type="submit" class="btn-save" form="addMemberForm" id="saveMemberButton">Lưu thành viên</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+
+            <footer class="footer"> <!-- Changed to footer tag -->
+                <div class="footer-container">
+                  <div class="footer-left">
+                    <p>Bản quyền thuộc HD Promotion</p>
+                    <p>Nguyen Hai Dang</p>
+                    <p>
+                      Chỉ được phát hành lại nội dung khi có sự đồng ý của HD
+                      Promotion
+                    </p>
+                    <div class="footer-apps">
+                      <a href="#"><img src="../images/logo.png" alt="IT League" /></a>
+                      <a href="#"
+                        ><img src="images/googleplay.png" alt="Google Play"
+                      /></a>
+                      <a href="#"
+                        ><img src="images/appstore.png" alt="App Store"
+                      /></a>
+                    </div>
+                  </div>
+                  <div class="footer-right">
+                    <p>
+                      <i class="fa fa-building" aria-hidden="true"></i> CÔNG TY CỔ
+                      PHẦN TỔ CHỨC SỰ KIỆN VÀ TRUYỀN THÔNG HD Promotion
+                    </p>
+                    <p>
+                      <i class="fa fa-map-marker" aria-hidden="true"></i> Số 185,
+                      Trần Đại Nghĩa, phường Đồng Tâm, quận Hai Bà Trưng, Hà Nội
+                    </p>
+                    <p><i class="fa fa-phone" aria-hidden="true"></i> 0797102555</p>
+                    <p>
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                      nguyenstorm2k5@gmail.com
+                    </p>
+                  </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="js/managementNav.js"></script> <!-- Adjust path if needed -->
+
+    <script>
+        // Load sidebar.html into the sidebar-container
+        fetch("sidebar.html")
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              return response.text();
+          })
+          .then(data => {
+            const sidebarContainer = document.getElementById("sidebar-container");
+            if (sidebarContainer) {
+                sidebarContainer.innerHTML = data;
+                // Re-attach sidebar menu toggle functionality AFTER loading content
+                attachSidebarToggle();
+            } else {
+                console.error("Sidebar container not found!");
+            }
+          })
+          .catch(error => console.error("Error loading sidebar:", error));
+
+        // Function to attach sidebar toggle listeners
+        function attachSidebarToggle() {
+            const sidebarContainer = document.getElementById("sidebar-container");
+            if (!sidebarContainer) return;
+
+            sidebarContainer.addEventListener("click", function (event) {
+                let menuItem = event.target.closest(".menu-item");
+                if (menuItem) {
+                    // Find the next sibling that is a submenu
+                    let submenu = menuItem.nextElementSibling;
+                    while(submenu && !submenu.classList.contains('submenu')) {
+                        submenu = submenu.nextElementSibling;
+                    }
+
+                    if (submenu && submenu.classList.contains("submenu")) {
+                        // Toggle active class on the menu item
+                        // menuItem.classList.toggle("active"); // Optional: for styling active menu
+
+                        // Toggle display of the submenu
+                        if (submenu.style.display === "block") {
+                            submenu.style.display = "none";
+                            menuItem.querySelector('.fa-chevron-down')?.classList.remove('fa-rotate-180'); // Optional: rotate arrow
+                        } else {
+                            submenu.style.display = "block";
+                            menuItem.querySelector('.fa-chevron-down')?.classList.add('fa-rotate-180'); // Optional: rotate arrow
+                             // Optional: Close other open submenus
+                            closeOtherSubmenus(sidebarContainer, submenu);
+                        }
+                    }
+                }
+            });
+        }
+
+        // Optional: Function to close other submenus
+        function closeOtherSubmenus(container, currentSubmenu) {
+            container.querySelectorAll('.submenu').forEach(submenu => {
+                if (submenu !== currentSubmenu) {
+                    submenu.style.display = 'none';
+                    // Also remove active class and reset arrow if using them
+                    const previousMenuItem = submenu.previousElementSibling;
+                    if(previousMenuItem && previousMenuItem.classList.contains('menu-item')) {
+                       // previousMenuItem.classList.remove('active');
+                       previousMenuItem.querySelector('.fa-chevron-down')?.classList.remove('fa-rotate-180');
+                    }
+                }
+            });
+        }
+
+
+
+
+        
+        document.addEventListener("DOMContentLoaded", () => {
+            loadAndSetupManagementNav('management-nav-placeholder', 'managementNav.html');
+            const users = [
+                {
+                    id: 1,
+                    name: 'Khải Dương',
+                    email: 'khai2892005@gmail.com',
+                    phone: '0987654321',
+                    facebook: 'facebook.com/khaiduong', // Example
+                    address: '123 Đường ABC, Quận 1, TP. HCM' // Example
+                },
+                {
+                    id: 2,
+                    name: 'ddd12345',
+                    email: 'duckhai289@gmail.com',
+                    phone: '0123456789',
+                    facebook: null, // Example - No Facebook
+                    address: '456 Ngõ XYZ, Hà Nội' // Example
+                },
+                {
+                    id: 3,
+                    name: 'Creator 2',
+                    email: 'anothercreator@example.com',
+                    phone: null,
+                    facebook: 'facebook.com/creator2', // Example
+                    address: '' // Example - Empty Address
+                 },
+                {
+                    id: 4,
+                    name: 'Manager X',
+                    email: 'manager_only@example.com',
+                    phone: '',
+                    facebook: null,
+                    address: '789 Phố Chính, Đà Nẵng' // Example
+                 }
+            ];
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentTeamId = urlParams.get('id'); // e.g., "team-1"
+
+            if (!currentTeamId) {
+                console.error("Team ID not found in URL.");
+                // Optionally display an error message to the user
+                const contentBox = document.querySelector('.content-box');
+                if(contentBox) contentBox.innerHTML = '<p style="color: red; width: 100%;">Lỗi: Không tìm thấy ID đội bóng trong địa chỉ URL.</p>';
+                // return; // Stop further execution if no team ID
+            } else {
+                console.log("Current Team ID:", currentTeamId);
+            }
+
+
+            // --- localStorage Setup ---
+            const STORAGE_KEY = 'teamMembersData';
+
+            function getMembersFromStorage() {
+                const membersJson = localStorage.getItem(STORAGE_KEY);
+                try {
+                    return membersJson ? JSON.parse(membersJson) : [];
+                } catch (e) {
+                    console.error("Error parsing members from localStorage:", e);
+                    return []; // Return empty array on error
+                }
+            }
+
+            function saveMembersToStorage(members) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(members));
+            }
+
+            // --- Modal Elements ---
+            const modal = document.getElementById("addMemberModal");
+             const addMemberCardTrigger = document.getElementById("addMemberCardTrigger");
+             const addMemberButton = document.getElementById("addMemberButton"); // Button inside the card
+             const closeModalButton = document.getElementById("closeModalButton");
+             const cancelModalButton = document.getElementById("cancelModalButton");
+             const memberForm = document.getElementById("addMemberForm");
+             const modalTitle = document.getElementById("modalTitle");
+             const saveMemberButton = document.getElementById("saveMemberButton");
+             const memberIdInput = document.getElementById("memberId");
+
+             // --- Form Elements (Add search related ones) ---
+             const tenCauThuInput = document.getElementById('tenCauThu');
+             const searchResultsContainer = document.getElementById('searchResultsContainer');
+             const selectedUserIdInput = document.getElementById('selectedUserId'); // Hidden input for userId
+             const emailInput = document.getElementById('email'); // Email field
+             const phoneInput = document.getElementById('dienThoai'); // Phone field
+             const facebookInput = document.getElementById('facebook'); // Facebook field
+             const addressInput = document.getElementById('diaChi'); // Address field
+
+             const ngoaiBinhToggle = document.getElementById('ngoaiBinhToggle');
+             const ngoaiBinhInput = document.getElementById('ngoaiBinh');
+             const avatarInput = document.getElementById('anhDaiDienInput');
+             const avatarPreview = document.getElementById('avatarPreview');
+             const avatarDataUrlInput = document.getElementById('avatarDataUrl');
+
+
+
+            // --- Modal Control ---
+            function openModal(mode = 'add', memberData = null) {
+                memberForm.reset();
+                avatarPreview.style.display = 'none';
+                avatarPreview.src = '#';
+                avatarDataUrlInput.value = '';
+                ngoaiBinhInput.value = 'false';
+                ngoaiBinhToggle.textContent = 'Không';
+                ngoaiBinhToggle.className = 'ngoai-binh-no';
+                selectedUserIdInput.value = ''; // Clear selected user ID
+                searchResultsContainer.style.display = 'none'; // Hide search results
+
+                if (mode === 'edit' && memberData) {
+                    modalTitle.textContent = "Chỉnh sửa thông tin thành viên";
+                    saveMemberButton.textContent = "Lưu thay đổi";
+                    memberIdInput.value = memberData.id;
+
+                    // Populate form fields
+                    memberForm.name.value = memberData.name || '';
+                    memberForm.height.value = memberData.height || '';
+                    // ... (populate rest of fields as before) ...
+                    memberForm.positionRole.value = memberData.positionRole || 'Cầu thủ';
+                    memberForm.weight.value = memberData.weight || '';
+                    memberForm.positionField.value = memberData.positionField || '';
+                    memberForm.dob.value = memberData.dob || '';
+                    memberForm.address.value = memberData.address || '';
+                    memberForm.phone.value = memberData.phone || '';
+                    memberForm.email.value = memberData.email || '';
+                    memberForm.facebook.value = memberData.facebook || '';
+
+                    // --- Pre-fill based on existing userId ---
+                    if (memberData.userId) {
+                        const linkedUser = users.find(u => u.id === memberData.userId);
+                        if (linkedUser) {
+                            // If user still exists in our list, update fields
+                            memberForm.name.value = linkedUser.name; // Use the linked user's name
+                            memberForm.email.value = linkedUser.email || '';
+                            memberForm.phone.value = linkedUser.phone || memberData.phone || ''; // Prioritize user data, fallback to existing member data
+                            // Optionally fill other fields if available in `users` array
+                        } else {
+                             // User linked previously might not be in the current `users` list
+                             // Keep the name stored in memberData
+                             memberForm.name.value = memberData.name || '';
+                        }
+                         selectedUserIdInput.value = memberData.userId; // Set the hidden input
+                    } else {
+                        memberForm.name.value = memberData.name || ''; // Use stored name if no userId
+                        selectedUserIdInput.value = ''; // Ensure hidden input is clear
+                    }
+                    // --- End Pre-fill ---
+
+
+                    const isForeigner = String(memberData.isForeigner) === 'true';
+                    ngoaiBinhInput.value = isForeigner;
+                    if (isForeigner) { /* ... set toggle */ } else { /* ... set toggle */ }
+
+                    if (memberData.avatar) { /* ... show avatar */ }
+
+                } else {
+                    modalTitle.textContent = "Thêm thành viên mới";
+                    saveMemberButton.textContent = "Lưu thành viên";
+                    memberIdInput.value = '';
+                    selectedUserIdInput.value = ''; // Ensure clear for new member
+                }
+                modal.style.display = "block";
+            }
+
+
+            function closeModal() {
+                modal.style.display = "none";
+                memberForm.reset();
+                avatarPreview.style.display = 'none';
+                avatarPreview.src = '#';
+                avatarDataUrlInput.value = '';
+                searchResultsContainer.style.display = 'none'; // Hide search results on close
+                selectedUserIdInput.value = ''; // Clear selected user ID
+                modal.style.display = "none";
+                memberForm.reset();
+                avatarPreview.style.display = 'none';
+                avatarPreview.src = '#';
+                avatarDataUrlInput.value = '';
+            }
+
+            // --- Search Logic ---
+            function displaySearchResults(filteredUsers) {
+                searchResultsContainer.innerHTML = ''; // Clear previous results
+                if (filteredUsers.length > 0) {
+                    filteredUsers.forEach(user => {
+                        const item = document.createElement('div');
+                        item.classList.add('search-result-item');
+                        item.textContent = `${user.name} (${user.email})`; // Display name and email
+                        item.dataset.userId = user.id; // Store ID
+                        item.dataset.name = user.name;
+                        item.dataset.email = user.email || ''; // Store email or empty string
+                        item.dataset.phone = user.phone || ''; // Store phone or empty string
+                        // *** ADDED LINES: Store facebook and address in dataset ***
+                        item.dataset.facebook = user.facebook || '';
+                        item.dataset.address = user.address || '';
+                        // *******************************************************
+
+                        item.addEventListener('click', () => {
+                            tenCauThuInput.value = item.dataset.name; // Set input value to selected name
+                            selectedUserIdInput.value = item.dataset.userId; // Set hidden input value
+                            emailInput.value = item.dataset.email; // Auto-fill email
+                            phoneInput.value = item.dataset.phone; // Auto-fill phone
+                            // *** ADDED LINES: Auto-fill Facebook and Address ***
+                            facebookInput.value = item.dataset.facebook;
+                            addressInput.value = item.dataset.address;
+                            // *************************************************
+
+                            searchResultsContainer.style.display = 'none'; // Hide results
+                            searchResultsContainer.innerHTML = ''; // Clear results
+                        });
+                        searchResultsContainer.appendChild(item);
+                    });
+                    searchResultsContainer.style.display = 'block'; // Show container
+                } else {
+                    searchResultsContainer.style.display = 'none'; // Hide if no results
+                }
+            }
+            // --- Event Listeners ---
+            if (addMemberCardTrigger) {
+                addMemberCardTrigger.addEventListener("click", () => openModal('add'));
+            } else if(addMemberButton) { // Fallback if trigger div isn't found but button is
+                addMemberButton.addEventListener("click", () => openModal('add'));
+            }
+
+            if (closeModalButton) closeModalButton.addEventListener("click", closeModal);
+            if (cancelModalButton) cancelModalButton.addEventListener("click", closeModal);
+
+            // Close modal if clicking outside of it
+            window.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+            });
+
+            // Ngoai binh toggle button listener
+            if (ngoaiBinhToggle) {
+                ngoaiBinhToggle.addEventListener('click', () => {
+                    const currentValue = ngoaiBinhInput.value === 'true';
+                    const newValue = !currentValue;
+                    ngoaiBinhInput.value = newValue; // Update hidden input
+                    if (newValue) {
+                        ngoaiBinhToggle.textContent = 'Có';
+                        ngoaiBinhToggle.className = 'ngoai-binh-yes';
+                    } else {
+                        ngoaiBinhToggle.textContent = 'Không';
+                        ngoaiBinhToggle.className = 'ngoai-binh-no';
+                    }
+                });
+            }
+
+            // Avatar preview listener
+            if (avatarInput) {
+                avatarInput.addEventListener('change', function(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            avatarPreview.src = e.target.result;
+                            avatarPreview.style.display = 'inline-block';
+                            avatarDataUrlInput.value = e.target.result; // Store Base64 Data URL
+                        }
+                        reader.readAsDataURL(file); // Read file as Data URL
+                    } else {
+                        // If no file selected or selection cancelled
+                        avatarPreview.style.display = 'none';
+                        avatarPreview.src = '#';
+                        avatarDataUrlInput.value = ''; // Clear if no file
+                    }
+                });
+            }
+            // ** NEW/MODIFIED Listeners for Search **
+            if (tenCauThuInput) {
+                tenCauThuInput.addEventListener('input', () => {
+                    const searchTerm = tenCauThuInput.value.trim().toLowerCase();
+
+                    if (searchTerm === '') {
+                        searchResultsContainer.style.display = 'none';
+                        searchResultsContainer.innerHTML = '';
+                        // If user clears the input *after* selecting, clear the hidden userId too
+                        if (selectedUserIdInput.value !== '') {
+                           selectedUserIdInput.value = '';
+                           // Optionally clear auto-filled fields:
+                           // emailInput.value = '';
+                           // phoneInput.value = '';
+                        }
+                        return;
+                    }
+
+                    const filtered = users.filter(user =>
+                        user.name.toLowerCase().includes(searchTerm) ||
+                        user.email.toLowerCase().includes(searchTerm)
+                    );
+                    displaySearchResults(filtered);
+                });
+
+                 // Hide results when clicking outside
+                 document.addEventListener('click', (event) => {
+                     if (!tenCauThuInput.contains(event.target) && !searchResultsContainer.contains(event.target)) {
+                         searchResultsContainer.style.display = 'none';
+                     }
+                 });
+            }
+
+            // ** MODIFIED Form submission listener **
+            if (memberForm) {
+                memberForm.addEventListener("submit", (event) => {
+                    event.preventDefault();
+
+                    const members = getMembersFromStorage();
+                    const editingId = memberIdInput.value;
+
+                    // --- Get userId from hidden input ---
+                    const selectedUserId = selectedUserIdInput.value ? parseInt(selectedUserIdInput.value) : null;
+
+                    const memberData = {
+                        id: members.length + 1,
+                        teamId: currentTeamId,
+                        // Use the selected User ID from the hidden input
+                        userId: selectedUserId,
+                        // Use the name from the input field (might have been overwritten by selection or typed manually)
+                        name: memberForm.name.value.trim(),
+                        height: memberForm.height.value || null,
+                        shirtSize: memberForm.shirtSize.value.trim() || null,
+                        jerseyNumber: memberForm.jerseyNumber.value || null,
+                        positionRole: memberForm.positionRole.value || null,
+                        weight: memberForm.weight.value || null,
+                        positionField: memberForm.positionField.value || null,
+                        dob: memberForm.dob.value || null,
+                        isForeigner: ngoaiBinhInput.value === 'true',
+                        avatar: avatarDataUrlInput.value || null,
+                        // Use contact info from the form fields (might have been auto-filled or typed manually)
+                        address: memberForm.address.value.trim() || null,
+                        phone: memberForm.phone.value.trim() || null,
+                        email: memberForm.email.value.trim() || null,
+                        facebook: memberForm.facebook.value.trim() || null,
+                    };
+
+                    if (!memberData.name) {
+                        alert("Vui lòng nhập tên cầu thủ.");
+                        memberForm.name.focus();
+                        return;
+                    }
+
+                    if (editingId) {
+                        const memberIndex = members.findIndex(m => m.id === parseInt(editingId));
+                        if (memberIndex > -1) {
+                             // Check if the name needs updating based on userId *if* it was selected
+                             // This ensures if they selected a user, the name matches the user's name
+                             if(memberData.userId) {
+                                const linkedUser = users.find(u => u.id === memberData.userId);
+                                if(linkedUser && memberData.name !== linkedUser.name) {
+                                    // Optional: You might want to force the name to match the selected user
+                                    // memberData.name = linkedUser.name;
+                                    // Or just save whatever is currently in the input field (current behavior)
+                                }
+                             }
+                            members[memberIndex] = memberData;
+                            console.log("Updating member:", memberData);
+                        } else { /* ... error handling ... */ }
+                    } else {
+                         // Adding new member - check if name needs overriding by selected user
+                         if(memberData.userId) {
+                            const linkedUser = users.find(u => u.id === memberData.userId);
+                            if(linkedUser && memberData.name !== linkedUser.name) {
+                               // Optional override: memberData.name = linkedUser.name;
+                            }
+                         }
+                        console.log("Adding new member:", memberData);
+                        members.push(memberData);
+                    }
+
+                    saveMembersToStorage(members);
+                    displayMembers();
+                    closeModal();
+                });
+            }
+
+
+            // --- Display Members ---
+            function displayMembers() {
+                const contentBox = document.querySelector('.content-box');
+                if (!contentBox) {
+                    console.error("Content box element not found!");
+                    return;
+                }
+
+                const members = getMembersFromStorage();
+                // Filter members for the current teamId (IMPORTANT!)
+                const teamMembers = members.filter(member => member.teamId === currentTeamId);
+
+                // Clear existing member cards (keep the "add" card)
+                const existingCards = contentBox.querySelectorAll('.member-card');
+                existingCards.forEach(card => card.remove());
+
+                // Add the "Add Member" card if it's not there (or ensure it's first)
+                const addCard = document.getElementById('addMemberCardTrigger');
+                if (addCard && !contentBox.contains(addCard)) {
+                    // If somehow removed, add it back at the beginning
+                    contentBox.insertBefore(addCard, contentBox.firstChild);
+                } else if (addCard) {
+                    // Ensure it's the first child if it exists
+                    contentBox.insertBefore(addCard, contentBox.firstChild);
+                }
+
+
+                if (teamMembers.length === 0) {
+                    // Optional: Display a message if no members yet
+                    // const noMembersMsg = document.createElement('p');
+                    // noMembersMsg.textContent = "Chưa có thành viên nào trong đội.";
+                    // noMembersMsg.style.width = '100%';
+                    // noMembersMsg.style.textAlign = 'center';
+                    // contentBox.appendChild(noMembersMsg);
+                    console.log("No members found for team:", currentTeamId);
+                } else {
+                    teamMembers.forEach(member => {
+                        const card = document.createElement('div');
+                        card.classList.add('member-card');
+                        card.dataset.id = member.id; // Store member ID on the card
+
+                        // Avatar
+                        const avatarDiv = document.createElement('div');
+                        avatarDiv.classList.add('member-avatar');
+                        if (member.avatar) {
+                            const img = document.createElement('img');
+                            img.src = member.avatar; // Use stored Base64 data URL
+                            img.alt = member.name;
+                            avatarDiv.appendChild(img);
+                        } else {
+                            // Placeholder Avatar
+                            const placeholder = document.createElement('div');
+                            placeholder.classList.add('placeholder-avatar');
+                            placeholder.innerHTML = `<i class="fas fa-user"></i>`;
+                            avatarDiv.appendChild(placeholder);
+                        }
+
+                        // Name
+                        const nameDiv = document.createElement('div');
+                        nameDiv.classList.add('member-name');
+                        nameDiv.textContent = member.name || 'N/A';
+
+                        // Number (Jersey Number or placeholder)
+                        const numberDiv = document.createElement('div');
+                        numberDiv.classList.add('member-number');
+                        numberDiv.textContent = member.jerseyNumber || '0'; // Show '0' if no number
+
+                        // Actions (Edit/Delete)
+                        const actionsDiv = document.createElement('div');
+                        actionsDiv.classList.add('member-actions');
+
+                        const editButton = document.createElement('button');
+                        editButton.classList.add('edit-btn');
+                        editButton.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+                        editButton.title = "Chỉnh sửa";
+                        editButton.onclick = () => {
+                            // Find the full member data from storage before opening modal
+                            const allMembers = getMembersFromStorage();
+                            const memberToEdit = allMembers.find(m => m.id === member.id);
+                            if(memberToEdit) {
+                                openModal('edit', memberToEdit);
+                            } else {
+                                console.error("Could not find member data for ID:", member.id);
+                                alert("Lỗi: Không tìm thấy dữ liệu thành viên.");
+                            }
+                        };
+
+                        const deleteButton = document.createElement('button');
+                        deleteButton.classList.add('delete-btn');
+                        deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+                        deleteButton.title = "Xóa";
+                        deleteButton.onclick = () => deleteMember(member.id);
+
+
+                        actionsDiv.appendChild(editButton);
+                        actionsDiv.appendChild(deleteButton);
+
+                        // Assemble Card
+                        card.appendChild(avatarDiv);
+                        card.appendChild(nameDiv);
+                        card.appendChild(numberDiv);
+                        card.appendChild(actionsDiv);
+
+                        contentBox.appendChild(card); // Add the card to the container
+                    });
+                }
+            }
+
+            // --- Delete Member ---
+            function deleteMember(memberId) {
+                if (confirm(`Bạn có chắc chắn muốn xóa thành viên này không?`)) {
+                    let members = getMembersFromStorage();
+                    members = members.filter(member => member.id !== memberId);
+                    saveMembersToStorage(members);
+                    displayMembers(); // Refresh the list
+                }
+            }
+
+            // --- Initial Load ---
+            if (currentTeamId) { // Only display if we have a team ID
+                displayMembers();
+            } else {
+                console.error("No team ID found. Cannot display members.");
+            }   
+        });
+    </script>
+
+</body>
+</html>

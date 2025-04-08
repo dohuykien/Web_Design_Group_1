@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sửa Thông Tin Đội Bóng</title>
-    <link rel="icon" type="logo.png" href="images/logo.png" />
+    <link rel="icon" type="logo.png" href="../images/logo.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
       rel="stylesheet"
@@ -238,6 +238,8 @@
         display: block;
         margin: 0;
         padding: 0;
+        background-color: #ecf0f5;
+
       }
       .content {
         background-color: #ecf0f5;
@@ -252,6 +254,7 @@
         justify-content: space-between;
         align-items: center;
         background-color: white;
+        min-height: 70px;
         }
         .list-league_left {
             font-family: "Source Sans Pro", sans-serif !important;
@@ -366,29 +369,6 @@
         }
 
 
-        /* list-league */
-        .list-league {
-        color: rgb(34, 34, 34);
-        font-size: 24px;
-        font-weight: normal;
-        padding: 12px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: white;
-        }
-        .list-league_left {
-            font-family: "Source Sans Pro", sans-serif !important;
-        }
-        .fa-solid.fa-check {
-          color: #ff6f00;
-          margin-right: 5px;
-          font-size: 25px;
-        }
-        .list-league_left {
-          flex-grow: 1;
-        }
-
         /* Button styles in the header bar */
         .retry {
         color: rgb(255, 255, 255);
@@ -439,9 +419,9 @@
         /* --- Tab Interface --- */
         .edit-content-box {
              background-color: #ffffff;
-             border-radius: 0 0 5px 5px; /* Rounded bottom corners */
+             border-radius: 5px; /* Rounded bottom corners */
              box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-             margin-top: 10px;
+             margin: 15px;
              /* No top border needed as it connects to title bar */
         }
 
@@ -450,7 +430,6 @@
             border-bottom: 1px solid #ddd;
             background-color: #f8f8f8; /* Light background for tab bar */
             padding-left: 15px; /* Align with content padding */
-             border-radius: 0; /* Override any global nav styles */
              list-style: none; /* Remove list bullets */
              margin: 0; /* Reset margin */
         }
@@ -463,6 +442,7 @@
             border: 1px solid transparent;
             padding: 10px 15px;
             font-size: 15px;
+            font-family: "Source Sans Pro", sans-serif !important;
             color: #0275d8; /* Blue for inactive tabs */
             background-color: transparent;
             text-decoration: none;
@@ -524,6 +504,7 @@
         .form-grid label {
             text-align: right; /* Align labels to the right */
             font-weight: 500;
+            font-family: "Source Sans Pro", sans-serif !important;
             color: #333;
             padding-right: 5px; /* Space between label and input */
             font-size: 15px;
@@ -538,6 +519,7 @@
             border: 1px solid #ccc;
             border-radius: 3px;
             font-size: 14px;
+            font-family: "Source Sans Pro", sans-serif !important;
             box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
         }
          .form-grid input:focus {
@@ -559,6 +541,8 @@
             color: white;
             padding: 8px 15px;
             font-size: 15px;
+            font-family: "Source Sans Pro", sans-serif !important;
+
             font-weight: 500;
             border-top-left-radius: 4px;
             border-top-right-radius: 4px;
@@ -623,7 +607,7 @@
         <div class="navbar">
           <div class="navbar-top">
             <div class="logo">
-              <a href="#"><img src="images/logo.png" alt="Logo" /></a>
+              <a href="#"><img src="../images/logo.png" alt="Logo" /></a>
             </div>
             <span class="developed-by">
               Hệ thống được phát triển bởi HD Promotion</span
@@ -675,48 +659,16 @@
         <div class="content-wrapper">
             <section class="content">
                 <!-- Title and Action Buttons -->
-                <nav class="team-management-nav">
-                    <a href="#" class="nav-button"> <!-- Link to actual members page -->
-                        <i class="fa-solid fa-users"></i>
-                        <span>THÀNH VIÊN</span>
-                    </a>
-                    <a href="#" class="nav-button"> <!-- Link to squad page -->
-                        <i class="fa-solid fa-crosshairs"></i> <!-- Or fa-clipboard-list -->
-                        <span>ĐỘI HÌNH</span>
-                    </a>
-                    <a href="#" class="nav-button"> <!-- Link to tournaments page -->
-                        <i class="fa-solid fa-trophy"></i>
-                        <span>GIẢI THAM DỰ</span>
-                    </a>
-                    <a href="#" class="nav-button"> <!-- Link to finances page -->
-                        <i class="fa-solid fa-dollar-sign"></i> <!-- Or fa-wallet -->
-                        <span>SỔ QUỸ</span>
-                    </a>
-                    <a href="#" class="nav-button"> <!-- Link to permissions page -->
-                        <i class="fa-solid fa-shield-alt"></i>
-                        <span>PHÂN QUYỀN</span>
-                    </a>
-                    <!-- Current Page - Marked Active -->
-                    <button type="button" class="nav-button active" disabled> <!-- Disabled button for current page -->
-                        <i class="fa-solid fa-cogs"></i>
-                        <span>CẤU HÌNH</span>
-                    </button>
-                    <button type="button" class="nav-button"> 
-                        <i class="fa-solid fa-calendar"></i>
-                        <span>LỊCH THI ĐẤU</span>
-                    </button>
-                    <button type="button" class="nav-button"> 
-                        <i class="fa-solid fa-clipboard-user"></i>
-                        <span>YÊU CẦU THAM GIA</span>
-                    </button>
-                </nav>
+                <div id="management-nav-placeholder">
+                    <!-- Nav will load here -->
+                </div>
                 <div class="list-league">
                     <span class="list-league_left"><i class="fa-solid fa-check"></i>Sửa thông tin đội bóng</span>
                     <div>
                         <button type="submit" form="editTeamForm" class="save"><i class="fas fa-save"></i> Lưu</button>
                         
                         <button type="button" id="resetButton" class="retry"><i class="fas fa-sync-alt"></i> Nhập lại</button>
-                        <a href ="dsdoiqly.html" style="text-decoration: none;">
+                        <a href ="../dsdoiqly.html" style="text-decoration: none;">
                            <button type="button" class="return"><i class="fas fa-arrow-left"></i> Danh sách đội bóng</button> <!-- Changed text -->
                         </a>
                     </div>
@@ -773,7 +725,7 @@
                                             <div class="upload-body">
                                                 <div class="image-preview" id="logoPreview">
                                                     <!-- Default HD Logo -->
-                                                     <img src="images/logo.png" alt="Logo mặc định" style="max-width: 150px; max-height: 150px;">
+                                                     <img src="../images/logo.png" alt="Logo mặc định" style="max-width: 150px; max-height: 150px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -837,7 +789,7 @@
                       Promotion
                     </p>
                     <div class="footer-apps">
-                      <a href="#"><img src="images/logo.png" alt="IT League" /></a>
+                      <a href="#"><img src="../images/logo.png" alt="IT League" /></a>
                       <a href="#"
                         ><img src="images/googleplay.png" alt="Google Play"
                       /></a>
@@ -865,6 +817,7 @@
             </footer>
         </div>
     </div>
+    <script src="js/managementNav.js"></script> <!-- Adjust path if needed -->
 
     <script>
         // Load sidebar.html into the sidebar-container
@@ -937,6 +890,7 @@
 
 // --- Start of new JavaScript ---
 document.addEventListener("DOMContentLoaded", () => {
+    loadAndSetupManagementNav('management-nav-placeholder', 'managementNav.html');
             const editTeamForm = document.getElementById("editTeamForm");
             const teamNameInput = document.getElementById("teamName");
             const managerNameInput = document.getElementById("managerName");
@@ -1114,7 +1068,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
            // --- Handle Clickable Upload Headers ---
-           function setupUploadTrigger(headerElement, fileInputElement) {
+            function setupUploadTrigger(headerElement, fileInputElement) {
                 headerElement.addEventListener("click", (event) => { // Add event parameter
                     console.log(`Upload header clicked for: ${fileInputElement.id}`);
 
@@ -1173,7 +1127,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
             // --- Handle Tab Switching ---
-             function handleTabClick(event) {
+            function handleTabClick(event) {
                 // Remove active class from all tabs and panes
                 tabs.forEach(t => t.classList.remove('active'));
                 tabPanes.forEach(p => p.classList.remove('active'));
@@ -1189,6 +1143,57 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
              }
 
+
+            // Function to update the navigation links with the current team ID
+            function updateNavLinksWithTeamId(teamId) {
+                if (!teamId) {
+                    console.warn("No Team ID found, cannot update navigation links.");
+                    // Optionally disable links if no ID is present
+                    document.querySelectorAll('.team-management-nav a.nav-button').forEach(link => {
+                        link.style.pointerEvents = 'none'; // Make them unclickable
+                        link.style.opacity = '0.6'; // Visually indicate they are disabled
+                        link.href = '#'; // Remove potentially invalid href
+                    });
+                    return;
+                }
+
+                const navLinks = document.querySelectorAll('.team-management-nav a.nav-button'); // Select only the <a> elements that are nav buttons
+
+                navLinks.forEach(link => {
+                    const originalHref = link.getAttribute('href');
+
+                    // Ensure it's a valid link and not just '#' or javascript:void(0)
+                    if (originalHref && originalHref !== '#' && !originalHref.startsWith('javascript:')) {
+                        try {
+                            // Use the URL constructor for robust parameter handling
+                            // Provide a base URL (window.location.origin) if the href is relative (like 'members.html')
+                            const url = new URL(originalHref, window.location.origin);
+
+                            // Set the 'id' parameter. This will add it if it doesn't exist,
+                            // or replace it if it already exists (less likely here, but safe).
+                            url.searchParams.set('id', teamId);
+
+                            // Update the link's href attribute
+                            link.href = url.toString();
+                            // Optional: log the change
+                            // console.log(`Updated link for "${link.textContent.trim()}" to: ${link.href}`);
+
+                        } catch (e) {
+                            console.error(`Failed to parse or update URL for link: ${originalHref}`, e);
+                            // Fallback for very simple relative paths if URL constructor fails unexpectedly
+                            // (less robust than URL object)
+                            /*
+                            if (originalHref.includes('?')) {
+                                link.href = `${originalHref}&id=${encodeURIComponent(teamId)}`;
+                            } else {
+                                link.href = `${originalHref}?id=${encodeURIComponent(teamId)}`;
+                            }
+                            console.log(`Updated link (simple append) for "${link.textContent.trim()}" to: ${link.href}`);
+                            */
+                        }
+                    }
+                });
+            }
             // --- Initialization ---
             // Get team ID from URL
             const urlParams = new URLSearchParams(window.location.search);
@@ -1196,10 +1201,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (currentTeamId) {
                 loadTeamData(currentTeamId); // Load data when page loads
+                updateNavLinksWithTeamId(currentTeamId); // <<<=== CALL THE NEW FUNCTION HERE
             } else {
                 alert("Không tìm thấy ID đội bóng trong URL!");
                 // Redirect or disable form
                 editTeamForm.style.display = 'none';
+                updateNavLinksWithTeamId(null);
             }
 
             // Attach event listeners
