@@ -128,12 +128,50 @@
         align-items: center;
         gap: 10px;
         position: relative; /* Đổi từ absolute sang relative */
-        right: 0; /* Đưa về bên phải */
+        right: 60px;
         top: -20px;
+        cursor: pointer;
+        z-index: 1000;
       }
       .header .user-info img {
         width: 30px;
         height: 30px;
+      }
+      .user-info span i {
+        position: relative;
+        top: -2px;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        min-width: 160px;
+        z-index: 1000;
+        padding: 5px 0px;
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 5px 15px;
+        color: #333333;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        font-size: 14px;
+      }
+
+      .dropdown-menu a:hover {
+        background-color: #f34541;
+        color: #ffffff;
+      }
+      .fa-solid.fa-caret-down {
+        color: #333333;
+        font-size: 12px;
+        margin-top: 10px;
       }
       /*-------------------End Header---------------------- */
 
@@ -486,11 +524,16 @@
           <span class="developed-by">
             Hệ thống được phát triển bởi HD Promotion</span
           >
-          <div class="user-info">
-            <img src="images/dhk.jpg" />
-            <span
-              >Hải Đăng Nguyễn <i class="fa-solid fa-chevron-down"></i
-            ></span>
+          <div class="user-info" onclick="toggleDropdown()">
+            <img id="headerAvatar" src="images/dhk.jpg" />
+            <span id="headerUserName"
+              >Hải Đăng Nguyễn
+              <i class="fa-solid fa-caret-down"></i>
+            </span>
+            <div class="dropdown-menu" id="dropdownMenu">
+              <a href="Dashboard.html">Trang quản lý</a>
+              <a href="#">Đăng xuất</a>
+            </div>
           </div>
         </div>
         <div class="navbar-bottom">
@@ -629,7 +672,11 @@
                   <div class="section-right">
                     <div class="form-group">
                       <label>Username</label>
-                      <input type="text" placeholder="Username" />
+                      <input
+                        id="usernameInput"
+                        type="text"
+                        placeholder="Username"
+                      />
                     </div>
                     <div class="form-group">
                       <label>E-mail</label>
@@ -670,19 +717,23 @@
                   <div class="section-right">
                     <div class="form-group">
                       <label>First name</label>
-                      <input type="text" value="Hải Đăng" />
+                      <input id="firstNameInput" type="text" value="Hải Đăng" />
                     </div>
                     <div class="form-group">
                       <label>Last name</label>
-                      <input type="text" value="Nguyễn" />
+                      <input id="lastNameInput" type="text" value="Nguyễn" />
                     </div>
                     <div class="form-group">
                       <label>Điện thoại</label>
-                      <input type="text" placeholder="Phone" />
+                      <input id="phoneInput" type="text" placeholder="Phone" />
                     </div>
                     <div class="form-group">
                       <label>Địa chỉ</label>
-                      <input type="text" placeholder="Address" />
+                      <input
+                        id="addressInput"
+                        type="text"
+                        placeholder="Address"
+                      />
                     </div>
                   </div>
                 </div>
@@ -786,6 +837,178 @@
       window.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".changePassword").style.display = "none";
       });
+
+      // submenu-user_infor
+      function toggleDropdown() {
+        var menu = document.getElementById("dropdownMenu");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+      }
+
+      // Ẩn dropdown nếu click ra ngoài
+      window.addEventListener("click", function (e) {
+        var menu = document.getElementById("dropdownMenu");
+        var userInfo = document.querySelector(".user-info");
+        if (!userInfo.contains(e.target)) {
+          menu.style.display = "none";
+        }
+      });
+
+      // --------------UPDATE INFOR USER
+      // --- DOMContentLoaded ---
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Lấy các phần tử cần thiết (bao gồm các input mới)
+        const saveButton = document.querySelector(".save-button"); // Vẫn dùng querySelector là được nếu nút này là duy nhất hoặc đầu tiên có class đó
+        const logoPreview = document.getElementById("logoPreview");
+        const headerAvatar = document.getElementById("headerAvatar");
+        const firstNameInput = document.getElementById("firstNameInput");
+        const lastNameInput = document.getElementById("lastNameInput");
+        const headerUserNameSpan = document.getElementById("headerUserName");
+        const usernameInput = document.getElementById("usernameInput");
+        const phoneInput = document.getElementById("phoneInput");
+        const addressInput = document.getElementById("addressInput");
+
+        // --- HÀM TẢI DỮ LIỆU TỪ LOCALSTORAGE ---
+        function loadProfileData() {
+          // Hàm trợ giúp để lấy và gán giá trị
+          const loadValue = (element, storageKey) => {
+            if (element) {
+              const savedValue = localStorage.getItem(storageKey);
+              if (savedValue !== null) {
+                element.value = savedValue;
+              }
+            }
+          };
+
+          // Tải các giá trị
+          loadValue(usernameInput, "userProfile_username");
+          loadValue(firstNameInput, "userProfile_firstName");
+          loadValue(lastNameInput, "userProfile_lastName");
+          loadValue(phoneInput, "userProfile_phone");
+          loadValue(addressInput, "userProfile_address");
+
+          // Tải ảnh đại diện và tên cho header nếu đã lưu trước đó
+          const savedAvatarSrc = localStorage.getItem("userProfile_avatarSrc");
+          if (savedAvatarSrc && headerAvatar) {
+            headerAvatar.src = savedAvatarSrc;
+          }
+          const savedFirstName = localStorage.getItem("userProfile_firstName");
+          const savedLastName = localStorage.getItem("userProfile_lastName");
+          if ((savedFirstName || savedLastName) && headerUserNameSpan) {
+            const fullName = `${savedFirstName || ""} ${
+              savedLastName || ""
+            }`.trim();
+            const caretIconHTML =
+              headerUserNameSpan.querySelector("i.fa-caret-down")?.outerHTML ||
+              '<i class="fa-solid fa-caret-down"></i>';
+            headerUserNameSpan.innerHTML = `${
+              fullName || "Người dùng"
+            } ${caretIconHTML}`;
+          }
+
+          // Cập nhật ảnh preview nếu đã lưu source
+          if (savedAvatarSrc && logoPreview) {
+            if (!logoPreview.querySelector("img")) {
+              const img = document.createElement("img");
+              img.src = savedAvatarSrc;
+              logoPreview.innerHTML = "";
+              logoPreview.appendChild(img);
+            }
+          }
+        }
+
+        // Gọi hàm tải dữ liệu khi trang load xong
+        loadProfileData();
+
+        // --- SỰ KIỆN CLICK NÚT SAVE ---
+        if (saveButton) {
+          saveButton.addEventListener("click", function (event) {
+            event.preventDefault(); // Ngăn form submit nếu nút nằm trong form
+
+            // --- Cập nhật ảnh đại diện header ---
+            const previewImage = logoPreview.querySelector("img");
+            let currentAvatarSrc = headerAvatar.src;
+            if (previewImage && previewImage.src) {
+              headerAvatar.src = previewImage.src;
+              currentAvatarSrc = previewImage.src;
+            } else {
+              console.log("Không có ảnh mới trong preview để cập nhật header.");
+            }
+
+            // --- Cập nhật tên header ---
+            const firstName = firstNameInput.value.trim();
+            const lastName = lastNameInput.value.trim();
+            const fullName = `${firstName} ${lastName}`.trim();
+            const caretIconHTML =
+              headerUserNameSpan.querySelector("i.fa-caret-down")?.outerHTML ||
+              '<i class="fa-solid fa-caret-down"></i>';
+            headerUserNameSpan.innerHTML = `${
+              fullName || "Người dùng"
+            } ${caretIconHTML}`;
+
+            // --- LƯU DỮ LIỆU VÀO LOCALSTORAGE ---
+            const saveValue = (element, storageKey) => {
+              if (element) {
+                localStorage.setItem(storageKey, element.value.trim());
+              }
+            };
+            saveValue(usernameInput, "userProfile_username");
+            saveValue(firstNameInput, "userProfile_firstName");
+            saveValue(lastNameInput, "userProfile_lastName");
+            saveValue(phoneInput, "userProfile_phone");
+            saveValue(addressInput, "userProfile_address");
+
+            // Lưu source ảnh đại diện
+            if (currentAvatarSrc && currentAvatarSrc.startsWith("data:image")) {
+              try {
+                localStorage.setItem("userProfile_avatarSrc", currentAvatarSrc);
+              } catch (e) {
+                console.error(
+                  "Lỗi khi lưu ảnh vào localStorage (có thể do quá dung lượng):",
+                  e
+                );
+              }
+            } else if (
+              currentAvatarSrc &&
+              !currentAvatarSrc.startsWith("data:image")
+            ) {
+              console.log(
+                "Ảnh đại diện không phải data URL, không được lưu vào localStorage trong ví dụ này."
+              );
+              // Cân nhắc xóa key nếu URL không ổn định: localStorage.removeItem('userProfile_avatarSrc');
+            }
+
+            console.log("Thông tin header đã được cập nhật.");
+            console.log(
+              "Thông tin tài khoản và cá nhân đã được lưu vào localStorage."
+            );
+
+            // ----- THÔNG BÁO ALERT SAU KHI LƯU -----
+            alert("Đã lưu thông tin thành công!");
+            // ----- KẾT THÚC THÔNG BÁO ALERT -----
+          }); // Kết thúc event listener của nút Save
+        } else {
+          console.error("Không tìm thấy nút Save '.save-button'");
+        }
+
+        // --- Xử lý ảnh preview ban đầu ---
+        const initialPreviewImg = logoPreview.querySelector("img");
+        if (initialPreviewImg) {
+          initialPreviewImg.onerror = function () {
+            logoPreview.innerHTML =
+              '<span style="color: #888; font-size: 12px;">avatar</span>';
+          };
+          if (
+            !initialPreviewImg.complete ||
+            initialPreviewImg.naturalWidth === 0
+          ) {
+            initialPreviewImg.onerror();
+          }
+        } else if (!localStorage.getItem("userProfile_avatarSrc")) {
+          logoPreview.innerHTML =
+            '<span style="color: #888; font-size: 12px;">avatar</span>';
+        }
+      }); // Kết thúc DOMContentLoaded listener
     </script>
   </body>
 </html>

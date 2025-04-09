@@ -1,22 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Bảng dữ liệu có vách ngăn</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f5fa;
+        margin: 20px;
+      }
+
+      .table-container {
+        width: 100%;
+        overflow-x: auto;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 10px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        min-width: 600px;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 12px;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        white-space: nowrap;
+      }
+
+      th:last-child,
+      td:last-child {
+        border-right: none;
+      }
+
+      th {
+        background-color: #f9fafc;
+        font-weight: bold;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      .table-container::-webkit-scrollbar {
+        height: 8px;
+      }
+
+      .table-container::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 4px;
+      }
+
+      .table-container::-webkit-scrollbar-track {
+        background: transparent;
+      }
+    </style>
   </head>
   <body>
-    <h4 class="contact-title" style>Hòm thư</h4>
-    <a
-      href="mailto:(Webmail@gmail.com)"
-      id="info-email"
-      style="display: none"
-    ></a>
-    <script>
-      let emailElement = document.getElementById("info-email");
-      emailElement.innerText = "phamduongminh@gmail.com";
-      emailElement.href = "mailto:phamduongminh@gmail.com";
-      emailElement.style.display = "block";
-    </script>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Đội</th>
+            <th>Ngày gửi</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Không có dữ liệu -->
+        </tbody>
+      </table>
+    </div>
   </body>
 </html>
