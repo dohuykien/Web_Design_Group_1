@@ -13,6 +13,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
+    <link rel="stylesheet" href="/user/css/sidebar.css" />
     <style>
         * {
           margin: 0;
@@ -141,97 +142,6 @@
           display: flex;
           width: 100%;
         }
-        /*-------------------Sidebar--------------------- */
-        .sidebar {
-        width: 230px;
-        background: #333333;
-        color: #b8c7ce;
-        position: relative;
-        z-index: 1;
-        height: 100%;
-        min-height: 650px;
-      }
-      .sidebar ul {
-        list-style: none;
-        background-color: #2c3b41;
-      }
-      .sidebar ul li {
-        padding: 9px 5px 9px 10px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        border-bottom: 1px solid #ffffff;
-        cursor: pointer;
-        transition: color 0.2s;
-      }
-      .sidebar ul li:hover {
-        color: #ffffff;
-      }
-      .sidebar ul li i {
-        width: 20px;
-        text-align: center;
-      }
-      .sidebar a {
-        text-decoration: none;
-        flex: 1;
-        color: #b8c7ce;
-      }
-      .sidebar a:hover {
-        color: #ffffff;
-      }
-
-      .fa-solid.fa-tachometer-alt {
-        color: #ff6f00;
-      }
-
-      /* Ẩn submenu ban đầu */
-      .submenu {
-        display: none;
-        background: #ff6f00 !important;
-      }
-
-      .submenu li {
-        padding: 12px 12px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        width: 100%;
-        height: 32px;
-      }
-      .submenu a {
-        color: #222222 !important;
-      }
-      .submenu li:hover {
-        background: #ffffff;
-      }
-      .submenu a:hover {
-        color: rgb(250, 55, 25) !important;
-      }
-
-      /* Bật submenu khi click */
-      .menu-item.active + .submenu {
-        display: block;
-      }
-
-      /* Định dạng cho menu cha */
-      .menu-item {
-        display: flex;
-        align-items: center;
-        padding: 15px 15px;
-        cursor: pointer;
-        width: 100%;
-      }
-
-      .menu-item i {
-        margin-right: 10px;
-      }
-      .fa-solid.fa-play {
-        font-size: 9px;
-        color: #222222;
-      }
-      .fa-solid.fa-chevron-down {
-        font-size: 12px;
-        margin-left: auto;
-      }
-      /* -------------------sidebar-end------------------- */
       /*content: list-league + footer */
       .content-wrapper {
         flex: 1;
@@ -499,83 +409,38 @@
     <script src="js/managementNav.js"></script> <!-- Adjust path if needed -->
 
     <script>
-        // Load sidebar.html into the sidebar-container
-        fetch("sidebar.html")
-          .then(response => {
-              if (!response.ok) {
-                  throw new Error(`HTTP error! status: ${response.status}`);
-              }
-              return response.text();
-          })
-          .then(data => {
-            const sidebarContainer = document.getElementById("sidebar-container");
-            if (sidebarContainer) {
-                sidebarContainer.innerHTML = data;
-                // Re-attach sidebar menu toggle functionality AFTER loading content
-                attachSidebarToggle();
-            } else {
-                console.error("Sidebar container not found!");
-            }
-          })
-          .catch(error => console.error("Error loading sidebar:", error));
-
-        // Function to attach sidebar toggle listeners
-        function attachSidebarToggle() {
-            const sidebarContainer = document.getElementById("sidebar-container");
-            if (!sidebarContainer) return;
-
-            sidebarContainer.addEventListener("click", function (event) {
-                let menuItem = event.target.closest(".menu-item");
-                if (menuItem) {
-                    // Find the next sibling that is a submenu
-                    let submenu = menuItem.nextElementSibling;
-                    while(submenu && !submenu.classList.contains('submenu')) {
-                        submenu = submenu.nextElementSibling;
-                    }
-
-                    if (submenu && submenu.classList.contains("submenu")) {
-                        // Toggle active class on the menu item
-                        // menuItem.classList.toggle("active"); // Optional: for styling active menu
-
-                        // Toggle display of the submenu
-                        if (submenu.style.display === "block") {
-                            submenu.style.display = "none";
-                            menuItem.querySelector('.fa-chevron-down')?.classList.remove('fa-rotate-180'); // Optional: rotate arrow
-                        } else {
-                            submenu.style.display = "block";
-                            menuItem.querySelector('.fa-chevron-down')?.classList.add('fa-rotate-180'); // Optional: rotate arrow
-                             // Optional: Close other open submenus
-                            closeOtherSubmenus(sidebarContainer, submenu);
-                        }
-                    }
-                }
-            });
-        }
-
-        // Optional: Function to close other submenus
-        function closeOtherSubmenus(container, currentSubmenu) {
-            container.querySelectorAll('.submenu').forEach(submenu => {
-                if (submenu !== currentSubmenu) {
-                    submenu.style.display = 'none';
-                    // Also remove active class and reset arrow if using them
-                    const previousMenuItem = submenu.previousElementSibling;
-                    if(previousMenuItem && previousMenuItem.classList.contains('menu-item')) {
-                       // previousMenuItem.classList.remove('active');
-                       previousMenuItem.querySelector('.fa-chevron-down')?.classList.remove('fa-rotate-180');
-                    }
-                }
-            });
-        }
-
-
-
-
-        
+                
         document.addEventListener("DOMContentLoaded", () => {
           loadAndSetupManagementNav('management-nav-placeholder', 'managementNav.html');
 
         });
     </script>
+    <script src="/user/js/sidebar.js"></script>
+    <script name = "sidebar">
+        fetch('/user/sidebar.html') // Adjust path
+        .then(response => {
+            if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(html => {
+            const container = document.getElementById('sidebar-container');
+            if (container) {
+            container.innerHTML = html;
+            // IMPORTANT: Initialize sidebar JS *after* HTML is inserted
+            initializeSidebar();
+            } else {
+            console.error("Sidebar container not found!");
+            }
+        })
+        .catch(error => {
+            console.error('Error loading sidebar:', error);
+            const container = document.getElementById('sidebar-container');
+            if(container) container.innerHTML = "<p>Error loading sidebar.</p>";
+        });
+    </script>
+    
 
 </body>
 </html>
