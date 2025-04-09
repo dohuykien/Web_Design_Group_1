@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trang tạo giải đấu mới</title>
+    <title>Trang Quản Lý</title>
     <link rel="icon" type="logo.png" href="images/logo.png" />
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
@@ -13,6 +13,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
+    <link rel="stylesheet" href="/user/css/sidebar.css" />
     <style>
       * {
         margin: 0;
@@ -23,14 +24,13 @@
       body {
         background-color: white;
       }
-      /*-------------------------Header---------------------------*/
+      /*----------Header----------*/
       .developed-by {
-        position: absolute;
+        position: fixed;
         left: 250px;
         top: 7px;
         color: #ffffff;
         font-size: 14px;
-        z-index: 2;
       }
       .navbar-top {
         background-color: #1565c0;
@@ -45,7 +45,7 @@
       .navbar-bottom {
         position: relative;
       }
-      /*Logo*/
+      /*------------------------- Logo ---------------------------------*/
       .logo {
         display: flex;
         align-items: center;
@@ -57,6 +57,7 @@
         max-width: 100%;
         margin-right: 10px;
       }
+
       /* Menu chính */
       .navbar-collapse {
         background-color: #ff6f00;
@@ -92,6 +93,7 @@
         z-index: 2;
         font-size: 16px;
       }
+
       .nav-item {
         padding: 0 15px;
         list-style: none;
@@ -127,114 +129,59 @@
         align-items: center;
         gap: 10px;
         position: relative; /* Đổi từ absolute sang relative */
-        right: 0; /* Đưa về bên phải */
+        right: 60px;
         top: -20px;
+        cursor: pointer;
+        z-index: 1000;
       }
       .header .user-info img {
         width: 30px;
         height: 30px;
       }
-      /*-------------------End Header---------------------- */
+      .user-info span i {
+        position: relative;
+        top: -2px;
+      }
 
-      /*----------------------Layout-------------------------*/
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        min-width: 160px;
+        z-index: 1000;
+        padding: 5px 0px;
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 5px 15px;
+        color: #333333;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        font-size: 14px;
+      }
+
+      .dropdown-menu a:hover {
+        background-color: #f34541;
+        color: #ffffff;
+      }
+      .fa-solid.fa-caret-down {
+        color: #333333;
+        font-size: 12px;
+        margin-top: 10px;
+      }
+
+      /*------------Layout------------*/
       .container {
         display: flex;
         width: 100%;
       }
-      /*-------------------Sidebar--------------------- */
-      .sidebar {
-        width: 230px;
-        background: #333333;
-        color: #b8c7ce;
-        height: 650px;
-        position: relative;
-        bottom: 2px;
-        z-index: 1;
-      }
-      .sidebar ul {
-        list-style: none;
-        background-color: #2c3b41;
-      }
-      .sidebar ul li {
-        padding: 9px 5px 9px 10px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        border-bottom: 1px solid #ffffff;
-        cursor: pointer;
-        transition: color 0.2s;
-      }
-      .sidebar ul li:hover {
-        color: #ffffff;
-      }
-      .sidebar ul li i {
-        width: 20px;
-        text-align: center;
-      }
-      .sidebar a {
-        text-decoration: none;
-        color: #222222;
-        flex: 1;
-        color: #b8c7ce;
-      }
-      .sidebar a:hover {
-        color: #ffffff;
-      }
-
-      .fa-solid.fa-tachometer-alt {
-        color: #ff6f00;
-      }
-
-      /* Ẩn submenu ban đầu */
-      .submenu {
-        display: none;
-        background: #ff6f00 !important;
-      }
-
-      .submenu li {
-        padding: 12px 12px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        width: 100%;
-        height: 32px;
-      }
-      .submenu a {
-        color: #222222 !important;
-      }
-      .submenu li:hover {
-        background: #ffffff;
-      }
-      .submenu a:hover {
-        color: rgb(250, 55, 25) !important;
-      }
-
-      /* Bật submenu khi click */
-      .menu-item.active + .submenu {
-        display: block;
-      }
-
-      /* Định dạng cho menu cha */
-      .menu-item {
-        display: flex;
-        align-items: center;
-        padding: 15px 15px;
-        cursor: pointer;
-        width: 100%;
-      }
-
-      .menu-item i {
-        margin-right: 10px;
-      }
-      .fa-solid.fa-play {
-        font-size: 9px;
-        color: #222222;
-      }
-      .fa-solid.fa-chevron-down {
-        font-size: 12px;
-        margin-left: auto;
-      }
-      /* -------------------sidebar-end------------------- */
-
-      /*----------content: list-league + footer------------ */
+      
+      /*content: list-league + footer */
       .content-wrapper {
         flex: 1;
         display: block;
@@ -258,9 +205,9 @@
       .list-league_left {
         font-family: "Source Sans Pro", sans-serif !important;
       }
-      .fa-solid.fa-check {
+      .fa-solid.fa-list {
         color: #ff6f00;
-        margin-right: 8px;
+        margin-right: 5px;
         font-size: 25px;
       }
       .list-league_left {
@@ -344,11 +291,16 @@
           <span class="developed-by">
             Hệ thống được phát triển bởi HD Promotion</span
           >
-          <div class="user-info">
+          <div class="user-info" onclick="toggleDropdown()">
             <img src="images/dhk.jpg" />
             <span
-              >Hải Đăng Nguyễn <i class="fa-solid fa-chevron-down"></i
-            ></span>
+              >Hải Đăng Nguyễn
+              <i class="fa-solid fa-caret-down"></i>
+            </span>
+            <div class="dropdown-menu" id="dropdownMenu">
+              <a href="Dashboard.html">Trang quản lý</a>
+              <a href="#">Đăng xuất</a>
+            </div>
           </div>
         </div>
         <div class="navbar-bottom">
@@ -384,72 +336,15 @@
       </div>
     </header>
     <div class="container">
-      <aside class="sidebar">
-        <ul>
-          <li>
-            <i class="fa-solid fa-tachometer-alt"></i>
-            <a href="Dashboard.html">Dashboard</a>
-          </li>
-
-          <li class="menu-item">
-            <i class="fa-solid fa-gear"></i>Quản lý giải đấu
-            <i class="fa-solid fa-chevron-down"></i>
-          </li>
-          <ul class="submenu">
-            <li>
-              <i class="fa-solid fa-play"></i
-              ><a href="Dashboard.html">Danh sách giải đấu</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-play"></i
-              ><a href="addleague.html">Tạo giải đấu mới</a>
-            </li>
-          </ul>
-
-          <li class="menu-item">
-            <i class="fa-solid fa-gear"></i> Quản lý đội
-            <i class="fa-solid fa-chevron-down"></i>
-          </li>
-          <ul class="submenu">
-            <li>
-              <i class="fa-solid fa-play"></i
-              ><a href="dsdoiqly.html">Danh sách đội quản lý</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-play"></i
-              ><a href="dsdoitgia.html">Danh sách đội tham gia</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-play"></i><a href="test.html">Tạo đội bóng mới</a>
-            </li>
-          </ul>
-
-          <li>
-            <i class="fa-solid fa-gear"></i>
-            <a href="#"> Yêu cầu tham gia đội</a>
-          </li>
-          <li>
-            <i class="fa-solid fa-gear"></i> <a href="#">Quản lý cuộc thi</a>
-          </li>
-
-          <li class="menu-item">
-            <i class="fa-solid fa-user"></i> Quản lý tài khoản
-            <i class="fa-solid fa-chevron-down"></i>
-          </li>
-          <ul class="submenu">
-            <li>
-              <i class="fa-solid fa-play"></i
-              ><a href="#">Thông tin tài khoản</a>
-            </li>
-          </ul>
-        </ul>
-      </aside>
+        <div id="sidebar-container">
+            <!-- Sidebar will be loaded here -->
+        </div>  
 
       <div class="content-wrapper">
         <section class="content">
           <div class="list-league">
-            <i class="fa-solid fa-check"></i>
-            <span class="list-league_left">Tạo giải đấu</span>
+            <i class="fa-solid fa-list"></i>
+            <span class="list-league_left">Danh sách giải đấu</span>
             <a href="addleague.html">
               <button class="add">
                 <i class="fa-solid fa-plus"></i> Thêm mới
@@ -497,19 +392,31 @@
       </div>
     </div>
 
-    <script>
-      // Lấy tất cả các menu cha
-      let menuItems = document.querySelectorAll(".menu-item");
-
-      menuItems.forEach((item) => {
-        item.addEventListener("click", function () {
-          let submenu = this.nextElementSibling;
-
-          // Chỉ toggle submenu hiện tại, không đóng các submenu khác
-          submenu.style.display =
-            submenu.style.display === "block" ? "none" : "block";
+    
+    <script src="/user/js/sidebar.js"></script>
+    <script name = "sidebar">
+        fetch('/user/sidebar.html') // Adjust path
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then(html => {
+          const container = document.getElementById('sidebar-container');
+          if (container) {
+            container.innerHTML = html;
+            // IMPORTANT: Initialize sidebar JS *after* HTML is inserted
+            initializeSidebar();
+          } else {
+            console.error("Sidebar container not found!");
+          }
+        })
+        .catch(error => {
+          console.error('Error loading sidebar:', error);
+          const container = document.getElementById('sidebar-container');
+          if(container) container.innerHTML = "<p>Error loading sidebar.</p>";
         });
-      });
     </script>
   </body>
 </html>

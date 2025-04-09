@@ -13,6 +13,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
+    <link rel="stylesheet" href="/user/css/sidebar.css" />
+
     <style>
       * {
         margin: 0;
@@ -142,97 +144,7 @@
         display: flex;
         width: 100%;
       }
-      /*-------------------Sidebar--------------------- */
-      .sidebar {
-        width: 230px;
-        background: #333333;
-        color: #b8c7ce;
-        height: 650px;
-        position: relative;
-        z-index: 1;
-      }
-      .sidebar ul {
-        list-style: none;
-        background-color: #2c3b41;
-      }
-      .sidebar ul li {
-        padding: 9px 5px 9px 10px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        border-bottom: 1px solid #ffffff;
-        cursor: pointer;
-        transition: color 0.2s;
-      }
-      .sidebar ul li:hover {
-        color: #ffffff;
-      }
-      .sidebar ul li i {
-        width: 20px;
-        text-align: center;
-      }
-      .sidebar a {
-        text-decoration: none;
-        color: #222222;
-        flex: 1;
-        color: #b8c7ce;
-      }
-      .sidebar a:hover {
-        color: #ffffff;
-      }
-
-      .fa-solid.fa-tachometer-alt {
-        color: #ff6f00;
-      }
-
-      /* Ẩn submenu ban đầu */
-      .submenu {
-        display: none;
-        background: #ff6f00 !important;
-      }
-
-      .submenu li {
-        padding: 12px 12px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        width: 100%;
-        height: 32px;
-      }
-      .submenu a {
-        color: #222222 !important;
-      }
-      .submenu li:hover {
-        background: #ffffff;
-      }
-      .submenu a:hover {
-        color: rgb(250, 55, 25) !important;
-      }
-
-      /* Bật submenu khi click */
-      .menu-item.active + .submenu {
-        display: block;
-      }
-
-      /* Định dạng cho menu cha */
-      .menu-item {
-        display: flex;
-        align-items: center;
-        padding: 15px 15px;
-        cursor: pointer;
-        width: 100%;
-      }
-
-      .menu-item i {
-        margin-right: 10px;
-      }
-      .fa-solid.fa-play {
-        font-size: 9px;
-        color: #222222;
-      }
-      .fa-solid.fa-chevron-down {
-        font-size: 12px;
-        margin-left: auto;
-      }
-      /* -------------------sidebar-end------------------- */
+      
       /*content: list-league + footer */
       .content-wrapper {
         flex: 1;
@@ -502,66 +414,9 @@
       </div>
     </header>
     <div class="container">
-      <aside class="sidebar">
-        <ul>
-          <li>
-            <i class="fa-solid fa-tachometer-alt"></i>
-            <a href="Dashboard.html">Dashboard</a>
-          </li>
-
-          <li class="menu-item">
-            <i class="fa-solid fa-gear"></i>Quản lý giải đấu
-            <i class="fa-solid fa-chevron-down"></i>
-          </li>
-          <ul class="submenu">
-            <li>
-              <i class="fa-solid fa-play"></i
-              ><a href="Dashboard.html">Danh sách giải đấu</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-play"></i
-              ><a href="addleague.html">Tạo giải đấu mới</a>
-            </li>
-          </ul>
-
-          <li class="menu-item">
-            <i class="fa-solid fa-gear"></i> Quản lý đội
-            <i class="fa-solid fa-chevron-down"></i>
-          </li>
-          <ul class="submenu">
-            <li>
-              <i class="fa-solid fa-play"></i
-              ><a href="dsdoiqly.html">Danh sách đội quản lý</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-play"></i
-              ><a href="dsdoitgia.html">Danh sách đội tham gia</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-play"></i><a href="addteam.html">Tạo đội bóng mới</a>
-            </li>
-          </ul>
-
-          <li>
-            <i class="fa-solid fa-gear"></i>
-            <a href="#"> Yêu cầu tham gia đội</a>
-          </li>
-          <li>
-            <i class="fa-solid fa-gear"></i> <a href="#">Quản lý cuộc thi</a>
-          </li>
-
-          <li class="menu-item">
-            <i class="fa-solid fa-user"></i> Quản lý tài khoản
-            <i class="fa-solid fa-chevron-down"></i>
-          </li>
-          <ul class="submenu">
-            <li>
-              <i class="fa-solid fa-play"></i
-              ><a href="#">Thông tin tài khoản</a>
-            </li>
-          </ul>
-        </ul>
-      </aside>
+        <div id="sidebar-container">
+            <!-- Sidebar will be loaded here -->
+        </div>  
 
       <div class="content-wrapper">
         <section class="content">
@@ -619,31 +474,6 @@
     </div>
 
     <script>
-        // Sidebar Menu Toggle Logic
-        let menuItems = document.querySelectorAll(".menu-item");
-    
-        menuItems.forEach((item) => {
-            item.addEventListener("click", function () {
-                // Toggle active class on the clicked menu item
-                this.classList.toggle("active");
-    
-                let submenu = this.nextElementSibling;
-                if (submenu && submenu.classList.contains('submenu')) {
-                    submenu.style.display = submenu.style.display === "block" ? "none" : "block";
-                }
-    
-                // Optional: Close other submenus when one is opened
-                menuItems.forEach(otherItem => {
-                    if (otherItem !== this && otherItem.classList.contains('active')) {
-                        otherItem.classList.remove('active');
-                        let otherSubmenu = otherItem.nextElementSibling;
-                        if (otherSubmenu && otherSubmenu.classList.contains('submenu')) {
-                            otherSubmenu.style.display = 'none';
-                        }
-                    }
-                });
-            });
-        });
     
         // ----- Team Card Generation and Deletion/Edit Logic -----
     const currentUser = { // Keep your currentUser object
@@ -817,6 +647,31 @@
     });
 
     
+    </script>
+    <script src="/user/js/sidebar.js"></script>
+    <script name = "sidebar">
+        fetch('/user/sidebar.html') // Adjust path
+        .then(response => {
+            if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(html => {
+            const container = document.getElementById('sidebar-container');
+            if (container) {
+            container.innerHTML = html;
+            // IMPORTANT: Initialize sidebar JS *after* HTML is inserted
+            initializeSidebar();
+            } else {
+            console.error("Sidebar container not found!");
+            }
+        })
+        .catch(error => {
+            console.error('Error loading sidebar:', error);
+            const container = document.getElementById('sidebar-container');
+            if(container) container.innerHTML = "<p>Error loading sidebar.</p>";
+        });
     </script>
   </body>
 </html>
