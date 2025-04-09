@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../Pictures/Screenshots/web"
+		},
+		{
+			"path": "../kiến trúc máy tính"
+		},
+		{
+			"path": "New folder (2)"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "kiến trúc máy tính"
+	}
+}
