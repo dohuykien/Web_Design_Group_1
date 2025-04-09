@@ -180,7 +180,7 @@
         display: flex;
         width: 100%;
       }
-      
+
       /*content: list-league + footer */
       .content-wrapper {
         flex: 1;
@@ -332,9 +332,9 @@
       </div>
     </header>
     <div class="container">
-        <div id="sidebar-container">
-            <!-- Sidebar will be loaded here -->
-        </div>  
+      <div id="sidebar-container">
+        <!-- Sidebar will be loaded here -->
+      </div>
 
       <div class="content-wrapper">
         <section class="content">
@@ -388,18 +388,17 @@
       </div>
     </div>
 
-    
     <script src="/user/js/sidebar.js"></script>
-    <script name = "sidebar">
-        fetch('/user/sidebar.html') // Adjust path
-        .then(response => {
+    <script name="sidebar">
+      fetch("/user/sidebar.html") // Adjust path
+        .then((response) => {
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
           return response.text();
         })
-        .then(html => {
-          const container = document.getElementById('sidebar-container');
+        .then((html) => {
+          const container = document.getElementById("sidebar-container");
           if (container) {
             container.innerHTML = html;
             // IMPORTANT: Initialize sidebar JS *after* HTML is inserted
@@ -408,11 +407,26 @@
             console.error("Sidebar container not found!");
           }
         })
-        .catch(error => {
-          console.error('Error loading sidebar:', error);
-          const container = document.getElementById('sidebar-container');
-          if(container) container.innerHTML = "<p>Error loading sidebar.</p>";
+        .catch((error) => {
+          console.error("Error loading sidebar:", error);
+          const container = document.getElementById("sidebar-container");
+          if (container) container.innerHTML = "<p>Error loading sidebar.</p>";
         });
+
+      //----------------submenu-user_infor-----------------
+      function toggleDropdown() {
+        var menu = document.getElementById("dropdownMenu");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+      }
+
+      // Ẩn dropdown nếu click ra ngoài
+      window.addEventListener("click", function (e) {
+        var menu = document.getElementById("dropdownMenu");
+        var userInfo = document.querySelector(".user-info");
+        if (!userInfo.contains(e.target)) {
+          menu.style.display = "none";
+        }
+      });
     </script>
   </body>
 </html>
