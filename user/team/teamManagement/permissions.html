@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách tài khoản quản lý đội</title>
+    <link rel="icon" type="logo.png" href="../images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/user/css/sidebar.css" />
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: Oswald, sans-serif; /* Default font */
+        }
+        body {
+          background-color: white;
+        }
+        /*-------------------------Header---------------------------*/
+        .developed-by {
+          position: absolute;
+          left: 250px;
+          top: 7px;
+          color: #ffffff;
+          font-size: 14px;
+          z-index: 2;
+        }
+        .navbar-top {
+          background-color: #1565c0;
+          color: white;
+          padding: 10px 20px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          height: 75px;
+        }
+        .navbar-bottom {
+          position: relative;
+        }
+        /*Logo*/
+        .logo {
+          display: flex;
+          align-items: center;
+          z-index: 2;
+          left: 170px;
+        }
+        .logo img {
+          height: 65px;
+          max-width: 100%;
+          margin-right: 10px;
+        }
+        /* Menu chính */
+        .navbar-collapse {
+          background-color: #ff6f00;
+          padding: 7px 0px;
+          height: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          z-index: 1;
+        }
+        .navbar-collapse::before {
+          content: "";
+          position: absolute;
+          top: -40px;
+          left: -15px;
+          width: 101%;
+          height: 50px;
+          background-color: #ff6f00;
+          clip-path: polygon(0 350%, 15% 0, 100% 0, 100% 100%);
+        }
+        .navbar-nav {
+          display: flex;
+          margin-left: -200px;
+        }
+        .navbar-nav li a {
+          left: 10px;
+          color: white;
+          text-decoration: none;
+          /* margin: 0 7px; */
+          top: -20px;
+          position: relative;
+          z-index: 2;
+          font-size: 16px;
+        }
+        .nav-item {
+          padding: 0 15px;
+          list-style: none;
+        }
+        .navbar-nav a:hover {
+          text-decoration: underline;
+        }
+
+        /* Responsive cho Mobile */
+        @media (max-width: 768px) {
+          .navbar-collapse {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: #fff;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          }
+
+          .navbar-collapse.active {
+            display: flex;
+          }
+
+          .nav-item {
+            text-align: center;
+            padding: 10px 0;
+          }
+        }
+        .header .user-info {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          position: relative; /* Đổi từ absolute sang relative */
+          right: 0; /* Đưa về bên phải */
+          top: -20px;
+        }
+        .header .user-info img {
+          width: 30px;
+          height: 30px;
+        }
+        /*-------------------End Header---------------------- */
+
+        /*----------------------Layout-------------------------*/
+        .container {
+          display: flex;
+          width: 100%;
+        }
+      /*content: list-league + footer */
+      .content-wrapper {
+        flex: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+        background-color: #ecf0f5;
+
+      }
+      .content {
+      }
+        /* list-league */
+        .list-league {
+        color: rgb(34, 34, 34);
+        font-size: 24px;
+        font-weight: normal;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+        min-height: 70px;
+        }
+        .list-league_left {
+          font-family: "Source Sans Pro", sans-serif !important;
+        }
+        .fa-solid.fa-list {
+          color: #ff6f00;
+          margin-right: 5px;
+          font-size: 25px;
+        }
+        .list-league_left {
+          flex-grow: 1;
+        }
+
+        /* Buttons styling moved to form layout section for consistency */
+
+        /* --------------------- FOOTER -------------------- */
+        .footer {
+        box-sizing: border-box;
+        background-color: #ecf0f5;
+        color: rgb(51, 51, 51);
+        font-size: 14px;
+        font-weight: 500;
+        text-shadow: rgb(255, 255, 255) 1px 1px 1px;
+        box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.1);
+        display: block;
+        border-top-color: rgb(255, 255, 255);
+        border-top-style: solid;
+        border-top-width: 0.8px;
+      }
+
+      .footer-container {
+        box-sizing: border-box;
+        background-color: #ecf0f5;
+        color: rgb(51, 51, 51);
+        font-size: 14px;
+        text-shadow: rgb(255, 255, 255) 2px 2px 2px;
+        margin: 40px 10px 10px 10px;
+        display: block;
+        border-top-color: rgb(255, 255, 255);
+        border-top-style: solid;
+        border-top-width: 0.8px;
+        line-height: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+      }
+
+      .footer-left,
+      .footer-right {
+        flex: 1;
+      }
+
+      .footer-left p,
+      .footer-right p {
+        margin: 19px 0;
+      }
+
+      .footer-apps {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .footer-apps img {
+        height: 30px;
+      }
+
+      /* --- Top Green Buttons --- */
+      .team-management-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .nav-button {
+            flex: 1; /* Distribute space */
+            min-width: 120px; /* Minimum width before wrapping */
+            background-color: #5cb85c; /* Green background */
+            color: white;
+            text-align: center;
+            padding: 15px 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+            border: none; /* Remove default button border */
+            cursor: pointer;
+        }
+
+        .nav-button i {
+            font-size: 28px; /* Icon size */
+            opacity: 0.9;
+        }
+
+        .nav-button:hover {
+            background-color: #4cae4c; /* Darker green on hover */
+        }
+
+        .nav-button.active {
+            background-color: #449d44; /* Even darker for active */
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+             cursor: default;
+        }
+
+
+
+        /* Button styles in the header bar */
+
+        .list-league i {
+            margin-right: 5px;
+        }
+
+
+        /* Styling for the content box and table */
+.content-box {
+    background-color: #ffffff; /* White background for the box */
+    padding: 20px;
+    margin: 15px; /* Add some margin around the box */
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-top: 3px solid #d2d6de; /* Subtle top border like AdminLTE */
+    font-family: "Source Sans Pro", sans-serif;
+
+}
+
+.management-container {
+}
+
+/* Styles for the search input and dropdown */
+.add-manager-section {
+    display: flex;
+    gap: 10px;
+    align-items: center; /* Align items top */
+    margin-bottom: 20px;
+    
+}
+
+.search-container {
+    position: relative; /* Crucial for absolute positioning of dropdown */
+    flex-grow: 1; /* Allow container to take available space */
+}
+
+#addManagerInput {
+    /* Input takes full width of its container */
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: "Source Sans Pro", sans-serif !important;
+}
+
+.user-dropdown {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%; /* Position directly below the input */
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none; /* Optional: avoid double border */
+    border-radius: 0 0 4px 4px;
+    max-height: 250px; /* Limit height and enable scrolling */
+    overflow-y: auto;
+    z-index: 1000; /* Ensure it's above other elements */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-dropdown-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee; /* Separator line */
+    font-size: 14px;
+    font-family: "Source Sans Pro", sans-serif !important;
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ... if text is too long */
+}
+
+.user-dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.user-dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+.user-dropdown-item strong { /* Style the matched part if needed later */
+    /* font-weight: bold; */
+}
+
+.user-dropdown .no-results { /* Style for no results message */
+    padding: 8px 12px;
+    color: #888;
+    font-style: italic;
+    font-family: "Source Sans Pro", sans-serif !important;
+}
+
+/* Style for the Add button */
+.add-btn {
+    padding: 8px 12px;
+    background-color: #007bff; /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
+.add-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.table-responsive {
+    overflow-x: auto; /* Allows horizontal scrolling on small screens */
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+    
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #f4f4f4; /* Lighter borders */
+    padding: 10px 12px; /* More padding */
+    text-align: left;
+    vertical-align: middle; /* Align content vertically */
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+.data-table thead th {
+    background-color: #f8f9fa; /* Lighter header background */
+    font-weight: 600; /* Slightly bolder */
+    color: #495057;
+    border-bottom: 2px solid #dee2e6; /* Stronger bottom border for header */
+}
+
+/* Style specific columns */
+.data-table td:nth-child(1) { /* STT column */
+    width: 50px; /* Fixed width for STT */
+    text-align: center;
+}
+
+.data-table td:nth-child(3) { /* Vai trò column */
+    color: red;
+    font-weight: 500; /* Slightly bolder role text */
+}
+
+.data-table td:nth-child(4) { /* Action column */
+    width: 80px; /* Fixed width */
+    text-align: center;
+}
+
+.delete-btn {
+    background-color: #dc3545; /* Bootstrap danger red */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px; /* Adjust icon size via font-size */
+    line-height: 1; /* Ensure button height fits icon */
+    transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+.delete-btn i {
+    pointer-events: none; /* Prevent icon from interfering with click */
+}
+
+/* Optional: Add alternating row colors */
+.data-table tbody tr:nth-of-type(odd) {
+    background-color: #fdfdfd;
+}
+.data-table tbody tr:hover {
+    background-color: #f1f1f1; /* Highlight on hover */
+}
+
+/* Add scroll indicators if desired (using pseudo-elements - basic example) */
+.table-responsive {
+    position: relative;
+}
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="navbar">
+          <div class="navbar-top">
+            <div class="logo">
+              <a href="#"><img src="../images/logo.png" alt="Logo" /></a>
+            </div>
+            <span class="developed-by">
+              Hệ thống được phát triển bởi HD Promotion</span
+            >
+            <div class="user-info">
+              <img src="images/dhk.jpg" alt="User Avatar"/> <!-- Added alt text -->
+              <span
+                >Hải Đăng Nguyễn <i class="fa-solid fa-chevron-down"></i
+              ></span>
+            </div>
+          </div>
+          <div class="navbar-bottom">
+            <div class="navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a href="#" class="nav-link">TRANG CHỦ</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">GIẢI ĐANG DIỄN RA</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">GIẢI ĐANG THEO DÕI</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">ĐỘI BÓNG</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">BẮT ĐỐI</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">HƯỚNG DẪN</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">CUỘC THI</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#" class="nav-link">TIN TỨC</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+
+    <div class="container">
+        <div id="sidebar-container">
+             <!-- Sidebar will be loaded here -->
+        </div>
+        <div class="content-wrapper">
+            <section class="content">
+                <!-- Title and Action Buttons -->
+                <div id="management-nav-placeholder">
+                    <!-- Nav will load here -->
+                </div>
+                <div class="list-league">
+                    <span class="list-league_left"><i class="fa-solid fa-list"></i>Danh sách tài khoản quản lý đội</span>
+                </div>
+
+
+                <div class="content-box"> <!-- Existing container -->
+                  <div class="management-container">
+                      <!-- Updated Section for Adding Managers -->
+                      <div class="add-manager-section">
+                          <div class="search-container"> <!-- New wrapper -->
+                              <input type="text" id="addManagerInput" placeholder="Thêm quản lý theo tên hoặc email..." autocomplete="off">
+                              <div id="userDropdown" class="user-dropdown">
+                                  <!-- Search results will be dynamically added here -->
+                              </div>
+                          </div>
+                          <button id="addManagerBtn" class="add-btn"><i class="fa-solid fa-plus"></i></button>
+                      </div>
+                      <!-- End Updated Section -->
+              
+                      <div class="table-responsive">
+                          <table id="managerTable" class="data-table">
+                              <thead>
+                                  <tr>
+                                      <th>STT</th>
+                                      <th>Tài Khoản - Email</th>
+                                      <th>Vai trò</th>
+                                      <th>Action</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <!-- User rows will be inserted here by JavaScript -->
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+
+            </section>
+
+            <footer class="footer"> <!-- Changed to footer tag -->
+                <div class="footer-container">
+                  <div class="footer-left">
+                    <p>Bản quyền thuộc HD Promotion</p>
+                    <p>Nguyen Hai Dang</p>
+                    <p>
+                      Chỉ được phát hành lại nội dung khi có sự đồng ý của HD
+                      Promotion
+                    </p>
+                    <div class="footer-apps">
+                      <a href="#"><img src="../images/logo.png" alt="IT League" /></a>
+                      <a href="#"
+                        ><img src="images/googleplay.png" alt="Google Play"
+                      /></a>
+                      <a href="#"
+                        ><img src="images/appstore.png" alt="App Store"
+                      /></a>
+                    </div>
+                  </div>
+                  <div class="footer-right">
+                    <p>
+                      <i class="fa fa-building" aria-hidden="true"></i> CÔNG TY CỔ
+                      PHẦN TỔ CHỨC SỰ KIỆN VÀ TRUYỀN THÔNG HD Promotion
+                    </p>
+                    <p>
+                      <i class="fa fa-map-marker" aria-hidden="true"></i> Số 185,
+                      Trần Đại Nghĩa, phường Đồng Tâm, quận Hai Bà Trưng, Hà Nội
+                    </p>
+                    <p><i class="fa fa-phone" aria-hidden="true"></i> 0797102555</p>
+                    <p>
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                      nguyenstorm2k5@gmail.com
+                    </p>
+                  </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="js/managementNav.js"></script> <!-- Adjust path if needed -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          loadAndSetupManagementNav('management-nav-placeholder', 'managementNav.html');
+          const users = [
+          { id: 1, email: 'khai2892005@gmail.com', name: 'Khải Dương' }, // Team Creator for team123
+          { id: 2, email: 'duckhai289@gmail.com', name: 'ddd12345' },   // Manager for team123
+          { id: 3, email: 'anothercreator@example.com', name: 'Creator 2'}, // Creator for team456
+          { id: 4, email: 'manager_only@example.com', name: 'Manager X'}    // A user not assigned yet
+          ];
+
+          // 1. Get currentTeamId from URL
+          const urlParams = new URLSearchParams(window.location.search);
+          const currentTeamId = urlParams.get('id');
+
+          const tableBody = document.getElementById('managerTable')?.querySelector('tbody');
+    const addManagerInput = document.getElementById('addManagerInput');
+    const userDropdown = document.getElementById('userDropdown'); // Dropdown container
+    const addManagerBtn = document.getElementById('addManagerBtn');
+
+    // Variable to store the ID of the user selected from the dropdown
+    let selectedUserIdToAdd = null;
+
+    // --- Helper Functions (Keep findUserById, getManagersForTeam, getTeamsData) ---
+    function findUserById(userId) {
+        return users.find(user => user.id === userId);
+    }
+     function getManagersForTeam(teamId) { /* ... keep implementation ... */
+         try {
+            const allManagersData = JSON.parse(localStorage.getItem('managersData') || '[]');
+            return allManagersData.filter(m => m.teamId === teamId);
+        } catch (error) {
+            console.error("Error reading managersData from localStorage:", error);
+            return [];
+        }
+     }
+    function getTeamsData() { /* ... keep implementation ... */
+         try {
+            return JSON.parse(localStorage.getItem('teams') || '[]');
+        } catch (error) {
+            console.error("Error reading teams data from localStorage:", error);
+            return [];
+        }
+    }
+
+
+    // --- Dropdown Logic ---
+
+    function showDropdown(matchingUsers) {
+        if (!userDropdown || !addManagerInput) return;
+
+        userDropdown.innerHTML = ''; // Clear previous results
+        selectedUserIdToAdd = null; // Reset selection when showing new results
+        addManagerInput.removeAttribute('data-selected-user-id'); // Clear data attribute
+
+        if (matchingUsers.length === 0) {
+            userDropdown.innerHTML = '<div class="no-results">Không tìm thấy kết quả</div>';
+            userDropdown.style.display = 'block'; // Show "no results"
+            return;
+        }
+
+        matchingUsers.forEach(user => {
+            const item = document.createElement('div');
+            item.className = 'user-dropdown-item';
+            // Display name and email for clarity
+            item.textContent = `${user.name || 'N/A'} (${user.email})`;
+            item.setAttribute('data-user-id', user.id);
+             // Store full user representation in the input field on selection
+            item.setAttribute('data-user-display', `${user.name || user.email} (${user.email})`);
+            userDropdown.appendChild(item);
+        });
+
+        userDropdown.style.display = 'block'; // Show the dropdown
+    }
+
+    function hideDropdown() {
+        if (userDropdown) {
+            userDropdown.style.display = 'none';
+        }
+    }
+
+    // Event listener for typing in the input
+    addManagerInput.addEventListener('input', () => {
+        const searchTerm = addManagerInput.value.trim().toLowerCase();
+
+        if (searchTerm.length < 1) { // Minimum characters to trigger search (optional)
+            hideDropdown();
+             selectedUserIdToAdd = null; // Clear selection if input is cleared
+             addManagerInput.removeAttribute('data-selected-user-id');
+            return;
+        }
+
+        // Filter users based on search term (name or email)
+        const filteredUsers = users.filter(user =>
+            (user.name && user.name.toLowerCase().includes(searchTerm)) ||
+            (user.email && user.email.toLowerCase().includes(searchTerm))
+        );
+
+        showDropdown(filteredUsers);
+    });
+
+     // Event listener for selecting a user from the dropdown
+    userDropdown.addEventListener('click', (event) => {
+        const target = event.target;
+        // Check if the clicked element is a dropdown item
+        if (target.classList.contains('user-dropdown-item')) {
+            selectedUserIdToAdd = target.getAttribute('data-user-id');
+            const displayValue = target.getAttribute('data-user-display') || target.textContent; // Get display text
+
+            addManagerInput.value = displayValue; // Set input value to selected user's display text
+            // Store the ID separately using a data attribute on the input (optional but clean)
+            addManagerInput.setAttribute('data-selected-user-id', selectedUserIdToAdd);
+
+            hideDropdown();
+            addManagerInput.focus(); // Keep focus on input (optional)
+        }
+    });
+
+    // Hide dropdown if clicked outside
+    document.addEventListener('click', (event) => {
+        if (!addManagerInput.contains(event.target) && !userDropdown.contains(event.target)) {
+            hideDropdown();
+        }
+    });
+
+     // Hide dropdown on input blur IF no selection was made from dropdown
+    addManagerInput.addEventListener('blur', () => {
+         // Use a small timeout because clicking the dropdown item causes blur FIRST
+        setTimeout(() => {
+            if (userDropdown.style.display === 'block' && !userDropdown.contains(document.activeElement)) {
+                 hideDropdown();
+            }
+        }, 150); // Adjust timeout if needed
+    });
+
+
+    // --- Core Logic: Rendering the Table (Keep from previous version) ---
+    function renderManagerTable() {
+        // ... (Keep the exact implementation from the previous version) ...
+        // It correctly uses findUserById, getManagersForTeam, etc.
+        if (!tableBody) { console.error("Table body not found!"); return; }
+        if (!currentTeamId) { console.error("Team ID not found."); tableBody.innerHTML = '<tr><td colspan="4">...</td></tr>'; return; }
+        tableBody.innerHTML = '';
+        const teamsData = getTeamsData();
+        const currentTeam = teamsData.find(team => team.id === currentTeamId);
+        if (!currentTeam) { console.error(`Team ${currentTeamId} not found.`); tableBody.innerHTML = `<tr><td colspan="4">...</td></tr>`; return; }
+
+        let stt = 1;
+        const teamUsersToDisplay = [];
+        const creator = findUserById(currentTeam.userId);
+        if (creator) { teamUsersToDisplay.push({ ...creator, role: 'Tài khoản tạo đội', isCreator: true }); }
+        else { console.warn(`Creator ${currentTeam.userId} not found.`); }
+
+        const managerRelations = getManagersForTeam(currentTeamId);
+        managerRelations.forEach(relation => {
+            const manager = findUserById(relation.userId);
+            if (manager && manager.id !== currentTeam.userId) {
+                 teamUsersToDisplay.push({ ...manager, role: 'Quản lý đội', isCreator: false });
+            } else if(!manager) { console.warn(`Manager ${relation.userId} not found.`); }
+        });
+
+         if (teamUsersToDisplay.length === 0) { tableBody.innerHTML = '<tr><td colspan="4">...</td></tr>'; return; }
+         teamUsersToDisplay.sort(/* ... sorting logic ... */); // Keep sorting
+
+        teamUsersToDisplay.forEach(user => {
+            const row = tableBody.insertRow();
+            row.insertCell(0).textContent = stt++;
+            row.insertCell(1).textContent = user.name ? `${user.name} - ${user.email}` : user.email;
+            row.insertCell(2).textContent = user.role;
+            const actionCell = row.insertCell(3);
+            if (!user.isCreator) { /* ... add delete button ... */
+                 const deleteButton = document.createElement('button');
+                 deleteButton.className = 'delete-btn';
+                 deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+                 deleteButton.setAttribute('data-user-id', user.id);
+                 deleteButton.setAttribute('title', 'Xóa quản lý');
+                 actionCell.appendChild(deleteButton);
+            } else { actionCell.textContent = ''; }
+        });
+    }
+
+    // --- Core Logic: Deleting a Manager (Keep from previous version) ---
+    function handleDeleteUser(event) {
+        // ... (Keep the exact implementation using event delegation) ...
+         const target = event.target;
+        const deleteButton = target.closest('.delete-btn');
+        if (deleteButton) {
+            const userIdToDeleteString = deleteButton.getAttribute('data-user-id');
+            const userIdToDelete = parseInt(userIdToDeleteString);
+            if (userIdToDelete && confirm(`Bạn chắc chắn muốn xóa quản lý ID: ${userIdToDelete}?`)) {
+                try {
+                    let managersData = JSON.parse(localStorage.getItem('managersData') || '[]');
+                    const updatedManagersData = managersData.filter(m => !(m.teamId === currentTeamId && m.userId === userIdToDelete));
+                    localStorage.setItem('managersData', JSON.stringify(updatedManagersData));
+                    console.log(`Manager ${userIdToDelete} removed from team ${currentTeamId}.`);
+                    renderManagerTable();
+                } catch (error) { console.error("Error deleting manager:", error); alert("Lỗi xóa quản lý."); }
+            }
+        }
+    }
+
+    // --- Core Logic: Adding a Manager (UPDATED to use selection) ---
+    function handleAddManager() {
+        if (!currentTeamId) {
+            console.error("Cannot add manager: currentTeamId is missing.");
+            return;
+        }
+         // --- USE THE SELECTED USER ID ---
+        const userIdToAdd = addManagerInput.getAttribute('data-selected-user-id'); // Get from data attribute
+
+        if (!userIdToAdd) {
+            alert("Vui lòng tìm kiếm và chọn một người dùng từ danh sách.");
+            addManagerInput.focus(); // Bring focus back to input
+            return;
+        }
+        
+        
+        const userToAdd = findUserById(parseInt(userIdToAdd));
+
+        // This check should technically be unnecessary if findUserById worked, but good safeguard
+        if (!userToAdd) {
+            alert(`Lỗi: Không tìm thấy thông tin người dùng cho ID: ${userIdToAdd}. Vui lòng chọn lại.`);
+             // Clear potentially invalid selection
+             addManagerInput.value = '';
+             addManagerInput.removeAttribute('data-selected-user-id');
+             selectedUserIdToAdd = null;
+            return;
+        }
+
+        // Find the current team to check if the user is the creator
+        const teamsData = getTeamsData();
+        const currentTeam = teamsData.find(team => team.id === currentTeamId);
+
+        if (currentTeam && userToAdd.id === currentTeam.userId) {
+            alert("Người dùng này đã là người tạo đội, không thể thêm làm quản lý.");
+            return;
+        }
+
+        try {
+            let managersData = JSON.parse(localStorage.getItem('managersData') || '[]');
+
+            // Check if this user is ALREADY a manager for THIS team
+            const alreadyExists = managersData.some(m =>
+                m.teamId === currentTeamId && m.userId === userToAdd.id
+            );
+
+            if (alreadyExists) {
+                alert(`Người dùng ${userToAdd.name || userToAdd.email} đã là quản lý của đội này.`);
+                 // Clear input after message
+                 addManagerInput.value = '';
+                 addManagerInput.removeAttribute('data-selected-user-id');
+                 selectedUserIdToAdd = null;
+                return;
+            }
+
+            // Add the new manager relationship
+            managersData.push({ teamId: currentTeamId, userId: userToAdd.id });
+            localStorage.setItem('managersData', JSON.stringify(managersData));
+
+            console.log(`Added manager relationship: User ${userToAdd.id} for Team ${currentTeamId}`);
+            alert(`Đã thêm ${userToAdd.name || userToAdd.email} làm quản lý.`);
+
+            // Clear input and selection state after successful add
+            addManagerInput.value = '';
+            addManagerInput.removeAttribute('data-selected-user-id');
+            selectedUserIdToAdd = null;
+
+            renderManagerTable(); // Refresh table
+
+        } catch (error) {
+            console.error("Error updating managersData:", error);
+            alert("Đã xảy ra lỗi khi thêm quản lý.");
+        }
+    }
+
+
+    // --- Initial Setup and Event Listeners ---
+    if (tableBody) {
+        renderManagerTable();
+        tableBody.addEventListener('click', handleDeleteUser);
+    } else {
+        console.error("Could not find table body.");
+    }
+
+    if(addManagerBtn) {
+        addManagerBtn.addEventListener('click', handleAddManager);
+    }
+     // Removed the keypress listener for Enter on input, as selection is now preferred.
+     // If you want Enter to add the *selected* user, you could re-add it, checking
+     // for `selectedUserIdToAdd`.
+
+        });
+    </script>
+    <script src="/user/js/sidebar.js"></script>
+    <script name = "sidebar">
+        fetch('/user/sidebar.html') // Adjust path
+        .then(response => {
+            if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.text();
+        })
+        .then(html => {
+            const container = document.getElementById('sidebar-container');
+            if (container) {
+            container.innerHTML = html;
+            // IMPORTANT: Initialize sidebar JS *after* HTML is inserted
+            initializeSidebar();
+            } else {
+            console.error("Sidebar container not found!");
+            }
+        })
+        .catch(error => {
+            console.error('Error loading sidebar:', error);
+            const container = document.getElementById('sidebar-container');
+            if(container) container.innerHTML = "<p>Error loading sidebar.</p>";
+        });
+    </script>
+
+
+</body>
+</html>
