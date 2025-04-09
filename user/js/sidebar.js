@@ -1,15 +1,11 @@
 /* sidebar.js */
 
-// Function to initialize sidebar interactions
 function initializeSidebar() {
     // Lấy tất cả các menu cha within the sidebar context
-    // Use a more specific selector if multiple sidebars could exist
     let menuItems = document.querySelectorAll(".sidebar .menu-item");
   
     menuItems.forEach((item) => {
       item.addEventListener("click", function (event) { // Add event parameter
-          // Prevent the click from bubbling up if necessary (optional)
-          // event.stopPropagation();
   
         // Find the next sibling element which is the submenu
         let submenu = this.nextElementSibling;
