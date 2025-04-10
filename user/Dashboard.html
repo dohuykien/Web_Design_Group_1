@@ -412,6 +412,21 @@
           const container = document.getElementById("sidebar-container");
           if (container) container.innerHTML = "<p>Error loading sidebar.</p>";
         });
+
+      //----------------submenu-user_infor-----------------
+      function toggleDropdown() {
+        var menu = document.getElementById("dropdownMenu");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+      }
+
+      // Ẩn dropdown nếu click ra ngoài
+      window.addEventListener("click", function (e) {
+        var menu = document.getElementById("dropdownMenu");
+        var userInfo = document.querySelector(".user-info");
+        if (!userInfo.contains(e.target)) {
+          menu.style.display = "none";
+        }
+      });
     </script>
   </body>
 </html>

@@ -367,6 +367,16 @@
       .box {
         display: flex;
       }
+      .success {
+        max-width: 1250px;
+        margin: 10px 30px 5px 30px;
+        padding: 7px 15px 7px 15px;
+        color: rgb(1, 167, 1);
+        font-size: 14px;
+        background-color: rgb(221, 253, 221);
+        border: 1px solid #e4e2e2;
+        display: none;
+      }
       .box-left {
         max-width: 1250px;
         margin: 12px 15px 0 30px;
@@ -715,7 +725,7 @@
                   <i class="fa-solid fa-rotate"></i> Nhập lại
                 </button>
               </a>
-              <a href="Dashboard.html">
+              <a href="danhsachmuagiai.html">
                 <button class="return">
                   <i class="fa-solid fa-arrow-left"></i> Danh sách mùa giải
                 </button>
@@ -724,13 +734,14 @@
           </div>
 
           <div class="kienngu">
+            <div class="success">Thêm thành công</div>
             <div class="box">
               <div>
                 <div class="box-left">
                   <div class="row">
                     <div class="col">
                       <label>Tên mùa giải</label>
-                      <input type="text" />
+                      <input type="text" id="tenMuaGiai" />
                     </div>
                   </div>
 
@@ -739,7 +750,7 @@
                       <label>Thời gian bắt đầu</label>
                       <input
                         type="text"
-                        id="dateInput"
+                        id="thoiGianBatDau"
                         placeholder="Thời gian bắt đầu"
                         onfocus="(this.type='date')"
                         onblur="if(!this.value) this.type='text'"
@@ -750,7 +761,7 @@
                       <label>Thời gian kết thúc</label>
                       <input
                         type="text"
-                        id="dateInput"
+                        id="thoiGianKetThuc"
                         placeholder="Thời gian kết thúc"
                         onfocus="(this.type='date')"
                         onblur="if(!this.value) this.type='text'"
@@ -762,7 +773,7 @@
                   <div class="row">
                     <div class="col">
                       <label>Số đội tham dự</label>
-                      <input type="number" />
+                      <input type="number" id="soDoiThamDu" />
                     </div>
                   </div>
 
@@ -960,85 +971,233 @@
     </div>
 
     <script>
-      // submenu
-      // Lấy tất cả các menu cha
-      let menuItems = document.querySelectorAll(".menu-item");
+      // Biến để lưu trữ Data URL của ảnh
+      let logoDataUrl = null;
+      let wpDataUrl = null;
 
-      menuItems.forEach((item) => {
+      // --- CÁC HÀM VÀ LOGIC HIỆN CÓ ---
+
+      // submenu
+      document.querySelectorAll(".menu-item").forEach((item) => {
         item.addEventListener("click", function () {
           let submenu = this.nextElementSibling;
-
-          // Chỉ toggle submenu hiện tại, không đóng các submenu khác
-          submenu.style.display =
-            submenu.style.display === "block" ? "none" : "block";
+          if (submenu && submenu.classList.contains("submenu")) {
+            submenu.style.display =
+              submenu.style.display === "block" ? "none" : "block";
+          }
         });
       });
 
-      // Hiển thị preview logo and wallpaper
+      // Hiển thị preview và LƯU Data URL
       function previewImage(inputId, previewId) {
-        var input = document.getElementById(inputId);
-        var preview = document.getElementById(previewId);
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+        if (!input || !preview) {
+          console.error(
+            `DEBUG: Không tìm thấy input ${inputId} hoặc preview ${previewId}`
+          );
+          return;
+        }
 
         input.addEventListener("change", function () {
-          var file = this.files[0];
+          console.log(`DEBUG: File changed for ${inputId}`);
+          preview.innerHTML = "";
+          const file = this.files[0];
           if (file && file.type.startsWith("image/")) {
-            var reader = new FileReader();
+            const reader = new FileReader();
             reader.onload = function (e) {
-              preview.innerHTML =
-                '<img src="' +
-                e.target.result +
-                '" style="max-width: 200px; max-height: 200px;" />';
+              console.log(`DEBUG: Image loaded for ${inputId}`);
+              const img = document.createElement("img");
+              img.src = e.target.result;
+              preview.appendChild(img);
+              if (inputId === "logoFile") {
+                logoDataUrl = e.target.result;
+                console.log("DEBUG: logoDataUrl set.");
+              }
+              if (inputId === "wpFile") {
+                wpDataUrl = e.target.result;
+                console.log("DEBUG: wpDataUrl set.");
+              }
+            };
+            reader.onerror = function (e) {
+              console.error(`DEBUG: FileReader error for ${inputId}:`, e);
             };
             reader.readAsDataURL(file);
           } else {
-            preview.innerHTML = "File không hợp lệ!";
+            if (inputId === "logoFile") logoDataUrl = null;
+            if (inputId === "wpFile") wpDataUrl = null;
+            if (file) preview.innerHTML = "File không phải ảnh!";
+            console.log(
+              `DEBUG: File for ${inputId} is not valid image or no file selected.`
+            );
           }
         });
       }
-
-      // Gọi cho từng input
       previewImage("logoFile", "logoPreview");
       previewImage("wpFile", "wpPreview");
 
       // vòng tròn or chia bảng
-      var formatSelect = document.querySelector("select"); // cái thẻ <select> đầu tiên là "Thể thức thi đấu"
-      var thirdPlaceRow = document.querySelector("#toggle").closest(".row"); // dòng chứa toggle tranh giải ba
-      var groupConfigSection = document.querySelector(".chiabang"); // phần cấu hình bảng đấu
-      var nhd = document.querySelector(".nguyenkhi");
+      const formatSelect = document.querySelector(".box-left select");
+      const thirdPlaceToggleInput = document.querySelector("#toggle");
+      const thirdPlaceRow = thirdPlaceToggleInput?.closest(".row");
+      const groupConfigSection = document.querySelector(".chiabang");
+      const groupConfigHeader = document.querySelector(".nguyenkhi");
 
-      function updateUIBasedOnFormat() {
-        var selectedFormat = formatSelect.value;
-        if (selectedFormat === "Vòng tròn") {
-          thirdPlaceRow.style.display = "none";
-          groupConfigSection.style.display = "none";
-          nhd.style.display = "none";
-        } else if (selectedFormat === "Chia bảng") {
-          thirdPlaceRow.style.display = "";
-          groupConfigSection.style.display = "";
-          nhd.style.display = "";
+      if (
+        formatSelect &&
+        thirdPlaceRow &&
+        groupConfigSection &&
+        groupConfigHeader
+      ) {
+        function updateUIBasedOnFormat() {
+          const selectedFormat = formatSelect.value;
+          const isChiaBang = selectedFormat === "Chia bảng";
+          thirdPlaceRow.style.display = isChiaBang ? "" : "none";
+          groupConfigSection.style.display = isChiaBang ? "" : "none";
+          groupConfigHeader.style.display = isChiaBang ? "" : "none";
         }
+        updateUIBasedOnFormat();
+        formatSelect.addEventListener("change", updateUIBasedOnFormat);
+      } else {
+        console.warn(
+          "DEBUG: Missing elements for format toggle logic (formatSelect, thirdPlaceRow, chiabang, nguyenkhi)."
+        );
       }
 
-      // Gọi lúc load trang
-      updateUIBasedOnFormat();
-
-      // Gọi mỗi khi select thay đổi
-      formatSelect.addEventListener("change", updateUIBasedOnFormat);
-
-      //----------------submenu-user_infor-----------------
+      // submenu-user_infor
       function toggleDropdown() {
-        var menu = document.getElementById("dropdownMenu");
-        menu.style.display = menu.style.display === "block" ? "none" : "block";
+        const menu = document.getElementById("dropdownMenu");
+        if (menu)
+          menu.style.display =
+            menu.style.display === "block" ? "none" : "block";
       }
-
-      // Ẩn dropdown nếu click ra ngoài
       window.addEventListener("click", function (e) {
-        var menu = document.getElementById("dropdownMenu");
-        var userInfo = document.querySelector(".user-info");
-        if (!userInfo.contains(e.target)) {
+        const menu = document.getElementById("dropdownMenu");
+        const userInfo = document.querySelector(".user-info");
+        if (
+          menu &&
+          userInfo &&
+          menu.style.display === "block" &&
+          !userInfo.contains(e.target)
+        ) {
           menu.style.display = "none";
         }
       });
+
+      // --- XỬ LÝ NÚT LƯU ---
+      const saveBtn = document.querySelector(".save");
+      const successMsg = document.querySelector(".success"); // Div chứa thông báo thành công
+      const tenMuaGiaiInput = document.getElementById("tenMuaGiai");
+      const soDoiThamDuInput = document.getElementById("soDoiThamDu");
+
+      if (saveBtn && tenMuaGiaiInput && soDoiThamDuInput) {
+        console.log(
+          "DEBUG: Save button and required validation inputs (tenMuaGiai, soDoiThamDu) found. Attaching listener."
+        );
+
+        saveBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          console.log("DEBUG: Save button clicked!");
+
+          // Ẩn thông báo thành công cũ trước khi kiểm tra
+          if (successMsg) {
+            successMsg.style.display = "none";
+          }
+
+          // Lấy giá trị các trường BẮT BUỘC
+          const tenMuaGiaiValue = tenMuaGiaiInput.value.trim();
+          const soDoiThamDuValue = soDoiThamDuInput.value;
+
+          // KIỂM TRA BẮT BUỘC
+          if (tenMuaGiaiValue === "" || soDoiThamDuValue === "") {
+            alert("Vui lòng nhập đầy đủ Tên mùa giải và Số đội tham dự!");
+            console.warn(
+              "DEBUG: Validation failed - Missing name or team count."
+            );
+            if (tenMuaGiaiValue === "") {
+              tenMuaGiaiInput.focus();
+            } else {
+              soDoiThamDuInput.focus();
+            }
+            return; // Dừng lại
+          }
+          console.log("DEBUG: Validation passed.");
+
+          // Lấy các giá trị còn lại (nếu validation OK)
+          const thoiGianBatDauInput = document.getElementById("thoiGianBatDau");
+          const thoiGianKetThucInput =
+            document.getElementById("thoiGianKetThuc");
+          const locationInput = document.getElementById("location");
+          const fanpageInput = document.getElementById("fanpage");
+
+          const thoiGianBatDauValue = thoiGianBatDauInput
+            ? thoiGianBatDauInput.value
+            : "";
+          const thoiGianKetThucValue = thoiGianKetThucInput
+            ? thoiGianKetThucInput.value
+            : "";
+          const locationValue = locationInput ? locationInput.value.trim() : "";
+          const fanpageValue = fanpageInput ? fanpageInput.value.trim() : "";
+
+          console.log("DEBUG: Optional values retrieved."); // Log giá trị nếu cần
+
+          // Tạo object dữ liệu
+          const newSeasonData = {
+            id: Date.now(),
+            name: tenMuaGiaiValue,
+            startDate: thoiGianBatDauValue,
+            endDate: thoiGianKetThucValue,
+            teamCount: soDoiThamDuValue,
+            logo: logoDataUrl,
+            wallpaper: wpDataUrl,
+            location: locationValue,
+            fanpage: fanpageValue,
+          };
+          console.log("DEBUG: newSeasonData object created:", newSeasonData);
+
+          // Lưu vào localStorage
+          try {
+            console.log("DEBUG: Attempting to save to localStorage...");
+            const storageKey = "danhSachMuaGiai";
+            let seasons = JSON.parse(localStorage.getItem(storageKey)) || [];
+            seasons.push(newSeasonData);
+            localStorage.setItem(storageKey, JSON.stringify(seasons));
+            console.log(
+              `DEBUG: Successfully saved to localStorage key '${storageKey}'!`
+            );
+
+            // ******** THAY ĐỔI QUAN TRỌNG ********
+            // 1. KHÔNG chuyển hướng tự động nữa
+            // window.location.href = "danhsachmuagiai.html";
+
+            // 2. HIỂN THỊ thông báo thành công
+            if (successMsg) {
+              successMsg.textContent = "Thêm thành công!"; // Đảm bảo nội dung đúng
+              successMsg.style.display = "block"; // Hiện div .success
+              console.log("DEBUG: Success message displayed.");
+              // Optional: Cuộn lên để người dùng thấy thông báo nếu nó ở trên cao
+              // successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+              console.warn(
+                "DEBUG: Cannot find success message element (.success) to display."
+              );
+              // Có thể alert thay thế nếu div .success bị thiếu
+              // alert("Thêm thành công!");
+            }
+            // ******** KẾT THÚC THAY ĐỔI ********
+          } catch (error) {
+            console.error("DEBUG: Error saving to localStorage:", error);
+            alert(
+              "Đã xảy ra lỗi khi lưu mùa giải. Vui lòng kiểm tra console (F12)."
+            );
+          }
+        }); // Kết thúc event listener click
+      } else {
+        console.error(
+          "DEBUG: Lỗi nghiêm trọng khi khởi tạo! Không tìm thấy nút Lưu (.save) hoặc input #tenMuaGiai / #soDoiThamDu."
+        );
+        alert("Lỗi khởi tạo trang: Không thể thiết lập chức năng Lưu.");
+      }
     </script>
   </body>
 </html>
