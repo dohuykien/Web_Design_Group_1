@@ -756,9 +756,6 @@
               try {
                 const date = new Date(dateString);
                 if (isNaN(date.getTime())) {
-                  console.warn(
-                    `DEBUG: Invalid date string for season ${season.id}: ${dateString}`
-                  );
                   return "N/A";
                 }
                 const day = String(date.getDate()).padStart(2, "0");
@@ -766,10 +763,6 @@
                 const year = date.getFullYear();
                 return `${day}-${month}-${year}`;
               } catch (e) {
-                console.error(
-                  `DEBUG: Error formatting date for season ${season.id}: ${dateString}`,
-                  e
-                );
                 return "N/A";
               }
             };
@@ -781,20 +774,17 @@
             const wallpaperAlt = season.wallpaper
               ? "Hình nền giải đấu"
               : "Hình nền mặc định";
-            console.log(
-              `DEBUG: Season ${season.id} - Using wallpaper: ${wallpaperSrc}`
-            );
 
             const logoSrc = season.logo ? season.logo : null;
             const logoElement = logoSrc
               ? `<img src="${logoSrc}" alt="Logo giải đấu" class="card-logo">`
               : `<div class="card-logo" style="background-color: #ddd; display:flex; align-items:center; justify-content:center; font-size:12px; color:#666; text-align: center; padding: 5px;">No Logo</div>`;
 
-            // Tạo HTML cho card - ĐÃ SỬA LẠI THEO YÊU CẦU MỚI NHẤT
+            // Tạo HTML cho card - ĐÃ SỬA LẠI NÚT CẤU HÌNH
             const cardHTML = `
                             <div class="season-card" data-id="${season.id}">
                                 <div class="card-header">
-                                    <img src="${wallpaperSrc}" alt="${wallpaperAlt}" class="wallpaper" onerror="this.onerror=null; this.src='images/bg-default.jpg'; console.warn('DEBUG: Wallpaper image failed to load, using default: ${wallpaperSrc}');">
+                                    <img src="${wallpaperSrc}" alt="${wallpaperAlt}" class="wallpaper" onerror="this.onerror=null; this.src='images/bg-default.jpg';">
                                 </div>
                                 <div class="card-logo-container">
                                      ${logoElement}
@@ -826,22 +816,22 @@
                                              : ""
                                          }
                                     </div>
-  
-                                     <!-- ***** TÊN MÙA GIẢI VỚI STYLE MÀU ĐỎ, ĐẬM ***** -->
-                                     <!-- Đặt tên vào thẻ h3 và áp dụng class 'card-extra-info' -->
                                      <h3 class="card-extra-info" title="Tên mùa giải" style="word-wrap: break-word; text-align: center; margin-top: 15px;">
                                          ${season.name || "Tên mùa giải trống"}
                                      </h3>
-                                     <!-- ***** KẾT THÚC THAY ĐỔI ***** -->
-  
                                 </div>
                                 <div class="card-footer">
-                                    <button class="edit-btn" onclick="editSeason(${
+                                    <!-- Nút này sẽ chuyển đến trang EditSeason.html -->
+                                    <button class="edit-btn" onclick="goToConfigurePage(${
                                       season.id
-                                    })" title="Chỉnh sửa"><i class="fas fa-cog"></i></button>
+                                    })" title="Cấu hình mùa giải">
+                                        <i class="fas fa-cog"></i>
+                                    </button>
                                     <button class="delete-btn" onclick="deleteSeason(${
                                       season.id
-                                    })" title="Xóa"><i class="fas fa-trash-alt"></i></button>
+                                    })" title="Xóa">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
                                 </div>
                             </div>
                         `;
@@ -853,19 +843,30 @@
             error
           );
           container.innerHTML =
-            '<p style="color: red; text-align: center;">Đã xảy ra lỗi khi tải danh sách mùa giải. Vui lòng kiểm tra console (F12).</p>';
+            '<p style="color: red; text-align: center;">Đã xảy ra lỗi khi tải danh sách mùa giải.</p>';
           noSeasonsMessage.textContent = "Không thể tải dữ liệu mùa giải.";
           noSeasonsMessage.style.display = "block";
           noSeasonsMessage.style.color = "red";
         }
       });
 
-      // --- Các hàm xử lý nút Sửa/Xóa ---
-      function editSeason(seasonId) {
-        console.log("Chức năng sửa cho mùa giải ID:", seasonId);
-        alert(`Chức năng Sửa cho mùa giải ID ${seasonId} chưa được cài đặt!`);
+      // --- HÀM CHUYỂN ĐẾN TRANG CẤU HÌNH (ĐÃ ĐỔI TÊN FILE) ---
+      function goToConfigurePage(seasonId) {
+        if (!seasonId) {
+          console.error("Lỗi: Không có ID mùa giải để cấu hình.");
+          alert("Không thể xác định mùa giải cần cấu hình.");
+          return;
+        }
+        // *** Đã đổi tên file thành EditSeason.html ***
+        const configurePageFilename = "EditSeason.html";
+        // ***---------------------------------------***
+
+        const url = `${configurePageFilename}?id=${seasonId}`;
+        console.log(`Navigating to configure page: ${url}`);
+        window.location.href = url;
       }
 
+      // --- Hàm xử lý nút Xóa (Giữ nguyên) ---
       function deleteSeason(seasonId) {
         console.log("Yêu cầu xóa mùa giải ID:", seasonId);
         if (!seasonId) {
@@ -881,8 +882,6 @@
             const seasonsDataKey = "danhSachMuaGiai";
             let seasons =
               JSON.parse(localStorage.getItem(seasonsDataKey)) || [];
-            console.log("DEBUG: Dữ liệu trước khi xóa:", seasons);
-
             const updatedSeasons = seasons.filter(
               (season) => season.id !== seasonId
             );
@@ -892,20 +891,9 @@
                 seasonsDataKey,
                 JSON.stringify(updatedSeasons)
               );
-              console.log(
-                "DEBUG: Đã xóa mùa giải ID:",
-                seasonId,
-                "Dữ liệu sau khi xóa:",
-                updatedSeasons
-              );
               alert(`Đã xóa thành công`);
               location.reload();
             } else {
-              console.warn(
-                "DEBUG: Không tìm thấy mùa giải với ID:",
-                seasonId,
-                "để xóa."
-              );
               alert(`Không tìm thấy mùa giải với ID ${seasonId} để xóa.`);
             }
           } catch (error) {
