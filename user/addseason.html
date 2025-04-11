@@ -966,78 +966,101 @@
       });
     </script>
     <script>
-      // Biến để lưu trữ Data URL của ảnh
+      // ----- ***** ĐỌC LEAGUE ID TỪ URL ***** -----
+      let currentLeagueId = null;
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const leagueIdFromUrl = urlParams.get("leagueId");
+        if (leagueIdFromUrl) {
+          currentLeagueId = parseInt(leagueIdFromUrl, 10);
+          console.log(
+            `DEBUG (addseason): Received leagueId: ${currentLeagueId}`
+          );
+        } else {
+          // Chỉ hiện alert, không chuyển trang
+          console.error(
+            "DEBUG (addseason): CRITICAL - No leagueId found in URL! Cannot create season."
+          );
+          alert("Lỗi: Không xác định được giải đấu để tạo mùa giải!");
+          // Optional: Disable nút Save nếu không có leagueId
+          // const saveButtonForDisable = document.querySelector(".save");
+          // if (saveButtonForDisable) saveButtonForDisable.disabled = true;
+        }
+      } catch (e) {
+        console.error("DEBUG (addseason): Error reading leagueId from URL:", e);
+        alert("Lỗi đọc ID giải đấu từ URL!");
+      }
+      // ----- KẾT THÚC ĐỌC LEAGUE ID -----
+      // Biến lưu Data URL ảnh mùa giải
       let logoDataUrl = null;
       let wpDataUrl = null;
 
-      // --- CÁC HÀM VÀ LOGIC HIỆN CÓ ---
-
-      // submenu
-      document.querySelectorAll(".menu-item").forEach((item) => {
-        item.addEventListener("click", function () {
-          let submenu = this.nextElementSibling;
-          if (submenu && submenu.classList.contains("submenu")) {
-            submenu.style.display =
-              submenu.style.display === "block" ? "none" : "block";
-          }
-        });
-      });
-
-      // Hiển thị preview và LƯU Data URL
+      // --- Preview ảnh và Lưu Data URL ---
       function previewImage(inputId, previewId) {
+        /* ... code preview giữ nguyên ... */
         const input = document.getElementById(inputId);
         const preview = document.getElementById(previewId);
         if (!input || !preview) {
           console.error(
-            `DEBUG: Không tìm thấy input ${inputId} hoặc preview ${previewId}`
+            `DEBUG (addseason): Missing ${inputId} or ${previewId}`
           );
           return;
         }
-
         input.addEventListener("change", function () {
-          console.log(`DEBUG: File changed for ${inputId}`);
           preview.innerHTML = "";
           const file = this.files[0];
+          let targetVar =
+            inputId === "logoFile"
+              ? "logoDataUrl"
+              : inputId === "wpFile"
+              ? "wpDataUrl"
+              : null;
           if (file && file.type.startsWith("image/")) {
             const reader = new FileReader();
             reader.onload = function (e) {
-              console.log(`DEBUG: Image loaded for ${inputId}`);
               const img = document.createElement("img");
               img.src = e.target.result;
               preview.appendChild(img);
-              if (inputId === "logoFile") {
+              if (targetVar === "logoDataUrl") {
                 logoDataUrl = e.target.result;
-                console.log("DEBUG: logoDataUrl set.");
+                console.log("DEBUG (addseason): Season logo URL set.");
               }
-              if (inputId === "wpFile") {
+              if (targetVar === "wpDataUrl") {
                 wpDataUrl = e.target.result;
-                console.log("DEBUG: wpDataUrl set.");
+                console.log("DEBUG (addseason): Season wallpaper URL set.");
               }
             };
-            reader.onerror = function (e) {
-              console.error(`DEBUG: FileReader error for ${inputId}:`, e);
+            reader.onerror = (e) => {
+              console.error(
+                `DEBUG (addseason): FileReader error for ${inputId}:`,
+                e
+              );
             };
             reader.readAsDataURL(file);
           } else {
-            if (inputId === "logoFile") logoDataUrl = null;
-            if (inputId === "wpFile") wpDataUrl = null;
-            if (file) preview.innerHTML = "File không phải ảnh!";
-            console.log(
-              `DEBUG: File for ${inputId} is not valid image or no file selected.`
-            );
+            if (targetVar === "logoDataUrl") logoDataUrl = null;
+            if (targetVar === "wpDataUrl") wpDataUrl = null;
+            if (file) {
+              preview.innerHTML = "File không phải ảnh!";
+              alert("Vui lòng chọn file ảnh hợp lệ.");
+              input.value = null;
+            } else {
+              console.log(`DEBUG (addseason): No file for ${inputId}.`);
+            }
+            if (targetVar === "logoDataUrl") logoDataUrl = null;
+            if (targetVar === "wpDataUrl") wpDataUrl = null;
           }
         });
       }
       previewImage("logoFile", "logoPreview");
       previewImage("wpFile", "wpPreview");
 
-      // vòng tròn or chia bảng
+      // --- Vòng tròn or Chia bảng  ---
       const formatSelect = document.querySelector(".box-left select");
       const thirdPlaceToggleInput = document.querySelector("#toggle");
       const thirdPlaceRow = thirdPlaceToggleInput?.closest(".row");
       const groupConfigSection = document.querySelector(".chiabang");
       const groupConfigHeader = document.querySelector(".nguyenkhi");
-
       if (
         formatSelect &&
         thirdPlaceRow &&
@@ -1054,57 +1077,58 @@
         updateUIBasedOnFormat();
         formatSelect.addEventListener("change", updateUIBasedOnFormat);
       } else {
-        console.warn(
-          "DEBUG: Missing elements for format toggle logic (formatSelect, thirdPlaceRow, chiabang, nguyenkhi)."
-        );
+        console.warn("DEBUG (addseason): Missing elements for format toggle.");
       }
 
-      // --- XỬ LÝ NÚT LƯU ---
+      // --- XỬ LÝ NÚT LƯU MÙA GIẢI (giữ nguyên phần còn lại) ---
       const saveBtn = document.querySelector(".save");
-      const successMsg = document.querySelector(".success"); // Div chứa thông báo thành công
+      const successMsg = document.querySelector(".success");
       const tenMuaGiaiInput = document.getElementById("tenMuaGiai");
       const soDoiThamDuInput = document.getElementById("soDoiThamDu");
 
-      if (saveBtn && tenMuaGiaiInput && soDoiThamDuInput) {
-        console.log(
-          "DEBUG: Save button and required validation inputs (tenMuaGiai, soDoiThamDu) found. Attaching listener."
+      // Optional: Vô hiệu hóa nút Lưu nếu không có leagueId ban đầu
+      if (currentLeagueId === null && saveBtn) {
+        console.warn(
+          "DEBUG (addseason): Disabling save button because leagueId is missing."
         );
+        saveBtn.disabled = true;
+        saveBtn.style.opacity = 0.6; // Làm mờ nút
+        saveBtn.style.cursor = "not-allowed";
+        // Có thể thêm thông báo vào gần nút Lưu
+        // const saveBtnContainer = saveBtn.closest('.wrap'); // Tìm container của nút
+      }
 
+      if (saveBtn && tenMuaGiaiInput && soDoiThamDuInput) {
         saveBtn.addEventListener("click", function (e) {
           e.preventDefault();
-          console.log("DEBUG: Save button clicked!");
+          if (successMsg) successMsg.style.display = "none";
 
-          // Ẩn thông báo thành công cũ trước khi kiểm tra
-          if (successMsg) {
-            successMsg.style.display = "none";
+          // *** Thêm kiểm tra currentLeagueId ở đây một lần nữa ***
+          if (currentLeagueId === null) {
+            alert("Lỗi: Không xác định được Giải đấu. Không thể lưu mùa giải.");
+            console.error(
+              "DEBUG (addseason): Save cancelled - leagueId is still null."
+            );
+            return; // Không cho lưu nếu không có leagueId
           }
 
-          // Lấy giá trị các trường BẮT BUỘC
           const tenMuaGiaiValue = tenMuaGiaiInput.value.trim();
           const soDoiThamDuValue = soDoiThamDuInput.value;
 
-          // KIỂM TRA BẮT BUỘC
           if (tenMuaGiaiValue === "" || soDoiThamDuValue === "") {
             alert("Vui lòng nhập đầy đủ Tên mùa giải và Số đội tham dự!");
-            console.warn(
-              "DEBUG: Validation failed - Missing name or team count."
-            );
-            if (tenMuaGiaiValue === "") {
-              tenMuaGiaiInput.focus();
-            } else {
-              soDoiThamDuInput.focus();
-            }
-            return; // Dừng lại
+            if (tenMuaGiaiValue === "") tenMuaGiaiInput.focus();
+            else soDoiThamDuInput.focus();
+            return;
           }
-          console.log("DEBUG: Validation passed.");
+          console.log("DEBUG (addseason): Validation passed.");
 
-          // Lấy các giá trị còn lại (nếu validation OK)
+          // Lấy các giá trị còn lại...
           const thoiGianBatDauInput = document.getElementById("thoiGianBatDau");
           const thoiGianKetThucInput =
             document.getElementById("thoiGianKetThuc");
           const locationInput = document.getElementById("location");
           const fanpageInput = document.getElementById("fanpage");
-
           const thoiGianBatDauValue = thoiGianBatDauInput
             ? thoiGianBatDauInput.value
             : "";
@@ -1114,11 +1138,10 @@
           const locationValue = locationInput ? locationInput.value.trim() : "";
           const fanpageValue = fanpageInput ? fanpageInput.value.trim() : "";
 
-          console.log("DEBUG: Optional values retrieved."); // Log giá trị nếu cần
-
-          // Tạo object dữ liệu
+          // Tạo object dữ liệu mùa giải - CÓ leagueId
           const newSeasonData = {
             id: Date.now(),
+            leagueId: currentLeagueId, // Đã thêm ID giải đấu
             name: tenMuaGiaiValue,
             startDate: thoiGianBatDauValue,
             endDate: thoiGianKetThucValue,
@@ -1128,50 +1151,34 @@
             location: locationValue,
             fanpage: fanpageValue,
           };
-          console.log("DEBUG: newSeasonData object created:", newSeasonData);
 
-          // Lưu vào localStorage
+          // Lưu vào localStorage['danhSachMuaGiai']
           try {
-            console.log("DEBUG: Attempting to save to localStorage...");
             const storageKey = "danhSachMuaGiai";
             let seasons = JSON.parse(localStorage.getItem(storageKey)) || [];
             seasons.push(newSeasonData);
             localStorage.setItem(storageKey, JSON.stringify(seasons));
-            console.log(
-              `DEBUG: Successfully saved to localStorage key '${storageKey}'!`
-            );
+            console.log(`DEBUG (addseason): Season saved to '${storageKey}'.`);
 
-            // ******** THAY ĐỔI QUAN TRỌNG ********
-            // 1. KHÔNG chuyển hướng tự động nữa
-            // window.location.href = "danhsachmuagiai.html";
-
-            // 2. HIỂN THỊ thông báo thành công
+            // Chỉ hiện thông báo thành công
             if (successMsg) {
-              successMsg.textContent = "Thêm thành công!"; // Đảm bảo nội dung đúng
-              successMsg.style.display = "block"; // Hiện div .success
-              console.log("DEBUG: Success message displayed.");
-              // Optional: Cuộn lên để người dùng thấy thông báo nếu nó ở trên cao
-              // successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              successMsg.textContent = "Thêm mùa giải thành công!";
+              successMsg.style.display = "block";
+              console.log("DEBUG (addseason): Success message shown.");
             } else {
-              console.warn(
-                "DEBUG: Cannot find success message element (.success) to display."
-              );
-              // Có thể alert thay thế nếu div .success bị thiếu
-              // alert("Thêm thành công!");
+              alert("Thêm mùa giải thành công!");
             }
-            // ******** KẾT THÚC THAY ĐỔI ********
           } catch (error) {
-            console.error("DEBUG: Error saving to localStorage:", error);
-            alert(
-              "Đã xảy ra lỗi khi lưu mùa giải. Vui lòng kiểm tra console (F12)."
-            );
+            console.error("DEBUG (addseason): Error saving season:", error);
+            alert("Lỗi khi lưu mùa giải. Kiểm tra console (F12).");
           }
-        }); // Kết thúc event listener click
+        });
       } else {
         console.error(
-          "DEBUG: Lỗi nghiêm trọng khi khởi tạo! Không tìm thấy nút Lưu (.save) hoặc input #tenMuaGiai / #soDoiThamDu."
+          "DEBUG (addseason): Critical Error! Missing elements for saving.",
+          { saveBtn, tenMuaGiaiInput, soDoiThamDuInput }
         );
-        alert("Lỗi khởi tạo trang: Không thể thiết lập chức năng Lưu.");
+        // Không cần alert ở đây nữa vì đã có alert ở trên nếu leagueId null
       }
     </script>
   </body>

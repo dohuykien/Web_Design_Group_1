@@ -751,70 +751,131 @@
     </script>
 
     <script>
-      // submenu
-      // Lấy tất cả các menu cha
-      let menuItems = document.querySelectorAll(".menu-item");
+      // ===== PHẦN XỬ LÝ LOGO VÀ LƯU GIẢI ĐẤU =====
+      let leagueLogoDataUrl = null; // Biến lưu Data URL logo giải đấu
 
-      menuItems.forEach((item) => {
-        item.addEventListener("click", function () {
-          let submenu = this.nextElementSibling;
+      // Input logo league - Preview và Lưu Data URL
+      const fileInput = document.getElementById("fileInput");
+      const preview = document.getElementById("preview");
 
-          // Chỉ toggle submenu hiện tại, không đóng các submenu khác
-          submenu.style.display =
-            submenu.style.display === "block" ? "none" : "block";
+      if (fileInput && preview) {
+        fileInput.addEventListener("change", function () {
+          console.log("DEBUG (addleague): File input changed.");
+          preview.style.display = "none";
+          preview.src = "";
+          leagueLogoDataUrl = null;
+          const file = this.files[0];
+          if (file && file.type.startsWith("image/")) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              preview.src = e.target.result;
+              preview.style.display = "block";
+              leagueLogoDataUrl = e.target.result; // Lưu Data URL
+              console.log("DEBUG (addleague): League logo Data URL captured.");
+            };
+            reader.onerror = (e) => {
+              console.error("DEBUG (addleague): FileReader error:", e);
+            };
+            reader.readAsDataURL(file);
+          } else if (file) {
+            alert("Vui lòng chọn một file ảnh hợp lệ.");
+            leagueLogoDataUrl = null;
+            fileInput.value = null; // Reset input file
+          } else {
+            leagueLogoDataUrl = null;
+          }
         });
-      });
+      } else {
+        console.error("DEBUG (addleague): Cannot find #fileInput or #preview.");
+      }
 
-      // Input logo league
-      let fileInput = document.getElementById("fileInput");
-      let preview = document.getElementById("preview");
+      //------------ Xử lý nút Lưu giải đấu ------------
+      const saveBtn = document.querySelector(".save");
+      const nameLeagueInput = document.getElementById("nameleague");
+      const boxInput = document.querySelector(".box");
+      const boxSuccess = document.querySelector(".box-success");
+      const successMessageP = document.getElementById("success-message");
+      const addSeasonLink = document.querySelector(
+        ".box-success a[href*='addseason.html']"
+      );
 
-      fileInput.addEventListener("change", function () {
-        let file = this.files[0];
-        if (file) {
-          let reader = new FileReader();
-          reader.onload = function (e) {
-            preview.src = e.target.result;
-            preview.style.display = "block";
+      // Ẩn box success khi tải trang
+      if (boxSuccess) {
+        document.addEventListener("DOMContentLoaded", () => {
+          if (boxSuccess) boxSuccess.style.display = "none";
+        });
+      } else {
+        console.error("DEBUG (addleague): Cannot find .box-success.");
+      }
+
+      // Gắn sự kiện nút Lưu
+      if (
+        saveBtn &&
+        nameLeagueInput &&
+        boxInput &&
+        boxSuccess &&
+        successMessageP &&
+        addSeasonLink
+      ) {
+        saveBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          console.log("DEBUG (addleague): Save button clicked.");
+          const leagueName = nameLeagueInput.value.trim();
+
+          if (leagueName === "") {
+            alert("Bạn chưa nhập tên giải đấu!");
+            nameLeagueInput.focus();
+            return;
+          }
+          // Không bắt buộc logo ở đây nữa
+
+          console.log("DEBUG (addleague): Validation passed.");
+          const newLeagueId = Date.now();
+          const newLeagueData = {
+            id: newLeagueId,
+            name: leagueName,
+            logo: leagueLogoDataUrl, // Có thể là null
+            createdAt: new Date().toISOString(),
+            creator: "Hải Đăng Nguyễn", // Tạm thời
           };
-          reader.readAsDataURL(file);
-        }
-      });
 
-      //------------ save-success----------------
-      window.onload = function () {
-        document.querySelector(".box-success").style.display = "none";
-      };
+          try {
+            const storageKey = "danhSachGiaiDau"; // Key cho giải đấu
+            let leagues = JSON.parse(localStorage.getItem(storageKey)) || [];
+            leagues.push(newLeagueData);
+            localStorage.setItem(storageKey, JSON.stringify(leagues));
+            console.log(`DEBUG (addleague): League saved to '${storageKey}'.`);
 
-      document.querySelector(".save").addEventListener("click", function (e) {
-        e.preventDefault();
+            addSeasonLink.href = `addseason.html?leagueId=${newLeagueId}`; // Cập nhật link quan trọng
+            console.log(
+              `DEBUG (addleague): Updated addSeasonLink href: ${addSeasonLink.href}`
+            );
 
-        var nameInput = document.getElementById("nameleague").value.trim();
-
-        if (nameInput === "") {
-          alert("Bạn chưa nhập tên giải đấu!");
-          return;
-        }
-
-        // Ẩn box cũ
-        var box = document.querySelector(".box");
-        if (box) {
-          box.style.display = "none";
-        }
-
-        // Ghi thông báo vào box-success, chỉ bold tên giải
-        var successMessage = document.getElementById("success-message");
-        successMessage.innerHTML =
-          "Bạn đã tạo thành công mùa giải <strong>" +
-          nameInput +
-          "</strong>. Bước tiếp thep bạn hãy tạo mùa giải cho giải đấu này";
-
-        // Hiện box-success
-        var boxSuccess = document.querySelector(".box-success");
-        if (boxSuccess) {
-          boxSuccess.style.display = "block";
-        }
-      });
+            successMessageP.innerHTML = `Bạn đã tạo thành công giải đấu <strong>${leagueName}</strong>. Bước tiếp theo, hãy tạo mùa giải cho giải đấu này.`;
+            if (boxInput) boxInput.style.display = "none";
+            if (boxSuccess) boxSuccess.style.display = "block";
+            console.log("DEBUG (addleague): Success message shown.");
+          } catch (error) {
+            console.error("DEBUG (addleague): Error saving league:", error);
+            alert("Lỗi khi lưu giải đấu. Kiểm tra console (F12).");
+            if (boxInput) boxInput.style.display = "block"; // Hiện lại form nếu lỗi
+            if (boxSuccess) boxSuccess.style.display = "none";
+          }
+        });
+      } else {
+        console.error(
+          "DEBUG (addleague): Critical Error! Missing elements for saving.",
+          {
+            saveBtn,
+            nameLeagueInput,
+            boxInput,
+            boxSuccess,
+            successMessageP,
+            addSeasonLink,
+          }
+        );
+        alert("Lỗi khởi tạo trang nghiêm trọng (addleague).");
+      }
     </script>
   </body>
 </html>
