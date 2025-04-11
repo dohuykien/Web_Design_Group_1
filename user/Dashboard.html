@@ -14,6 +14,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
     <link rel="stylesheet" href="/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/user/css/userheader.css" />
+    <link rel="stylesheet" href="/user/css/userfooter.css" />
     <style>
       * {
         margin: 0;
@@ -23,156 +25,6 @@
       }
       body {
         background-color: white;
-      }
-      /*----------Header----------*/
-      .developed-by {
-        position: fixed;
-        left: 250px;
-        top: 7px;
-        color: #ffffff;
-        font-size: 14px;
-      }
-      .navbar-top {
-        background-color: #1565c0;
-        color: white;
-        padding: 10px 20px;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 75px;
-      }
-      .navbar-bottom {
-        position: relative;
-      }
-      /*------------------------- Logo ---------------------------------*/
-      .logo {
-        display: flex;
-        align-items: center;
-        z-index: 2;
-        left: 170px;
-      }
-      .logo img {
-        height: 65px;
-        max-width: 100%;
-        margin-right: 10px;
-      }
-
-      /* Menu chính */
-      .navbar-collapse {
-        background-color: #ff6f00;
-        padding: 7px 0px;
-        height: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        z-index: 1;
-      }
-      .navbar-collapse::before {
-        content: "";
-        position: absolute;
-        top: -40px;
-        left: -15px;
-        width: 101%;
-        height: 50px;
-        background-color: #ff6f00;
-        clip-path: polygon(0 350%, 15% 0, 100% 0, 100% 100%);
-      }
-      .navbar-nav {
-        display: flex;
-        margin-left: -200px;
-      }
-      .navbar-nav li a {
-        left: 10px;
-        color: white;
-        text-decoration: none;
-        /* margin: 0 7px; */
-        top: -20px;
-        position: relative;
-        z-index: 2;
-        font-size: 16px;
-      }
-
-      .nav-item {
-        padding: 0 15px;
-        list-style: none;
-      }
-      .navbar-nav a:hover {
-        text-decoration: underline;
-      }
-
-      /* Responsive cho Mobile */
-      @media (max-width: 768px) {
-        .navbar-collapse {
-          display: none;
-          flex-direction: column;
-          width: 100%;
-          background: #fff;
-          position: absolute;
-          top: 50px;
-          left: 0;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar-collapse.active {
-          display: flex;
-        }
-
-        .nav-item {
-          text-align: center;
-          padding: 10px 0;
-        }
-      }
-      .header .user-info {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        position: relative; /* Đổi từ absolute sang relative */
-        right: 60px;
-        top: -20px;
-        cursor: pointer;
-        z-index: 1000;
-      }
-      .header .user-info img {
-        width: 30px;
-        height: 30px;
-      }
-      .user-info span i {
-        position: relative;
-        top: -2px;
-      }
-
-      .dropdown-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background-color: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        min-width: 160px;
-        z-index: 1000;
-        padding: 5px 0px;
-      }
-
-      .dropdown-menu a {
-        display: block;
-        padding: 5px 15px;
-        color: #333333;
-        text-decoration: none;
-        transition: background-color 0.3s;
-        font-size: 14px;
-      }
-
-      .dropdown-menu a:hover {
-        background-color: #f34541;
-        color: #ffffff;
-      }
-      .fa-solid.fa-caret-down {
-        color: #333333;
-        font-size: 12px;
-        margin-top: 10px;
       }
 
       /*------------Layout------------*/
@@ -227,222 +79,12 @@
       .add:hover {
         background-color: #428bca;
       }
-      /* ----- CARD GIẢI ĐẤU ----- */
-      .haidang {
-        box-sizing: border-box;
-        background-color: #ecf0f5;
-        color: rgb(51, 51, 51);
-        font-size: 14px;
-        font-weight: 500;
-        text-shadow: rgb(255, 255, 255) 1px 1px 1px;
-        border-top: 1px solid #e4e2e2;
-        font-size: 20px;
-        padding: 0 10px 0px 10px;
-      }
-      .cards-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 25px;
-        margin: 0 10px 0 10px;
-      } /* Dùng Grid */
-
-      .league-card {
-        background-color: #fff;
-        border: 1px solid #ddd; /* Viền nhẹ */
-        border-radius: 10px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        height: 333px;
-        transition: box-shadow 0.2s ease;
-      }
-      .league-card:hover {
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-      }
-
-      .league-card .card-logo-container {
-        display: flex;
-        justify-content: center;
-        padding: 20px 0 15px 0;
-        position: relative;
-        background-color: #fff; /* Nền trắng */
-        /* border-bottom: 1px solid #eee; */ /* Bỏ border dưới logo */
-      }
-      .league-card .card-logo {
-        width: 145px;
-        height: 145px;
-        border-radius: 50%;
-        border: 1px solid #eee; /* Viền nhẹ quanh logo */
-        object-fit: cover;
-        background-color: #f0f0f0; /* Nền xám nhạt nếu ảnh trong suốt */
-      }
-
-      .league-card .card-body {
-        padding: 5px 15px 15px 15px; /* Giảm padding trên */
-        text-align: center;
-        flex-grow: 1;
-        border-top: 1px solid #eee; /* Thêm đường kẻ trên body */
-        margin-top: -1px; /* Chống double border */
-      }
-      .league-card .card-info {
-        font-size: 12px;
-        color: rgb(51, 51, 51);
-        margin-bottom: 10px;
-      }
-      .league-card .card-info p {
-        margin: 4px 0;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      }
-      .league-card .card-info i {
-        width: 14px;
-      }
-
-      .league-card .league-name {
-        color: #dd4b39;
-        font-size: 1em;
-        font-weight: normal;
-        margin: 0;
-        word-wrap: break-word;
-      }
-
-      .league-card .card-footer {
-        display: flex;
-        border-top: 1px solid #eee;
-      }
-      .league-card .card-footer button {
-        flex: 1;
-        padding: 10px 5px;
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
-        font-size: 16px;
-        color: #888;
-        transition: background-color 0.1s, color 0.1s;
-        border-right: 1px solid #eee;
-      }
-      .league-card .card-footer button:last-child {
-        border-right: none;
-      }
-      .league-card .card-footer button.edit-btn {
-        background-color: rgb(161, 202, 66);
-        color: rgb(255, 255, 255);
-      }
-      .league-card .card-footer button.seasons-btn {
-        background-color: rgb(20, 153, 163);
-        color: rgb(255, 255, 255);
-      }
-      .league-card .card-footer button.delete-btn {
-        background-color: rgb(168, 35, 34);
-        color: rgb(255, 255, 255);
-      }
-      .league-card .card-footer button:hover {
-        background-color: #ff6f00;
-      }
-      /* ----- HẾT CARD GIẢI ĐẤU ----- */
-      /* --------------------- FOOTER -------------------- */
-      .footer {
-        box-sizing: border-box;
-        background-color: #ecf0f5;
-        color: rgb(51, 51, 51);
-        font-size: 14px;
-        font-weight: 500;
-        text-shadow: rgb(255, 255, 255) 1px 1px 1px;
-        border-top: 1px solid #ecf0f5;
-      }
-
-      .footer-container {
-        box-sizing: border-box;
-        background-color: #ecf0f5;
-        color: rgb(51, 51, 51);
-        font-size: 14px;
-        text-shadow: rgb(255, 255, 255) 2px 2px 2px;
-        margin: 0px 10px 10px 10px;
-        display: block;
-        border-top-color: rgb(255, 255, 255);
-        border-top-style: solid;
-        border-top-width: 0.8px;
-        line-height: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 10px;
-      }
-
-      .footer-left,
-      .footer-right {
-        flex: 1;
-      }
-
-      .footer-left p,
-      .footer-right p {
-        margin: 19px 0;
-      }
-
-      .footer-apps {
-        display: flex;
-        gap: 10px;
-        margin-top: 10px;
-      }
-
-      .footer-apps img {
-        height: 30px;
-      }
+    
     </style>
   </head>
   <body>
-    <header class="header">
-      <div class="navbar">
-        <div class="navbar-top">
-          <div class="logo">
-            <a href="#"><img src="images/logo.png" alt="Logo" /></a>
-          </div>
-          <span class="developed-by">
-            Hệ thống được phát triển bởi HD Promotion</span
-          >
-          <div class="user-info" onclick="toggleDropdown()">
-            <img src="images/dhk.jpg" />
-            <span
-              >Hải Đăng Nguyễn
-              <i class="fa-solid fa-caret-down"></i>
-            </span>
-            <div class="dropdown-menu" id="dropdownMenu">
-              <a href="Dashboard.html">Trang quản lý</a>
-              <a href="#">Đăng xuất</a>
-            </div>
-          </div>
-        </div>
-        <div class="navbar-bottom">
-          <div class="navbar-collapse">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a href="#" class="nav-link">TRANG CHỦ</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">GIẢI ĐANG DIỄN RA</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">GIẢI ĐANG THEO DÕI</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">ĐỘI BÓNG</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">BẮT ĐỐI</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">HƯỚNG DẪN</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">CUỘC THI</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">TIN TỨC</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <header id="header-container" class="header">
+        <!-- Header will be loaded here -->
     </header>
     <div class="container">
       <div id="sidebar-container">
@@ -460,336 +102,66 @@
               </button>
             </a>
           </div>
-          <div class="haidang">
-            <!-- Container để hiển thị card giải đấu -->
-            <div class="league-card-area" style="padding: 20px 0">
-              <!-- Thêm padding nếu cần -->
-              <div class="cards-container" id="leagueListContainer">
-                <!-- Card giải đấu sẽ được JS chèn vào đây -->
-              </div>
-              <p
-                id="noLeaguesMessage"
-                style="
-                  display: none;
-                  text-align: center;
-                  color: #666;
-                  font-size: 1.1em;
-                "
-              ></p>
-            </div>
-            <!-- Kết thúc container card -->
-          </div>
-          <div class="footer">
-            <div class="footer-container">
-              <div class="footer-left">
-                <p>Bản quyền thuộc HD Promotion</p>
-                <p>Nguyen Hai Dang</p>
-                <p>
-                  Chỉ được phát hành lại nội dung khi có sự đồng ý của HD
-                  Promotion
-                </p>
-                <div class="footer-apps">
-                  <a href=""><img src="images/logo.png" alt="IT League" /></a>
-                  <a href=""
-                    ><img src="images/googleplay.png" alt="Google Play"
-                  /></a>
-                  <a href=""
-                    ><img src="images/appstore.png" alt="App Store"
-                  /></a>
-                </div>
-              </div>
-              <div class="footer-right">
-                <p>
-                  <i class="fa fa-building" aria-hidden="true"></i> CÔNG TY CỔ
-                  PHẦN TỔ CHỨC SỰ KIỆN VÀ TRUYỀN THÔNG HD Promotion
-                </p>
-                <p>
-                  <i class="fa fa-map-marker" aria-hidden="true"></i> Số 185,
-                  Trần Đại Nghĩa, phường Đồng Tâm, quận Hai Bà Trưng, Hà Nội
-                </p>
-                <p><i class="fa fa-phone" aria-hidden="true"></i> 0797102555</p>
-                <p>
-                  <i class="fa fa-envelope" aria-hidden="true"></i>
-                  nguyenstorm2k5@gmail.com
-                </p>
-              </div>
-            </div>
-          </div>
+
+          <footer id="footer" class="footer">
+
+          </footer>
         </section>
       </div>
     </div>
 
     <script src="/user/js/sidebar.js"></script>
-    <script name="sidebar">
-      fetch("/user/sidebar.html") // Adjust path
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.text();
-        })
-        .then((html) => {
-          const container = document.getElementById("sidebar-container");
-          if (container) {
-            container.innerHTML = html;
-            // IMPORTANT: Initialize sidebar JS *after* HTML is inserted
-            initializeSidebar();
-          } else {
-            console.error("Sidebar container not found!");
-          }
-        })
-        .catch((error) => {
-          console.error("Error loading sidebar:", error);
-          const container = document.getElementById("sidebar-container");
-          if (container) container.innerHTML = "<p>Error loading sidebar.</p>";
+    <script src="/user/js/userheader.js"></script>
+    <script name="load">
+      // Function to load HTML components
+      function loadComponent(url, containerId, callback) {
+        fetch(url)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status} for ${url}`);
+            }
+            return response.text();
+          })
+          .then((html) => {
+            const container = document.getElementById(containerId);
+            if (container) {
+              container.innerHTML = html;
+              if (callback) {
+                callback(); // Execute callback function after loading
+              }
+            } else {
+              console.error(`Container with ID '${containerId}' not found!`);
+            }
+          })
+          .catch((error) => {
+            console.error(`Error loading component from ${url}:`, error);
+            const container = document.getElementById(containerId);
+            if (container) container.innerHTML = `<p>Error loading content from ${url}.</p>`;
+          });
+      }
+
+      // Use DOMContentLoaded to ensure placeholders exist before fetching
+      document.addEventListener('DOMContentLoaded', () => {
+        // Load Header
+        loadComponent('/user/userheader.html', 'header-container', () => {
+          console.log("Header loaded.");
         });
 
-      // submenu-user_info
-      function toggleDropdown() {
-        var menu = document.getElementById("dropdownMenu");
-        if (menu) {
-          // Check if the element exists
-          menu.style.display =
-            menu.style.display === "block" ? "none" : "block";
-        } else {
-          console.warn("Element with ID 'dropdownMenu' not found.");
-        }
-      }
-
-      // Ẩn dropdown nếu click ra ngoài
-      window.addEventListener("click", function (e) {
-        var menu = document.getElementById("dropdownMenu");
-        var userInfo = document.querySelector(".user-info");
-
-        // Check if both elements exist before proceeding
-        if (menu && userInfo) {
-          // Check if the click was outside the userInfo element AND outside the dropdown menu itself
-          if (!userInfo.contains(e.target) && !menu.contains(e.target)) {
-            menu.style.display = "none";
-          }
-        } else {
-          // Optionally log a warning if elements are missing
-          // console.warn("Either 'dropdownMenu' or '.user-info' element not found for outside click handler.");
-        }
-      });
-    </script>
-    <script>
-      // --- HIỂN THỊ DANH SÁCH GIẢI ĐẤU ---
-      document.addEventListener("DOMContentLoaded", function () {
-        const container = document.getElementById("leagueListContainer");
-        const noLeaguesMessage = document.getElementById("noLeaguesMessage");
-        const leaguesDataKey = "danhSachGiaiDau";
-        const defaultLeagueLogo = "images/logo.png";
-
-        if (!container || !noLeaguesMessage) {
-          console.error(
-            "Error: Essential page elements not found (#leagueListContainer, #noLeaguesMessage)."
-          );
-          return;
-        }
-
-        try {
-          const leagues =
-            JSON.parse(localStorage.getItem(leaguesDataKey)) || [];
-          if (leagues.length === 0) {
-            noLeaguesMessage.style.display = "block";
-            container.innerHTML = "";
-            return;
-          }
-          noLeaguesMessage.style.display = "none";
-          container.innerHTML = "";
-          leagues.sort(
-            (a, b) =>
-              (new Date(b.createdAt) || 0) - (new Date(a.createdAt) || 0)
-          ); // Sắp xếp an toàn
-
-          leagues.forEach((league, index) => {
-            if (!league || typeof league.id === "undefined") {
-              console.warn(
-                `Skipping invalid league data at index ${index}:`,
-                league
-              );
-              return;
-            } // Bỏ qua dữ liệu lỗi
-
-            const formatDateTime = (isoString) => {
-              if (!isoString) return "N/A";
-              try {
-                const date = new Date(isoString);
-                if (isNaN(date.getTime())) return "N/A";
-                const d = String(date.getDate()).padStart(2, "0");
-                const m = String(date.getMonth() + 1).padStart(2, "0");
-                const y = date.getFullYear();
-                const hr = String(date.getHours()).padStart(2, "0");
-                const min = String(date.getMinutes()).padStart(2, "0");
-                const sec = String(date.getSeconds()).padStart(2, "0");
-                return `${d}-${m}-${y} ${hr}:${min}:${sec}`;
-              } catch (e) {
-                return "N/A";
-              }
-            };
-
-            const logoSrc = league.logo ? league.logo : defaultLeagueLogo;
-            const logoAlt = "Logo";
-            const logoElement = `<img src="${logoSrc}" alt="${logoAlt}" class="card-logo" onerror="this.onerror=null; this.src='${defaultLeagueLogo}';">`;
-
-            const cardHTML = `
-                          <div class="league-card" data-id="${league.id}">
-                              <div class="card-logo-container"> ${logoElement} </div>
-                              <div class="card-body">
-                                  <div class="card-info">
-                                      <p title="Ngày tạo"><i class="far fa-calendar-alt"></i> ${formatDateTime(
-                                        league.createdAt
-                                      )}</p>
-                                      <p title="Người tạo"><i class="fas fa-user"></i> ${
-                                        league.creator || "N/A"
-                                      }</p>
-                                  </div>
-                                  <h3 class="league-name" title="Tên giải đấu">${
-                                    league.name || "Tên giải đấu trống"
-                                  }</h3>
-                              </div>
-                              <div class="card-footer">
-                                  <button class="edit-btn" onclick="editLeague(${
-                                    league.id
-                                  })" title="Sửa thông tin giải đấu"> <i class="fas fa-edit"></i> </button>
-                                  <button class="seasons-btn" onclick="viewLeagueSeasons(${
-                                    league.id
-                                  })" title="Xem các mùa giải"> <i class="fas fa-trophy"></i> </button>
-                                  <button class="delete-btn" onclick="deleteLeague(${
-                                    league.id
-                                  })" title="Xóa giải đấu"> <i class="fas fa-trash-alt"></i> </button>
-                              </div>
-                          </div> `;
-            container.insertAdjacentHTML("beforeend", cardHTML);
-          });
-        } catch (error) {
-          console.error("Error loading/displaying leagues:", error);
-          if (container)
-            container.innerHTML =
-              '<p style="color: red; text-align: center;">Lỗi tải danh sách giải đấu.</p>';
-          if (noLeaguesMessage) {
-            noLeaguesMessage.textContent = "Không thể tải dữ liệu giải đấu.";
-            noLeaguesMessage.style.display = "block";
-            noLeaguesMessage.style.color = "red";
-          }
-        }
-      });
-
-      // --- HÀM XỬ LÝ NÚT TRÊN CARD GIẢI ĐẤU ---
-      function editLeague(leagueId) {
-        alert(`Chức năng sửa giải đấu chưa cài đặt.`);
-      }
-
-      function viewLeagueSeasons(leagueId) {
-        if (!leagueId) {
-          return;
-        }
-        const seasonsListPage = "danhsachmuagiai.html";
-        const url = `${seasonsListPage}?leagueId=${leagueId}`;
-        window.location.href = url;
-      }
-
-      // ===== HÀM XÓA GIẢI ĐẤU  =====
-      function deleteLeague(leagueId) {
-        if (!leagueId) {
-          console.error("Error (deleteLeague): Missing leagueId.");
-          return;
-        }
-        // **Cảnh báo rõ hơn về việc xóa cả mùa giải**
-        if (
-          confirm(
-            `Tất cả các mùa giải thuộc giải đấu này cũng sẽ bị xóa vĩnh viễn! Hành động này không thể hoàn tác.`
-          )
-        ) {
-          let leagueDeleted = false;
-          let seasonsDeleted = false;
-          const leaguesDataKey = "danhSachGiaiDau";
-          const seasonsDataKey = "danhSachMuaGiai";
-
-          // --- Bước 1: Xóa Giải đấu ---
-          try {
-            let leagues =
-              JSON.parse(localStorage.getItem(leaguesDataKey)) || [];
-            const originalLength = leagues.length;
-            const updatedLeagues = leagues.filter(
-              (league) => !(league && league.id === leagueId)
-            ); // Lọc an toàn
-
-            if (updatedLeagues.length < originalLength) {
-              localStorage.setItem(
-                leaguesDataKey,
-                JSON.stringify(updatedLeagues)
-              );
-              console.log(
-                `League ID ${leagueId} removed from '${leaguesDataKey}'.`
-              );
-              leagueDeleted = true;
+        // Load Sidebar (Using the pattern from original code)
+        loadComponent('/user/sidebar.html', 'sidebar-container', () => {
+            console.log("Sidebar loaded.");
+            if (typeof initializeSidebar === 'function') {
+                 initializeSidebar();
             } else {
-              console.warn(
-                `League ID ${leagueId} not found in '${leaguesDataKey}'.`
-              );
+                 console.warn("initializeSidebar function not found after loading sidebar.");
             }
-          } catch (error) {
-            console.error("Error deleting league from localStorage:", error);
-            alert("Đã xảy ra lỗi khi xóa thông tin giải đấu.");
-            // Cân nhắc có nên dừng ở đây không nếu xóa giải đấu lỗi
-            // return;
-          }
+        });
 
-          // --- Bước 2: Xóa các Mùa giải liên quan ---
-          try {
-            let seasons =
-              JSON.parse(localStorage.getItem(seasonsDataKey)) || [];
-            const originalSeasonLength = seasons.length;
-            // Lọc bỏ tất cả mùa giải có leagueId khớp
-            const updatedSeasons = seasons.filter(
-              (season) => !(season && season.leagueId === leagueId)
-            ); // Lọc an toàn
-
-            // Chỉ lưu lại nếu có sự thay đổi
-            if (updatedSeasons.length < originalSeasonLength) {
-              localStorage.setItem(
-                seasonsDataKey,
-                JSON.stringify(updatedSeasons)
-              );
-              console.log(
-                `Associated seasons for league ID ${leagueId} removed from '${seasonsDataKey}'.`
-              );
-              seasonsDeleted = true;
-            } else {
-              console.log(
-                `No seasons found for league ID ${leagueId} in '${seasonsDataKey}'.`
-              );
-            }
-          } catch (error) {
-            console.error(
-              "Error deleting associated seasons from localStorage:",
-              error
-            );
-            alert("Đã xảy ra lỗi khi xóa các mùa giải liên quan.");
-          }
-
-          // --- Bước 3: Thông báo và Tải lại trang ---
-          if (leagueDeleted || seasonsDeleted) {
-            // Chỉ tải lại nếu có xóa
-            alert(
-              `Đã xóa giải đấu này ${
-                seasonsDeleted
-                  ? "và các mùa giải liên quan"
-                  : "(không có mùa giải liên quan)"
-              }.`
-            );
-            location.reload();
-          } else {
-            // Trường hợp không tìm thấy giải đấu và cũng không có mùa giải nào bị xóa
-            alert(`Không tìm thấy giải đấu với ID ${leagueId} để xóa.`);
-          }
-        } else {
-          console.log("User cancelled league deletion.");
-        }
-      }
-      // ===== KẾT THÚC HÀM XÓA =====
+        // Load Footer
+        loadComponent('/user/userfooter.html', 'footer', () => {
+            console.log("Footer loaded.");
+        });
+      });      
     </script>
   </body>
 </html>

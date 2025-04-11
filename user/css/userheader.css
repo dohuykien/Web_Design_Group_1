@@ -1,0 +1,151 @@
+/*----------Header----------*/
+.developed-by {
+    position: absolute;
+    left: 250px;
+    top: 7px;
+    color: #ffffff;
+    font-size: 14px;
+    z-index: 2;
+}
+.navbar-top {
+    background-color: #1565c0;
+    color: white;
+    padding: 10px 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 75px;
+}
+  .navbar-bottom {
+    position: relative;
+}
+/*------------------------- Logo ---------------------------------*/
+.logo {
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    left: 170px;
+}
+.logo img {
+    height: 65px;
+    max-width: 100%;
+    margin-right: 10px;
+}
+
+/* Menu chính */
+.navbar-collapse {
+    background-color: #ff6f00;
+    padding: 7px 0px;
+    height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+.navbar-collapse::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: -15px;
+    width: 101%;
+    height: 50px;
+    background-color: #ff6f00;
+    clip-path: polygon(0 350%, 15% 0, 100% 0, 100% 100%);
+}
+.navbar-nav {
+    display: flex;
+    margin-left: -200px;
+}
+.navbar-nav li a {
+    left: 10px;
+    color: white;
+    text-decoration: none;
+    /* margin: 0 7px; */
+    top: -20px;
+    position: relative;
+    z-index: 2;
+    font-size: 16px;
+}
+
+.nav-item {
+    padding: 0 15px;
+    list-style: none;
+}
+.navbar-nav a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive cho Mobile */
+@media (max-width: 768px) {
+    .navbar-collapse {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #fff;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-collapse.active {
+        display: flex;
+    }
+
+    .nav-item {
+        text-align: center;
+        padding: 10px 0;
+    }
+}
+.header .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative; /* Đổi từ absolute sang relative */
+    right: 60px;
+    top: -20px;
+    cursor: pointer;
+    z-index: 1000;
+ }
+.header .user-info img {
+    width: 30px;
+    height: 30px;
+}
+.user-info span i {
+    position: relative;
+    top: -2px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    min-width: 160px;
+    z-index: 1000;
+    padding: 5px 0px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 5px 15px;
+    color: #333333;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f34541;
+    color: #ffffff;
+}
+.fa-solid.fa-caret-down {
+    color: #333333;
+    font-size: 12px;
+    margin-top: 10px;
+}
