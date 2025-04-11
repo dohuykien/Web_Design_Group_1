@@ -1,3 +1,76 @@
+// ----- Data Loading & Saving Functions (Additions) -----
+
+// Function to remove managers associated with a specific teamId from localStorage
+function removeManagersForTeam(teamIdToDelete) {
+    const storageKey = "managersData"; // CONFIRM THIS KEY NAME
+    console.log(`Attempting to remove managers for team ID: ${teamIdToDelete}`);
+    try {
+        const storedData = localStorage.getItem(storageKey);
+        let allManagers = storedData ? JSON.parse(storedData) : [];
+
+        if (!Array.isArray(allManagers)) {
+            console.warn(`Invalid data found in localStorage for '${storageKey}', resetting/ignoring.`);
+            allManagers = [];
+        }
+
+        const initialCount = allManagers.length;
+        // Filter OUT managers belonging to the deleted team
+        const updatedManagers = allManagers.filter(manager => {
+            // Ensure manager object and teamId property exist before comparison
+            return manager && manager.teamId !== teamIdToDelete;
+        });
+        const removedCount = initialCount - updatedManagers.length;
+
+        localStorage.setItem(storageKey, JSON.stringify(updatedManagers));
+        console.log(`Removed ${removedCount} manager(s) for team ID ${teamIdToDelete} from '${storageKey}'.`);
+
+    } catch (error) {
+        console.error(`Error processing '${storageKey}' for team deletion (ID: ${teamIdToDelete}):`, error);
+        // Decide if you want to alert the user or just log
+        // alert(`Lỗi: Không thể cập nhật dữ liệu quản lý (${storageKey}). Vui lòng kiểm tra console.`);
+    }
+}
+
+// Function to remove members associated with a specific teamId from localStorage
+function removeMembersForTeam(teamIdToDelete) {
+    const storageKey = "teamMembersData"; // CONFIRM THIS KEY NAME
+    console.log(`Attempting to remove members for team ID: ${teamIdToDelete}`);
+    try {
+        const storedData = localStorage.getItem(storageKey);
+        let allMembers = storedData ? JSON.parse(storedData) : [];
+
+         if (!Array.isArray(allMembers)) {
+            console.warn(`Invalid data found in localStorage for '${storageKey}', resetting/ignoring.`);
+            allMembers = [];
+        }
+
+        const initialCount = allMembers.length;
+         // Filter OUT members belonging to the deleted team
+        const updatedMembers = allMembers.filter(member => {
+             // Ensure member object and teamId property exist before comparison
+            return member && member.teamId !== teamIdToDelete;
+        });
+        const removedCount = initialCount - updatedMembers.length;
+
+        localStorage.setItem(storageKey, JSON.stringify(updatedMembers));
+        console.log(`Removed ${removedCount} member(s) for team ID ${teamIdToDelete} from '${storageKey}'.`);
+
+        // --- Crucial: Update the in-memory count object ---
+        // We need to reflect this change immediately if the user stays on the page
+        // or interacts further without reloading. Simplest is to remove the key.
+        // A full recalculation (loadAndProcessMemberData) might be needed depending on UI updates.
+        delete memberCountsByTeamId[teamIdToDelete];
+        console.log(`Removed count for team ${teamIdToDelete} from in-memory memberCountsByTeamId.`);
+        // --- End Update ---
+
+
+    } catch (error) {
+        console.error(`Error processing '${storageKey}' for team deletion (ID: ${teamIdToDelete}):`, error);
+         // Decide if you want to alert the user or just log
+        // alert(`Lỗi: Không thể cập nhật dữ liệu thành viên (${storageKey}). Vui lòng kiểm tra console.`);
+    }
+}
+
 // ----- User and Global Data -----
 const currentUser = { // Keep your currentUser object
     id: 1,
@@ -145,38 +218,50 @@ function addActionListeners() {
 
         // --- Handle DELETE ---
         const deleteButton = target.closest('.delete-btn');
+
         if (deleteButton) {
             const card = deleteButton.closest('.team-card');
             if (!card) return;
 
-            const teamId = card.dataset.identifier;
+            const teamId = card.dataset.identifier; // Get the ID to delete
             const teamName = card.querySelector('.team-name')?.textContent || `ID: ${teamId}`;
 
             if (!teamId) {
-                    console.error("Could not find team ID on the card for deletion.");
-                    alert("Lỗi: Không thể xác định ID của đội để xóa.");
-                    return;
+                console.error("Could not find team ID on the card for deletion.");
+                alert("Lỗi: Không thể xác định ID của đội để xóa.");
+                return;
             }
 
-            if (confirm(`Bạn có chắc chắn muốn xóa đội "${teamName}" không? Hành động này không thể hoàn tác.`)) {
+            // Confirmation Dialog
+            if (confirm(`Bạn có chắc chắn muốn xóa đội "${teamName}" không? Hành động này sẽ xóa cả đội, thành viên và quản lý liên quan và không thể hoàn tác.`)) {
                 console.log(`Confirmed deletion for team ID: ${teamId}`);
 
                 const initialLength = teams.length;
-                // Filter out the team *from the user's filtered list*
+
+                // ***** CASCADE DELETE *****
+                // 1. Remove associated data FIRST (or concurrently, order doesn't strictly matter here)
+                removeManagersForTeam(teamId); // Remove managers linked to this team
+                removeMembersForTeam(teamId);  // Remove members linked to this team
+
+                // 2. Filter the team out from the user's current view
                 teams = teams.filter(team => team.id !== teamId);
 
-                if (teams.length < initialLength) {
-                    saveTeams(); // Save the updated full list (removes team for this user)
-                    card.remove(); // Remove the card visually
-                    console.log(`Team ID "${teamId}" removed.`);
+                // 3. Save the updated *teams* list (handles merging with other users' teams)
+                if (teams.length < initialLength) { // Check if filtering actually removed the team
+                    saveTeams();
+                    console.log(`Team object with ID "${teamId}" removed from user's list and saved.`);
 
-                    // Update display if list becomes empty
+                    // 4. Remove the card visually
+                    card.remove();
+
+                    // 5. Update display if list becomes empty
                     if (teams.length === 0) {
-                            container.innerHTML = '<p style="text-align: center; width: 100%; padding: 20px; color: #666;">Bạn chưa tạo đội bóng nào.</p>';
+                        container.innerHTML = '<p style="text-align: center; width: 100%; padding: 20px; color: #666;">Bạn chưa tạo đội bóng nào.</p>';
                     }
                 } else {
-                    // This case should ideally not happen if the button exists for a team in the 'teams' array
-                    console.warn(`Could not filter out team with ID "${teamId}" during delete confirmation.`);
+                    // This might happen if the team ID was somehow invalid or not found in the 'teams' array
+                    console.warn(`Could not filter out team with ID "${teamId}" from the current user's 'teams' array during delete confirmation. Associated data might still have been processed.`);
+                     // Consider if you need to re-fetch/refresh data here if something went wrong
                 }
             } else {
                 console.log('Deletion cancelled.');

@@ -14,6 +14,9 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
     <link rel="stylesheet" href="/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/user/css/userheader.css" />
+    <link rel="stylesheet" href="/user/css/userfooter.css" />
+
     <link rel="stylesheet" href="/user/team/teamManagement/css/managementNav.css" />
 
     <style>
@@ -26,118 +29,6 @@
         body {
           background-color: white;
         }
-        /*-------------------------Header---------------------------*/
-        .developed-by {
-          position: absolute;
-          left: 250px;
-          top: 7px;
-          color: #ffffff;
-          font-size: 14px;
-          z-index: 2;
-        }
-        .navbar-top {
-          background-color: #1565c0;
-          color: white;
-          padding: 10px 20px;
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          height: 75px;
-        }
-        .navbar-bottom {
-          position: relative;
-        }
-        /*Logo*/
-        .logo {
-          display: flex;
-          align-items: center;
-          z-index: 2;
-          left: 170px;
-        }
-        .logo img {
-          height: 65px;
-          max-width: 100%;
-          margin-right: 10px;
-        }
-        /* Menu chính */
-        .navbar-collapse {
-          background-color: #ff6f00;
-          padding: 7px 0px;
-          height: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          position: relative;
-          z-index: 1;
-        }
-        .navbar-collapse::before {
-          content: "";
-          position: absolute;
-          top: -40px;
-          left: -15px;
-          width: 101%;
-          height: 50px;
-          background-color: #ff6f00;
-          clip-path: polygon(0 350%, 15% 0, 100% 0, 100% 100%);
-        }
-        .navbar-nav {
-          display: flex;
-          margin-left: -200px;
-        }
-        .navbar-nav li a {
-          left: 10px;
-          color: white;
-          text-decoration: none;
-          /* margin: 0 7px; */
-          top: -20px;
-          position: relative;
-          z-index: 2;
-          font-size: 16px;
-        }
-        .nav-item {
-          padding: 0 15px;
-          list-style: none;
-        }
-        .navbar-nav a:hover {
-          text-decoration: underline;
-        }
-
-        /* Responsive cho Mobile */
-        @media (max-width: 768px) {
-          .navbar-collapse {
-            display: none;
-            flex-direction: column;
-            width: 100%;
-            background: #fff;
-            position: absolute;
-            top: 50px;
-            left: 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          }
-
-          .navbar-collapse.active {
-            display: flex;
-          }
-
-          .nav-item {
-            text-align: center;
-            padding: 10px 0;
-          }
-        }
-        .header .user-info {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          position: relative; /* Đổi từ absolute sang relative */
-          right: 0; /* Đưa về bên phải */
-          top: -20px;
-        }
-        .header .user-info img {
-          width: 30px;
-          height: 30px;
-        }
-        /*-------------------End Header---------------------- */
 
         /*----------------------Layout-------------------------*/
         .container {
@@ -182,65 +73,6 @@
 
         /* Buttons styling moved to form layout section for consistency */
 
-        /* --------------------- FOOTER -------------------- */
-        .footer {
-        box-sizing: border-box;
-        background-color: #ecf0f5;
-        color: rgb(51, 51, 51);
-        font-size: 14px;
-        font-weight: 500;
-        text-shadow: rgb(255, 255, 255) 1px 1px 1px;
-        box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.1);
-        display: block;
-        border-top-color: rgb(255, 255, 255);
-        border-top-style: solid;
-        border-top-width: 0.8px;
-      }
-
-      .footer-container {
-        box-sizing: border-box;
-        background-color: #ecf0f5;
-        color: rgb(51, 51, 51);
-        font-size: 14px;
-        text-shadow: rgb(255, 255, 255) 2px 2px 2px;
-        margin: 40px 10px 10px 10px;
-        display: block;
-        border-top-color: rgb(255, 255, 255);
-        border-top-style: solid;
-        border-top-width: 0.8px;
-        line-height: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 10px;
-      }
-
-      .footer-left,
-      .footer-right {
-        flex: 1;
-      }
-
-      .footer-left p,
-      .footer-right p {
-        margin: 19px 0;
-      }
-
-      .footer-apps {
-        display: flex;
-        gap: 10px;
-        margin-top: 10px;
-      }
-
-      .footer-apps img {
-        height: 30px;
-      }
-
-      
-        /* Button styles in the header bar */
-
-        .list-league i {
-            margin-right: 5px;
-        }
 
 
         /* Styles for Content Box within the main layout */
@@ -681,54 +513,10 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="navbar">
-          <div class="navbar-top">
-            <div class="logo">
-              <a href="#"><img src="../images/logo.png" alt="Logo" /></a>
-            </div>
-            <span class="developed-by">
-              Hệ thống được phát triển bởi HD Promotion</span
-            >
-            <div class="user-info">
-              <img src="images/dhk.jpg" alt="User Avatar"/> <!-- Added alt text -->
-              <span
-                >Hải Đăng Nguyễn <i class="fa-solid fa-chevron-down"></i
-              ></span>
-            </div>
-          </div>
-          <div class="navbar-bottom">
-            <div class="navbar-collapse">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">TRANG CHỦ</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">GIẢI ĐANG DIỄN RA</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">GIẢI ĐANG THEO DÕI</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">ĐỘI BÓNG</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">BẮT ĐỐI</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">HƯỚNG DẪN</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">CUỘC THI</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">TIN TỨC</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </header>
+    <header id="header-container" class="header">
+        <!-- Header will be loaded here -->
+    </header>
+
 
     <div class="container">
         <div id="sidebar-container">
@@ -882,44 +670,16 @@
 
             </section>
 
-            <footer class="footer"> <!-- Changed to footer tag -->
-                <div class="footer-container">
-                  <div class="footer-left">
-                    <p>Bản quyền thuộc HD Promotion</p>
-                    <p>Nguyen Hai Dang</p>
-                    <p>
-                      Chỉ được phát hành lại nội dung khi có sự đồng ý của HD
-                      Promotion
-                    </p>
-                    <div class="footer-apps">
-                      <a href="#"><img src="../images/logo.png" alt="IT League" /></a>
-                      <a href="#"
-                        ><img src="images/googleplay.png" alt="Google Play"
-                      /></a>
-                      <a href="#"
-                        ><img src="images/appstore.png" alt="App Store"
-                      /></a>
-                    </div>
-                  </div>
-                  <div class="footer-right">
-                    <p>
-                      <i class="fa fa-building" aria-hidden="true"></i> CÔNG TY CỔ
-                      PHẦN TỔ CHỨC SỰ KIỆN VÀ TRUYỀN THÔNG HD Promotion
-                    </p>
-                    <p>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i> Số 185,
-                      Trần Đại Nghĩa, phường Đồng Tâm, quận Hai Bà Trưng, Hà Nội
-                    </p>
-                    <p><i class="fa fa-phone" aria-hidden="true"></i> 0797102555</p>
-                    <p>
-                      <i class="fa fa-envelope" aria-hidden="true"></i>
-                      nguyenstorm2k5@gmail.com
-                    </p>
-                  </div>
-                </div>
+            <footer id="footer" class="footer">
+
             </footer>
+  
         </div>
     </div>
+    <script src="/user/js/sidebar.js"></script>
+    <script src="/user/js/userheader.js"></script>
+    <script src="/user/js/componentloader.js"></script>
+
     <script src="js/managementNav.js"></script> <!-- Adjust path if needed -->
 
     <script>
@@ -1426,31 +1186,7 @@
             }   
         });
     </script>
-    <script src="/user/js/sidebar.js"></script>
-    <script name = "sidebar">
-        fetch('/user/sidebar.html') // Adjust path
-        .then(response => {
-            if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(html => {
-            const container = document.getElementById('sidebar-container');
-            if (container) {
-            container.innerHTML = html;
-            // IMPORTANT: Initialize sidebar JS *after* HTML is inserted
-            initializeSidebar();
-            } else {
-            console.error("Sidebar container not found!");
-            }
-        })
-        .catch(error => {
-            console.error('Error loading sidebar:', error);
-            const container = document.getElementById('sidebar-container');
-            if(container) container.innerHTML = "<p>Error loading sidebar.</p>";
-        });
-    </script>
+
 
 
 </body>

@@ -14,6 +14,9 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
     <link rel="stylesheet" href="/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/user/css/userheader.css" />
+    <link rel="stylesheet" href="/user/css/userfooter.css" />
+
     <style>
       * {
         margin: 0;
@@ -23,119 +26,6 @@
       }
       body {
         background-color: white;
-      }
-      /*----------Header----------*/
-      .developed-by {
-        position: absolute;
-        left: 250px;
-        top: 7px;
-        color: #ffffff;
-        font-size: 14px;
-        z-index: 2;
-      }
-      .navbar-top {
-        background-color: #1565c0;
-        color: white;
-        padding: 10px 20px;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 75px;
-      }
-      .navbar-bottom {
-        position: relative;
-      }
-      /*------------------------- Logo ---------------------------------*/
-      .logo {
-        display: flex;
-        align-items: center;
-        z-index: 2;
-        left: 170px;
-      }
-      .logo img {
-        height: 65px;
-        max-width: 100%;
-        margin-right: 10px;
-      }
-
-      /* Menu chính */
-      .navbar-collapse {
-        background-color: #ff6f00;
-        padding: 7px 0px;
-        height: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        z-index: 1;
-      }
-      .navbar-collapse::before {
-        content: "";
-        position: absolute;
-        top: -40px;
-        left: -15px;
-        width: 101%;
-        height: 50px;
-        background-color: #ff6f00;
-        clip-path: polygon(0 350%, 15% 0, 100% 0, 100% 100%);
-      }
-      .navbar-nav {
-        display: flex;
-        margin-left: -200px;
-      }
-      .navbar-nav li a {
-        left: 10px;
-        color: white;
-        text-decoration: none;
-        /* margin: 0 7px; */
-        top: -20px;
-        position: relative;
-        z-index: 2;
-        font-size: 16px;
-      }
-
-      .nav-item {
-        padding: 0 15px;
-        list-style: none;
-      }
-      .navbar-nav a:hover {
-        text-decoration: underline;
-      }
-
-      /* Responsive cho Mobile */
-      @media (max-width: 768px) {
-        .navbar-collapse {
-          display: none;
-          flex-direction: column;
-          width: 100%;
-          background: #fff;
-          position: absolute;
-          top: 50px;
-          left: 0;
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .navbar-collapse.active {
-          display: flex;
-        }
-
-        .nav-item {
-          text-align: center;
-          padding: 10px 0;
-        }
-      }
-      .header .user-info {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        position: relative; /* Đổi từ absolute sang relative */
-        right: 0; /* Đưa về bên phải */
-        top: -20px;
-      }
-      .header .user-info img {
-        width: 30px;
-        height: 30px;
       }
 
       /*------------Layout------------*/
@@ -175,58 +65,6 @@
       }
       .list-league_left {
         flex-grow: 1;
-      }
-      /* --------------------- FOOTER -------------------- */
-      .footer {
-        box-sizing: border-box;
-        background-color: #ecf0f5;
-        color: rgb(51, 51, 51);
-        font-size: 14px;
-        font-weight: 500;
-        text-shadow: rgb(255, 255, 255) 1px 1px 1px;
-        box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.1);
-        display: block;
-        border-top-color: rgb(255, 255, 255);
-        border-top-style: solid;
-        border-top-width: 0.8px;
-      }
-
-      .footer-container {
-        box-sizing: border-box;
-        background-color: #ecf0f5;
-        color: rgb(51, 51, 51);
-        font-size: 14px;
-        text-shadow: rgb(255, 255, 255) 2px 2px 2px;
-        margin: 40px 10px 10px 10px;
-        display: block;
-        border-top-color: rgb(255, 255, 255);
-        border-top-style: solid;
-        border-top-width: 0.8px;
-        line-height: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 10px;
-      }
-
-      .footer-left,
-      .footer-right {
-        flex: 1;
-      }
-
-      .footer-left p,
-      .footer-right p {
-        margin: 19px 0;
-      }
-
-      .footer-apps {
-        display: flex;
-        gap: 10px;
-        margin-top: 10px;
-      }
-
-      .footer-apps img {
-        height: 30px;
       }
 
                   /* ------------- Team Card Styles ------------- */
@@ -311,54 +149,10 @@
     </style>
   </head>
   <body>
-    <header class="header">
-      <div class="navbar">
-        <div class="navbar-top">
-          <div class="logo">
-            <a href="#"><img src="images/logo.png" alt="Logo" /></a>
-          </div>
-          <span class="developed-by">
-            Hệ thống được phát triển bởi HD Promotion</span
-          >
-          <div class="user-info">
-            <img src="images/dhk.jpg" />
-            <span
-              >Hải Đăng Nguyễn <i class="fa-solid fa-chevron-down"></i
-            ></span>
-          </div>
-        </div>
-        <div class="navbar-bottom">
-          <div class="navbar-collapse">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a href="#" class="nav-link">TRANG CHỦ</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">GIẢI ĐANG DIỄN RA</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">GIẢI ĐANG THEO DÕI</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">ĐỘI BÓNG</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">BẮT ĐỐI</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">HƯỚNG DẪN</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">CUỘC THI</a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">TIN TỨC</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <header id="header-container" class="header">
+        <!-- Header will be loaded here -->
     </header>
+
     <div class="container">
         <div id="sidebar-container">
             <!-- Sidebar will be loaded here -->
@@ -375,193 +169,140 @@
 
           </div>
 
-          <div class="footer">
-            <div class="footer-container">
-              <div class="footer-left">
-                <p>Bản quyền thuộc HD Promotion</p>
-                <p>Nguyen Hai Dang</p>
-                <p>
-                  Chỉ được phát hành lại nội dung khi có sự đồng ý của HD
-                  Promotion
-                </p>
-                <div class="footer-apps">
-                  <a href=""><img src="images/logo.png" alt="IT League" /></a>
-                  <a href=""
-                    ><img src="images/googleplay.png" alt="Google Play"
-                  /></a>
-                  <a href=""
-                    ><img src="images/appstore.png" alt="App Store"
-                  /></a>
-                </div>
-              </div>
-              <div class="footer-right">
-                <p>
-                  <i class="fa fa-building" aria-hidden="true"></i> CÔNG TY CỔ
-                  PHẦN TỔ CHỨC SỰ KIỆN VÀ TRUYỀN THÔNG HD Promotion
-                </p>
-                <p>
-                  <i class="fa fa-map-marker" aria-hidden="true"></i> Số 185,
-                  Trần Đại Nghĩa, phường Đồng Tâm, quận Hai Bà Trưng, Hà Nội
-                </p>
-                <p><i class="fa fa-phone" aria-hidden="true"></i> 0797102555</p>
-                <p>
-                  <i class="fa fa-envelope" aria-hidden="true"></i>
-                  nguyenstorm2k5@gmail.com
-                </p>
-              </div>
-            </div>
-          </div>
+          <footer id="footer" class="footer">
+
+          </footer>
+
         </section>
       </div>
     </div>
 
     <script src="/user/js/sidebar.js"></script>
+    <script src="/user/js/userheader.js"></script>
+    <script src="/user/js/componentloader.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOM fully loaded. Initializing joined teams list...");
+        console.log("DOM fully loaded. Initializing joined teams list...");
 
-    // ----- User Data -----
-    const currentUser = {
-        id: 1, // The ID of the user viewing the page
-        // name: "Nguyen Hai Dang" // Name not strictly needed for this logic
-    };
+        // ----- User Data -----
+        const currentUser = {
+            id: 1, // The ID of the user viewing the page
+            // name: "Nguyen Hai Dang" // Name not strictly needed for this logic
+        };
 
-    // ----- Helper: Load and Parse data from localStorage -----
-    function loadDataFromLocalStorage(key) {
-        const storedData = localStorage.getItem(key);
-        let data = [];
-        try {
-            data = storedData ? JSON.parse(storedData) : [];
-            if (!Array.isArray(data)) {
-                console.warn(`Invalid data found in localStorage for '${key}', resetting to empty array.`);
+        // ----- Helper: Load and Parse data from localStorage -----
+        function loadDataFromLocalStorage(key) {
+            const storedData = localStorage.getItem(key);
+            let data = [];
+            try {
+                data = storedData ? JSON.parse(storedData) : [];
+                if (!Array.isArray(data)) {
+                    console.warn(`Invalid data found in localStorage for '${key}', resetting to empty array.`);
+                    data = [];
+                    // Optionally clear the invalid item: localStorage.removeItem(key);
+                }
+            } catch (error) {
+                console.error(`Error parsing '${key}' from localStorage:`, error);
                 data = [];
-                // Optionally clear the invalid item: localStorage.removeItem(key);
             }
-        } catch (error) {
-            console.error(`Error parsing '${key}' from localStorage:`, error);
-            data = [];
-        }
-        return data;
-    }
-
-    // ----- Load Data -----
-    const allTeamsData = loadDataFromLocalStorage("teams"); // Load ALL team definitions
-    const allMembersData = loadDataFromLocalStorage("teamMembersData"); // Load ALL member relationship data
-
-    console.log("All Teams Data:", allTeamsData);
-    console.log("All Members Data:", allMembersData);
-
-    // ----- Process Data -----
-
-    // 1. Find the IDs of teams the currentUser has joined
-    const joinedTeamIds = new Set(); // Use a Set to automatically handle duplicate entries
-    allMembersData.forEach(member => {
-        // IMPORTANT: Check the member's ID against currentUser.id
-        if (member && member.userId === currentUser.id && member.teamId) {
-            joinedTeamIds.add(member.teamId);
-        }
-    });
-    console.log("User is a member of Team IDs:", joinedTeamIds);
-
-    // 2. Calculate total member counts for ALL teams (for efficiency)
-    const memberCountsByTeamId = {};
-    allMembersData.forEach(member => {
-        if (member && member.teamId) {
-            const teamId = member.teamId;
-            memberCountsByTeamId[teamId] = (memberCountsByTeamId[teamId] || 0) + 1;
-        }
-    });
-    console.log("Calculated member counts for all teams:", memberCountsByTeamId);
-
-    // 3. Filter the main teams list to get only the joined teams and add member counts
-    const joinedTeamsDetails = allTeamsData
-        .filter(team => team && team.id && joinedTeamIds.has(team.id)) // Keep only teams whose IDs are in the joined set
-        .map(team => ({ // Create a new object structure if needed, or just add the count
-            ...team, // Spread existing team properties (id, teamName, logo, userId etc.)
-            memberCount: memberCountsByTeamId[team.id] || 0 // Add the calculated member count
-        }));
-
-    console.log("Details of teams user joined:", joinedTeamsDetails);
-
-
-    // ----- Display Logic -----
-    function displayJoinedTeams() {
-        const container = document.getElementById('team-list-container');
-        if (!container) {
-            console.error("Team list container not found!");
-            return;
-        }
-        container.innerHTML = ''; // Clear existing cards
-
-        if (joinedTeamsDetails.length === 0) {
-            container.innerHTML = '<p style="text-align: center; width: 100%; padding: 20px; color: #666;">Bạn chưa tham gia đội bóng nào.</p>';
-            return;
+            return data;
         }
 
-        joinedTeamsDetails.forEach((team) => {
-            // Basic check for valid team object after processing
-            if (!team || !team.id) {
-                console.warn("Skipping invalid joined team data during display:", team);
+        // ----- Load Data -----
+        const allTeamsData = loadDataFromLocalStorage("teams"); // Load ALL team definitions
+        const allMembersData = loadDataFromLocalStorage("teamMembersData"); // Load ALL member relationship data
+
+        console.log("All Teams Data:", allTeamsData);
+        console.log("All Members Data:", allMembersData);
+
+        // ----- Process Data -----
+
+        // 1. Find the IDs of teams the currentUser has joined
+        const joinedTeamIds = new Set(); // Use a Set to automatically handle duplicate entries
+        allMembersData.forEach(member => {
+            // IMPORTANT: Check the member's ID against currentUser.id
+            if (member && member.userId === currentUser.id && member.teamId) {
+                joinedTeamIds.add(member.teamId);
+            }
+        });
+        console.log("User is a member of Team IDs:", joinedTeamIds);
+
+        // 2. Calculate total member counts for ALL teams (for efficiency)
+        const memberCountsByTeamId = {};
+        allMembersData.forEach(member => {
+            if (member && member.teamId) {
+                const teamId = member.teamId;
+                memberCountsByTeamId[teamId] = (memberCountsByTeamId[teamId] || 0) + 1;
+            }
+        });
+        console.log("Calculated member counts for all teams:", memberCountsByTeamId);
+
+        // 3. Filter the main teams list to get only the joined teams and add member counts
+        const joinedTeamsDetails = allTeamsData
+            .filter(team => team && team.id && joinedTeamIds.has(team.id)) // Keep only teams whose IDs are in the joined set
+            .map(team => ({ // Create a new object structure if needed, or just add the count
+                ...team, // Spread existing team properties (id, teamName, logo, userId etc.)
+                memberCount: memberCountsByTeamId[team.id] || 0 // Add the calculated member count
+            }));
+
+        console.log("Details of teams user joined:", joinedTeamsDetails);
+
+
+        // ----- Display Logic -----
+        function displayJoinedTeams() {
+            const container = document.getElementById('team-list-container');
+            if (!container) {
+                console.error("Team list container not found!");
+                return;
+            }
+            container.innerHTML = ''; // Clear existing cards
+
+            if (joinedTeamsDetails.length === 0) {
+                container.innerHTML = '<p style="text-align: center; width: 100%; padding: 20px; color: #666;">Bạn chưa tham gia đội bóng nào.</p>';
                 return;
             }
 
-            let imgSrc = team.logo || 'images/logo.png'; // Default placeholder
+            joinedTeamsDetails.forEach((team) => {
+                // Basic check for valid team object after processing
+                if (!team || !team.id) {
+                    console.warn("Skipping invalid joined team data during display:", team);
+                    return;
+                }
 
-            // --- Image Source Handling (same as before) ---
-            if (team.logo && typeof team.logo === 'string' && team.logo.trim() !== '') {
-                 if (!team.logo.startsWith('data:image') && !team.logo.startsWith('images/')) {
-                    console.warn(`Team ${team.id} logo format issue. Using placeholder.`);
+                let imgSrc = team.logo || 'images/logo.png'; // Default placeholder
+
+                // --- Image Source Handling (same as before) ---
+                if (team.logo && typeof team.logo === 'string' && team.logo.trim() !== '') {
+                    if (!team.logo.startsWith('data:image') && !team.logo.startsWith('images/')) {
+                        console.warn(`Team ${team.id} logo format issue. Using placeholder.`);
+                        imgSrc = 'images/logo.png';
+                    } else {
+                        imgSrc = team.logo;
+                    }
+                } else {
                     imgSrc = 'images/logo.png';
-                 } else {
-                    imgSrc = team.logo;
-                 }
-            } else {
-                imgSrc = 'images/logo.png';
-            }
-            // --- End Image Source Handling ---
+                }
+                // --- End Image Source Handling ---
 
-            const cardHTML = `
-                <div class="team-card"> <!-- Removed data-identifier as no actions needed -->
-                    <img src="${imgSrc}" alt="Logo đội ${team.teamName || 'Không tên'}" class="team-logo" onerror="this.onerror=null; this.src='images/logo.png';">
-                    <h3 class="team-name">${team.teamName || 'Đội không tên'}</h3>
-                    <p class="team-members">
-                        <i class="fa-solid fa-users"></i> ${team.memberCount} Thành viên
-                    </p>
-                    <!-- No card-actions div needed for this view -->
-                </div>
-            `;
-            container.insertAdjacentHTML('beforeend', cardHTML);
-        });
-    }
+                const cardHTML = `
+                    <div class="team-card"> <!-- Removed data-identifier as no actions needed -->
+                        <img src="${imgSrc}" alt="Logo đội ${team.teamName || 'Không tên'}" class="team-logo" onerror="this.onerror=null; this.src='images/logo.png';">
+                        <h3 class="team-name">${team.teamName || 'Đội không tên'}</h3>
+                        <p class="team-members">
+                            <i class="fa-solid fa-users"></i> ${team.memberCount} Thành viên
+                        </p>
+                        <!-- No card-actions div needed for this view -->
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
 
-    // --- Initial Display Call ---
-    displayJoinedTeams();
+        // --- Initial Display Call ---
+        displayJoinedTeams();
 
-}); // End DOMContentLoaded
-    </script>
-    <script name = "sidebar">
-        fetch('/user/sidebar.html') // Adjust path
-        .then(response => {
-            if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.text();
-        })
-        .then(html => {
-            const container = document.getElementById('sidebar-container');
-            if (container) {
-            container.innerHTML = html;
-            // IMPORTANT: Initialize sidebar JS *after* HTML is inserted
-            initializeSidebar();
-            } else {
-            console.error("Sidebar container not found!");
-            }
-        })
-        .catch(error => {
-            console.error('Error loading sidebar:', error);
-            const container = document.getElementById('sidebar-container');
-            if(container) container.innerHTML = "<p>Error loading sidebar.</p>";
-        });
+    }); // End DOMContentLoaded
     </script>
   </body>
 </html>
