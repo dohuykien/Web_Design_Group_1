@@ -599,67 +599,8 @@
       </div>
     </header>
     <div class="container">
-      <div>
-        <aside class="sidebar">
-          <ul>
-            <li>
-              <i class="fa-solid fa-tachometer-alt"></i>
-              <a href="Dashboard.html">Dashboard</a>
-            </li>
-
-            <li class="menu-item">
-              <i class="fa-solid fa-gear"></i>Quản lý giải đấu
-              <i class="fa-solid fa-chevron-down"></i>
-            </li>
-            <ul class="submenu">
-              <li>
-                <i class="fa-solid fa-play"></i
-                ><a href="Dashboard.html">Danh sách giải đấu</a>
-              </li>
-              <li>
-                <i class="fa-solid fa-play"></i
-                ><a href="addleague.html">Tạo giải đấu mới</a>
-              </li>
-            </ul>
-
-            <li class="menu-item">
-              <i class="fa-solid fa-gear"></i> Quản lý đội
-              <i class="fa-solid fa-chevron-down"></i>
-            </li>
-            <ul class="submenu">
-              <li>
-                <i class="fa-solid fa-play"></i
-                ><a href="dsdoiqly.html">Danh sách đội quản lý</a>
-              </li>
-              <li>
-                <i class="fa-solid fa-play"></i
-                ><a href="dsdoitgia.html">Danh sách đội tham gia</a>
-              </li>
-              <li>
-                <i class="fa-solid fa-play"></i><a href="#">Tạo đội bóng mới</a>
-              </li>
-            </ul>
-
-            <li>
-              <i class="fa-solid fa-gear"></i>
-              <a href="#"> Yêu cầu tham gia đội</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-gear"></i> <a href="#">Quản lý cuộc thi</a>
-            </li>
-
-            <li class="menu-item">
-              <i class="fa-solid fa-user"></i> Quản lý tài khoản
-              <i class="fa-solid fa-chevron-down"></i>
-            </li>
-            <ul class="submenu">
-              <li>
-                <i class="fa-solid fa-play"></i
-                ><a href="#">Thông tin tài khoản</a>
-              </li>
-            </ul>
-          </ul>
-        </aside>
+      <div id="sidebar-container">
+        <!-- Sidebar will be loaded here -->
       </div>
       <div class="content-wrapper">
         <section class="content">
@@ -923,6 +864,60 @@
       </div>
     </div>
 
+    <script src="/user/js/sidebar.js"></script>
+    <script name="sidebar">
+      fetch("/user/sidebar.html") // Adjust path
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then((html) => {
+          const container = document.getElementById("sidebar-container");
+          if (container) {
+            container.innerHTML = html;
+            // IMPORTANT: Initialize sidebar JS *after* HTML is inserted
+            initializeSidebar();
+          } else {
+            console.error("Sidebar container not found!");
+          }
+        })
+        .catch((error) => {
+          console.error("Error loading sidebar:", error);
+          const container = document.getElementById("sidebar-container");
+          if (container) container.innerHTML = "<p>Error loading sidebar.</p>";
+        });
+
+      // submenu-user_info
+      function toggleDropdown() {
+        var menu = document.getElementById("dropdownMenu");
+        if (menu) {
+          // Check if the element exists
+          menu.style.display =
+            menu.style.display === "block" ? "none" : "block";
+        } else {
+          console.warn("Element with ID 'dropdownMenu' not found.");
+        }
+      }
+
+      // Ẩn dropdown nếu click ra ngoài
+      window.addEventListener("click", function (e) {
+        var menu = document.getElementById("dropdownMenu");
+        var userInfo = document.querySelector(".user-info");
+
+        // Check if both elements exist before proceeding
+        if (menu && userInfo) {
+          // Check if the click was outside the userInfo element AND outside the dropdown menu itself
+          if (!userInfo.contains(e.target) && !menu.contains(e.target)) {
+            menu.style.display = "none";
+          }
+        } else {
+          // Optionally log a warning if elements are missing
+          // console.warn("Either 'dropdownMenu' or '.user-info' element not found for outside click handler.");
+        }
+      });
+    </script>
     <script>
       // Biến để lưu trữ Data URL của ảnh
       let logoDataUrl = null;
@@ -1016,26 +1011,6 @@
           "DEBUG: Missing elements for format toggle logic (formatSelect, thirdPlaceRow, chiabang, nguyenkhi)."
         );
       }
-
-      // submenu-user_infor
-      function toggleDropdown() {
-        const menu = document.getElementById("dropdownMenu");
-        if (menu)
-          menu.style.display =
-            menu.style.display === "block" ? "none" : "block";
-      }
-      window.addEventListener("click", function (e) {
-        const menu = document.getElementById("dropdownMenu");
-        const userInfo = document.querySelector(".user-info");
-        if (
-          menu &&
-          userInfo &&
-          menu.style.display === "block" &&
-          !userInfo.contains(e.target)
-        ) {
-          menu.style.display = "none";
-        }
-      });
 
       // --- XỬ LÝ NÚT LƯU ---
       const saveBtn = document.querySelector(".save");
