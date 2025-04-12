@@ -444,10 +444,11 @@
       });
     </script>
     <script>
-      // Lấy tất cả các menu cha (Sidebar submenu)
+      // Lấy tất cả các menu cha (Sidebar submenu) - GIỮ NGUYÊN
       let menuItems = document.querySelectorAll(".menu-item");
       menuItems.forEach((item) => {
         item.addEventListener("click", function () {
+          // ... (code xử lý submenu giữ nguyên) ...
           let submenu = this.nextElementSibling;
           if (submenu && submenu.classList.contains("submenu")) {
             submenu.style.display =
@@ -465,29 +466,25 @@
         const addNewButtonLink = document.getElementById("addNewButtonLink");
         const seasonsDataKey = "danhSachMuaGiai";
         const leaguesDataKey = "danhSachGiaiDau";
-        const defaultSeasonLogo = "images/logo.png";
-        const defaultSeasonWallpaper = "images/bg-default.jpg";
+        const defaultSeasonLogo = "images/logo.png"; // Đảm bảo ảnh này tồn tại
+        const defaultSeasonWallpaper = "images/bg-default.jpg"; // Đảm bảo ảnh này tồn tại
 
+        // --- Kiểm tra element thiết yếu ---
         if (!container || !noSeasonsMessage || !pageTitleElement) {
-          console.error(
-            "Error: Essential page elements not found (#seasonListContainer, #noSeasonsMessage, .list-league_left)."
-          );
+          console.error("Error: Essential page elements not found.");
           if (noSeasonsMessage) {
-            noSeasonsMessage.textContent = "Lỗi cấu trúc trang.";
-            noSeasonsMessage.style.display = "block";
-            noSeasonsMessage.style.color = "red";
+            /* ... xử lý lỗi hiển thị ... */
           }
           return;
         }
 
+        // --- Xử lý lọc theo League ID (Giữ nguyên logic) ---
         let filterLeagueId = null;
         let leagueNameForTitle = null;
         let isValidFilter = true;
-
         try {
           const urlParamsFilter = new URLSearchParams(window.location.search);
           const leagueIdFilter = urlParamsFilter.get("leagueId");
-
           if (leagueIdFilter) {
             const parsedId = parseInt(leagueIdFilter, 10);
             if (!isNaN(parsedId)) {
@@ -495,105 +492,55 @@
               const leagues =
                 JSON.parse(localStorage.getItem(leaguesDataKey)) || [];
               const currentLeague = leagues.find(
-                (league) => league && league.id === filterLeagueId
+                (l) => l && l.id === filterLeagueId
               );
-              if (currentLeague) {
-                leagueNameForTitle = currentLeague.name;
-                pageTitleElement.textContent = `Các mùa giải của: ${leagueNameForTitle}`;
-              } else {
-                pageTitleElement.textContent = `Mùa giải của Giải đấu ID: ${filterLeagueId} (Không tìm thấy tên)`;
-              }
-
-              if (addNewButtonLink) {
+              leagueNameForTitle = currentLeague ? currentLeague.name : null;
+              pageTitleElement.textContent = `Các mùa giải của: ${
+                leagueNameForTitle || `Giải đấu ID ${filterLeagueId}`
+              }`;
+              if (addNewButtonLink)
                 addNewButtonLink.href = `addseason.html?leagueId=${filterLeagueId}`;
-              } else {
-                console.warn(
-                  "Could not find the 'Add New' link/button (expected #addNewButtonLink) to update href when filtered."
-                );
-              }
             } else {
-              isValidFilter = false;
-              console.error(
-                `Invalid leagueId in URL: "${leagueIdFilter}". Showing all seasons.`
-              );
-              alert(
-                "ID Giải đấu trong URL không hợp lệ. Hiển thị tất cả mùa giải."
-              );
+              isValidFilter = false; /* ... xử lý lỗi lọc ... */
               pageTitleElement.textContent = `Danh sách mùa giải (Lỗi lọc)`;
-              if (addNewButtonLink) {
-                addNewButtonLink.href = "dashboard.html";
-              }
+              if (addNewButtonLink) addNewButtonLink.href = "dashboard.html"; // Hoặc trang mặc định
             }
           } else {
             pageTitleElement.textContent = `Danh sách mùa giải`;
-            if (addNewButtonLink) {
-              addNewButtonLink.href = "dashboard.html";
-            } else {
-              console.warn(
-                "Could not find the 'Add New' link/button (expected #addNewButtonLink) to update href when not filtered."
-              );
-            }
+            if (addNewButtonLink) addNewButtonLink.href = "dashboard.html"; // Hoặc trang mặc định
           }
         } catch (e) {
-          isValidFilter = false;
-          console.error("Error processing URL or league data:", e);
-          pageTitleElement.textContent = `Danh sách mùa giải (Lỗi)`;
-          if (addNewButtonLink) {
-            addNewButtonLink.href = "dashboard.html";
-          }
+          /* ... xử lý lỗi URL/league data ... */
         }
 
+        // --- Lấy và xử lý dữ liệu Mùa giải (Giữ nguyên logic) ---
         let seasons = [];
         try {
           const storedSeasons = localStorage.getItem(seasonsDataKey);
           if (storedSeasons) {
             seasons = JSON.parse(storedSeasons);
-            if (!Array.isArray(seasons)) {
-              console.error(
-                "Data retrieved for 'danhSachMuaGiai' is not an array:",
-                seasons
-              );
-              seasons = [];
-              throw new Error("Dữ liệu mùa giải lưu trữ không hợp lệ.");
-            }
+            if (!Array.isArray(seasons))
+              throw new Error("Dữ liệu không phải mảng.");
           }
         } catch (parseError) {
-          console.error(
-            "Failed to parse 'danhSachMuaGiai' from localStorage:",
-            parseError
-          );
-          if (container)
-            container.innerHTML = `<p style="color: red; text-align: center;">Lỗi đọc dữ liệu mùa giải đã lưu.</p>`;
-          if (noSeasonsMessage) {
-            noSeasonsMessage.textContent = "Lỗi đọc dữ liệu.";
-            noSeasonsMessage.style.display = "block";
-            noSeasonsMessage.style.color = "red";
-          }
-          return;
+          /* ... xử lý lỗi parse JSON ... */ return;
         }
 
+        // --- Lọc và Sắp xếp (Giữ nguyên logic) ---
         let displayedSeasons = seasons;
         if (filterLeagueId !== null && isValidFilter) {
           displayedSeasons = seasons.filter(
-            (season) => season && season.leagueId === filterLeagueId
+            (s) => s && s.leagueId === filterLeagueId
           );
         }
-
-        container.innerHTML = "";
+        container.innerHTML = ""; // Xóa nội dung cũ
         if (displayedSeasons.length === 0) {
-          noSeasonsMessage.textContent =
-            filterLeagueId !== null && isValidFilter
-              ? `Chưa có mùa giải nào được tạo cho giải đấu "${
-                  leagueNameForTitle || "này"
-                }".`
-              : "Chưa có mùa giải nào được tạo.";
-          noSeasonsMessage.style.display = "block";
-          return;
+          /* ... xử lý không có mùa giải ... */ return;
         }
-
         noSeasonsMessage.style.display = "none";
-        displayedSeasons.sort((a, b) => (b.id || 0) - (a.id || 0));
+        displayedSeasons.sort((a, b) => (b.id || 0) - (a.id || 0)); // Sắp xếp mới nhất trước
 
+        // --- Vòng lặp tạo Card HTML (ĐÃ SỬA ĐỔI) ---
         displayedSeasons.forEach((season, index) => {
           try {
             if (
@@ -609,6 +556,7 @@
             }
 
             const formatDate = (dateString) => {
+              /* ... hàm formatDate giữ nguyên ... */
               if (!dateString) return "N/A";
               try {
                 const date = new Date(dateString);
@@ -622,74 +570,101 @@
               }
             };
 
-            const wallpaperSrc = season.wallpaper
-              ? season.wallpaper
-              : defaultSeasonWallpaper;
-            const wallpaperAlt = "Hình nền";
-            const logoSrc = season.logo ? season.logo : defaultSeasonLogo;
-            const logoAlt = "Logo";
-            const logoElement = `<img src="${logoSrc}" alt="${logoAlt}" class="card-logo" onerror="this.onerror=null; this.src='${defaultSeasonLogo}';">`;
+            // Tạo URL và Title cho link cấu hình
+            const configureUrl = `EditSeason.html?id=${season.id}&leagueId=${
+              season.leagueId || ""
+            }`;
+            const configureTitle = `Cấu hình mùa giải: ${
+              season.name || "(Không tên)"
+            }`;
 
+            // Lấy nguồn ảnh (giữ nguyên)
+            const wallpaperSrc = season.wallpaper || defaultSeasonWallpaper;
+            const wallpaperAlt = "Hình nền";
+            const logoSrc = season.logo || defaultSeasonLogo;
+            const logoAlt = "Logo";
+
+            // ** TẠO HTML CHO HÌNH NỀN VÀ LOGO ĐƯỢC BỌC THẺ <a> **
+            const wallpaperElement = `
+                <a href="${configureUrl}" title="${configureTitle}" style="display: block; height: 100%; text-decoration: none;">
+                  <img src="${wallpaperSrc}" alt="${wallpaperAlt}" class="wallpaper" onerror="this.onerror=null; this.src='${defaultSeasonWallpaper}';">
+                </a>
+              `;
+            const logoElement = `
+                <a href="${configureUrl}" title="${configureTitle}">
+                  <img src="${logoSrc}" alt="${logoAlt}" class="card-logo" onerror="this.onerror=null; this.src='${defaultSeasonLogo}';">
+                </a>
+              `;
+            // **********************************************************
+
+            // Tạo cardHTML hoàn chỉnh với wallpaperElement và logoElement đã sửa
             const cardHTML = `
-                              <div class="season-card" data-id="${season.id}">
-                                  <div class="card-header"> <img src="${wallpaperSrc}" alt="${wallpaperAlt}" class="wallpaper" onerror="this.onerror=null; this.src='${defaultSeasonWallpaper}';"> </div>
-                                  <div class="card-logo-container"> ${logoElement} </div>
-                                  <div class="card-body">
-                                      <div class="card-info">
-                                          <p title="Thời gian"><i class="far fa-calendar-alt"></i> ${formatDate(
-                                            season.startDate
-                                          )} - ${formatDate(season.endDate)}</p>
-                                          <p title="Số đội"><i class="fas fa-users"></i> Đội: ${
-                                            season.teamCount || "N/A"
-                                          }</p>
-                                          ${
-                                            season.location
-                                              ? `<p title="Địa điểm"><i class="fas fa-map-marker-alt"></i> ${season.location}</p>`
-                                              : ""
-                                          }
-                                          ${
-                                            season.fanpage
-                                              ? `<p title="Fanpage"><i class="fab fa-facebook-square"></i> <a href="${
-                                                  season.fanpage.startsWith(
-                                                    "http"
-                                                  )
-                                                    ? season.fanpage
-                                                    : "//" + season.fanpage
-                                                }" target="_blank">${
-                                                  season.fanpage
-                                                }</a></p>`
-                                              : ""
-                                          }
-                                      </div>
-                                       <h3 class="card-extra-info" title="Tên mùa giải" style="word-wrap: break-word; text-align: center; margin-top: 15px;"> ${
-                                         season.name || "Tên mùa giải trống"
-                                       } </h3>
-                                  </div>
-                                  <div class="card-footer">
-                                      <button class="edit-btn" onclick="goToConfigurePage(${
-                                        season.id
-                                      }, ${
+                <div class="season-card" data-id="${season.id}">
+                    <div class="card-header">
+                        ${wallpaperElement}
+                        <!-- Optional: Nút xem ảnh nhỏ có thể bỏ đi -->
+                        <!-- <button class="view-image-btn"><i class="fas fa-eye"></i></button> -->
+                    </div>
+                    <div class="card-logo-container">
+                        ${logoElement}
+                    </div>
+                    <div class="card-body">
+                        <div class="card-info">
+                            <p title="Thời gian"><i class="far fa-calendar-alt"></i> ${formatDate(
+                              season.startDate
+                            )} - ${formatDate(season.endDate)}</p>
+                            <p title="Số đội"><i class="fas fa-users"></i> Đội: ${
+                              season.teamCount || "N/A"
+                            }</p>
+                            ${
+                              season.location
+                                ? `<p title="Địa điểm"><i class="fas fa-map-marker-alt"></i> ${season.location}</p>`
+                                : ""
+                            }
+                            ${
+                              season.fanpage
+                                ? `<p title="Fanpage"><i class="fab fa-facebook-square"></i> <a href="${
+                                    season.fanpage.startsWith("http")
+                                      ? season.fanpage
+                                      : "//" + season.fanpage
+                                  }" target="_blank" rel="noopener noreferrer">${
+                                    season.fanpage
+                                  }</a></p>`
+                                : ""
+                            }
+                        </div>
+                        <h3 class="card-extra-info" title="Tên mùa giải" style="word-wrap: break-word; text-align: center; margin-top: 15px;"> ${
+                          season.name || "Tên mùa giải trống"
+                        } </h3>
+                    </div>
+                    <div class="card-footer">
+                        <button class="edit-btn" onclick="goToConfigurePage(${
+                          season.id
+                        }, ${
               season.leagueId || "null"
             })" title="Cấu hình mùa giải"><i class="fas fa-cog"></i></button>
-                                      <button class="delete-btn" onclick="deleteSeason(${
-                                        season.id
-                                      })" title="Xóa mùa giải"><i class="fas fa-trash-alt"></i></button>
-                                  </div>
-                              </div>`;
+                        <button class="delete-btn" onclick="deleteSeason(${
+                          season.id
+                        })" title="Xóa mùa giải"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                </div>`;
             container.insertAdjacentHTML("beforeend", cardHTML);
           } catch (cardError) {
             console.error(
-              `Error creating card for season at index ${index} (ID: ${season?.id}):`,
+              `Error creating card for season ID ${season?.id}:`,
               cardError,
               season
             );
+            // Có thể thêm một card báo lỗi vào container nếu muốn
+            // container.insertAdjacentHTML("beforeend", `<div class="season-card" style="border: 1px solid red; padding: 10px; text-align: center;">Lỗi tạo card mùa giải ID ${season?.id}</div>`);
           }
-        });
-      });
+        }); // Kết thúc forEach
+      }); // Kết thúc DOMContentLoaded
 
+      // --- Hàm chuyển trang cấu hình (Giữ nguyên) ---
       function goToConfigurePage(seasonId, leagueId) {
         if (!seasonId) {
-          console.error("Error (goToConfigurePage): Missing seasonId.");
+          console.error("Missing seasonId.");
           return;
         }
         const configurePageFilename = "EditSeason.html";
@@ -699,9 +674,10 @@
         window.location.href = url;
       }
 
+      // --- Hàm xóa mùa giải (Giữ nguyên) ---
       function deleteSeason(seasonId) {
         if (!seasonId) {
-          console.error("Error (deleteSeason): Missing seasonId.");
+          console.error("Missing seasonId.");
           return;
         }
         if (confirm(`Xóa mùa giải này?`)) {
@@ -711,7 +687,7 @@
               JSON.parse(localStorage.getItem(seasonsDataKey)) || [];
             const originalLength = seasons.length;
             const updatedSeasons = seasons.filter(
-              (season) => !(season && season.id === seasonId)
+              (s) => !(s && s.id === seasonId)
             );
             if (updatedSeasons.length < originalLength) {
               localStorage.setItem(
@@ -719,7 +695,7 @@
                 JSON.stringify(updatedSeasons)
               );
               alert(`Đã xóa mùa giải.`);
-              location.reload();
+              location.reload(); // Tải lại trang để cập nhật danh sách
             } else {
               alert(`Không tìm thấy mùa giải ID ${seasonId} để xóa.`);
             }

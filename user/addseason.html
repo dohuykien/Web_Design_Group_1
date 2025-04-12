@@ -677,19 +677,19 @@
                   <div class="row">
                     <div class="col">
                       <label>Thể thức thi đấu</label>
-                      <select>
-                        <option>Vòng tròn</option>
-                        <option>Chia bảng</option>
+                      <select id="matchFormat">
+                        <option value="round_robin">Vòng tròn</option>
+                        <option value="group_knockout">Chia bảng</option>
                       </select>
                     </div>
                     <div class="col">
                       <label>Số lượt đá vòng tròn</label>
-                      <select>
-                        <option>1 lượt</option>
-                        <option>2 lượt</option>
-                        <option>3 lượt</option>
-                        <option>4 lượt</option>
-                        <option>5 lượt</option>
+                      <select id="roundRobinTurns">
+                        <option value="1">1 lượt</option>
+                        <option value="2">2 lượt</option>
+                        <option value="3">3 lượt</option>
+                        <option value="4">4 lượt</option>
+                        <option value="5">5 lượt</option>
                       </select>
                     </div>
                   </div>
@@ -697,26 +697,30 @@
                   <div class="row">
                     <div class="col">
                       <label>Điểm thắng</label>
-                      <input type="number" value="3" />
+                      <input id="pointsWin" type="number" value="3" />
                     </div>
                     <div class="col">
                       <label>Điểm hòa</label>
-                      <input type="number" value="1" />
+                      <input id="pointsDraw" type="number" value="1" />
                     </div>
                     <div class="col">
                       <label>Điểm thua</label>
-                      <input type="number" value="0" />
+                      <input id="pointsLoss" type="number" value="0" />
                     </div>
                   </div>
 
-                  <div class="row">
+                  <div class="row" id="bronzeMatchSection">
                     <div class="col">
                       <label
-                        for="toggle"
+                        for="hasBronzeMatchToggle"
                         class="toggle-label"
                         style="display: flex"
                         >Tranh giải ba
-                        <input type="checkbox" name="" id="toggle" />
+                        <input
+                          id="hasBronzeMatchToggle"
+                          type="checkbox"
+                          name=""
+                        />
                         <div class="toggle" style="margin-left: 20px">
                           <div class="spinner"></div>
                         </div>
@@ -727,54 +731,79 @@
                   <div class="row">
                     <div class="col">
                       <label>Số cầu thủ 1 đội</label>
-                      <input type="number" />
+                      <input id="maxPlayers" type="number" />
                     </div>
                     <div class="col">
                       <label>Số thành viên ban huấn luyện</label>
-                      <input type="number" />
+                      <input id="maxStaff" type="number" />
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col">
                       <label>Số hiệp - set 1 trận</label>
-                      <input type="number" />
+                      <input id="numberOfHalves" type="number" />
                     </div>
                     <div class="col">
                       <label>Thời gian 1 hiệp - set (phút)</label>
-                      <input type="number" />
+                      <input id="halfTimeDuration" type="number" />
                     </div>
                   </div>
                 </div>
-                <div class="nguyenkhi">CẤU HÌNH BẢNG ĐẤU VÀ VÒNG KNOCKOUT</div>
-                <div class="chiabang">
+                <div class="nguyenkhi" id="groupKnockoutTitleSection">
+                  CẤU HÌNH BẢNG ĐẤU VÀ VÒNG KNOCKOUT
+                </div>
+                <div class="chiabang" id="groupKnockoutFieldsSection">
                   <div class="row">
                     <div class="col">
-                      <label>Tổng số bảng</label>
+                      <label for="groupCount">Tổng số bảng</label>
                     </div>
                     <div class="col">
-                      <input type="number" value="1" />
+                      <input id="groupCount" type="number" value="1" min="0" />
                     </div>
                   </div>
 
                   <div class="row">
                     <div class="col">
-                      <label>Số đội nhất bảng</label>
-                      <input type="number" value="0" />
+                      <label for="teamsFromGroup1st">Số đội nhất bảng</label>
+
+                      <input
+                        id="teamsFromGroup1st"
+                        type="number"
+                        value="0"
+                        min="0"
+                      />
                     </div>
                     <div class="col">
-                      <label>Số đội nhì bảng</label>
-                      <input type="number" value="0" />
+                      <label for="teamsFromGroup2nd">Số đội nhì bảng</label>
+                      <input
+                        id="teamsFromGroup2nd"
+                        type="number"
+                        value="0"
+                        min="0"
+                      />
                     </div>
                   </div>
                   <div class="row">
                     <div class="col">
-                      <label>Số đội thứ ba bảng</label>
-                      <input type="number" value="0" />
+                      <label for="teamsFromGroup3rd">Số đội thứ ba bảng</label>
+
+                      <input
+                        id="teamsFromGroup3rd"
+                        type="number"
+                        value="0"
+                        min="0"
+                      />
                     </div>
                     <div class="col">
-                      <label>Số đội thứ tư bảng</label>
-                      <input type="number" value="0" />
+                      <label for="teamsFromGroup4th">Số đội thứ tư bảng</label>
+
+                      <input
+                        id="teamsFromGroup4th"
+                        type="number"
+                        value="0"
+                        min="0"
+                      />
                     </div>
                   </div>
                 </div>
@@ -929,212 +958,285 @@
         const leagueIdFromUrl = urlParams.get("leagueId");
         if (leagueIdFromUrl) {
           currentLeagueId = parseInt(leagueIdFromUrl, 10);
+          if (isNaN(currentLeagueId)) {
+            throw new Error("League ID không hợp lệ.");
+          }
           console.log(
             `DEBUG (addseason): Received leagueId: ${currentLeagueId}`
           );
+          // Cập nhật link quay lại (Nếu nút có trong file này)
+          const backToListLink = document
+            .querySelector(".return")
+            ?.closest("a");
+          if (backToListLink) {
+            // **QUAN TRỌNG**: Đảm bảo link này trỏ đúng về trang danh sách mùa giải kèm leagueId
+            backToListLink.href = `danhsachmuagiai.html?leagueId=${currentLeagueId}`;
+          }
         } else {
-          // Chỉ hiện alert, không chuyển trang
           console.error(
-            "DEBUG (addseason): CRITICAL - No leagueId found in URL! Cannot create season."
+            "DEBUG (addseason): CRITICAL - No leagueId found in URL!"
           );
-          alert("Lỗi: Không xác định được giải đấu để tạo mùa giải!");
-          // Optional: Disable nút Save nếu không có leagueId
-          // const saveButtonForDisable = document.querySelector(".save");
-          // if (saveButtonForDisable) saveButtonForDisable.disabled = true;
+          alert(
+            "Lỗi: Không xác định được giải đấu để tạo mùa giải! Hãy quay lại trang danh sách giải đấu."
+          );
+          const saveButtonForDisable = document.querySelector(".save");
+          if (saveButtonForDisable) {
+            saveButtonForDisable.disabled = true;
+            saveButtonForDisable.style.opacity = 0.6;
+            saveButtonForDisable.style.cursor = "not-allowed";
+          }
         }
       } catch (e) {
-        console.error("DEBUG (addseason): Error reading leagueId from URL:", e);
-        alert("Lỗi đọc ID giải đấu từ URL!");
+        console.error("DEBUG (addseason): Error processing leagueId:", e);
+        alert("Lỗi đọc ID giải đấu từ URL hoặc ID không hợp lệ!");
+        const saveButtonForDisable = document.querySelector(".save");
+        if (saveButtonForDisable) {
+          saveButtonForDisable.disabled = true;
+          saveButtonForDisable.style.opacity = 0.6;
+          saveButtonForDisable.style.cursor = "not-allowed";
+        }
       }
       // ----- KẾT THÚC ĐỌC LEAGUE ID -----
-      // Biến lưu Data URL ảnh mùa giải
+
+      // Biến lưu Data URL ảnh
       let logoDataUrl = null;
       let wpDataUrl = null;
 
-      // --- Preview ảnh và Lưu Data URL ---
-      function previewImage(inputId, previewId) {
-        /* ... code preview giữ nguyên ... */
-        const input = document.getElementById(inputId);
-        const preview = document.getElementById(previewId);
-        if (!input || !preview) {
-          console.error(
-            `DEBUG (addseason): Missing ${inputId} or ${previewId}`
-          );
-          return;
-        }
-        input.addEventListener("change", function () {
-          preview.innerHTML = "";
-          const file = this.files[0];
-          let targetVar =
-            inputId === "logoFile"
-              ? "logoDataUrl"
-              : inputId === "wpFile"
-              ? "wpDataUrl"
-              : null;
-          if (file && file.type.startsWith("image/")) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-              const img = document.createElement("img");
-              img.src = e.target.result;
-              preview.appendChild(img);
-              if (targetVar === "logoDataUrl") {
-                logoDataUrl = e.target.result;
-                console.log("DEBUG (addseason): Season logo URL set.");
-              }
-              if (targetVar === "wpDataUrl") {
-                wpDataUrl = e.target.result;
-                console.log("DEBUG (addseason): Season wallpaper URL set.");
-              }
-            };
-            reader.onerror = (e) => {
-              console.error(
-                `DEBUG (addseason): FileReader error for ${inputId}:`,
-                e
-              );
-            };
-            reader.readAsDataURL(file);
-          } else {
-            if (targetVar === "logoDataUrl") logoDataUrl = null;
-            if (targetVar === "wpDataUrl") wpDataUrl = null;
-            if (file) {
-              preview.innerHTML = "File không phải ảnh!";
-              alert("Vui lòng chọn file ảnh hợp lệ.");
-              input.value = null;
-            } else {
-              console.log(`DEBUG (addseason): No file for ${inputId}.`);
-            }
-            if (targetVar === "logoDataUrl") logoDataUrl = null;
-            if (targetVar === "wpDataUrl") wpDataUrl = null;
-          }
-        });
-      }
-      previewImage("logoFile", "logoPreview");
-      previewImage("wpFile", "wpPreview");
-
-      // --- Vòng tròn or Chia bảng  ---
-      const formatSelect = document.querySelector(".box-left select");
-      const thirdPlaceToggleInput = document.querySelector("#toggle");
-      const thirdPlaceRow = thirdPlaceToggleInput?.closest(".row");
-      const groupConfigSection = document.querySelector(".chiabang");
-      const groupConfigHeader = document.querySelector(".nguyenkhi");
-      if (
-        formatSelect &&
-        thirdPlaceRow &&
-        groupConfigSection &&
-        groupConfigHeader
-      ) {
-        function updateUIBasedOnFormat() {
-          const selectedFormat = formatSelect.value;
-          const isChiaBang = selectedFormat === "Chia bảng";
-          thirdPlaceRow.style.display = isChiaBang ? "" : "none";
-          groupConfigSection.style.display = isChiaBang ? "" : "none";
-          groupConfigHeader.style.display = isChiaBang ? "" : "none";
-        }
-        updateUIBasedOnFormat();
-        formatSelect.addEventListener("change", updateUIBasedOnFormat);
-      } else {
-        console.warn("DEBUG (addseason): Missing elements for format toggle.");
-      }
-
-      // --- XỬ LÝ NÚT LƯU MÙA GIẢI (giữ nguyên phần còn lại) ---
+      // --- DOM Elements (Lấy bằng ID bạn đã thêm) ---
+      const logoFileInput = document.getElementById("logoFile");
+      const logoPreview = document.getElementById("logoPreview");
+      const wallpaperFileInput = document.getElementById("wpFile");
+      const wallpaperPreview = document.getElementById("wpPreview");
+      // **** SỬA CÁCH LẤY ELEMENT Ở ĐÂY ****
+      const formatSelect = document.getElementById("matchFormat"); // Dùng ID
+      const thirdPlaceRow = document.getElementById("bronzeMatchSection"); // Dùng ID
+      const groupConfigHeader = document.getElementById(
+        "groupKnockoutTitleSection"
+      ); // Dùng ID
+      const groupConfigSection = document.getElementById(
+        "groupKnockoutFieldsSection"
+      ); // Dùng ID
+      // **********************************
       const saveBtn = document.querySelector(".save");
       const successMsg = document.querySelector(".success");
       const tenMuaGiaiInput = document.getElementById("tenMuaGiai");
       const soDoiThamDuInput = document.getElementById("soDoiThamDu");
+      // Lấy các element input khác bằng ID tương ứng bạn đã thêm
+      const thoiGianBatDauInput = document.getElementById("thoiGianBatDau");
+      const thoiGianKetThucInput = document.getElementById("thoiGianKetThuc");
+      const roundRobinTurnsSelect = document.getElementById("roundRobinTurns");
+      const pointsWinInput = document.getElementById("pointsWin");
+      const pointsDrawInput = document.getElementById("pointsDraw");
+      const pointsLossInput = document.getElementById("pointsLoss");
+      const hasBronzeMatchToggle = document.getElementById(
+        "hasBronzeMatchToggle"
+      );
+      const maxPlayersInput = document.getElementById("maxPlayers");
+      const maxStaffInput = document.getElementById("maxStaff");
+      const numberOfHalvesInput = document.getElementById("numberOfHalves");
+      const halfTimeDurationInput = document.getElementById("halfTimeDuration");
+      const groupCountInput = document.getElementById("groupCount");
+      const teamsFromGroup1stInput =
+        document.getElementById("teamsFromGroup1st");
+      const teamsFromGroup2ndInput =
+        document.getElementById("teamsFromGroup2nd");
+      const teamsFromGroup3rdInput =
+        document.getElementById("teamsFromGroup3rd");
+      const teamsFromGroup4thInput =
+        document.getElementById("teamsFromGroup4th");
+      const locationInput = document.getElementById("location");
+      const fanpageInput = document.getElementById("fanpage");
 
-      // Optional: Vô hiệu hóa nút Lưu nếu không có leagueId ban đầu
-      if (currentLeagueId === null && saveBtn) {
-        console.warn(
-          "DEBUG (addseason): Disabling save button because leagueId is missing."
+      // --- Hàm Preview ảnh và Lưu Data URL (Giữ nguyên) ---
+      function previewImage(inputElement, previewElement, setDataUrlCallback) {
+        // ... (Code hàm previewImage giữ nguyên như trước) ...
+        if (!inputElement || !previewElement) {
+          console.error(`DEBUG (addseason): Missing elements for preview.`);
+          return;
+        }
+        inputElement.addEventListener("change", function () {
+          previewElement.innerHTML = "";
+          const file = this.files[0];
+          setDataUrlCallback(null);
+
+          const renderPreview = (src) => {
+            const isLogo = inputElement.id === "logoFile";
+            const imgStyle = isLogo
+              ? "max-width: 100%; max-height: 80px; display: block; border-radius: 3px; object-fit: contain;"
+              : "max-width: 100%; max-height: 150px; display: block; border-radius: 3px; object-fit: cover;";
+            if (src) {
+              previewElement.innerHTML = `<img src="${src}" alt="Preview" style="${imgStyle}">`;
+            } else {
+              previewElement.innerHTML = "";
+            }
+          };
+
+          if (file && file.type.startsWith("image/")) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              renderPreview(e.target.result);
+              setDataUrlCallback(e.target.result);
+            };
+            reader.onerror = (e) => {
+              console.error(`DEBUG (addseason): FileReader error:`, e);
+            };
+            reader.readAsDataURL(file);
+          } else {
+            if (file) {
+              alert("Vui lòng chọn file ảnh hợp lệ.");
+              inputElement.value = null;
+            }
+            renderPreview(null); // Clear preview if no valid file
+          }
+        });
+      }
+      previewImage(logoFileInput, logoPreview, (url) => (logoDataUrl = url));
+      previewImage(
+        wallpaperFileInput,
+        wallpaperPreview,
+        (url) => (wpDataUrl = url)
+      );
+
+      // --- Hàm ẩn/hiện dựa trên thể thức (Dùng ID và VALUE) ---
+      function updateUIBasedOnFormat() {
+        if (
+          !formatSelect ||
+          !thirdPlaceRow ||
+          !groupConfigSection ||
+          !groupConfigHeader
+        ) {
+          console.warn(
+            "DEBUG (addseason): Missing elements for format toggle UI."
+          );
+          return;
+        }
+        // **** SỬA CÁCH SO SÁNH Ở ĐÂY ****
+        const selectedFormatValue = formatSelect.value; // Lấy VALUE từ select
+        const isChiaBang = selectedFormatValue === "group_knockout"; // So sánh với VALUE
+        // *******************************
+        thirdPlaceRow.style.display = isChiaBang ? "flex" : "none"; // Dùng flex như HTML gốc
+        groupConfigSection.style.display = isChiaBang ? "block" : "none";
+        groupConfigHeader.style.display = isChiaBang ? "block" : "none";
+        console.log(
+          `DEBUG (addseason): Format selected: ${selectedFormatValue}, ChiaBang sections visible: ${isChiaBang}`
         );
-        saveBtn.disabled = true;
-        saveBtn.style.opacity = 0.6; // Làm mờ nút
-        saveBtn.style.cursor = "not-allowed";
-        // Có thể thêm thông báo vào gần nút Lưu
-        // const saveBtnContainer = saveBtn.closest('.wrap'); // Tìm container của nút
+      }
+      // Gọi lần đầu và thêm listener (nếu formatSelect tồn tại)
+      if (formatSelect) {
+        updateUIBasedOnFormat();
+        formatSelect.addEventListener("change", updateUIBasedOnFormat);
       }
 
+      // --- XỬ LÝ NÚT LƯU MÙA GIẢI ---
       if (saveBtn && tenMuaGiaiInput && soDoiThamDuInput) {
         saveBtn.addEventListener("click", function (e) {
           e.preventDefault();
           if (successMsg) successMsg.style.display = "none";
 
-          // *** Thêm kiểm tra currentLeagueId ở đây một lần nữa ***
           if (currentLeagueId === null) {
-            alert("Lỗi: Không xác định được Giải đấu. Không thể lưu mùa giải.");
-            console.error(
-              "DEBUG (addseason): Save cancelled - leagueId is still null."
-            );
-            return; // Không cho lưu nếu không có leagueId
+            alert("Lỗi: Không xác định được Giải đấu.");
+            return;
           }
 
           const tenMuaGiaiValue = tenMuaGiaiInput.value.trim();
           const soDoiThamDuValue = soDoiThamDuInput.value;
 
           if (tenMuaGiaiValue === "" || soDoiThamDuValue === "") {
-            alert("Vui lòng nhập đầy đủ Tên mùa giải và Số đội tham dự!");
-            if (tenMuaGiaiValue === "") tenMuaGiaiInput.focus();
-            else soDoiThamDuInput.focus();
+            alert("Vui lòng nhập Tên mùa giải và Số đội!");
             return;
           }
+
           console.log("DEBUG (addseason): Validation passed.");
 
-          // Lấy các giá trị còn lại...
-          const thoiGianBatDauInput = document.getElementById("thoiGianBatDau");
-          const thoiGianKetThucInput =
-            document.getElementById("thoiGianKetThuc");
-          const locationInput = document.getElementById("location");
-          const fanpageInput = document.getElementById("fanpage");
-          const thoiGianBatDauValue = thoiGianBatDauInput
-            ? thoiGianBatDauInput.value
-            : "";
-          const thoiGianKetThucValue = thoiGianKetThucInput
-            ? thoiGianKetThucInput.value
-            : "";
-          const locationValue = locationInput ? locationInput.value.trim() : "";
-          const fanpageValue = fanpageInput ? fanpageInput.value.trim() : "";
-
-          // Tạo object dữ liệu mùa giải - CÓ leagueId
+          // --- Lấy TẤT CẢ giá trị từ form (Dùng ID) ---
           const newSeasonData = {
             id: Date.now(),
-            leagueId: currentLeagueId, // Đã thêm ID giải đấu
+            leagueId: currentLeagueId,
             name: tenMuaGiaiValue,
-            startDate: thoiGianBatDauValue,
-            endDate: thoiGianKetThucValue,
-            teamCount: soDoiThamDuValue,
+            startDate: thoiGianBatDauInput?.value || null,
+            endDate: thoiGianKetThucInput?.value || null,
+            teamCount: soDoiThamDuValue ? parseInt(soDoiThamDuValue) : null,
+            matchFormat: formatSelect?.value || null, // Lấy VALUE
+            roundRobinTurns: roundRobinTurnsSelect?.value
+              ? parseInt(roundRobinTurnsSelect.value)
+              : null, // Lấy VALUE
+            pointsWin:
+              pointsWinInput?.value !== "" ? parseInt(pointsWinInput.value) : 3,
+            pointsDraw:
+              pointsDrawInput?.value !== ""
+                ? parseInt(pointsDrawInput.value)
+                : 1,
+            pointsLoss:
+              pointsLossInput?.value !== ""
+                ? parseInt(pointsLossInput.value)
+                : 0,
+            hasBronzeMatch: hasBronzeMatchToggle?.checked || false,
+            maxPlayers: maxPlayersInput?.value
+              ? parseInt(maxPlayersInput.value)
+              : null,
+            maxStaff: maxStaffInput?.value
+              ? parseInt(maxStaffInput.value)
+              : null,
+            numberOfHalves: numberOfHalvesInput?.value
+              ? parseInt(numberOfHalvesInput.value)
+              : 2,
+            halfTimeDuration: halfTimeDurationInput?.value
+              ? parseInt(halfTimeDurationInput.value)
+              : null,
+            groupCount: groupCountInput?.value
+              ? parseInt(groupCountInput.value)
+              : null,
+            teamsFromGroup1st: teamsFromGroup1stInput?.value
+              ? parseInt(teamsFromGroup1stInput.value)
+              : null,
+            teamsFromGroup2nd: teamsFromGroup2ndInput?.value
+              ? parseInt(teamsFromGroup2ndInput.value)
+              : null,
+            teamsFromGroup3rd: teamsFromGroup3rdInput?.value
+              ? parseInt(teamsFromGroup3rdInput.value)
+              : null,
+            teamsFromGroup4th: teamsFromGroup4thInput?.value
+              ? parseInt(teamsFromGroup4thInput.value)
+              : null,
+            location: locationInput?.value.trim() || null,
+            fanpage: fanpageInput?.value.trim() || null,
             logo: logoDataUrl,
             wallpaper: wpDataUrl,
-            location: locationValue,
-            fanpage: fanpageValue,
+            createdAt: new Date().toISOString(),
           };
 
-          // Lưu vào localStorage['danhSachMuaGiai']
+          // --- Lưu vào localStorage ---
           try {
             const storageKey = "danhSachMuaGiai";
             let seasons = JSON.parse(localStorage.getItem(storageKey)) || [];
             seasons.push(newSeasonData);
             localStorage.setItem(storageKey, JSON.stringify(seasons));
-            console.log(`DEBUG (addseason): Season saved to '${storageKey}'.`);
+            console.log(
+              `DEBUG (addseason): Season saved ID: ${newSeasonData.id}.`
+            );
 
-            // Chỉ hiện thông báo thành công
             if (successMsg) {
               successMsg.textContent = "Thêm mùa giải thành công!";
               successMsg.style.display = "block";
-              console.log("DEBUG (addseason): Success message shown.");
             } else {
               alert("Thêm mùa giải thành công!");
             }
+
+            // Tùy chọn: Reset form sau khi lưu
+            // document.getElementById('editSeasonFormLeft')?.reset(); // Nếu có form tag
+            // document.getElementById('editSeasonFormGroupKO')?.reset();
+            // document.getElementById('editSeasonFormRight')?.reset();
+            // if(logoPreview) logoPreview.innerHTML = '';
+            // if(wallpaperPreview) wallpaperPreview.innerHTML = '';
+            // logoDataUrl = null; wpDataUrl = null;
+            // updateUIBasedOnFormat(); // Reset UI ẩn/hiện
           } catch (error) {
             console.error("DEBUG (addseason): Error saving season:", error);
-            alert("Lỗi khi lưu mùa giải. Kiểm tra console (F12).");
+            alert("Lỗi khi lưu mùa giải.");
           }
         });
       } else {
-        console.error(
-          "DEBUG (addseason): Critical Error! Missing elements for saving.",
-          { saveBtn, tenMuaGiaiInput, soDoiThamDuInput }
-        );
-        // Không cần alert ở đây nữa vì đã có alert ở trên nếu leagueId null
+        console.error("DEBUG (addseason): Missing core save elements.");
       }
     </script>
   </body>

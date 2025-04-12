@@ -390,7 +390,7 @@
         display: none;
       }
       .box-left {
-        max-width: 1250px;
+        max-width: 800px;
         margin: 12px 15px 0 30px;
         padding: 0 20px 5px 20px;
         background: #ffffff;
@@ -400,7 +400,7 @@
         flex: 2;
       }
       .nguyenkhi {
-        max-width: 1250px;
+        max-width: 800px;
         margin: 20px 15px 0 30px;
         padding: 5px 10px;
         background: #ccc;
@@ -412,7 +412,7 @@
         flex: 2;
       }
       .chiabang {
-        max-width: 1250px;
+        max-width: 800px;
         margin: -1px 15px 0 30px;
         padding: 0 20px 5px 20px;
         background: #ffffff;
@@ -421,6 +421,12 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         flex: 2;
         transition: opacity 0.3s ease;
+      }
+      .chiabang label {
+        font-size: 14px;
+      }
+      .chiabang input {
+        margin-top: 7px;
       }
       .box-right {
         max-width: 1000px;
@@ -738,18 +744,18 @@
                     <div class="col">
                       <label>Thể thức thi đấu</label>
                       <select id="matchFormat">
-                        <option>Vòng tròn</option>
-                        <option>Chia bảng</option>
+                        <option value="round_robin">Vòng tròn</option>
+                        <option value="group_knockout">Chia bảng</option>
                       </select>
                     </div>
                     <div class="col">
                       <label>Số lượt đá vòng tròn</label>
                       <select id="roundRobinTurns">
-                        <option>1 lượt</option>
-                        <option>2 lượt</option>
-                        <option>3 lượt</option>
-                        <option>4 lượt</option>
-                        <option>5 lượt</option>
+                        <option value="1">1 lượt</option>
+                        <option value="2">2 lượt</option>
+                        <option value="3">3 lượt</option>
+                        <option value="4">4 lượt</option>
+                        <option value="5">5 lượt</option>
                       </select>
                     </div>
                   </div>
@@ -772,7 +778,7 @@
                   <div class="row" id="bronzeMatchSection">
                     <div class="col">
                       <label
-                        for="toggle"
+                        for="hasBronzeMatchToggle"
                         class="toggle-label"
                         style="display: flex"
                         >Tranh giải ba
@@ -780,7 +786,6 @@
                           id="hasBronzeMatchToggle"
                           type="checkbox"
                           name=""
-                          id="toggle"
                         />
                         <div class="toggle" style="margin-left: 20px">
                           <div class="spinner"></div>
@@ -810,59 +815,273 @@
                       <input id="halfTimeDuration" type="number" />
                     </div>
                   </div>
+                </div>
+                <div class="nguyenkhi" id="groupKnockoutTitleSection">
+                  CẤU HÌNH BẢNG ĐẤU VÀ VÒNG KNOCKOUT
+                </div>
 
-                  <div id="groupKnockoutConfigSection">
-                    <div class="nguyenkhi">
-                      CẤU HÌNH BẢNG ĐẤU VÀ VÒNG KNOCKOUT
-                    </div>
-                    <div class="chiabang">
-                      <div class="row">
-                        <div class="col">
-                          <label>Tổng số bảng</label>
-                        </div>
-                        <div class="col">
-                          <input id="groupCount" type="number" value="1" />
-                        </div>
+                <div class="chiabang" id="groupKnockoutFieldsSection">
+                  <!-- Ví dụ ID -->
+                  <form id="editSeasonFormGroupKO">
+                    <div class="row">
+                      <div class="col">
+                        <label for="groupCount">Tổng số bảng</label>
                       </div>
-
-                      <div class="row">
-                        <div class="col">
-                          <label>Số đội nhất bảng</label>
-                          <input
-                            id="teamsFromGroup1st"
-                            type="number"
-                            value="0"
-                          />
-                        </div>
-                        <div class="col">
-                          <label>Số đội nhì bảng</label>
-                          <input
-                            id="teamsFromGroup2nd"
-                            type="number"
-                            value="0"
-                          />
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col">
-                          <label>Số đội thứ ba bảng</label>
-                          <input
-                            id="teamsFromGroup3rd"
-                            type="number"
-                            value="0"
-                          />
-                        </div>
-                        <div class="col">
-                          <label>Số đội thứ tư bảng</label>
-                          <input
-                            id="teamsFromGroup4th"
-                            type="number"
-                            value="0"
-                          />
-                        </div>
+                      <div class="col">
+                        <input
+                          id="groupCount"
+                          type="number"
+                          value="1"
+                          min="0"
+                        />
                       </div>
                     </div>
-                  </div>
+
+                    <div class="row">
+                      <div class="col">
+                        <label for="teamsFromGroup1st">Số đội nhất bảng</label>
+
+                        <input
+                          id="teamsFromGroup1st"
+                          type="number"
+                          value="0"
+                          min="0"
+                        />
+                      </div>
+                      <div class="col">
+                        <label for="teamsFromGroup2nd">Số đội nhì bảng</label>
+                        <input
+                          id="teamsFromGroup2nd"
+                          type="number"
+                          value="0"
+                          min="0"
+                        />
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <label for="teamsFromGroup3rd"
+                          >Số đội thứ ba bảng</label
+                        >
+
+                        <input
+                          id="teamsFromGroup3rd"
+                          type="number"
+                          value="0"
+                          min="0"
+                        />
+                      </div>
+                      <div class="col">
+                        <label for="teamsFromGroup4th"
+                          >Số đội thứ tư bảng</label
+                        >
+
+                        <input
+                          id="teamsFromGroup4th"
+                          type="number"
+                          value="0"
+                          min="0"
+                        />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Cấu hình thẻ phạt -->
+                <div class="nguyenkhi" id="penaltyConfigTitle">
+                  CẤU HÌNH THẺ PHẠT
+                </div>
+
+                <div class="chiabang" id="penaltyConfigFields">
+                  <!-- Ví dụ ID -->
+                  <form id="editSeasonFormPenalty">
+                    <div class="row">
+                      <div class="col">
+                        <label for="yellowCardLimitIndirect"
+                          >Số trận phải nghỉ khi bị hai thẻ vàng</label
+                        >
+                        <input
+                          id="yellowCardLimitIndirect"
+                          type="number"
+                          value="1"
+                          min="0"
+                        />
+                      </div>
+                      <div class="col">
+                        <label for="yellowCardLimitDirect"
+                          >Số trận phải nghỉ khi bị thẻ đỏ gián tiếp</label
+                        >
+                        <input
+                          id="yellowCardLimitDirect"
+                          type="number"
+                          value="1"
+                          min="0"
+                        />
+                      </div>
+                      <div class="col">
+                        <label for="redCardLimit"
+                          >Số trận phải nghỉ khi bị thẻ đỏ trực tiếp tiếp</label
+                        >
+                        <input
+                          id="redCardLimit"
+                          type="number"
+                          value="1"
+                          min="0"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="row" style="margin: 7px 0 0 10px">
+                      <label
+                        for="resetSingleYellowKO"
+                        style="
+                          display: flex;
+                          align-items: center;
+                          justify-content: flex-start;
+                          font-size: 16px;
+                        "
+                      >
+                        <input
+                          id="resetSingleYellowKO"
+                          type="checkbox"
+                          style="
+                            margin-right: 5px;
+                            border: none;
+                            outline: none;
+                            width: 15px;
+                            height: 15px;
+                            position: relative;
+                            top: -3px;
+                          "
+                        />
+                        Xóa 1 thẻ vàng
+                      </label>
+                    </div>
+                    <div class="row" style="margin: 7px 0 0 10px">
+                      <label
+                        for="resetAllYellowKO"
+                        style="
+                          display: flex;
+                          align-items: center;
+                          justify-content: flex-start;
+                          font-size: 16px;
+                        "
+                      >
+                        <input
+                          id="resetAllYellowKO"
+                          type="checkbox"
+                          style="
+                            margin-right: 5px;
+                            border: none;
+                            outline: none;
+                            width: 15px;
+                            height: 15px;
+                            position: relative;
+                            top: -3px;
+                          "
+                        />
+                        Xóa tất cả thẻ vàng
+                      </label>
+                    </div>
+                    <div class="row" style="margin: 7px 0 0 10px">
+                      <label
+                        for="resetRedIndirectKO"
+                        ;
+                        style="
+                          display: flex;
+                          align-items: center;
+                          justify-content: flex-start;
+                          font-size: 16px;
+                        "
+                      >
+                        <input
+                          id="resetRedIndirectKO"
+                          ;
+                          type="checkbox"
+                          style="
+                            margin-right: 5px;
+                            border: none;
+                            outline: none;
+                            width: 15px;
+                            height: 15px;
+                            position: relative;
+                            top: -3px;
+                          "
+                        />
+                        Xóa thẻ đỏ gián tiếp
+                      </label>
+                    </div>
+                    <div class="row" style="margin: 7px 0 0 10px">
+                      <label
+                        for="resetRedDirectKO"
+                        style="
+                          display: flex;
+                          align-items: center;
+                          justify-content: flex-start;
+                          font-size: 16px;
+                        "
+                      >
+                        <input
+                          id="resetRedDirectKO"
+                          type="checkbox"
+                          style="
+                            margin-right: 5px;
+                            border: none;
+                            outline: none;
+                            width: 15px;
+                            height: 15px;
+                            position: relative;
+                            top: -3px;
+                          "
+                        />
+                        Xóa thẻ đỏ trực tiếp
+                      </label>
+                    </div>
+                    <div class="row" style="margin: 7px 0 0 10px">
+                      <label
+                        for="resetAllCardsKO"
+                        ;
+                        style="
+                          display: flex;
+                          align-items: center;
+                          justify-content: flex-start;
+                          font-size: 16px;
+                        "
+                      >
+                        <input
+                          id="resetAllCardsKO"
+                          type="checkbox"
+                          style="
+                            margin-right: 5px;
+                            border: none;
+                            outline: none;
+                            width: 15px;
+                            height: 15px;
+                            position: relative;
+                            top: -3px;
+                          "
+                        />
+                        Xóa tất cả thẻ
+                      </label>
+                    </div>
+                    <div class="row" style="margin: 10px 0">
+                      <div class="col">
+                        <label for="knockoutResetRound"
+                          >Chọn vòng đấu thực hiện xóa thẻ</label
+                        >
+                        <select id="knockoutResetRound">
+                          <option value="">
+                            Chọn vòng đấu thực hiện xóa thẻ
+                          </option>
+                          <option value="round_1">Vòng 1</option>
+                          <option value="round_2">Vòng 2</option>
+                          <option value="round_3">Vòng 3</option>
+                          <option value="semi_final">Bán Kết</option>
+                          <option value="final">Chung Kết</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </div>
               <!-- end box-left-->
@@ -1008,36 +1227,35 @@
       });
     </script>
 
-    <!-- ========= JAVASCRIPT CHÍNH CHO CẬP NHẬT MÙA GIẢI (THÊM VÀO ĐÂY) ========= -->
+    <!-- ========= JAVASCRIPT CHÍNH CHO CẬP NHẬT MÙA GIẢI ========= -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         console.log("DEBUG (EditSeason - Config): DOM loaded.");
 
-        // === DOM Element References ===
+        // === DOM Element References (Khớp với ID trong HTML của bạn) ===
         const pageTitle = document.querySelector(".list-league_left");
         const saveButton = document.getElementById("saveButton");
         const resetButton = document.getElementById("resetButton");
         const backToListButtonLink = document
           .querySelector(".return")
-          .closest("a");
-        const successMessageDiv = document.querySelector(".success");
+          ?.closest("a");
 
         // --- Form Left Elements ---
         const seasonNameInput = document.getElementById("tenMuaGiai");
         const startDateInput = document.getElementById("thoiGianBatDau");
         const endDateInput = document.getElementById("thoiGianKetThuc");
         const teamCountInput = document.getElementById("soDoiThamDu");
-        const matchFormatSelect = document.getElementById("matchFormat"); // Quan trọng
+        const matchFormatSelect = document.getElementById("matchFormat"); // ID Quan trọng
         const roundRobinTurnsSelect =
-          document.getElementById("roundRobinTurns"); // Quan trọng
+          document.getElementById("roundRobinTurns"); // ID Quan trọng
         const pointsWinInput = document.getElementById("pointsWin");
         const pointsDrawInput = document.getElementById("pointsDraw");
         const pointsLossInput = document.getElementById("pointsLoss");
         const hasBronzeMatchToggle = document.getElementById(
           "hasBronzeMatchToggle"
-        );
+        ); // ID Quan trọng
         const bronzeMatchSection =
-          document.getElementById("bronzeMatchSection"); // Div bao tranh giải 3
+          document.getElementById("bronzeMatchSection"); // ID Quan trọng
         const maxPlayersInput = document.getElementById("maxPlayers");
         const maxStaffInput = document.getElementById("maxStaff");
         const numberOfHalvesInput = document.getElementById("numberOfHalves");
@@ -1045,9 +1263,12 @@
           document.getElementById("halfTimeDuration");
 
         // --- Form Group/KO Elements ---
-        const groupKnockoutConfigSection = document.getElementById(
-          "groupKnockoutConfigSection"
-        ); // Div bao cả khu vực
+        const groupKnockoutTitleSection = document.getElementById(
+          "groupKnockoutTitleSection"
+        ); // ID Quan trọng
+        const groupKnockoutFieldsSection = document.getElementById(
+          "groupKnockoutFieldsSection"
+        ); // ID Quan trọng (div .chiabang của group/KO)
         const groupCountInput = document.getElementById("groupCount");
         const teamsFromGroup1stInput =
           document.getElementById("teamsFromGroup1st");
@@ -1057,6 +1278,34 @@
           document.getElementById("teamsFromGroup3rd");
         const teamsFromGroup4thInput =
           document.getElementById("teamsFromGroup4th");
+
+        // *** THÊM BIẾN CHO PHẦN CẤU HÌNH THẺ PHẠT ***
+        const penaltyConfigTitle =
+          document.getElementById("penaltyConfigTitle"); // ID tiêu đề thẻ phạt
+        const penaltyConfigFields = document.getElementById(
+          "penaltyConfigFields"
+        ); // ID nội dung thẻ phạt (div .chiabang của penalty)
+        const yellowCardLimitIndirectInput = document.getElementById(
+          "yellowCardLimitIndirect"
+        );
+        const yellowCardLimitDirectInput = document.getElementById(
+          "yellowCardLimitDirect"
+        );
+        const redCardLimitInput = document.getElementById("redCardLimit");
+        const resetSingleYellowKOCheckbox = document.getElementById(
+          "resetSingleYellowKO"
+        );
+        const resetAllYellowKOCheckbox =
+          document.getElementById("resetAllYellowKO");
+        const resetRedIndirectKOCheckbox =
+          document.getElementById("resetRedIndirectKO");
+        const resetRedDirectKOCheckbox =
+          document.getElementById("resetRedDirectKO");
+        const resetAllCardsKOCheckbox =
+          document.getElementById("resetAllCardsKO");
+        const knockoutResetRoundSelect =
+          document.getElementById("knockoutResetRound");
+        // *********************************************
 
         // --- Form Right Elements ---
         const logoFileInput = document.getElementById("logoFile");
@@ -1070,10 +1319,21 @@
         if (
           !seasonNameInput ||
           !matchFormatSelect ||
-          !saveButton /* ... thêm các element quan trọng khác ... */
+          !roundRobinTurnsSelect ||
+          !saveButton ||
+          !resetButton ||
+          !logoFileInput ||
+          !wallpaperFileInput ||
+          !logoPreview ||
+          !wallpaperPreview ||
+          !bronzeMatchSection ||
+          !groupKnockoutTitleSection ||
+          !groupKnockoutFieldsSection ||
+          !penaltyConfigTitle ||
+          !penaltyConfigFields /* Thêm các ID thẻ phạt nếu bắt buộc */
         ) {
           console.error(
-            "DEBUG (EditSeason): Lỗi nghiêm trọng - Thiếu các element HTML cần thiết!"
+            "DEBUG (EditSeason): Lỗi nghiêm trọng - Thiếu element HTML! Kiểm tra các ID."
           );
           alert("Lỗi tải trang cấu hình.");
           return;
@@ -1100,24 +1360,31 @@
         const clearErrors = () => {
           /* Xóa lỗi nếu có */
         };
-        const showAlert = (message) => alert(message); // Dùng alert thay div
+        const showAlert = (message) => alert(message);
 
         // === Function to show/hide sections based on match format ===
         function toggleSectionsBasedOnFormat(selectedFormatValue) {
-          // Giả sử value cho "Chia bảng" là 'group_knockout' và "Vòng tròn" là 'round_robin'
-          // **QUAN TRỌNG**: Đảm bảo các giá trị này khớp với thuộc tính `value` của thẻ <option> trong HTML
-          const isGroupKnockout = selectedFormatValue === "group_knockout"; // Hoặc value tương ứng bạn đặt
+          const isGroupKnockout = selectedFormatValue === "group_knockout";
+          console.log(
+            `DEBUG (toggleSections): Format="${selectedFormatValue}", Show Group/KO=${isGroupKnockout}`
+          );
 
-          if (bronzeMatchSection) {
+          if (bronzeMatchSection)
             bronzeMatchSection.style.display = isGroupKnockout
               ? "flex"
-              : "none"; // Hiện/ẩn phần tranh giải 3
-          }
-          if (groupKnockoutConfigSection) {
-            groupKnockoutConfigSection.style.display = isGroupKnockout
+              : "none";
+          if (groupKnockoutTitleSection)
+            groupKnockoutTitleSection.style.display = isGroupKnockout
               ? "block"
-              : "none"; // Hiện/ẩn khu vực cấu hình bảng/KO
-          }
+              : "none";
+          if (groupKnockoutFieldsSection)
+            groupKnockoutFieldsSection.style.display = isGroupKnockout
+              ? "block"
+              : "none"; // Div .chiabang của group/KO
+
+          // Phần cấu hình thẻ phạt luôn hiển thị (trừ khi bạn muốn thay đổi logic)
+          // if (penaltyConfigTitle) penaltyConfigTitle.style.display = 'block';
+          // if (penaltyConfigFields) penaltyConfigFields.style.display = 'block';
         }
 
         // --- Load Season Data ---
@@ -1126,17 +1393,16 @@
             `DEBUG (EditSeason): Loading data for season ID: ${seasonId}`
           );
           clearErrors();
-          // if(successMessageDiv) successMessageDiv.style.display = 'none'; // Không cần div success nữa
 
           try {
             const seasons =
               JSON.parse(localStorage.getItem(seasonsDataKey)) || [];
-            const seasonToEdit = seasons.find(
-              (season) => season && season.id === seasonId
-            );
-
+            const seasonToEdit = seasons.find((s) => s && s.id === seasonId);
             if (!seasonToEdit) {
-              /* ... xử lý lỗi không tìm thấy ... */ return false;
+              console.error(`Season ID ${seasonId} not found.`);
+              alert(`Lỗi: Không tìm thấy mùa giải ID ${seasonId}.`);
+              window.location.href = "danhsachmuagiai.html";
+              return false;
             }
 
             originalSeasonData = { ...seasonToEdit };
@@ -1147,10 +1413,11 @@
                 editingLeagueId ? "?leagueId=" + editingLeagueId : ""
               }`;
             try {
-              /* ... xử lý title ... */
-            } catch (e) {
-              /* ... xử lý lỗi title ... */
-            }
+              const leagues =
+                JSON.parse(localStorage.getItem(leaguesDataKey)) || [];
+              const pL = leagues.find((l) => l.id === editingLeagueId);
+              if (pageTitle) pageTitle.textContent = `Cấu hình mùa giải`;
+            } catch (e) {}
 
             // --- Populate Form Fields ---
             seasonNameInput.value = originalSeasonData.name || "";
@@ -1159,51 +1426,62 @@
             );
             endDateInput.value = formatDateForInput(originalSeasonData.endDate);
             teamCountInput.value = originalSeasonData.teamCount ?? "";
-            // **Điền giá trị cho matchFormat TRƯỚC khi khóa và ẩn/hiện**
             const currentMatchFormat =
-              originalSeasonData.matchFormat || "round_robin"; // Lấy giá trị hiện tại
-            if (matchFormatSelect) matchFormatSelect.value = currentMatchFormat;
+              originalSeasonData.matchFormat || "round_robin";
+            matchFormatSelect.value = currentMatchFormat;
+            roundRobinTurnsSelect.value =
+              originalSeasonData.roundRobinTurns ?? "1";
+            pointsWinInput.value = originalSeasonData.pointsWin ?? "3";
+            pointsDrawInput.value = originalSeasonData.pointsDraw ?? "1";
+            pointsLossInput.value = originalSeasonData.pointsLoss ?? "0";
+            hasBronzeMatchToggle.checked = !!originalSeasonData.hasBronzeMatch;
+            maxPlayersInput.value = originalSeasonData.maxPlayers ?? "";
+            maxStaffInput.value = originalSeasonData.maxStaff ?? "";
+            numberOfHalvesInput.value =
+              originalSeasonData.numberOfHalves ?? "2";
+            halfTimeDurationInput.value =
+              originalSeasonData.halfTimeDuration ?? "";
+            groupCountInput.value = originalSeasonData.groupCount ?? "1";
+            teamsFromGroup1stInput.value =
+              originalSeasonData.teamsFromGroup1st ?? "0";
+            teamsFromGroup2ndInput.value =
+              originalSeasonData.teamsFromGroup2nd ?? "0";
+            teamsFromGroup3rdInput.value =
+              originalSeasonData.teamsFromGroup3rd ?? "0";
+            teamsFromGroup4thInput.value =
+              originalSeasonData.teamsFromGroup4th ?? "0";
 
-            if (roundRobinTurnsSelect)
-              roundRobinTurnsSelect.value =
-                originalSeasonData.roundRobinTurns ?? "1"; // Giả sử value là số
-            if (pointsWinInput)
-              pointsWinInput.value = originalSeasonData.pointsWin ?? "3";
-            if (pointsDrawInput)
-              pointsDrawInput.value = originalSeasonData.pointsDraw ?? "1";
-            if (pointsLossInput)
-              pointsLossInput.value = originalSeasonData.pointsLoss ?? "0";
-            if (hasBronzeMatchToggle)
-              hasBronzeMatchToggle.checked =
-                !!originalSeasonData.hasBronzeMatch;
-            if (maxPlayersInput)
-              maxPlayersInput.value = originalSeasonData.maxPlayers ?? "";
-            if (maxStaffInput)
-              maxStaffInput.value = originalSeasonData.maxStaff ?? "";
-            if (numberOfHalvesInput)
-              numberOfHalvesInput.value =
-                originalSeasonData.numberOfHalves ?? "2";
-            if (halfTimeDurationInput)
-              halfTimeDurationInput.value =
-                originalSeasonData.halfTimeDuration ?? "";
-            if (groupCountInput)
-              groupCountInput.value = originalSeasonData.groupCount ?? "1";
-            if (teamsFromGroup1stInput)
-              teamsFromGroup1stInput.value =
-                originalSeasonData.teamsFromGroup1st ?? "0";
-            if (teamsFromGroup2ndInput)
-              teamsFromGroup2ndInput.value =
-                originalSeasonData.teamsFromGroup2nd ?? "0";
-            if (teamsFromGroup3rdInput)
-              teamsFromGroup3rdInput.value =
-                originalSeasonData.teamsFromGroup3rd ?? "0";
-            if (teamsFromGroup4thInput)
-              teamsFromGroup4thInput.value =
-                originalSeasonData.teamsFromGroup4th ?? "0";
-            if (locationInput)
-              locationInput.value = originalSeasonData.location || "";
-            if (fanpageInput)
-              fanpageInput.value = originalSeasonData.fanpage || "";
+            // *** POPULATE PENALTY CONFIG FIELDS ***
+            if (yellowCardLimitIndirectInput)
+              yellowCardLimitIndirectInput.value =
+                originalSeasonData.yellowCardLimitIndirect ?? "1";
+            if (yellowCardLimitDirectInput)
+              yellowCardLimitDirectInput.value =
+                originalSeasonData.yellowCardLimitDirect ?? "1";
+            if (redCardLimitInput)
+              redCardLimitInput.value = originalSeasonData.redCardLimit ?? "1";
+            if (resetSingleYellowKOCheckbox)
+              resetSingleYellowKOCheckbox.checked =
+                !!originalSeasonData.resetSingleYellowKO;
+            if (resetAllYellowKOCheckbox)
+              resetAllYellowKOCheckbox.checked =
+                !!originalSeasonData.resetAllYellowKO;
+            if (resetRedIndirectKOCheckbox)
+              resetRedIndirectKOCheckbox.checked =
+                !!originalSeasonData.resetRedIndirectKO;
+            if (resetRedDirectKOCheckbox)
+              resetRedDirectKOCheckbox.checked =
+                !!originalSeasonData.resetRedDirectKO;
+            if (resetAllCardsKOCheckbox)
+              resetAllCardsKOCheckbox.checked =
+                !!originalSeasonData.resetAllCardsKO;
+            if (knockoutResetRoundSelect)
+              knockoutResetRoundSelect.value =
+                originalSeasonData.knockoutResetRound || "";
+            // ***************************************
+
+            locationInput.value = originalSeasonData.location || "";
+            fanpageInput.value = originalSeasonData.fanpage || "";
 
             // --- Load Images ---
             const renderImagePreview = (
@@ -1212,13 +1490,11 @@
               defaultSrc,
               isLogo = false
             ) => {
-              /* ... code render preview giữ nguyên ... */
               const imgSrc = src || defaultSrc;
               const imgStyle = isLogo
                 ? "max-width: 100%; max-height: 80px; display: block; border-radius: 3px; object-fit: contain;"
                 : "max-width: 100%; max-height: 150px; display: block; border-radius: 3px; object-fit: cover;";
               if (previewDiv) {
-                // Thêm kiểm tra null
                 if (imgSrc) {
                   previewDiv.innerHTML = `<img src="${imgSrc}" alt="Preview" style="${imgStyle}">`;
                 } else {
@@ -1241,33 +1517,33 @@
                 false
               );
 
-            // --- Reset temp data and file inputs ---
+            // --- Reset temp data ---
             newLogoDataUrl = null;
             newWallpaperDataUrl = null;
             if (logoFileInput) logoFileInput.value = null;
             if (wallpaperFileInput) wallpaperFileInput.value = null;
 
-            // *** KHÓA SELECT VÀ ẨN/HIỆN SECTION ***
-            if (matchFormatSelect) {
-              matchFormatSelect.disabled = true;
-              matchFormatSelect.style.backgroundColor = "#eee";
-              matchFormatSelect.style.cursor = "not-allowed";
-            }
-            if (roundRobinTurnsSelect) {
-              roundRobinTurnsSelect.disabled = true;
-              roundRobinTurnsSelect.style.backgroundColor = "#eee";
-              roundRobinTurnsSelect.style.cursor = "not-allowed";
-            }
-            // Gọi hàm ẩn/hiện dựa trên giá trị đã load
+            // --- Khóa Select và Ẩn/Hiện Section ---
+            matchFormatSelect.disabled = true;
+            matchFormatSelect.style.cssText =
+              "background-color: #eee; cursor: not-allowed;";
+            roundRobinTurnsSelect.disabled = true;
+            roundRobinTurnsSelect.style.cssText =
+              "background-color: #eee; cursor: not-allowed;";
             toggleSectionsBasedOnFormat(currentMatchFormat);
-            // *************************************
 
-            console.log(
-              "DEBUG (EditSeason): Form populated and sections toggled."
-            );
+            console.log("DEBUG (EditSeason): Form populated.");
             return true;
           } catch (error) {
-            /* ... xử lý lỗi load ... */ return false;
+            console.error(
+              "DEBUG (EditSeason): Error loading season data:",
+              error
+            );
+            alert("Lỗi tải dữ liệu mùa giải.");
+            window.location.href = `danhsachmuagiai.html${
+              editingLeagueId ? "?leagueId=" + editingLeagueId : ""
+            }`;
+            return false;
           }
         }
 
@@ -1277,25 +1553,18 @@
           previewContainer,
           setDataUrlCallback
         ) {
-          /* ... code xử lý file giữ nguyên ... */ const file =
-            inputElement.files[0];
+          const file = inputElement.files[0];
           setDataUrlCallback(null);
-          if (previewContainer) previewContainer.innerHTML = ""; // Check null
-
+          if (previewContainer) previewContainer.innerHTML = "";
           const isLogo = inputElement.id === "logoFile";
           const originalSrc = isLogo
             ? originalSeasonData?.logo || defaultSeasonLogo
             : originalSeasonData?.wallpaper || defaultSeasonWallpaper;
-          const defaultSrc = isLogo
-            ? defaultSeasonLogo
-            : defaultSeasonWallpaper;
-
           const renderPreview = (src) => {
             const imgStyle = isLogo
               ? "max-width: 100%; max-height: 80px; display: block; border-radius: 3px; object-fit: contain;"
               : "max-width: 100%; max-height: 150px; display: block; border-radius: 3px; object-fit: cover;";
             if (previewContainer) {
-              // Check null
               if (src) {
                 previewContainer.innerHTML = `<img src="${src}" alt="Preview" style="${imgStyle}">`;
               } else {
@@ -1303,7 +1572,6 @@
               }
             }
           };
-
           if (file && file.type.startsWith("image/")) {
             const reader = new FileReader();
             reader.onload = (e) => {
@@ -1328,9 +1596,7 @@
         // === Initialization ===
         editingSeasonId = getQueryParam("id");
         const initialLeagueId = getQueryParam("leagueId");
-
         if (editingSeasonId) {
-          /* ... code kiểm tra và gọi loadSeasonData giữ nguyên ... */
           editingSeasonId = parseInt(editingSeasonId, 10);
           if (!isNaN(editingSeasonId)) {
             loadSeasonData(editingSeasonId);
@@ -1372,16 +1638,15 @@
             console.log("DEBUG (EditSeason): Save clicked.");
             clearErrors();
 
-            const seasonName = seasonNameInput
-              ? seasonNameInput.value.trim()
-              : "";
+            const seasonName = seasonNameInput?.value.trim() || "";
             if (seasonName === "") {
               alert("Tên mùa giải không được để trống!");
-              if (seasonNameInput) seasonNameInput.focus();
+              seasonNameInput?.focus();
               return;
             }
             if (!editingSeasonId || !originalSeasonData) {
-              /* ... xử lý lỗi ... */ return;
+              alert("Lỗi: Dữ liệu gốc để lưu không tồn tại.");
+              return;
             }
 
             try {
@@ -1390,14 +1655,14 @@
               const seasonIndex = seasons.findIndex(
                 (s) => s && s.id === editingSeasonId
               );
-
               if (seasonIndex === -1) {
-                /* ... xử lý lỗi không tìm thấy ... */ return;
+                alert("Lỗi: Không tìm thấy mùa giải để cập nhật.");
+                return;
               }
 
               // --- Create updatedSeason object ---
               const updatedSeason = {
-                ...originalSeasonData, // Giữ id, leagueId, createdAt, matchFormat, roundRobinTurns...
+                ...originalSeasonData, // Giữ nguyên id, leagueId, createdAt, matchFormat, roundRobinTurns
                 name: seasonName,
                 startDate: startDateInput?.value || null,
                 endDate: endDateInput?.value || null,
@@ -1429,7 +1694,6 @@
                 halfTimeDuration: halfTimeDurationInput?.value
                   ? parseInt(halfTimeDurationInput.value)
                   : null,
-                // Group/KO
                 groupCount: groupCountInput?.value
                   ? parseInt(groupCountInput.value)
                   : null,
@@ -1445,7 +1709,30 @@
                 teamsFromGroup4th: teamsFromGroup4thInput?.value
                   ? parseInt(teamsFromGroup4thInput.value)
                   : null,
-                // Right column
+
+                // *** LẤY DỮ LIỆU TỪ CẤU HÌNH THẺ PHẠT ***
+                yellowCardLimitIndirect:
+                  yellowCardLimitIndirectInput?.value !== ""
+                    ? parseInt(yellowCardLimitIndirectInput.value)
+                    : null,
+                yellowCardLimitDirect:
+                  yellowCardLimitDirectInput?.value !== ""
+                    ? parseInt(yellowCardLimitDirectInput.value)
+                    : null,
+                redCardLimit:
+                  redCardLimitInput?.value !== ""
+                    ? parseInt(redCardLimitInput.value)
+                    : null,
+                resetSingleYellowKO:
+                  resetSingleYellowKOCheckbox?.checked || false,
+                resetAllYellowKO: resetAllYellowKOCheckbox?.checked || false,
+                resetRedIndirectKO:
+                  resetRedIndirectKOCheckbox?.checked || false,
+                resetRedDirectKO: resetRedDirectKOCheckbox?.checked || false,
+                resetAllCardsKO: resetAllCardsKOCheckbox?.checked || false,
+                knockoutResetRound: knockoutResetRoundSelect?.value || null,
+                // *****************************************
+
                 location: locationInput?.value.trim() || null,
                 fanpage: fanpageInput?.value.trim() || null,
                 logo:
@@ -1466,16 +1753,16 @@
                 `DEBUG (EditSeason): Season ID ${editingSeasonId} updated.`
               );
 
-              // --- Update state for Reset & Show Alert ---
+              // --- Update state & Show Alert ---
               originalSeasonData = { ...updatedSeason };
               newLogoDataUrl = null;
               newWallpaperDataUrl = null;
               if (logoFileInput) logoFileInput.value = null;
               if (wallpaperFileInput) wallpaperFileInput.value = null;
-
-              showAlert("Cập nhật thành công!"); // Dùng alert
+              showAlert("Cập nhật thành công!");
             } catch (error) {
-              /* ... xử lý lỗi lưu ... */
+              console.error("DEBUG (EditSeason): Error saving data:", error);
+              alert("Lỗi khi lưu cấu hình mùa giải.");
             }
           });
 
@@ -1485,7 +1772,7 @@
             e.preventDefault();
             console.log("DEBUG (EditSeason): Reset clicked.");
             if (originalSeasonData && editingSeasonId) {
-              loadSeasonData(editingSeasonId); // Tải lại (đã bao gồm ẩn/hiện section)
+              loadSeasonData(editingSeasonId);
             } else {
               alert("Không có dữ liệu gốc để khôi phục.");
             }
