@@ -1,8 +1,6 @@
-// ----- Data Loading & Saving Functions (Additions) -----
-
-// Function to remove managers associated with a specific teamId from localStorage
+// Loại bỏ người quản lý
 function removeManagersForTeam(teamIdToDelete) {
-    const storageKey = "managersData"; // CONFIRM THIS KEY NAME
+    const storageKey = "managersData"; // Tên của local Storage
     console.log(`Attempting to remove managers for team ID: ${teamIdToDelete}`);
     try {
         const storedData = localStorage.getItem(storageKey);
@@ -26,8 +24,6 @@ function removeManagersForTeam(teamIdToDelete) {
 
     } catch (error) {
         console.error(`Error processing '${storageKey}' for team deletion (ID: ${teamIdToDelete}):`, error);
-        // Decide if you want to alert the user or just log
-        // alert(`Lỗi: Không thể cập nhật dữ liệu quản lý (${storageKey}). Vui lòng kiểm tra console.`);
     }
 }
 
@@ -251,18 +247,15 @@ function addActionListeners() {
                     saveTeams();
                     console.log(`Team object with ID "${teamId}" removed from user's list and saved.`);
 
-                    // 4. Remove the card visually
+                    // 4. Loại bỏ thẻ
                     card.remove();
 
-                    // 5. Update display if list becomes empty
+                    // 5. Nếu ko có đội nào
                     if (teams.length === 0) {
                         container.innerHTML = '<p style="text-align: center; width: 100%; padding: 20px; color: #666;">Bạn chưa tạo đội bóng nào.</p>';
                     }
                 } else {
-                    // This might happen if the team ID was somehow invalid or not found in the 'teams' array
-                    console.warn(`Could not filter out team with ID "${teamId}" from the current user's 'teams' array during delete confirmation. Associated data might still have been processed.`);
-                     // Consider if you need to re-fetch/refresh data here if something went wrong
-                }
+                    console.warn(`Could not filter out team with ID "${teamId}" from the current user's 'teams' array during delete confirmation. Associated data might still have been processed.`);                }
             } else {
                 console.log('Deletion cancelled.');
             }
