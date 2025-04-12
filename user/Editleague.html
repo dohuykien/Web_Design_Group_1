@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang chỉnh sửa thông tin giải đấu</title>
+    <link rel="icon" type="logo.png" href="images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <!-- CSS của bạn giữ nguyên -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Oswald, sans-serif;
+        text-decoration: none;
+      }
+      body {
+        background-color: white;
+      }
+      /* Header CSS giữ nguyên */
+      /*-------------------------Header---------------------------*/
+      .developed-by {
+        position: absolute;
+        left: 250px;
+        top: 7px;
+        color: #ffffff;
+        font-size: 14px;
+        z-index: 2;
+      }
+      .navbar-top {
+        background-color: #1565c0;
+        color: white;
+        padding: 10px 20px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 75px;
+      }
+      .navbar-bottom {
+        position: relative;
+      }
+      /*Logo*/
+      .logo {
+        display: flex;
+        align-items: center;
+        z-index: 2;
+        left: 170px;
+      }
+      .logo img {
+        height: 65px;
+        max-width: 100%;
+        margin-right: 10px;
+      }
+      /* Menu chính */
+      .navbar-collapse {
+        background-color: #ff6f00;
+        padding: 7px 0px;
+        height: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+      }
+      .navbar-collapse::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        left: -15px;
+        width: 101%;
+        height: 50px;
+        background-color: #ff6f00;
+        clip-path: polygon(0 350%, 15% 0, 100% 0, 100% 100%);
+      }
+      .navbar-nav {
+        display: flex;
+        margin-left: -200px;
+      }
+      .navbar-nav li a {
+        left: 10px;
+        color: white;
+        text-decoration: none;
+        /* margin: 0 7px; */
+        top: -20px;
+        position: relative;
+        z-index: 2;
+        font-size: 16px;
+      }
+      .nav-item {
+        padding: 0 15px;
+        list-style: none;
+      }
+      .navbar-nav a:hover {
+        text-decoration: underline;
+      }
+
+      /* Responsive cho Mobile */
+      @media (max-width: 768px) {
+        .navbar-collapse {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          background: #fff;
+          position: absolute;
+          top: 50px;
+          left: 0;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-collapse.active {
+          display: flex;
+        }
+
+        .nav-item {
+          text-align: center;
+          padding: 10px 0;
+        }
+      }
+      .header .user-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        position: relative; /* Đổi từ absolute sang relative */
+        right: 60px;
+        top: -20px;
+        cursor: pointer;
+        z-index: 1000;
+      }
+      .header .user-info img {
+        width: 30px;
+        height: 30px;
+      }
+      .user-info span i {
+        position: relative;
+        top: -2px;
+      }
+
+      .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        min-width: 160px;
+        z-index: 1000;
+        padding: 5px 0px;
+      }
+
+      .dropdown-menu a {
+        display: block;
+        padding: 5px 15px;
+        color: #333333;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        font-size: 14px;
+      }
+
+      .dropdown-menu a:hover {
+        background-color: #f34541;
+        color: #ffffff;
+      }
+      .fa-solid.fa-caret-down {
+        color: #333333;
+        font-size: 12px;
+        margin-top: 10px;
+      }
+
+      /*-------------------End Header---------------------- */
+      /* Layout CSS giữ nguyên */
+      /*----------------------Layout-------------------------*/
+      .container {
+        display: flex;
+        width: 100%;
+      }
+      /*-------------------Sidebar--------------------- */
+      .sidebar {
+        width: 230px;
+        background: #333333;
+        color: #b8c7ce;
+        min-height: 648px;
+        height: 100%;
+        position: relative;
+        bottom: 2px;
+        z-index: 1;
+      }
+      .sidebar ul {
+        list-style: none;
+        background-color: #2c3b41;
+      }
+      .sidebar ul li {
+        padding: 9px 5px 9px 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid #ffffff;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+      .sidebar ul li:hover {
+        color: #ffffff;
+      }
+      .sidebar ul li i {
+        width: 20px;
+        text-align: center;
+      }
+      .sidebar a {
+        text-decoration: none;
+        flex: 1;
+        color: #b8c7ce;
+      }
+      .sidebar a:hover {
+        color: #ffffff;
+      }
+
+      .fa-solid.fa-tachometer-alt {
+        color: #ff6f00;
+      }
+
+      /* Ẩn submenu ban đầu */
+      .submenu {
+        display: none;
+        background: #ff6f00 !important;
+      }
+
+      .submenu li {
+        padding: 12px 12px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        width: 100%;
+        height: 32px;
+      }
+      .submenu a {
+        color: #222222 !important;
+      }
+      .submenu li:hover {
+        background: #ffffff;
+      }
+      .submenu a:hover {
+        color: rgb(250, 55, 25) !important;
+      }
+
+      /* Bật submenu khi click */
+      .menu-item.active + .submenu {
+        display: block;
+      }
+
+      /* Định dạng cho menu cha */
+      .menu-item {
+        display: flex;
+        align-items: center;
+        padding: 15px 15px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .menu-item i {
+        margin-right: 10px;
+      }
+      .fa-solid.fa-play {
+        font-size: 9px;
+        color: #222222;
+      }
+      .fa-solid.fa-chevron-down {
+        font-size: 12px;
+        margin-left: auto;
+      }
+      /* -------------------sidebar-end------------------- */
+
+      /*----------content: list-league + footer------------ */
+      .content-wrapper {
+        flex: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      .content {
+        background-color: white;
+        border-radius: 5px;
+      }
+      /* list-league */
+      .list-league {
+        color: rgb(34, 34, 34);
+        font-size: 24px;
+        font-weight: normal;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px; /* Khoảng cách nút */
+      }
+      .list-league_left {
+        font-family: "Source Sans Pro", sans-serif !important;
+      }
+      .fa-solid.fa-edit {
+        /* Thay icon */
+        color: #ff6f00;
+        margin-right: 8px;
+        font-size: 25px;
+      }
+      .list-league_left {
+        flex-grow: 1;
+      }
+
+      .fa-solid.fa-plus {
+        margin-right: 3px;
+        font-size: 15px;
+      }
+      .save {
+        /* Nút Lưu */
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: rgb(0, 172, 236);
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .save:hover {
+        background-color: #428bca;
+      }
+      .fa-solid.fa-rotate {
+        margin-right: 3px;
+        font-size: 15px;
+      }
+      .fa-regular.fa-floppy-disk {
+        margin-right: 3px;
+        font-size: 15px;
+      }
+      .Nhaplai {
+        /* Nút Nhập lại */
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: rgb(0, 172, 236);
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .Nhaplai:hover {
+        background-color: #428bca;
+      }
+      .return {
+        /* Nút Quay lại */
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: #f34541;
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .return:hover {
+        background-color: #dd1b18;
+      }
+
+      /*---------------------inputleague------------------*/
+      .kienngu {
+        background-color: #ecf0f5;
+        padding-top: 10px;
+      }
+      .success {
+        max-width: 1250px; /* Căn chỉnh với box */
+        margin: 0 auto 10px auto; /* Căn giữa và thêm margin dưới */
+        padding: 5px 15px;
+        color: #155724; /* Màu chữ đậm hơn */
+        font-size: 14px;
+        background-color: #d4edda; /* Màu nền xanh lá nhạt */
+        border: 1px solid #c3e6cb; /* Viền xanh lá */
+        display: none; /* Mặc định ẩn đi */
+        text-align: center; /* Căn giữa text */
+      }
+      .box {
+        max-width: 1250px;
+        margin: 10px auto 0;
+        padding: 20px 20px 20px 20px;
+        background: #ffffff;
+        border-radius: 3px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .forminput {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        padding-left: 200px;
+        flex-wrap: wrap; /* Xuống dòng nếu cần */
+      }
+      .forminput label {
+        width: 100px;
+        font-size: 17px;
+        text-align: right;
+        margin-right: 20px;
+        flex-shrink: 0; /* Không co label */
+      }
+      input[type="text"]#nameleague {
+        width: 60%;
+        min-width: 300px;
+        padding: 6px 10px;
+        border: 1px solid #d0d0d0;
+        font-size: 16px;
+        box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px 0px inset;
+      }
+      input[type="text"]#nameleague:focus {
+        outline: 0;
+        border-color: #88bde7;
+        box-shadow: 0 0 5px rgba(136, 189, 231, 0.5);
+      }
+      /* Ẩn nút file mặc định */
+      #fileInput {
+        display: none;
+      }
+
+      /* Nút tùy chỉnh */
+      .custom-button {
+        background-color: rgb(76, 175, 80);
+        color: white;
+        padding: 6px 15px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: auto;
+      }
+
+      .custom-button:hover {
+        background-color: #45a049;
+      }
+      /* Style cho ảnh preview */
+      #preview {
+        max-width: 300px; /* Giảm kích thước cho vừa bên cạnh nút */
+        max-height: 150px; /* Giảm chiều cao */
+        display: none; /* Ban đầu ẩn */
+        vertical-align: middle; /* Căn giữa theo chiều dọc với nút */
+        margin-left: 70px; /* Khoảng cách với nút */
+        border: 1px solid #ddd; /* Viền nhẹ */
+        border-radius: 3px;
+        padding: 3px; /* Padding nhỏ */
+        background-color: #f8f8f8; /* Nền nhạt */
+      }
+      /* Span báo lỗi */
+      .error-message {
+        color: red;
+        font-size: 12px;
+        /* Hiển thị dưới input nameleague */
+        display: block;
+        margin-left: 320px; /* Căn lề với input (100 label + 20 margin + 200 padding-left) */
+        margin-top: -10px; /* Kéo lên gần */
+        margin-bottom: 10px;
+        height: 15px; /* Giữ chỗ */
+      }
+
+      .fa-solid.fa-arrow-left {
+        margin-right: 3px;
+        font-size: 15px;
+      }
+      .fa-solid.fa-upload {
+        margin-right: 5px;
+        font-size: 14px;
+        position: relative;
+        bottom: 0px;
+      }
+
+      /* --------------------- FOOTER --------------------*/
+      .footer {
+        box-sizing: border-box;
+        background-color: #ecf0f5;
+        color: rgb(51, 51, 51);
+        font-size: 14px;
+        font-weight: 500;
+        text-shadow: rgb(255, 255, 255) 1px 1px 1px;
+        display: block;
+        border-top: 1px solid #ecf0f5;
+      }
+
+      .footer-container {
+        box-sizing: border-box;
+        background-color: #ecf0f5;
+        color: rgb(51, 51, 51);
+        font-size: 14px;
+        text-shadow: rgb(255, 255, 255) 2px 2px 2px;
+        margin: 40px 10px 10px 10px;
+        display: block;
+        border-top-color: rgb(255, 255, 255);
+        border-top-style: solid;
+        border-top-width: 0.8px;
+        line-height: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+      }
+
+      .footer-left,
+      .footer-right {
+        flex: 1;
+      }
+
+      .footer-left p,
+      .footer-right p {
+        margin: 19px 0;
+      }
+
+      .footer-apps {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .footer-apps img {
+        height: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header giữ nguyên -->
+    <header class="header">
+      <div class="navbar">
+        <div class="navbar-top">
+          <div class="logo">
+            <a href="#"><img src="images/logo.png" alt="Logo" /></a>
+          </div>
+          <span class="developed-by">
+            Hệ thống được phát triển bởi HD Promotion</span
+          >
+          <div class="user-info" onclick="toggleDropdown()">
+            <img src="images/dhk.jpg" />
+            <span
+              >Hải Đăng Nguyễn
+              <i class="fa-solid fa-caret-down"></i>
+            </span>
+            <div class="dropdown-menu" id="dropdownMenu">
+              <a href="Dashboard.html">Trang quản lý</a>
+              <a href="#">Đăng xuất</a>
+            </div>
+          </div>
+        </div>
+        <div class="navbar-bottom">
+          <div class="navbar-collapse">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a href="#" class="nav-link">TRANG CHỦ</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">GIẢI ĐANG DIỄN RA</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">GIẢI ĐANG THEO DÕI</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">ĐỘI BÓNG</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">BẮT ĐỐI</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">HƯỚNG DẪN</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">CUỘC THI</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">TIN TỨC</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div id="sidebar-container">
+        <!-- Sidebar will be loaded here -->
+      </div>
+      <div class="content-wrapper">
+        <section class="content">
+          <div class="list-league">
+            <i class="fa-solid fa-edit"></i>
+            <!-- Đổi icon -->
+            <span class="list-league_left">Sửa thông tin giải đấu</span>
+
+            <div class="wrap">
+              <!-- Nút Lưu -->
+              <button class="save" id="saveButton">
+                <!-- Thêm ID -->
+                <i class="fa-regular fa-floppy-disk"></i> Lưu
+              </button>
+              <!-- Nút Nhập lại -->
+              <button class="Nhaplai" id="resetButton">
+                <!-- Thêm ID -->
+                <i class="fa-solid fa-rotate"></i> Nhập lại
+              </button>
+              <!-- Nút Quay lại -->
+              <a href="Dashboard.html">
+                <button class="return">
+                  <i class="fa-solid fa-arrow-left"></i> Quay lại
+                </button>
+              </a>
+            </div>
+          </div>
+
+          <div class="kienngu">
+            <div class="success" id="successMessageDiv">
+              <!-- Thêm ID -->
+              Cập nhật thông tin giải đấu thành công!
+            </div>
+            <div class="box">
+              <form id="editLeagueForm">
+                <!-- Wrap in form -->
+                <div class="forminput">
+                  <label for="nameleague">Tên giải đấu</label>
+                  <input
+                    type="text"
+                    name="nameleague"
+                    id="nameleague"
+                    required
+                  />
+                </div>
+                <!-- Span báo lỗi -->
+                <div class="error-message" id="nameError"></div>
+
+                <div class="forminput">
+                  <label for="fileInput" style="margin-bottom: auto"
+                    >Logo</label
+                  >
+                  <!-- Nút tùy chỉnh để chọn ảnh -->
+                  <button
+                    type="button"
+                    class="custom-button"
+                    onclick="document.getElementById('fileInput').click()"
+                  >
+                    <i class="fa-solid fa-upload"></i> Chọn ảnh mới
+                  </button>
+                  <!-- Input file bị ẩn -->
+                  <input type="file" id="fileInput" accept="image/*" />
+                  <!-- Ảnh xem trước ĐẶT NGAY SAU INPUT FILE -->
+                  <img id="preview" src="#" alt="Ảnh xem trước" />
+                </div>
+              </form>
+            </div>
+
+            <!-- Footer giữ nguyên -->
+            <div class="footer">
+              <div class="footer-container">
+                <div class="footer-left">
+                  <p>Bản quyền thuộc HD Promotion</p>
+                  <p>Nguyen Hai Dang</p>
+                  <p>
+                    Chỉ được phát hành lại nội dung khi có sự đồng ý của HD
+                    Promotion
+                  </p>
+                  <div class="footer-apps">
+                    <a href=""><img src="images/logo.png" alt="IT League" /></a>
+                    <a href=""
+                      ><img src="images/googleplay.png" alt="Google Play"
+                    /></a>
+                    <a href=""
+                      ><img src="images/appstore.png" alt="App Store"
+                    /></a>
+                  </div>
+                </div>
+                <div class="footer-right">
+                  <p>
+                    <i class="fa fa-building" aria-hidden="true"></i> CÔNG TY CỔ
+                    PHẦN TỔ CHỨC SỰ KIỆN VÀ TRUYỀN THÔNG HD Promotion
+                  </p>
+                  <p>
+                    <i class="fa fa-map-marker" aria-hidden="true"></i> Số 185,
+                    Trần Đại Nghĩa, phường Đồng Tâm, quận Hai Bà Trưng, Hà Nội
+                  </p>
+                  <p>
+                    <i class="fa fa-phone" aria-hidden="true"></i> 0797102555
+                  </p>
+                  <p>
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    nguyenstorm2k5@gmail.com
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Script load Sidebar và Footer (giữ nguyên) -->
+    <script src="/user/js/sidebar.js"></script>
+    <!-- Giả định file này có hàm initializeSidebar() -->
+    <script name="sidebar">
+      fetch("/user/sidebar.html")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then((html) => {
+          const container = document.getElementById("sidebar-container");
+          if (container) {
+            container.innerHTML = html;
+            // IMPORTANT: Initialize sidebar JS *after* HTML is inserted
+            if (typeof initializeSidebar === "function") {
+              initializeSidebar();
+            } else {
+              console.warn(
+                "initializeSidebar function not found after loading sidebar HTML."
+              );
+            }
+          } else {
+            console.error("Sidebar container not found!");
+          }
+        })
+        .catch((error) => {
+          console.error("Error loading sidebar:", error);
+          const container = document.getElementById("sidebar-container");
+          if (container) container.innerHTML = "<p>Error loading sidebar.</p>";
+        });
+
+      // submenu-user_info (giữ nguyên)
+      function toggleDropdown() {
+        var menu = document.getElementById("dropdownMenu");
+        if (menu) {
+          menu.style.display =
+            menu.style.display === "block" ? "none" : "block";
+        } else {
+          console.warn("Element with ID 'dropdownMenu' not found.");
+        }
+      }
+      window.addEventListener("click", function (e) {
+        var menu = document.getElementById("dropdownMenu");
+        var userInfo = document.querySelector(".user-info");
+        if (menu && userInfo) {
+          if (!userInfo.contains(e.target) && !menu.contains(e.target)) {
+            menu.style.display = "none";
+          }
+        }
+      });
+    </script>
+
+    <!-- ========= JAVASCRIPT CHO CHỨC NĂNG CẬP NHẬT ========= -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("DEBUG (edit): DOM loaded.");
+
+        // === Lấy DOM Elements ===
+        const nameInput = document.getElementById("nameleague");
+        const fileInput = document.getElementById("fileInput");
+        const previewImg = document.getElementById("preview");
+        const saveButton = document.getElementById("saveButton"); // ID nút Lưu
+        const resetButton = document.getElementById("resetButton"); // ID nút Nhập lại
+        const successMessageDiv = document.getElementById("successMessageDiv"); // ID div success
+        const nameErrorSpan = document.getElementById("nameError"); // ID span báo lỗi tên
+        const editForm = document.getElementById("editLeagueForm"); // ID form
+
+        // --- Kiểm tra sự tồn tại của các element ---
+        if (
+          !nameInput ||
+          !fileInput ||
+          !previewImg ||
+          !saveButton ||
+          !resetButton ||
+          !successMessageDiv ||
+          !nameErrorSpan ||
+          !editForm
+        ) {
+          console.error(
+            "DEBUG (edit): One or more essential elements not found! Check IDs."
+          );
+          alert(
+            "Lỗi: Không thể tìm thấy các thành phần cần thiết trên trang. Vui lòng kiểm tra lại HTML."
+          );
+          return; // Dừng nếu thiếu element
+        }
+
+        // === Biến toàn cục ===
+        const leaguesDataKey = "danhSachGiaiDau";
+        const defaultLeagueLogo = "images/logo.png"; // Đường dẫn logo mặc định
+        let editingLeagueId = null;
+        let originalLeagueData = null; // Lưu trữ dữ liệu gốc để reset
+        let newLogoDataUrl = null; // Lưu Data URL của logo mới (nếu có)
+
+        // === Hàm hỗ trợ ===
+        function getQueryParam(param) {
+          const urlParams = new URLSearchParams(window.location.search);
+          // **QUAN TRỌNG**: Sử dụng 'id' như đã thống nhất ở trang Dashboard
+          return urlParams.get("id");
+        }
+
+        // Hàm load dữ liệu giải đấu vào form
+        function loadLeagueData(leagueId) {
+          console.log(
+            `DEBUG (edit): Attempting to load league ID: ${leagueId}`
+          );
+          nameErrorSpan.textContent = ""; // Xóa lỗi cũ
+          successMessageDiv.style.display = "none"; // Ẩn thông báo cũ
+
+          try {
+            const leagues =
+              JSON.parse(localStorage.getItem(leaguesDataKey)) || [];
+            const leagueToEdit = leagues.find(
+              (league) => league && league.id === leagueId
+            );
+
+            if (leagueToEdit) {
+              console.log("DEBUG (edit): League found:", leagueToEdit);
+              originalLeagueData = { ...leagueToEdit }; // Lưu bản sao dữ liệu gốc
+
+              nameInput.value = originalLeagueData.name || "";
+              // Lấy logo hiện tại HOẶC logo mặc định NẾU logo hiện tại không có
+              const currentLogoSrc =
+                originalLeagueData.logo || defaultLeagueLogo;
+              previewImg.src = currentLogoSrc;
+              previewImg.style.display = "inline-block"; // Hiển thị ảnh preview (inline để nằm cạnh nút)
+
+              // Reset biến logo mới và input file
+              newLogoDataUrl = null;
+              fileInput.value = null;
+
+              console.log("DEBUG (edit): Form populated with original data.");
+              return true;
+            } else {
+              console.error(
+                `DEBUG (edit): League with ID ${leagueId} not found.`
+              );
+              alert(
+                `Lỗi: Không tìm thấy giải đấu với ID ${leagueId} để chỉnh sửa.`
+              );
+              window.location.href = "Dashboard.html"; // Quay về trang danh sách
+              return false;
+            }
+          } catch (error) {
+            console.error("DEBUG (edit): Error loading league data:", error);
+            alert("Lỗi khi tải dữ liệu giải đấu từ localStorage.");
+            window.location.href = "Dashboard.html";
+            return false;
+          }
+        }
+
+        // === Khởi tạo khi tải trang ===
+        editingLeagueId = getQueryParam("id"); // Lấy ID từ URL
+        if (editingLeagueId) {
+          editingLeagueId = parseInt(editingLeagueId, 10); // Chuyển sang số
+          if (isNaN(editingLeagueId)) {
+            console.error("DEBUG (edit): Invalid league ID in URL.");
+            alert("ID giải đấu không hợp lệ.");
+            window.location.href = "Dashboard.html";
+          } else {
+            // Tải dữ liệu nếu ID hợp lệ
+            loadLeagueData(editingLeagueId);
+          }
+        } else {
+          console.error("DEBUG (edit): Missing league ID in URL.");
+          alert("Không tìm thấy ID giải đấu để chỉnh sửa trong URL.");
+          window.location.href = "Dashboard.html"; // Không có ID thì quay về
+        }
+
+        // === Xử lý sự kiện ===
+
+        // 1. Chọn file logo mới
+        fileInput.addEventListener("change", function () {
+          console.log("DEBUG (edit): File input changed.");
+          const file = this.files[0];
+          newLogoDataUrl = null; // Reset trước khi đọc file mới
+
+          if (file && file.type.startsWith("image/")) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              previewImg.src = e.target.result;
+              previewImg.style.display = "inline-block"; // Đảm bảo hiển thị
+              newLogoDataUrl = e.target.result; // Lưu Data URL của ảnh MỚI
+              console.log(
+                "DEBUG (edit): New logo preview shown, Data URL stored."
+              );
+            };
+            reader.onerror = (e) => {
+              console.error("DEBUG (edit): FileReader error:", e);
+              alert("Lỗi khi đọc file ảnh. Vui lòng thử lại.");
+              // Nếu lỗi, quay lại ảnh gốc
+              previewImg.src = originalLeagueData.logo || defaultLeagueLogo;
+              newLogoDataUrl = null;
+              fileInput.value = null;
+            };
+            reader.readAsDataURL(file);
+          } else if (file) {
+            console.warn("DEBUG (edit): Invalid file type selected.");
+            alert("Vui lòng chọn một file ảnh hợp lệ (JPG, PNG, GIF, v.v.).");
+            // Quay lại ảnh gốc
+            previewImg.src = originalLeagueData.logo || defaultLeagueLogo;
+            newLogoDataUrl = null;
+            fileInput.value = null;
+          } else {
+            // Không chọn file nào
+            console.log("DEBUG (edit): No file selected in prompt.");
+            // Giữ nguyên ảnh preview (là ảnh gốc) và newLogoDataUrl (vẫn là null)
+          }
+        });
+
+        // 2. Nút Lưu
+        saveButton.addEventListener("click", function (e) {
+          e.preventDefault(); // Ngăn hành vi mặc định (nếu nút trong form)
+          console.log("DEBUG (edit): Save button clicked.");
+          nameErrorSpan.textContent = ""; // Xóa lỗi cũ
+          successMessageDiv.style.display = "none"; // Ẩn thông báo cũ
+
+          const newName = nameInput.value.trim();
+
+          // Validate tên
+          if (newName === "") {
+            console.warn("DEBUG (edit): Validation failed - Name is empty.");
+            nameErrorSpan.textContent = "Tên giải đấu không được để trống!";
+            nameInput.focus();
+            return;
+          }
+
+          try {
+            let leagues =
+              JSON.parse(localStorage.getItem(leaguesDataKey)) || [];
+            const leagueIndex = leagues.findIndex(
+              (league) => league && league.id === editingLeagueId
+            );
+
+            if (leagueIndex !== -1) {
+              // Cập nhật tên
+              leagues[leagueIndex].name = newName;
+
+              // Chỉ cập nhật logo NẾU người dùng đã chọn ảnh mới (newLogoDataUrl khác null)
+              if (newLogoDataUrl !== null) {
+                leagues[leagueIndex].logo = newLogoDataUrl;
+                console.log("DEBUG (edit): Updating logo with new Data URL.");
+              } else {
+                console.log(
+                  "DEBUG (edit): Logo not changed by user, keeping original."
+                );
+                // Không làm gì, logo trong leagues[leagueIndex] vẫn là cái cũ
+              }
+
+              // Thêm/cập nhật thời gian sửa
+              leagues[leagueIndex].updatedAt = new Date().toISOString();
+
+              // Lưu lại vào localStorage
+              localStorage.setItem(leaguesDataKey, JSON.stringify(leagues));
+              console.log(
+                `DEBUG (edit): League ID ${editingLeagueId} updated in localStorage.`
+              );
+
+              // Hiển thị thông báo thành công
+              successMessageDiv.style.display = "block";
+
+              // Cập nhật lại originalLeagueData sau khi lưu thành công
+              originalLeagueData = { ...leagues[leagueIndex] };
+
+              // Reset trạng thái logo mới sau khi đã lưu
+              newLogoDataUrl = null;
+              fileInput.value = null; // Xóa hiển thị file đã chọn
+
+              // Tùy chọn: Tự động ẩn thông báo sau vài giây
+              setTimeout(() => {
+                if (successMessageDiv) successMessageDiv.style.display = "none";
+              }, 3000); // Ẩn sau 3 giây
+            } else {
+              console.error(
+                `DEBUG (edit): League index not found for ID ${editingLeagueId} during save.`
+              );
+              alert("Lỗi nghiêm trọng: Không tìm thấy giải đấu để cập nhật!");
+              window.location.href = "Dashboard.html"; // Chuyển về nếu lỗi nghiêm trọng
+            }
+          } catch (error) {
+            console.error(
+              "DEBUG (edit): Error saving updated league data:",
+              error
+            );
+            alert("Đã xảy ra lỗi khi lưu cập nhật. Vui lòng thử lại.");
+            // Có thể ẩn thông báo thành công nếu nó vô tình hiển thị
+            successMessageDiv.style.display = "none";
+          }
+        });
+
+        // 3. Nút Nhập lại
+        resetButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          console.log("DEBUG (edit): Reset button clicked.");
+          if (originalLeagueData) {
+            // Quay lại dữ liệu gốc đã lưu lúc tải trang
+            nameInput.value = originalLeagueData.name || "";
+            const originalLogoSrc =
+              originalLeagueData.logo || defaultLeagueLogo;
+            previewImg.src = originalLogoSrc;
+            previewImg.style.display = "inline-block"; // Hiển thị lại ảnh
+
+            // Reset trạng thái logo mới và input file
+            newLogoDataUrl = null;
+            fileInput.value = null;
+
+            // Xóa thông báo lỗi/thành công
+            nameErrorSpan.textContent = "";
+            successMessageDiv.style.display = "none";
+            console.log("DEBUG (edit): Form reset to original loaded data.");
+          } else {
+            console.warn(
+              "DEBUG (edit): Cannot reset, original data not available."
+            );
+            // Thử tải lại dữ liệu nếu cần
+            if (editingLeagueId) loadLeagueData(editingLeagueId);
+          }
+        });
+
+        // Ngăn form submit mặc định (an toàn hơn khi có thẻ form)
+        editForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          console.log("DEBUG (edit): Form default submission prevented.");
+          // Có thể tự động click nút lưu nếu muốn submit bằng Enter
+          // saveButton.click();
+        });
+      }); // End DOMContentLoaded
+    </script>
+  </body>
+</html>
