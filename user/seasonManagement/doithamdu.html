@@ -626,7 +626,7 @@
             >
 
             <div class="wrap">
-              <a href="#">
+              <a href="#" id="register-link">
                 <button class="Nhaplai">
                   <i class="fa-solid fa-plus"></i> Đăng ký
                 </button>
@@ -733,6 +733,35 @@
           // console.warn("Either 'dropdownMenu' or '.user-info' element not found for outside click handler.");
         }
       });
+    </script>
+    <script name="themdoithamdu">
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Lấy id và leagueId từ URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const currentId = urlParams.get('id'); // Get the value of 'id'
+            const currentLeagueId = urlParams.get('leagueId'); // Get the value of 'leagueId'
+
+            // 2. Tìm id register-link
+            const registerLink = document.getElementById('register-link');
+
+
+            // 3.  Tạo URL dẫn đến themdoithamdu.html
+            const targetParams = new URLSearchParams();
+            if (currentId !== null) { // Only add parameter if it exists in current URL
+                targetParams.set('id', currentId);
+            }
+            if (currentLeagueId !== null) { // Only add parameter if it exists
+                targetParams.set('leagueId', currentLeagueId);
+            }
+
+            const targetUrl = `themdoithamdu.html?${targetParams.toString()}`;
+
+            // 5. Thay href của register-link thành themdoithamdu.html?id?leagueId
+            registerLink.href = targetUrl;
+
+            // Optional: Log to console for debugging
+            console.log("Register link updated to:", targetUrl);
+        });
     </script>
   </body>
 </html>
