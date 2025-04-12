@@ -376,14 +376,6 @@
             <span class="list-league_left"
               >Danh sách tài khoản quản lý giải</span
             >
-
-            <div class="wrap">
-              <a href="#">
-                <button class="Nhaplai">
-                  <i class="fa-solid fa-plus"></i> Đăng ký
-                </button>
-              </a>
-            </div>
           </div>
 
           <div class="concua">
@@ -448,6 +440,12 @@
           { id: 4, email: "manager_only@example.com", name: "Manager X" }, // A user not assigned yet
         ];
 
+        const currentUser = {
+          id: 1,
+          email: "haidang@gmail.com",
+          name: "Nguyễn Hải Đăng",
+        };
+
         // 1. Get currentTeamId from URL
         const urlParams = new URLSearchParams(window.location.search);
         const currentSeasonId = urlParams.get("id");
@@ -467,13 +465,13 @@
         function findUserById(userId) {
           return users.find((user) => user.id === userId);
         }
-        function getManagersForTeam(teamId) {
+        function getManagersForTeam(leagueId, seasonId) {
           /* ... keep implementation ... */
           try {
             const allManagersData = JSON.parse(
-              localStorage.getItem("managersData") || "[]"
+              localStorage.getItem("managersSeasonData") || "[]"
             );
-            return allManagersData.filter((m) => m.teamId === teamId);
+            return allManagersData.filter((m) => m.leagueId === currentLeagueId && m.seasonId === currentSeasonId);
           } catch (error) {
             console.error(
               "Error reading managersSeasonData from localStorage:",
@@ -483,11 +481,16 @@
           }
         }
         function getSeasonData() {
-          /* ... keep implementation ... */
           try {
-            return JSON.parse(localStorage.getItem("teams") || "[]");
+            return JSON.parse(localStorage.getItem("danhSachMuaGiai") || "[]");
           } catch (error) {
-            console.error("Error reading teams data from localStorage:", error);
+            return [];
+          }
+        }
+        function getLeagueData() {
+          try {
+            return JSON.parse(localStorage.getItem("danhSachGiaiDau") || "[]");
+          } catch (error) {
             return [];
           }
         }
@@ -599,48 +602,50 @@
 
         // --- Core Logic: Rendering the Table (Keep from previous version) ---
         function renderManagerTable() {
-          // ... (Keep the exact implementation from the previous version) ...
-          // It correctly uses findUserById, getManagersForTeam, etc.
           if (!tableBody) {
             console.error("Table body not found!");
             return;
           }
-          if (!currentTeamId) {
-            console.error("Team ID not found.");
+          if (!currentLeagueId) {
+            console.error("League ID not found.");
             tableBody.innerHTML = '<tr><td colspan="4">...</td></tr>';
             return;
           }
           tableBody.innerHTML = "";
-          const teamsData = getTeamsData();
-          const currentTeam = teamsData.find(
-            (team) => team.id === currentTeamId
-          );
-          if (!currentTeam) {
-            console.error(`Team ${currentTeamId} not found.`);
+          const leaguesData = getLeagueData();
+          const seasonsData = getSeasonData();
+          const currentSeason = seasonsData.find(
+            (season) => season.id === currentSeasonId
+          )
+          const currentLeague = leaguesData.find(
+            (league) => league.id === currentLeagueId
+          )
+          if (!currentSeasonId) {
+            console.error(`Season ${currentSeasonId} not found.`);
             tableBody.innerHTML = `<tr><td colspan="4">...</td></tr>`;
             return;
           }
 
           let stt = 1;
           const teamUsersToDisplay = [];
-          const creator = findUserById(currentTeam.userId);
+          const creator = findUserById(currentUser.id);
           if (creator) {
             teamUsersToDisplay.push({
               ...creator,
-              role: "Tài khoản tạo đội",
+              role: "Tài khoản tạo giải",
               isCreator: true,
             });
           } else {
-            console.warn(`Creator ${currentTeam.userId} not found.`);
+            console.warn(`Creator ${currentUser.id} not found.`);
           }
 
-          const managerRelations = getManagersForTeam(currentTeamId);
+          const managerRelations = getManagersForTeam(currentSeasonId, currentLeagueId);
           managerRelations.forEach((relation) => {
             const manager = findUserById(relation.userId);
-            if (manager && manager.id !== currentTeam.userId) {
+            if (manager && manager.id !== currentUser.id) {
               teamUsersToDisplay.push({
                 ...manager,
-                role: "Quản lý đội",
+                role: "Quản lý mùa giải",
                 isCreator: false,
               });
             } else if (!manager) {
@@ -691,18 +696,18 @@
             ) {
               try {
                 let managersData = JSON.parse(
-                  localStorage.getItem("managersData") || "[]"
+                  localStorage.getItem("managersSeasonData") || "[]"
                 );
                 const updatedManagersData = managersData.filter(
                   (m) =>
-                    !(m.teamId === currentTeamId && m.userId === userIdToDelete)
+                    !(m.seasonId === currentSeasonId && m.leagueId === currentLeagueId && m.userId === userIdToDelete)
                 );
                 localStorage.setItem(
-                  "managersData",
+                  "managersSeasonData",
                   JSON.stringify(updatedManagersData)
                 );
                 console.log(
-                  `Manager ${userIdToDelete} removed from team ${currentTeamId}.`
+                  `Manager ${userIdToDelete} removed from season ${currentSeasonId}.`
                 );
                 renderManagerTable();
               } catch (error) {
@@ -715,8 +720,8 @@
 
         // --- Core Logic: Adding a Manager (UPDATED to use selection) ---
         function handleAddManager() {
-          if (!currentTeamId) {
-            console.error("Cannot add manager: currentTeamId is missing.");
+          if (!currentSeasonId) {
+            console.error("Cannot add manager: currentSeasonId is missing.");
             return;
           }
           // --- USE THE SELECTED USER ID ---
@@ -744,34 +749,40 @@
             return;
           }
 
-          // Find the current team to check if the user is the creator
-          const teamsData = getTeamsData();
-          const currentTeam = teamsData.find(
-            (team) => team.id === currentTeamId
+          // Check if the user is the creator
+
+          const seasonsData = getSeasonData();
+          const currentSeason = seasonsData.find(
+            (season) => season.id === currentSeasonId
           );
 
-          if (currentTeam && userToAdd.id === currentTeam.userId) {
+          const leaguesData = getLeagueData();
+          const currentLeague = leaguesData.find(
+            (league) => league.id === currentLeagueId
+          );
+
+          if (userToAdd.id === currentUser.id) {
             alert(
-              "Người dùng này đã là người tạo đội, không thể thêm làm quản lý."
+              "Người dùng này đã là người tạo mùa giải, không thể thêm làm quản lý."
             );
             return;
           }
 
           try {
             let managersData = JSON.parse(
-              localStorage.getItem("managersData") || "[]"
+              localStorage.getItem("managersSeasonData") || "[]"
             );
 
             // Check if this user is ALREADY a manager for THIS team
             const alreadyExists = managersData.some(
-              (m) => m.teamId === currentTeamId && m.userId === userToAdd.id
+              (m) => m.seasonId === currentSeasonId && m.leagueId === currentLeagueId && m.userId === userToAdd.id
             );
 
             if (alreadyExists) {
               alert(
                 `Người dùng ${
                   userToAdd.name || userToAdd.email
-                } đã là quản lý của đội này.`
+                } đã là quản lý của mùa giải này.`
               );
               // Clear input after message
               addManagerInput.value = "";
@@ -781,11 +792,11 @@
             }
 
             // Add the new manager relationship
-            managersData.push({ teamId: currentTeamId, userId: userToAdd.id });
-            localStorage.setItem("managersData", JSON.stringify(managersData));
+            managersData.push({ seasonId: currentSeasonId, leagueId: currentLeagueId, userId: userToAdd.id });
+            localStorage.setItem("managersSeasonData", JSON.stringify(managersData));
 
             console.log(
-              `Added manager relationship: User ${userToAdd.id} for Team ${currentTeamId}`
+              `Added manager relationship: User ${userToAdd.id} for Season ${currentSeasonId}`
             );
             alert(`Đã thêm ${userToAdd.name || userToAdd.email} làm quản lý.`);
 
