@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trang lịch thi đấu</title>
     <link rel="icon" type="logo.png" href="/images/logo.png" />
+    <!-- Sửa đường dẫn nếu cần -->
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
       rel="stylesheet"
@@ -13,6 +14,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
+    <!-- CSS CỦA TRANG ĐÍCH (GIỮ NGUYÊN) -->
     <style>
       * {
         margin: 0;
@@ -22,7 +24,7 @@
         text-decoration: none;
       }
       body {
-        background-color: white;
+        background-color: white; /* Nên đổi thành #ecf0f5 nếu muốn nền xám */
       }
       /*-------------------------Header---------------------------*/
       .developed-by {
@@ -87,7 +89,6 @@
         left: 10px;
         color: white;
         text-decoration: none;
-        /* margin: 0 7px; */
         top: -20px;
         position: relative;
         z-index: 2;
@@ -113,11 +114,9 @@
           left: 0;
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
         .navbar-collapse.active {
           display: flex;
         }
-
         .nav-item {
           text-align: center;
           padding: 10px 0;
@@ -127,7 +126,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        position: relative; /* Đổi từ absolute sang relative */
+        position: relative;
         right: 60px;
         top: -20px;
         cursor: pointer;
@@ -141,8 +140,8 @@
         position: relative;
         top: -2px;
       }
-
       .dropdown-menu {
+        /* Dropdown user */
         display: none;
         position: absolute;
         top: 100%;
@@ -154,7 +153,6 @@
         z-index: 1000;
         padding: 5px 0px;
       }
-
       .dropdown-menu a {
         display: block;
         padding: 5px 15px;
@@ -163,18 +161,14 @@
         transition: background-color 0.3s;
         font-size: 14px;
       }
-
       .dropdown-menu a:hover {
         background-color: #f34541;
         color: #ffffff;
       }
-      .fa-solid.fa-caret-down {
+      .header .user-info .fa-solid.fa-caret-down {
         color: #333333;
         font-size: 12px;
-        margin-top: 10px;
       }
-
-      /*-------------------End Header---------------------- */
 
       /*----------------------Layout-------------------------*/
       .container {
@@ -220,17 +214,13 @@
       .sidebar a:hover {
         color: #ffffff;
       }
-
       .fa-solid.fa-tachometer-alt {
         color: #ff6f00;
       }
-
-      /* Ẩn submenu ban đầu */
       .submenu {
         display: none;
         background: #ff6f00 !important;
       }
-
       .submenu li {
         padding: 12px 12px;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -246,13 +236,9 @@
       .submenu a:hover {
         color: rgb(250, 55, 25) !important;
       }
-
-      /* Bật submenu khi click */
       .menu-item.active + .submenu {
         display: block;
       }
-
-      /* Định dạng cho menu cha */
       .menu-item {
         display: flex;
         align-items: center;
@@ -260,7 +246,6 @@
         cursor: pointer;
         width: 100%;
       }
-
       .menu-item i {
         margin-right: 10px;
       }
@@ -268,61 +253,53 @@
         font-size: 9px;
         color: #222222;
       }
-      .fa-solid.fa-chevron-down {
+      .sidebar .fa-solid.fa-chevron-down {
         font-size: 12px;
         margin-left: auto;
       }
-      /* -------------------sidebar-end------------------- */
 
       /*----------content: management + list-league + footer------------ */
-      /* Container cho các nút */
       .management-actions {
         background-color: #ecf0f5;
         display: flex;
         flex-wrap: wrap;
-        gap: 15px; /* Khoảng cách giữa các nút */
+        gap: 15px;
         justify-content: center;
         padding: 10px 10px;
       }
-
-      /* Style cho từng nút (thẻ a) */
       .action-button {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center; /* Căn giữa theo chiều dọc */
-        background-color: #5cb85c; /* Màu xanh lá cây như trong ảnh */
+        justify-content: center;
+        background-color: #5cb85c;
         color: white;
-        padding: 20px 15px; /* Khoảng cách bên trong nút */
-        border-radius: 8px; /* Bo góc nhẹ */
-        text-decoration: none; /* Bỏ gạch chân link */
+        padding: 20px 15px;
+        border-radius: 8px;
+        text-decoration: none;
         text-align: center;
-        min-width: 140px; /* Chiều rộng tối thiểu cho mỗi nút */
-        min-height: 100px; /* Chiều cao tối thiểu */
-        transition: background-color 0.2s ease, transform 0.2s ease; /* Hiệu ứng chuyển đổi */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ */
-        border: none; /* Bỏ viền mặc định */
+        min-width: 140px;
+        min-height: 100px;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border: none;
         flex: 1;
         max-width: 150px;
       }
-
       .action-button:hover {
         background-color: #4eab4e;
-        transform: translateY(-3px); /* Hiệu ứng nhấc lên nhẹ */
+        transform: translateY(-3px);
         cursor: pointer;
       }
-
       .action-button i {
-        font-size: 2.5em; /* Kích thước icon */
-        margin-bottom: 12px; /* Khoảng cách giữa icon và chữ */
-        line-height: 1; /* Đảm bảo icon không chiếm thêm chiều cao */
+        font-size: 2.5em;
+        margin-bottom: 12px;
+        line-height: 1;
       }
-
-      /* Style cho chữ */
       .action-button span {
-        font-size: 13px; /* Kích thước chữ */
-        font-weight: 600; /* Chữ hơi đậm */
-        text-transform: uppercase; /* Viết hoa chữ */
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
         line-height: 1.3;
       }
       .content-wrapper {
@@ -330,12 +307,12 @@
         display: block;
         margin: 0;
         padding: 0;
+        background-color: #ecf0f5;
       }
       .content {
-        background-color: white;
+        background-color: #ecf0f5;
         border-radius: 5px;
       }
-      /* list-league */
       .list-league {
         color: rgb(34, 34, 34);
         font-size: 24px;
@@ -345,133 +322,490 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+        background-color: white;
+        margin: 15px;
+        border: 1px solid #d2d6de;
+        border-radius: 3px;
+        min-height: 70px;
       }
       .list-league_left {
         font-family: "Source Sans Pro", sans-serif !important;
-      }
-      .list-league .fa-solid.fa-list {
-        color: #ff6f00;
-        margin-right: 8px;
-        font-size: 25px;
-      }
-      .list-league_left {
         flex-grow: 1;
+        margin-right: 15px;
       }
+      .list-league i {
+        margin-right: 5px;
+      } /* Chung cho icon list-league */
+      /* Icon lịch thi đấu thay thế icon list cũ */
+      .list-league .fa-solid.fa-calendar-days {
+        color: #0073b7;
+        font-size: 22px;
+      } /* Màu & kích thước icon lịch */
 
-      .fa-solid.fa-plus {
-        margin-right: 3px;
-        font-size: 15px;
+      /* --- CSS CHO PHẦN LỊCH THI ĐẤU ĐƯỢC THÊM VÀO --- */
+      /* Toolbar */
+      .toolbar {
+        display: flex;
+        justify-content: flex-end; /* Align to right */
+        align-items: center;
+        gap: 10px; /* Space between filter and button */
       }
-
-      .Nhaplai {
-        color: rgb(255, 255, 255);
-        padding: 7px 12px 6px 12px;
-        background-color: rgb(0, 172, 236);
-        border-color: rgba(0, 0, 0, 0.25);
+      /* Áp dụng style nút chung cho toolbar buttons và select */
+      .toolbar button,
+      .toolbar select {
+        color: white;
+        padding: 6px 12px; /* Consistent padding */
+        border-color: rgba(0, 0, 0, 0.15); /* Slightly darker border */
         border-style: solid;
-        border-width: 0.8px;
+        border-width: 1px;
+        border-radius: 3px; /* Consistent radius */
         cursor: pointer;
-        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+        text-shadow: rgba(0, 0, 0, 0.2) 0px -1px 0px; /* Softer shadow */
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+        vertical-align: middle; /* Ensure vertical alignment */
+        font-size: 14px; /* Ensure consistent font size */
+        line-height: 1.5; /* Consistent line height */
+        height: auto; /* Allow height to be determined by padding/content */
+        box-sizing: border-box;
+        display: inline-flex; /* Align icon and text */
+        align-items: center;
+        gap: 5px;
+        transition: background-color 0.15s ease-in-out,
+          border-color 0.15s ease-in-out; /* Smooth hover */
+        font-family: "Source Sans Pro", sans-serif; /* Font cho toolbar */
       }
-      .Nhaplai:hover {
-        background-color: #428bca;
+      .toolbar button i,
+      .toolbar select i {
+        /* Icon trong toolbar */
+        font-size: 1em; /* Kích thước icon phù hợp text */
       }
 
-      /*---------------------inputleague------------------*/
-      .kienngu {
-        background-color: #ecf0f5;
-        padding-top: 10px;
+      /* Nút Tạo mới */
+      .create {
+        background-color: #00a65a; /* AdminLTE Success Green */
+        border-color: #008d4c;
       }
-      .box {
-        max-width: 1250px;
-        margin: 10px auto 0;
-        padding: 20px 20px 5px 20px;
-        background: #ffffff;
-        border-radius: 3px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      .create:hover {
+        background-color: #008d4c;
       }
-      .box-success {
-        max-width: 1250px;
-        margin: 10px auto 0;
-        padding: 10px;
-        background: #ffffff;
-        border-radius: 3px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      /* Select Lọc */
+      #fixture-filter {
+        background-color: #3c8dbc; /* AdminLTE Primary Blue */
+        border-color: #367fa9;
       }
-      .box-success p {
-        text-align: center;
-        margin-bottom: 10px;
-        font-size: 14px;
-        font-style: italic;
-        color: rgb(1, 167, 1);
+      #fixture-filter:hover {
+        background-color: #367fa9;
       }
-      .addseason {
-        color: rgb(255, 255, 255);
-        display: block;
-        margin: 0 auto;
-        padding: 7px 12px 6px 12px;
-        background-color: #f34541;
-        border-color: rgba(0, 0, 0, 0.25);
-        border-style: solid;
-        border-width: 0.8px;
-        cursor: pointer;
-        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
-        text-decoration: none !important;
+      #fixture-filter option {
+        background-color: white; /* Options often need explicit styling */
+        color: #333;
+        font-family: "Source Sans Pro", sans-serif; /* Font cho option */
       }
-      .forminput {
-        margin-bottom: 12px;
+
+      /* Styling for the content box chứa list và dialog */
+      .content-box {
+        margin: 0 15px 15px 15px; /* Margin bottom để tách footer */
+        font-family: "Source Sans Pro", sans-serif; /* Font chung cho content box */
+        background-color: white; /* Nền trắng cho box */
+        padding: 15px; /* Padding bên trong box */
+        border: 1px solid #d2d6de; /* Border giống list-league */
+        border-top: none; /* Bỏ border top vì list-league đã có */
+        border-radius: 0 0 3px 3px; /* Bo góc dưới */
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); /* Shadow nhẹ */
+      }
+      /* Đảm bảo font đúng cho các element con */
+      .content-box label,
+      .content-box input,
+      .content-box select,
+      .content-box button,
+      .content-box option,
+      .content-box div {
+        font-family: "Source Sans Pro", sans-serif;
+      }
+
+      /* Fixture List */
+      .fixture-list-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px; /* Giảm gap một chút */
+      }
+
+      /* Fixture Card Layout */
+      .fixture-card {
         display: flex;
         align-items: center;
-        padding-left: 200px;
-      }
-      .forminput label {
-        width: 100px;
-        font-size: 17px;
-        text-align: right;
-        margin-right: 20px;
-      }
-      input[type="text"] {
-        width: 60%;
-        padding: 3px;
-        border: 1px solid #d0d0d0;
-        font-size: 16px;
-        box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px 0px inset;
-      }
-      input:focus {
-        outline: 0;
-        border-color: #969696;
-      }
-      /* Ẩn nút file mặc định */
-      #fileInput {
-        display: none;
-      }
-
-      /* Nút tùy chỉnh */
-      .custom-button {
-        background-color: rgb(76, 175, 80);
-        color: white;
-        padding: 5px 15px;
+        justify-content: space-between;
+        background-color: #ffffff;
         border: 1px solid #ccc;
-        cursor: pointer;
+        border-radius: 5px;
+        padding: 15px 15px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        flex-wrap: wrap;
+        box-sizing: border-box;
+      }
+      .fixture-card .main-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        flex-grow: 1;
+      }
+      .fixture-card .team {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 90px;
+        flex-shrink: 0;
+      }
+      .fixture-card .team img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        margin-bottom: 5px;
+        object-fit: cover;
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+      }
+      .fixture-card .team .team-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #444;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+      }
+      .fixture-card .match-info {
+        text-align: center;
+        margin: 0 10px;
+        flex-grow: 1;
+        flex-shrink: 1;
+        min-width: 80px;
+      }
+      .fixture-card .match-info .time {
         font-size: 16px;
+        font-weight: bold;
+        color: #ff6f00;
+        padding: 2px 0px;
+        border-radius: 4px;
+        margin-bottom: 3px;
+        margin-right: 10px;
+        display: inline-block;
+      }
+      .fixture-card .match-info .date {
+        font-size: 14px;
+        color: #666;
+        padding: 2px 0px;
+        border-radius: 4px;
+        display: inline-block;
+      }
+      .fixture-card .match-info .venue {
+        font-size: 12px;
+        color: #777;
+        margin-top: 4px;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .fixture-card .match-info .venue i {
+        margin-right: 3px;
       }
 
-      .custom-button:hover {
-        background-color: #4d9e51;
+      /* Actions Container */
+      .fixture-card .actions {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        width: 100%;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid #f4f4f4;
+        justify-content: flex-end;
+        align-items: center;
       }
-      .fa-solid.fa-arrow-left {
-        margin-right: 3px;
-        font-size: 15px;
+      /* Action Button Style */
+      .fixture-card .actions .btn {
+        padding: 4px 8px;
+        font-size: 12px;
+        min-width: auto;
+        justify-content: center;
+        flex-shrink: 0;
       }
-      .fa-solid.fa-upload {
-        margin-right: 3px;
+      /* General Button Styles (cho dialog và card) */
+      .btn {
+        padding: 6px 12px;
+        border: 1px solid transparent;
+        border-radius: 3px;
+        cursor: pointer;
         font-size: 14px;
-        position: relative;
-        bottom: 3px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        font-family: "Source Sans Pro", sans-serif;
+        line-height: 1.42857143;
+        white-space: nowrap;
+        transition: background-color 0.15s ease-in-out,
+          border-color 0.15s ease-in-out;
+        user-select: none;
       }
-      /* --------------------- FOOTER --------------------*/
+      .btn i {
+        margin-right: 0;
+      } /* Use gap */
+
+      /* Specific Button Colors (AdminLTE Theme) */
+      .btn-success {
+        background-color: #00a65a;
+        border-color: #008d4c;
+        color: white;
+      }
+      .btn-success:hover {
+        background-color: #008d4c;
+      }
+      .btn-primary {
+        background-color: #3c8dbc;
+        border-color: #367fa9;
+        color: white;
+      }
+      .btn-primary:hover {
+        background-color: #367fa9;
+      }
+      .btn-danger {
+        background-color: #dd4b39;
+        border-color: #d73925;
+        color: white;
+      }
+      .btn-danger:hover {
+        background-color: #d73925;
+      }
+      .btn-warning {
+        background-color: #f39c12;
+        border-color: #e08e0b;
+        color: white;
+      }
+      .btn-warning:hover {
+        background-color: #e08e0b;
+      }
+      .btn-info {
+        background-color: #00c0ef;
+        border-color: #00acd6;
+        color: white;
+      }
+      .btn-info:hover {
+        background-color: #00acd6;
+      }
+      .btn-secondary {
+        background-color: #f4f4f4;
+        color: #444;
+        border: 1px solid #ddd;
+      }
+      .btn-secondary:hover {
+        background-color: #e7e7e7;
+        border-color: #ccc;
+      }
+      .btn:disabled,
+      .btn.disabled {
+        background-color: #d2d6de;
+        border-color: #d2d6de;
+        color: #777;
+        cursor: not-allowed;
+        opacity: 0.65;
+      }
+
+      /* Dialog Styles */
+      .dialog-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1050;
+        justify-content: center;
+        align-items: center;
+      }
+      .dialog-overlay.show {
+        display: flex;
+      }
+      .dialog-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 3px;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        width: 90%;
+        max-width: 600px;
+        position: relative;
+        max-height: 90vh;
+        overflow-y: auto;
+        border-top: 3px solid #3c8dbc;
+      }
+      .dialog-content h3 {
+        margin: 0 0 15px 0;
+        padding-bottom: 10px;
+        color: #333;
+        text-align: left;
+        font-family: "Source Sans Pro", sans-serif;
+        border-bottom: 1px solid #f4f4f4;
+        font-size: 18px;
+        font-weight: 400;
+      }
+      .close-button {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #999;
+        cursor: pointer;
+        line-height: 1;
+        opacity: 0.5;
+        transition: opacity 0.2s ease;
+      }
+      .close-button:hover {
+        opacity: 1;
+        color: #555;
+      }
+      #fixture-form .form-group {
+        margin-bottom: 15px;
+      }
+      #fixture-form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+        font-size: 14px;
+        color: #555;
+      }
+      #fixture-form input[type="text"],
+      #fixture-form input[type="datetime-local"],
+      #fixture-form select {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #d2d6de;
+        border-radius: 3px;
+        font-size: 14px;
+        box-sizing: border-box;
+        line-height: 1.42857143;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+      }
+      #fixture-form input:focus,
+      #fixture-form select:focus {
+        border-color: #3c8dbc;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+          0 0 8px rgba(60, 141, 188, 0.6);
+        outline: 0;
+      }
+      #fixture-form input[readonly] {
+        background-color: #eee;
+        cursor: not-allowed;
+      }
+      #fixture-form .teams-container,
+      #fixture-form .location-container {
+        display: flex;
+        gap: 15px;
+      }
+      #fixture-form .teams-container > *,
+      #fixture-form .location-container > * {
+        flex: 1;
+      }
+      #fixture-form #teamAWrapper,
+      #fixture-form #teamBWrapper {
+        flex: 1;
+        position: relative;
+      }
+      #fixture-form #teamAWrapper > *,
+      #fixture-form #teamBWrapper > * {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      #fixture-form .form-actions {
+        margin-top: 20px;
+        text-align: right;
+        border-top: 1px solid #f4f4f4;
+        padding-top: 15px;
+      }
+      #fixture-form .form-actions .btn {
+        margin-left: 8px;
+      }
+
+      /* Styles for Searchable Dropdown */
+      .search-results-dropdown {
+        display: none;
+        position: absolute;
+        background-color: white;
+        border: 1px solid #d2d6de;
+        border-top: none;
+        max-height: 160px;
+        overflow-y: auto;
+        width: 100%;
+        z-index: 1051;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 3px 3px;
+        left: 0;
+        top: 100%;
+      }
+      .search-result-item {
+        padding: 8px 12px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #333;
+        border-bottom: 1px solid #f4f4f4;
+      }
+      .search-result-item:last-child {
+        border-bottom: none;
+      }
+      .search-result-item:hover {
+        background-color: #f4f4f4;
+      }
+      .search-result-item.no-results {
+        font-style: italic;
+        color: #888;
+        cursor: default;
+      }
+      .search-result-item.no-results:hover {
+        background-color: transparent;
+      }
+
+      /* --- Responsiveness --- */
+      @media (max-width: 768px) {
+        .list-league {
+          justify-content: center;
+        }
+        .toolbar {
+          width: 100%;
+          justify-content: space-between;
+        }
+        .fixture-card .main-content {
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+        .fixture-card .team {
+          width: auto;
+          max-width: 150px;
+        }
+        .fixture-card .match-info {
+          order: -1;
+          margin: 0 0 10px 0;
+        }
+        .fixture-card .actions {
+          justify-content: center;
+        }
+        #fixture-form .teams-container,
+        #fixture-form .location-container {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+      /* --- HẾT CSS CHO PHẦN LỊCH THI ĐẤU --- */
+
+      /* --------------------- FOOTER (Giữ nguyên) --------------------*/
       .footer {
         box-sizing: border-box;
         background-color: #ecf0f5;
@@ -480,42 +814,39 @@
         font-weight: 500;
         text-shadow: rgb(255, 255, 255) 1px 1px 1px;
         display: block;
+        margin-top: 15px;
       }
-
       .footer-container {
         box-sizing: border-box;
         background-color: #ecf0f5;
         color: rgb(51, 51, 51);
         font-size: 14px;
         text-shadow: rgb(255, 255, 255) 2px 2px 2px;
-        margin: 40px 10px 10px 10px;
-        display: block;
-        border-top-color: rgb(255, 255, 255);
-        border-top-style: solid;
-        border-top-width: 0.8px;
-        line-height: 10px;
+        margin: 0 10px 10px 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 10px;
+        padding: 10px;
+        border-top: 1px solid #d2d6de;
+        line-height: normal;
       }
-
       .footer-left,
       .footer-right {
         flex: 1;
       }
-
       .footer-left p,
       .footer-right p {
-        margin: 19px 0;
+        margin: 10px 0;
+        line-height: 1.5;
       }
-
+      .footer-right p i {
+        margin-right: 5px;
+      }
       .footer-apps {
         display: flex;
         gap: 10px;
         margin-top: 10px;
       }
-
       .footer-apps img {
         height: 30px;
       }
@@ -523,20 +854,18 @@
   </head>
   <body>
     <header class="header">
+      <!-- Header content giữ nguyên -->
       <div class="navbar">
         <div class="navbar-top">
           <div class="logo">
             <a href="#"><img src="/user/images/logo.png" alt="Logo" /></a>
           </div>
-          <span class="developed-by">
-            Hệ thống được phát triển bởi HD Promotion</span
+          <span class="developed-by"
+            >Hệ thống được phát triển bởi HD Promotion</span
           >
           <div class="user-info" onclick="toggleDropdown()">
-            <img src="/user/images/dhk.jpg" />
-            <span
-              >Hải Đăng Nguyễn
-              <i class="fa-solid fa-caret-down"></i>
-            </span>
+            <img src="/user/images/dhk.jpg" alt="User Avatar" />
+            <span>Hải Đăng Nguyễn <i class="fa-solid fa-caret-down"></i></span>
             <div class="dropdown-menu" id="dropdownMenu">
               <a href="Dashboard.html">Trang quản lý</a>
               <a href="#">Đăng xuất</a>
@@ -558,18 +887,14 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">ĐỘI BÓNG</a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">BẮT ĐỐI</a>
-              </li>
+              <li class="nav-item"><a href="#" class="nav-link">BẮT ĐỐI</a></li>
               <li class="nav-item">
                 <a href="#" class="nav-link">HƯỚNG DẪN</a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">CUỘC THI</a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">TIN TỨC</a>
-              </li>
+              <li class="nav-item"><a href="#" class="nav-link">TIN TỨC</a></li>
             </ul>
           </div>
         </div>
@@ -580,60 +905,186 @@
         <!-- Sidebar will be loaded here -->
       </div>
       <div class="content-wrapper">
-        <div class="content-wrapper">
-          <div class="management-actions">
-            <a href="lichthidau.html" class="action-button">
-              <i class="fa-solid fa-calendar-days"></i>
-              <span>LỊCH THI ĐẤU</span>
-            </a>
-            <a href="bangxephang.html" class="action-button">
-              <i class="fa-solid fa-ranking-star"></i>
-              <span>BẢNG XẾP HẠNG</span>
-            </a>
-            <a href="doithamdu.html" class="action-button">
-              <i class="fa-solid fa-users"></i>
-              <span>ĐỘI THAM DỰ</span>
-            </a>
-            <a href="kqboctham.html" class="action-button">
-              <i class="fa-solid fa-list"></i>
-              <span>KẾT QUẢ BỐC THĂM</span>
-            </a>
-            <a href="thongke.html" class="action-button">
-              <i class="fa-solid fa-chart-simple"></i>
-              <span>THỐNG KÊ</span>
-            </a>
-            <a href="news.html" class="action-button">
-              <i class="fa-solid fa-newspaper"></i>
-              <span>TIN TỨC-THÔNG BÁO</span>
-            </a>
-            <a href="/user/EditSeason.html" class="action-button">
-              <i class="fa-solid fa-gears"></i>
-              <span>CẤU HÌNH MÙA GIẢI</span>
-            </a>
-
-            <a href="phanquyen.html" class="action-button">
-              <i class="fa-solid fa-shield-halved"></i>
-              <span>PHÂN QUYỀN</span>
-            </a>
-            <!-- Thêm các nút khác nếu cần -->
-          </div>
+        <!-- Management Actions giữ nguyên -->
+        <div class="management-actions">
+          <a href="lichthidau.html" class="action-button"
+            ><i class="fa-solid fa-calendar-days"></i
+            ><span>LỊCH THI ĐẤU</span></a
+          >
+          <a href="bangxephang.html" class="action-button"
+            ><i class="fa-solid fa-ranking-star"></i
+            ><span>BẢNG XẾP HẠNG</span></a
+          >
+          <a href="doithamdu.html" class="action-button"
+            ><i class="fa-solid fa-users"></i><span>ĐỘI THAM DỰ</span></a
+          >
+          <a href="kqboctham.html" class="action-button"
+            ><i class="fa-solid fa-list"></i><span>KẾT QUẢ BỐC THĂM</span></a
+          >
+          <a href="thongke.html" class="action-button"
+            ><i class="fa-solid fa-chart-simple"></i><span>THỐNG KÊ</span></a
+          >
+          <a href="news.html" class="action-button"
+            ><i class="fa-solid fa-newspaper"></i
+            ><span>TIN TỨC-THÔNG BÁO</span></a
+          >
+          <a href="/user/EditSeason.html" class="action-button"
+            ><i class="fa-solid fa-gears"></i><span>CẤU HÌNH MÙA GIẢI</span></a
+          >
+          <a href="phanquyen.html" class="action-button"
+            ><i class="fa-solid fa-shield-halved"></i><span>PHÂN QUYỀN</span></a
+          >
         </div>
+
         <section class="content">
           <div class="list-league">
-            <i class="fa-solid fa-list"></i>
-            <span class="list-league_left">Lịch thi đấu</span>
-
-            <div class="wrap">
-              <a href="#">
-                <button class="Nhaplai">
-                  <i class="fa-solid fa-plus"></i> Đăng ký
+            <!-- Đổi Icon và Text -->
+            <span class="list-league_left"
+              ><i class="fa-solid fa-calendar-days"></i>Lịch thi đấu</span
+            >
+            <!-- Thay thế nút cũ bằng Toolbar -->
+            <div class="toolbar">
+              <div class="filter-container">
+                <!-- *** SỬA VALUE CỦA FILTER ĐỂ KHỚP JS *** -->
+                <select id="fixture-filter">
+                  <option value="all">Tất cả lịch thi đấu</option>
+                  <option value="group_stage">Đá vòng bảng</option>
+                  <option value="knockout_stage">Đá vòng loại trực tiếp</option>
+                  <!-- Bỏ value="internal", "opponent" nếu có -->
+                </select>
+              </div>
+              <div>
+                <button id="create-fixture-btn" class="create">
+                  <i class="fa-solid fa-plus"></i> Tạo mới
                 </button>
-              </a>
+              </div>
             </div>
           </div>
 
+          <!-- Khu vực nội dung lịch thi đấu -->
+          <div class="content-box">
+            <!-- Fixture List Container -->
+            <div id="fixture-list" class="fixture-list-container">
+              <!-- Fixture cards sẽ được JS tải vào đây -->
+            </div>
+
+            <!-- Create/Edit Fixture Dialog (Modal) -->
+            <div id="fixture-dialog" class="dialog-overlay">
+              <div class="dialog-content">
+                <span class="close-button">×</span>
+                <h3 id="dialog-title">Tạo trận đấu</h3>
+                <form id="fixture-form">
+                  <input type="hidden" id="fixtureId" />
+
+                  <div class="form-group">
+                    <label for="matchType">Loại trận đấu</label>
+                    <select id="matchType" required>
+                      <option value="" disabled selected>
+                        Chọn loại trận đấu
+                      </option>
+                      <option value="group_stage">Đá vòng bảng</option>
+                      <option value="knockout_stage">
+                        Đá vòng loại trực tiếp
+                      </option>
+                    </select>
+                  </div>
+
+                  <!-- SỬA LẠI TEAM A VÀ TEAM B -->
+                  <div class="form-group">
+                    <label>Trận đấu</label>
+                    <div class="teams-container">
+                      <!-- Team A (Searchable) -->
+                      <div id="teamAWrapper">
+                        <input
+                          type="text"
+                          id="teamASearchInput"
+                          placeholder="Tìm và chọn đội A..."
+                          autocomplete="off"
+                          required
+                        />
+                        <div
+                          id="teamAResultsDropdown"
+                          class="search-results-dropdown"
+                        ></div>
+                        <input type="hidden" id="teamAId" required />
+                      </div>
+
+                      <!-- Team B (Searchable) -->
+                      <div id="teamBWrapper">
+                        <input
+                          type="text"
+                          id="teamBSearchInput"
+                          placeholder="Tìm và chọn đội B..."
+                          autocomplete="off"
+                          required
+                        />
+                        <div
+                          id="teamBResultsDropdown"
+                          class="search-results-dropdown"
+                        ></div>
+                        <input type="hidden" id="teamBId" required />
+                      </div>
+                    </div>
+                  </div>
+                  <!-- KẾT THÚC SỬA TEAM A/B -->
+
+                  <div class="form-group">
+                    <label for="scheduleDateTime">Lịch đá</label>
+                    <input
+                      type="datetime-local"
+                      id="scheduleDateTime"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label>Khu vực</label>
+                    <div class="location-container">
+                      <select id="province">
+                        <option value="" disabled selected>Tỉnh thành</option>
+                        <option value="TPHCM">TP. Hồ Chí Minh</option>
+                        <option value="Hanoi">Hà Nội</option>
+                        <option value="Danang">Đà Nẵng</option>
+                      </select>
+                      <select id="district">
+                        <option value="" disabled selected>
+                          Chọn Quận/Huyện
+                        </option>
+                        <option value="Q1">Quận 1</option>
+                        <option value="Q3">Quận 3</option>
+                        <option value="CauGiay">Cầu Giấy</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="venue">Địa điểm sân thi đấu</label>
+                    <input
+                      type="text"
+                      id="venue"
+                      placeholder="Sân thi đấu"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary close-dialog-btn"
+                    >
+                      Hủy
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- End content-box -->
+
           <div class="kienngu">
             <div class="footer">
+              <!-- Footer content giữ nguyên -->
               <div class="footer-container">
                 <div class="footer-left">
                   <p>Bản quyền thuộc HD Promotion</p>
@@ -676,26 +1127,44 @@
           </div>
         </section>
       </div>
+      <!-- End .content-wrapper -->
     </div>
+    <!-- End .container -->
 
+    <!-- === SCRIPT CHO SIDEBAR VÀ USER DROPDOWN (Giữ nguyên) === -->
     <script src="/user/js/sidebar.js"></script>
-    <script name="sidebar">
-      fetch("/user/sidebar.html") // Adjust path
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+    <!-- Sửa đường dẫn nếu cần -->
+    <script>
+      // --- Sidebar Loading Script (Giữ nguyên) ---
+      function initializeSidebar() {
+        /* ... Code sidebar giữ nguyên ... */
+        console.log("Sidebar initialized (placeholder)");
+        const menuItems = document.querySelectorAll(".sidebar .menu-item");
+        menuItems.forEach((item) => {
+          const submenu = item.nextElementSibling;
+          if (submenu && submenu.classList.contains("submenu")) {
+            item.addEventListener("click", (e) => {
+              e.preventDefault();
+              item.classList.toggle("active");
+              submenu.style.display = item.classList.contains("active")
+                ? "block"
+                : "none";
+            });
           }
+        });
+      }
+      fetch("/user/sidebar.html") /* ... Code fetch sidebar giữ nguyên ... */
+        .then((response) => {
+          if (!response.ok)
+            throw new Error(`HTTP error! Status: ${response.status}`);
           return response.text();
         })
         .then((html) => {
           const container = document.getElementById("sidebar-container");
           if (container) {
             container.innerHTML = html;
-            // IMPORTANT: Initialize sidebar JS *after* HTML is inserted
             initializeSidebar();
-          } else {
-            console.error("Sidebar container not found!");
-          }
+          } else console.error("Sidebar container not found!");
         })
         .catch((error) => {
           console.error("Error loading sidebar:", error);
@@ -703,33 +1172,560 @@
           if (container) container.innerHTML = "<p>Error loading sidebar.</p>";
         });
 
-      // submenu-user_info
+      // --- User Info Dropdown Script (Giữ nguyên) ---
       function toggleDropdown() {
+        /* ... Code user dropdown giữ nguyên ... */
         var menu = document.getElementById("dropdownMenu");
         if (menu) {
-          // Check if the element exists
           menu.style.display =
             menu.style.display === "block" ? "none" : "block";
-        } else {
-          console.warn("Element with ID 'dropdownMenu' not found.");
-        }
+        } else console.warn("Element with ID 'dropdownMenu' not found.");
       }
-
-      // Ẩn dropdown nếu click ra ngoài
       window.addEventListener("click", function (e) {
-        var menu = document.getElementById("dropdownMenu");
+        /* ... Code user dropdown  ... */ var menu =
+          document.getElementById("dropdownMenu");
         var userInfo = document.querySelector(".user-info");
-
-        // Check if both elements exist before proceeding
-        if (menu && userInfo) {
-          // Check if the click was outside the userInfo element AND outside the dropdown menu itself
-          if (!userInfo.contains(e.target) && !menu.contains(e.target)) {
-            menu.style.display = "none";
-          }
-        } else {
-          // Optionally log a warning if elements are missing
-          // console.warn("Either 'dropdownMenu' or '.user-info' element not found for outside click handler.");
+        if (
+          menu &&
+          userInfo &&
+          !userInfo.contains(e.target) &&
+          !menu.contains(e.target)
+        ) {
+          menu.style.display = "none";
         }
+      });
+    </script>
+
+    <!-- === SCRIPT CHO LỊCH THI ĐẤU (ĐÃ SỬA ĐỔI LOGIC matchType) === -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- Globals and Data ---
+        let teams = [];
+        let fixtures = [];
+
+        // --- DOM Elements ---
+        const fixtureListContainer = document.getElementById("fixture-list");
+        const createFixtureBtn = document.getElementById("create-fixture-btn");
+        const fixtureDialog = document.getElementById("fixture-dialog");
+        const closeDialogButtons = document.querySelectorAll(
+          ".close-button, .close-dialog-btn"
+        );
+        const fixtureForm = document.getElementById("fixture-form");
+        const dialogTitle = document.getElementById("dialog-title");
+        const fixtureFilter = document.getElementById("fixture-filter"); // Filter select
+
+        // Form Fields
+        const fixtureIdInput = document.getElementById("fixtureId");
+        const matchTypeSelect = document.getElementById("matchType"); // Select loại trận đấu
+
+        // Team A Elements
+        const teamAWrapper = document.getElementById("teamAWrapper");
+        const teamASearchInput = document.getElementById("teamASearchInput");
+        const teamAResultsDropdown = document.getElementById(
+          "teamAResultsDropdown"
+        );
+        const teamAIdInput = document.getElementById("teamAId");
+
+        // Team B Elements
+        const teamBWrapper = document.getElementById("teamBWrapper");
+        const teamBSearchInput = document.getElementById("teamBSearchInput");
+        const teamBResultsDropdown = document.getElementById(
+          "teamBResultsDropdown"
+        );
+        const teamBIdInput = document.getElementById("teamBId");
+
+        const scheduleDateTimeInput =
+          document.getElementById("scheduleDateTime");
+        const provinceSelect = document.getElementById("province");
+        const districtSelect = document.getElementById("district");
+        const venueInput = document.getElementById("venue");
+
+        // --- Functions ---
+
+        function loadData() {
+          const storedTeams = localStorage.getItem("teams");
+          if (!storedTeams) {
+            teams = getDefaultTeams();
+            localStorage.setItem("teams", JSON.stringify(teams));
+          } else {
+            teams = JSON.parse(storedTeams);
+          }
+          const storedFixtures = localStorage.getItem("fixtures");
+          fixtures = storedFixtures ? JSON.parse(storedFixtures) : [];
+          console.log("Teams loaded:", teams);
+          console.log("Fixtures loaded:", fixtures);
+        }
+
+        function getDefaultTeams() {
+          console.warn("Sử dụng dữ liệu đội mẫu.");
+          return [
+            {
+              id: "team-1",
+              teamName: "My Awesome Team",
+              logo: "https://via.placeholder.com/50/0000FF/FFFFFF?text=MAT",
+            },
+            {
+              id: "team-2",
+              teamName: "Rival FC",
+              logo: "https://via.placeholder.com/50/FF0000/FFFFFF?text=RFC",
+            },
+            {
+              id: "team-3",
+              teamName: "Internal Lions",
+              logo: "https://via.placeholder.com/50/008000/FFFFFF?text=IL",
+            },
+            {
+              id: "team-4",
+              teamName: "City Strikers",
+              logo: "https://via.placeholder.com/50/FFA500/FFFFFF?text=CS",
+            },
+            {
+              id: "team-5",
+              teamName: "Saigon United",
+              logo: "https://via.placeholder.com/50/800080/FFFFFF?text=SU",
+            },
+          ]; // Chỉ cần id, teamName, logo cho ví dụ này
+        }
+
+        function getTeamById(teamId) {
+          return teams.find((team) => team.id === teamId);
+        }
+
+        function formatDateTime(dateTimeString) {
+          if (!dateTimeString) return { date: "N/A", time: "N/A" };
+          try {
+            const dateObj = new Date(dateTimeString);
+            if (isNaN(dateObj.getTime()))
+              return { date: "Ngày không hợp lệ", time: "" };
+            const timeOptions = {
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+            };
+            const dateOptions = {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+            };
+            const time = dateObj.toLocaleTimeString("vi-VN", timeOptions);
+            const date = dateObj.toLocaleDateString("vi-VN", dateOptions);
+            return { date, time };
+          } catch (error) {
+            console.error("Lỗi định dạng ngày:", error);
+            return { date: "Lỗi", time: "" };
+          }
+        }
+
+        function renderFixtures() {
+          if (!fixtureListContainer) {
+            console.error("#fixture-list not found");
+            return;
+          }
+          fixtureListContainer.innerHTML = "";
+
+          const filterValue = fixtureFilter ? fixtureFilter.value : "all";
+
+          const relevantFixtures = fixtures.filter((fixture) => {
+            if (filterValue === "group_stage")
+              return fixture.matchType === "group_stage";
+            else if (filterValue === "knockout_stage")
+              return fixture.matchType === "knockout_stage";
+            return true;
+          });
+
+          if (relevantFixtures.length === 0) {
+            fixtureListContainer.innerHTML =
+              "<p>Chưa có lịch thi đấu nào phù hợp.</p>";
+            return;
+          }
+
+          relevantFixtures.forEach((fixture) => {
+            const teamA = getTeamById(fixture.teamAId);
+            const teamB = getTeamById(fixture.teamBId);
+            const { date, time } = formatDateTime(fixture.scheduleDateTime);
+            const teamALogo =
+              teamA?.logo ||
+              "https://via.placeholder.com/50/cccccc/FFFFFF?text=N/A";
+            const teamAName = teamA?.teamName || "Không rõ";
+            const teamBLogo =
+              teamB?.logo ||
+              "https://via.placeholder.com/50/cccccc/FFFFFF?text=N/A";
+            const teamBName = teamB?.teamName || "Không rõ";
+
+            const card = document.createElement("div");
+            card.className = "fixture-card";
+            // *** SỬA ĐƯỜNG DẪN HREF CỦA NÚT THÔNG SỐ ***
+            card.innerHTML = `
+                    <div class="main-content">
+                        <div class="team team-a"><img src="${teamALogo}" alt="${teamAName} logo"><span class="team-name">${teamAName}</span></div>
+                        <div class="match-info"><div class="time">${time}</div><div class="date">${date}</div>${
+              fixture.venue
+                ? `<div class="venue"><i class="fa-solid fa-location-dot"></i> ${fixture.venue}</div>`
+                : ""
+            }</div>
+                        <div class="team team-b"><img src="${teamBLogo}" alt="${teamBName} logo"><span class="team-name">${teamBName}</span></div>
+                     </div>
+                     <div class="actions">
+                        <button class="btn btn-warning edit-btn" data-id="${
+                          fixture.id
+                        }" title="Sửa lịch thi đấu"><i class="fa-solid fa-pencil"></i> Sửa</button>
+                        <button class="btn btn-danger delete-btn" data-id="${
+                          fixture.id
+                        }" title="Xóa lịch thi đấu"><i class="fa-solid fa-trash"></i> Xoá</button>
+                        <a href="thongso.html?fixtureId=${
+                          /* <<-- ĐƯỜNG DẪN ĐÃ SỬA */
+                          fixture.id
+                        }" class="btn btn-info stats-btn" title="Xem thông số trận đấu"><i class="fa-solid fa-chart-simple"></i> Thông số</a>
+                     </div>`;
+            // *** KẾT THÚC SỬA ĐƯỜNG DẪN ***
+            fixtureListContainer.appendChild(card);
+          });
+        }
+
+        function showDialog() {
+          if (!fixtureDialog) return;
+          fixtureDialog.style.display = "flex";
+          document.addEventListener("click", handleOutsideClick, true);
+        }
+
+        function closeDialog() {
+          if (!fixtureDialog) return;
+          fixtureDialog.style.display = "none";
+          if (fixtureForm) fixtureForm.reset();
+          if (teamAResultsDropdown) {
+            teamAResultsDropdown.style.display = "none";
+            teamAResultsDropdown.innerHTML = "";
+          }
+          if (teamBResultsDropdown) {
+            teamBResultsDropdown.style.display = "none";
+            teamBResultsDropdown.innerHTML = "";
+          }
+          if (teamAIdInput) teamAIdInput.value = "";
+          if (teamBIdInput) teamBIdInput.value = "";
+          document.removeEventListener("click", handleOutsideClick, true);
+        }
+
+        function displaySearchResults(
+          results,
+          dropdownElement,
+          inputElement,
+          idInputElement
+        ) {
+          if (!dropdownElement || !inputElement || !idInputElement) return;
+          dropdownElement.innerHTML = "";
+          if (results.length === 0) {
+            dropdownElement.innerHTML =
+              '<div class="search-result-item no-results">Không tìm thấy đội nào</div>';
+            dropdownElement.style.display = "block";
+            return;
+          }
+          results.forEach((team) => {
+            const item = document.createElement("div");
+            item.className = "search-result-item";
+            item.textContent = team.teamName;
+            item.dataset.id = team.id;
+            item.dataset.name = team.teamName;
+            item.addEventListener("click", () => {
+              inputElement.value = team.teamName;
+              idInputElement.value = team.id;
+              dropdownElement.style.display = "none";
+              dropdownElement.innerHTML = "";
+            });
+            dropdownElement.appendChild(item);
+          });
+          dropdownElement.style.display = "block";
+        }
+
+        function handleOutsideClick(event) {
+          if (
+            teamAWrapper &&
+            teamAResultsDropdown &&
+            !teamAWrapper.contains(event.target)
+          ) {
+            teamAResultsDropdown.style.display = "none";
+          }
+          if (
+            teamBWrapper &&
+            teamBResultsDropdown &&
+            !teamBWrapper.contains(event.target)
+          ) {
+            teamBResultsDropdown.style.display = "none";
+          }
+        }
+
+        function openDialogForCreate() {
+          if (
+            !fixtureForm ||
+            !dialogTitle ||
+            !fixtureIdInput ||
+            !teamASearchInput ||
+            !teamAIdInput ||
+            !teamBSearchInput ||
+            !teamBIdInput ||
+            !matchTypeSelect
+          )
+            return;
+          fixtureForm.reset();
+          dialogTitle.textContent = "Tạo trận đấu";
+          fixtureIdInput.value = "";
+          teamASearchInput.value = "";
+          teamAIdInput.value = "";
+          teamBSearchInput.value = "";
+          teamBIdInput.value = "";
+          matchTypeSelect.value = "group_stage"; // Default là vòng bảng
+          showDialog();
+        }
+
+        function openDialogForEdit(fixtureId) {
+          const fixture = fixtures.find((f) => f.id === fixtureId);
+          if (
+            !fixture ||
+            !fixtureForm ||
+            !dialogTitle ||
+            !fixtureIdInput ||
+            !teamASearchInput ||
+            !teamAIdInput ||
+            !teamBSearchInput ||
+            !teamBIdInput ||
+            !matchTypeSelect ||
+            !scheduleDateTimeInput ||
+            !provinceSelect ||
+            !districtSelect ||
+            !venueInput
+          )
+            return;
+
+          fixtureForm.reset();
+          dialogTitle.textContent = "Sửa lịch thi đấu";
+          fixtureIdInput.value = fixture.id;
+
+          const teamA = getTeamById(fixture.teamAId);
+          if (teamA) {
+            teamASearchInput.value = teamA.teamName;
+            teamAIdInput.value = teamA.id;
+          } else {
+            teamASearchInput.value = "";
+            teamAIdInput.value = fixture.teamAId || "";
+            console.warn(`Không tìm thấy đội A ID ${fixture.teamAId}`);
+          }
+
+          const teamB = getTeamById(fixture.teamBId);
+          if (teamB) {
+            teamBSearchInput.value = teamB.teamName;
+            teamBIdInput.value = teamB.id;
+          } else {
+            teamBSearchInput.value = "";
+            teamBIdInput.value = fixture.teamBId || "";
+            console.warn(`Không tìm thấy đội B ID ${fixture.teamBId}`);
+          }
+
+          matchTypeSelect.value = fixture.matchType; // Sẽ là "group_stage" hoặc "knockout_stage"
+
+          scheduleDateTimeInput.value = fixture.scheduleDateTime || "";
+          provinceSelect.value = fixture.province || "";
+          districtSelect.value = fixture.district || "";
+          venueInput.value = fixture.venue || "";
+
+          showDialog();
+        }
+
+        function handleFormSubmit(event) {
+          event.preventDefault();
+          if (
+            !matchTypeSelect ||
+            !teamAIdInput ||
+            !teamBIdInput ||
+            !teamASearchInput ||
+            !teamBSearchInput ||
+            !scheduleDateTimeInput ||
+            !provinceSelect ||
+            !districtSelect ||
+            !venueInput ||
+            !fixtureIdInput
+          ) {
+            console.error("Lỗi: Thiếu một hoặc nhiều phần tử form.");
+            return;
+          }
+
+          const id = fixtureIdInput.value;
+          const matchType = matchTypeSelect.value;
+          const teamAId = teamAIdInput.value;
+          const teamBId = teamBIdInput.value;
+
+          if (!matchType) {
+            alert("Vui lòng chọn loại trận đấu.");
+            return;
+          }
+          if (!teamAId) {
+            alert("Vui lòng tìm và chọn Đội A.");
+            teamASearchInput.focus();
+            return;
+          }
+          if (!teamBId) {
+            alert("Vui lòng tìm và chọn Đội B.");
+            teamBSearchInput.focus();
+            return;
+          }
+          if (teamAId === teamBId) {
+            alert("Đội A và Đội B không được trùng nhau.");
+            return;
+          }
+          const selectedTeamA = getTeamById(teamAId);
+          const selectedTeamB = getTeamById(teamBId);
+          if (
+            !selectedTeamA ||
+            teamASearchInput.value.trim() !== selectedTeamA.teamName
+          ) {
+            alert("Đội A không hợp lệ.");
+            teamAIdInput.value = "";
+            teamASearchInput.value = "";
+            teamASearchInput.focus();
+            return;
+          }
+          if (
+            !selectedTeamB ||
+            teamBSearchInput.value.trim() !== selectedTeamB.teamName
+          ) {
+            alert("Đội B không hợp lệ.");
+            teamBIdInput.value = "";
+            teamBSearchInput.value = "";
+            teamBSearchInput.focus();
+            return;
+          }
+
+          const fixtureData = {
+            id:
+              id ||
+              `fixture-${Date.now()}-${Math.random().toString(16).slice(2)}`,
+            matchType: matchType,
+            teamAId: teamAId,
+            teamBId: teamBId,
+            scheduleDateTime: scheduleDateTimeInput.value,
+            province: provinceSelect.value,
+            district: districtSelect.value,
+            venue: venueInput.value.trim(),
+            scoreA: null,
+            scoreB: null,
+            penaltyA: null,
+            penaltyB: null,
+          };
+
+          if (id) {
+            const index = fixtures.findIndex((f) => f.id === id);
+            if (index > -1) fixtures[index] = fixtureData;
+            else {
+              console.error("Không tìm thấy lịch để sửa:", id);
+              alert("Lỗi: Không tìm thấy lịch.");
+              return;
+            }
+          } else {
+            fixtures.push(fixtureData);
+          }
+          localStorage.setItem("fixtures", JSON.stringify(fixtures));
+          closeDialog();
+          renderFixtures();
+        }
+
+        function handleDeleteFixture(fixtureId) {
+          if (confirm("Bạn có chắc chắn muốn xóa lịch thi đấu này không?")) {
+            fixtures = fixtures.filter((f) => f.id !== fixtureId);
+            localStorage.setItem("fixtures", JSON.stringify(fixtures));
+            renderFixtures();
+          }
+        }
+
+        // --- Event Listeners ---
+        if (createFixtureBtn)
+          createFixtureBtn.addEventListener("click", openDialogForCreate);
+        if (closeDialogButtons)
+          closeDialogButtons.forEach((button) =>
+            button.addEventListener("click", closeDialog)
+          );
+        if (fixtureForm)
+          fixtureForm.addEventListener("submit", handleFormSubmit);
+        if (fixtureFilter)
+          fixtureFilter.addEventListener("change", renderFixtures);
+
+        if (fixtureListContainer) {
+          fixtureListContainer.addEventListener("click", (event) => {
+            const target = event.target;
+            const editButton = target.closest(".edit-btn");
+            const deleteButton = target.closest(".delete-btn");
+            if (editButton)
+              openDialogForEdit(editButton.getAttribute("data-id"));
+            else if (deleteButton)
+              handleDeleteFixture(deleteButton.getAttribute("data-id"));
+          });
+        }
+
+        if (teamASearchInput) {
+          teamASearchInput.addEventListener("input", () => {
+            const searchTerm = teamASearchInput.value.trim().toLowerCase();
+            if (teamAIdInput) teamAIdInput.value = "";
+            if (!searchTerm) {
+              if (teamAResultsDropdown)
+                teamAResultsDropdown.style.display = "none";
+              return;
+            }
+            const filteredTeams = teams.filter((team) =>
+              team.teamName.toLowerCase().includes(searchTerm)
+            );
+            displaySearchResults(
+              filteredTeams,
+              teamAResultsDropdown,
+              teamASearchInput,
+              teamAIdInput
+            );
+          });
+          teamASearchInput.addEventListener("click", (event) => {
+            event.stopPropagation();
+          });
+        }
+
+        if (teamBSearchInput) {
+          teamBSearchInput.addEventListener("input", () => {
+            const searchTerm = teamBSearchInput.value.trim().toLowerCase();
+            if (teamBIdInput) teamBIdInput.value = "";
+            if (!searchTerm) {
+              if (teamBResultsDropdown)
+                teamBResultsDropdown.style.display = "none";
+              return;
+            }
+            const filteredTeams = teams.filter((team) =>
+              team.teamName.toLowerCase().includes(searchTerm)
+            );
+            displaySearchResults(
+              filteredTeams,
+              teamBResultsDropdown,
+              teamBSearchInput,
+              teamBIdInput
+            );
+          });
+          teamBSearchInput.addEventListener("click", (event) => {
+            event.stopPropagation();
+          });
+        }
+
+        if (teamAResultsDropdown)
+          teamAResultsDropdown.addEventListener("click", (e) =>
+            e.stopPropagation()
+          );
+        if (teamBResultsDropdown)
+          teamBResultsDropdown.addEventListener("click", (e) =>
+            e.stopPropagation()
+          );
+
+        // --- Initialization ---
+        function initialize() {
+          console.log("Initializing Fixture Page...");
+          loadData();
+          renderFixtures();
+          if (createFixtureBtn) createFixtureBtn.disabled = false;
+          if (fixtureFilter) fixtureFilter.disabled = false;
+          console.log("Initialization complete.");
+        }
+
+        initialize(); // Chạy hàm khởi tạo
       });
     </script>
   </body>
