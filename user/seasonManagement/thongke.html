@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trang Thống Kê</title>
     <link rel="icon" type="logo.png" href="/images/logo.png" />
+    <!-- Thay đổi đường dẫn nếu cần -->
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
       rel="stylesheet"
@@ -143,6 +144,7 @@
       }
 
       .dropdown-menu {
+        /* Dropdown cho user info */
         display: none;
         position: absolute;
         top: 100%;
@@ -168,10 +170,11 @@
         background-color: #f34541;
         color: #ffffff;
       }
-      .fa-solid.fa-caret-down {
+      /* Giữ icon user info */
+      .header .user-info .fa-solid.fa-caret-down {
         color: #333333;
         font-size: 12px;
-        margin-top: 10px;
+        /* margin-top: 10px; */ /* Có thể bỏ nếu lệch */
       }
 
       /*-------------------End Header---------------------- */
@@ -268,7 +271,8 @@
         font-size: 9px;
         color: #222222;
       }
-      .fa-solid.fa-chevron-down {
+      .sidebar .fa-solid.fa-chevron-down {
+        /* Chỉ áp dụng cho sidebar */
         font-size: 12px;
         margin-left: auto;
       }
@@ -340,7 +344,7 @@
         color: rgb(34, 34, 34);
         font-size: 24px;
         font-weight: normal;
-        padding: 12px;
+        padding: 12px; /* Giữ nguyên padding */
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -348,129 +352,205 @@
       }
       .list-league_left {
         font-family: "Source Sans Pro", sans-serif !important;
+        flex-grow: 1;
+        margin-right: 15px;
       }
       .list-league .fa-solid.fa-list {
         color: #ff6f00;
         margin-right: 8px;
         font-size: 25px;
       }
-      .list-league_left {
-        flex-grow: 1;
-      }
 
-      .fa-solid.fa-plus {
-        margin-right: 3px;
-        font-size: 15px;
-      }
-
-      .Nhaplai {
-        color: rgb(255, 255, 255);
-        padding: 7px 12px 6px 12px;
-        background-color: rgb(0, 172, 236);
-        border-color: rgba(0, 0, 0, 0.25);
-        border-style: solid;
-        border-width: 0.8px;
-        cursor: pointer;
-        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
-      }
-      .Nhaplai:hover {
-        background-color: #428bca;
-      }
-
-      /*---------------------inputleague------------------*/
-      .kienngu {
-        background-color: #ecf0f5;
-        padding-top: 10px;
-      }
-      .box {
-        max-width: 1250px;
-        margin: 10px auto 0;
-        padding: 20px 20px 5px 20px;
-        background: #ffffff;
-        border-radius: 3px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-      .box-success {
-        max-width: 1250px;
-        margin: 10px auto 0;
-        padding: 10px;
-        background: #ffffff;
-        border-radius: 3px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-      .box-success p {
-        text-align: center;
-        margin-bottom: 10px;
-        font-size: 14px;
-        font-style: italic;
-        color: rgb(1, 167, 1);
-      }
-      .addseason {
-        color: rgb(255, 255, 255);
-        display: block;
-        margin: 0 auto;
-        padding: 7px 12px 6px 12px;
-        background-color: #f34541;
-        border-color: rgba(0, 0, 0, 0.25);
-        border-style: solid;
-        border-width: 0.8px;
-        cursor: pointer;
-        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
-        text-decoration: none !important;
-      }
-      .forminput {
-        margin-bottom: 12px;
+      /* Khu vực chứa nút chọn thống kê và export */
+      .statistics-actions-header {
         display: flex;
-        align-items: center;
-        padding-left: 200px;
-      }
-      .forminput label {
-        width: 100px;
-        font-size: 17px;
-        text-align: right;
-        margin-right: 20px;
-      }
-      input[type="text"] {
-        width: 60%;
-        padding: 3px;
-        border: 1px solid #d0d0d0;
-        font-size: 16px;
-        box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px 0px inset;
-      }
-      input:focus {
-        outline: 0;
-        border-color: #969696;
-      }
-      /* Ẩn nút file mặc định */
-      #fileInput {
-        display: none;
+        align-items: center; /* Thêm căn giữa dọc */
+        gap: 10px;
+        position: relative; /* Thêm position relative cho dropdown */
       }
 
-      /* Nút tùy chỉnh */
-      .custom-button {
-        background-color: rgb(76, 175, 80);
-        color: white;
-        padding: 5px 15px;
-        border: 1px solid #ccc;
+      .btn-select-stats,
+      .btn-export-excel {
+        padding: 8px 15px; /* Đệm bên trong nút */
+        border: none; /* Bỏ viền */
         cursor: pointer;
-        font-size: 16px;
+        font-size: 14px; /* Cỡ chữ */
+        font-weight: 500; /* Độ đậm chữ */
+        transition: background-color 0.2s ease; /* Hiệu ứng chuyển màu nền */
+        color: white; /* Màu chữ trắng */
+        display: inline-flex; /* Để icon và chữ trên cùng hàng */
+        align-items: center; /* Căn giữa icon và chữ theo chiều dọc */
+        gap: 5px; /* Khoảng cách giữa icon và chữ */
       }
 
-      .custom-button:hover {
-        background-color: #4d9e51;
+      .btn-select-stats {
+        background-color: #8e44ad; /* Màu tím */
       }
-      .fa-solid.fa-arrow-left {
-        margin-right: 3px;
-        font-size: 15px;
+      .btn-select-stats:hover {
+        background-color: #732d91; /* Màu tím đậm hơn khi hover */
       }
-      .fa-solid.fa-upload {
-        margin-right: 3px;
-        font-size: 14px;
+      .btn-select-stats i.fa-solid.fa-caret-down {
+        /* Style gốc của bạn cho caret */
+        font-size: 12px;
         position: relative;
-        bottom: 3px;
+        top: 0px; /* Bỏ top -4px */
+        color: #ffffff !important;
       }
+
+      .btn-export-excel {
+        background-color: #28a745; /* Màu xanh lá */
+      }
+      .btn-export-excel:hover {
+        background-color: #218838; /* Màu xanh lá đậm hơn khi hover */
+      }
+      .btn-export-excel i {
+        font-size: 16px; /* Kích thước icon excel */
+      }
+
+      /* --- CSS MỚI CHỈ DÀNH CHO DROPDOWN THỐNG KÊ --- */
+      .stats-dropdown-menu-wrapper {
+        /* Wrapper để định vị dropdown */
+        position: relative;
+        display: inline-block; /* Hoặc block tùy layout */
+      }
+      .stats-dropdown-menu {
+        display: none; /* Ẩn ban đầu */
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+        right: 0; /* Căn phải với nút */
+        top: 100%; /* Ngay dưới nút */
+        margin-top: 2px;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .stats-dropdown-menu a {
+        color: black;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+        font-size: 14px;
+        border-bottom: 1px solid #eee;
+        white-space: nowrap;
+      }
+      .stats-dropdown-menu a:last-child {
+        border-bottom: none;
+      }
+      .stats-dropdown-menu a:hover {
+        background-color: #ddd;
+      }
+      .stats-dropdown-menu.show {
+        display: block;
+      } /* Lớp để hiện menu */
+      /* --- HẾT CSS MỚI CHO DROPDOWN --- */
+
+      /* === PHẦN BẢNG THỐNG KÊ (GIỮ NGUYÊN STYLE CỦA BẠN) === */
+      .statistics-section {
+        background-color: #ecf0f5 !important;
+        border-top: 1px solid #dee2e6;
+        border-radius: 0 0 4px 4px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+      }
+
+      .statistics-title {
+        /* Style gốc của bạn */
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .table-scroll-wrapper {
+        /* Style gốc của bạn */
+        overflow-x: auto;
+        background-color: #ffffff;
+      }
+
+      .statistics-table {
+        /* Style gốc của bạn */
+        width: 100%;
+        min-width: 800px;
+        border-collapse: collapse;
+        background-color: #ffffff;
+      }
+
+      .statistics-table th, /* Style gốc của bạn */
+      .statistics-table td {
+        /* Style gốc của bạn */
+        border: 1px solid #e0e0e0;
+        padding: 10px 12px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 14px;
+        white-space: nowrap;
+      }
+
+      .statistics-table thead th {
+        /* Style gốc của bạn */
+        background-color: #2c3e50;
+        color: white;
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
+      /* Định dạng cho hàng tiêu đề thứ 2 */
+      .statistics-table thead tr:nth-child(2) th {
+        /* Style gốc của bạn */
+        background-color: #34495e;
+        top: 42px; /* Điều chỉnh nếu chiều cao header thay đổi */
+      }
+
+      .statistics-table tbody tr:hover {
+        /* Style gốc của bạn */
+        background-color: #f1f1f1;
+      }
+
+      /* Căn lề cụ thể nếu cần */
+      .statistics-table td:first-child, /* Style gốc của bạn */
+      .statistics-table th:first-child {
+        /* Style gốc của bạn */
+        text-align: left;
+        padding-left: 15px;
+      }
+
+      /* Định dạng chỉ báo cuộn */
+      .scroll-indicators {
+        /* Style gốc của bạn */
+        background-color: #fff;
+        border-top: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        padding: 2px 10px;
+        line-height: 1;
+      }
+
+      .scroll-indicators .arrow {
+        /* Style gốc của bạn */
+        color: #aaa;
+        font-size: 14px;
+        cursor: default;
+        padding: 3px 0;
+      }
+
+      /* Bỏ viền cho hàng trống */
+      .statistics-table tbody tr td[colspan="12"] {
+        /* Style gốc của bạn */
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        height: 10px !important;
+        padding: 0;
+      }
+      /* === HẾT PHẦN BẢNG THỐNG KÊ === */
+
+      /* --------------------- FOOTER --------------------*/
       /* --------------------- FOOTER --------------------*/
       .footer {
         box-sizing: border-box;
@@ -480,6 +560,7 @@
         font-weight: 500;
         text-shadow: rgb(255, 255, 255) 1px 1px 1px;
         display: block;
+        border-top: 1px solid #ecf0f5;
       }
 
       .footer-container {
@@ -558,77 +639,166 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">ĐỘI BÓNG</a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">BẮT ĐỐI</a>
-              </li>
+              <li class="nav-item"><a href="#" class="nav-link">BẮT ĐỐI</a></li>
               <li class="nav-item">
                 <a href="#" class="nav-link">HƯỚNG DẪN</a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">CUỘC THI</a>
               </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">TIN TỨC</a>
-              </li>
+              <li class="nav-item"><a href="#" class="nav-link">TIN TỨC</a></li>
             </ul>
           </div>
         </div>
       </div>
     </header>
+
     <div class="container">
       <div id="sidebar-container">
-        <!-- Sidebar will be loaded here -->
+        <!-- Sidebar sẽ được tải vào đây bằng JavaScript -->
       </div>
-      <div class="content-wrapper">
-        <div class="content-wrapper">
-          <div class="management-actions">
-            <a href="lichthidau.html" class="action-button">
-              <i class="fa-solid fa-calendar-days"></i>
-              <span>LỊCH THI ĐẤU</span>
-            </a>
-            <a href="bangxephang.html" class="action-button">
-              <i class="fa-solid fa-ranking-star"></i>
-              <span>BẢNG XẾP HẠNG</span>
-            </a>
-            <a href="doithamdu.html" class="action-button">
-              <i class="fa-solid fa-users"></i>
-              <span>ĐỘI THAM DỰ</span>
-            </a>
-            <a href="kqboctham.html" class="action-button">
-              <i class="fa-solid fa-list"></i>
-              <span>KẾT QUẢ BỐC THĂM</span>
-            </a>
-            <a href="thongke.html" class="action-button">
-              <i class="fa-solid fa-chart-simple"></i>
-              <span>THỐNG KÊ</span>
-            </a>
-            <a href="news.html" class="action-button">
-              <i class="fa-solid fa-newspaper"></i>
-              <span>TIN TỨC-THÔNG BÁO</span>
-            </a>
-            <a href="/user/EditSeason.html" class="action-button">
-              <i class="fa-solid fa-gears"></i>
-              <span>CẤU HÌNH MÙA GIẢI</span>
-            </a>
 
-            <a href="phanquyen.html" class="action-button">
-              <i class="fa-solid fa-shield-halved"></i>
-              <span>PHÂN QUYỀN</span>
-            </a>
-            <!-- Thêm các nút khác nếu cần -->
-          </div>
+      <div class="content-wrapper">
+        <div class="management-actions">
+          <a href="lichthidau.html" class="action-button"
+            ><i class="fa-solid fa-calendar-days"></i
+            ><span>LỊCH THI ĐẤU</span></a
+          >
+          <a href="bangxephang.html" class="action-button"
+            ><i class="fa-solid fa-ranking-star"></i
+            ><span>BẢNG XẾP HẠNG</span></a
+          >
+          <a href="doithamdu.html" class="action-button"
+            ><i class="fa-solid fa-users"></i><span>ĐỘI THAM DỰ</span></a
+          >
+          <a href="kqboctham.html" class="action-button"
+            ><i class="fa-solid fa-list"></i><span>KẾT QUẢ BỐC THĂM</span></a
+          >
+          <a href="thongke.html" class="action-button"
+            ><i class="fa-solid fa-chart-simple"></i><span>THỐNG KÊ</span></a
+          >
+          <a href="news.html" class="action-button"
+            ><i class="fa-solid fa-newspaper"></i
+            ><span>TIN TỨC-THÔNG BÁO</span></a
+          >
+          <a href="/user/EditSeason.html" class="action-button"
+            ><i class="fa-solid fa-gears"></i><span>CẤU HÌNH MÙA GIẢI</span></a
+          >
+          <a href="phanquyen.html" class="action-button"
+            ><i class="fa-solid fa-shield-halved"></i><span>PHÂN QUYỀN</span></a
+          >
         </div>
+
         <section class="content">
           <div class="list-league">
             <i class="fa-solid fa-list"></i>
             <span class="list-league_left">Thống Kê</span>
 
-            <div class="wrap">
-              <a href="#">
-                <button class="Nhaplai">
-                  <i class="fa-solid fa-plus"></i> Đăng ký
+            <div class="statistics-actions-header">
+              <!-- THÊM WRAPPER CHO DROPDOWN -->
+              <div class="stats-dropdown-menu-wrapper">
+                <button class="btn-select-stats" id="btnSelectStats">
+                  <!-- ID cho nút -->
+                  Chọn thống kê <i class="fa-solid fa-caret-down"></i>
                 </button>
-              </a>
+                <!-- THÊM MENU DROPDOWN -->
+                <div class="stats-dropdown-menu" id="statsDropdownMenu">
+                  <a href="#" data-stats="the-phat">Thống kê thẻ phạt</a>
+                  <a href="#" data-stats="ban-thang">Tổng hợp bàn thắng</a>
+                </div>
+              </div>
+              <button class="btn-export-excel">
+                <i class="fa-solid fa-file-excel"></i> Export Excel
+              </button>
+            </div>
+          </div>
+
+          <!-- KHU VỰC THỐNG KÊ THẺ PHẠT -->
+          <div id="stats-the-phat-section" class="statistics-section">
+            <!-- Thêm ID -->
+            <div class="statistics-title">Thống kê thẻ phạt</div>
+            <div class="table-scroll-wrapper">
+              <table class="statistics-table">
+                <thead>
+                  <tr>
+                    <th rowspan="2">Cầu Thủ</th>
+                    <th rowspan="2">Số áo</th>
+                    <th colspan="2">Vòng 1</th>
+                    <th colspan="2">Vòng 2</th>
+                    <th colspan="2">Vòng 3</th>
+                    <th colspan="2">Bán kết</th>
+                    <th colspan="2">Chung kết</th>
+                  </tr>
+                  <tr>
+                    <th>TV</th>
+                    <th>TĐ</th>
+                    <th>TV</th>
+                    <th>TĐ</th>
+                    <th>TV</th>
+                    <th>TĐ</th>
+                    <th>TV</th>
+                    <th>TĐ</th>
+                    <th>TV</th>
+                    <th>TĐ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="12"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="scroll-indicators">
+              <span class="arrow left-arrow">◀</span>
+              <span class="arrow right-arrow">▶</span>
+            </div>
+          </div>
+
+          <!-- KHU VỰC TỔNG HỢP BÀN THẮNG (Ẩn ban đầu, cấu trúc tương tự thẻ phạt) -->
+          <div
+            id="stats-ban-thang-section"
+            class="statistics-section"
+            style="display: none"
+          >
+            <!-- Thêm ID và ẩn -->
+            <div class="statistics-title">Tổng hợp bàn thắng</div>
+            <div class="table-scroll-wrapper">
+              <table class="statistics-table">
+                <thead>
+                  <tr>
+                    <th rowspan="2">Cầu Thủ</th>
+                    <th rowspan="2">Số áo</th>
+                    <th colspan="2">Vòng 1</th>
+                    <th colspan="2">Vòng 2</th>
+                    <th colspan="2">Vòng 3</th>
+                    <th colspan="2">Bán kết</th>
+                    <th colspan="2">Chung kết</th>
+                  </tr>
+                  <tr>
+                    <th>BT</th>
+                    <th>OG</th>
+                    <th>BT</th>
+                    <th>OG</th>
+                    <th>BT</th>
+                    <th>OG</th>
+                    <th>BT</th>
+                    <th>OG</th>
+                    <th>BT</th>
+                    <th>OG</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Hàng trống -->
+                  <tr>
+                    <td colspan="12"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="scroll-indicators">
+              <span class="arrow left-arrow">◀</span>
+              <span class="arrow right-arrow">▶</span>
             </div>
           </div>
 
@@ -675,27 +845,46 @@
             </div>
           </div>
         </section>
+        <!-- End .content -->
       </div>
+      <!-- End .content-wrapper -->
     </div>
+    <!-- End .container -->
 
+    <!-- === PHẦN SCRIPT (Giữ nguyên script sidebar, user dropdown, thêm script thống kê) === -->
     <script src="/user/js/sidebar.js"></script>
-    <script name="sidebar">
-      fetch("/user/sidebar.html") // Adjust path
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+    <!-- Giữ nguyên -->
+    <script>
+      // --- Sidebar Loading Script (Giữ nguyên) ---
+      function initializeSidebar() {
+        console.log("Sidebar initialized (placeholder)");
+        const menuItems = document.querySelectorAll(".sidebar .menu-item");
+        menuItems.forEach((item) => {
+          const submenu = item.nextElementSibling;
+          if (submenu && submenu.classList.contains("submenu")) {
+            item.addEventListener("click", (e) => {
+              e.preventDefault();
+              item.classList.toggle("active");
+              submenu.style.display = item.classList.contains("active")
+                ? "block"
+                : "none";
+            });
           }
+        });
+      }
+
+      fetch("/user/sidebar.html") // Giữ nguyên
+        .then((response) => {
+          if (!response.ok)
+            throw new Error(`HTTP error! Status: ${response.status}`);
           return response.text();
         })
         .then((html) => {
           const container = document.getElementById("sidebar-container");
           if (container) {
             container.innerHTML = html;
-            // IMPORTANT: Initialize sidebar JS *after* HTML is inserted
             initializeSidebar();
-          } else {
-            console.error("Sidebar container not found!");
-          }
+          } else console.error("Sidebar container not found!");
         })
         .catch((error) => {
           console.error("Error loading sidebar:", error);
@@ -703,33 +892,94 @@
           if (container) container.innerHTML = "<p>Error loading sidebar.</p>";
         });
 
-      // submenu-user_info
+      // --- User Info Dropdown Script (Giữ nguyên) ---
       function toggleDropdown() {
         var menu = document.getElementById("dropdownMenu");
-        if (menu) {
-          // Check if the element exists
+        if (menu)
           menu.style.display =
             menu.style.display === "block" ? "none" : "block";
-        } else {
-          console.warn("Element with ID 'dropdownMenu' not found.");
-        }
+        else console.warn("Element with ID 'dropdownMenu' not found.");
       }
-
-      // Ẩn dropdown nếu click ra ngoài
       window.addEventListener("click", function (e) {
+        // Giữ nguyên
         var menu = document.getElementById("dropdownMenu");
         var userInfo = document.querySelector(".user-info");
-
-        // Check if both elements exist before proceeding
-        if (menu && userInfo) {
-          // Check if the click was outside the userInfo element AND outside the dropdown menu itself
-          if (!userInfo.contains(e.target) && !menu.contains(e.target)) {
-            menu.style.display = "none";
-          }
-        } else {
-          // Optionally log a warning if elements are missing
-          // console.warn("Either 'dropdownMenu' or '.user-info' element not found for outside click handler.");
+        if (
+          menu &&
+          userInfo &&
+          !userInfo.contains(e.target) &&
+          !menu.contains(e.target)
+        ) {
+          menu.style.display = "none";
         }
+      });
+
+      // --- Statistics Dropdown Script (SCRIPT MỚI THÊM) ---
+      document.addEventListener("DOMContentLoaded", function () {
+        const btnSelectStats = document.getElementById("btnSelectStats");
+        const statsDropdownMenu = document.getElementById("statsDropdownMenu");
+        const statsThePhatSection = document.getElementById(
+          "stats-the-phat-section"
+        );
+        const statsBanThangSection = document.getElementById(
+          "stats-ban-thang-section"
+        );
+
+        // Kiểm tra các element có tồn tại không
+        if (
+          !btnSelectStats ||
+          !statsDropdownMenu ||
+          !statsThePhatSection ||
+          !statsBanThangSection
+        ) {
+          console.error(
+            "JS Error: Một hoặc nhiều thành phần thống kê không tìm thấy trong DOM!"
+          );
+          return; // Dừng nếu thiếu element quan trọng
+        }
+
+        // Hiển thị/Ẩn dropdown thống kê khi nhấn nút
+        btnSelectStats.addEventListener("click", function (event) {
+          event.stopPropagation(); // Ngăn click lan ra window
+          statsDropdownMenu.classList.toggle("show");
+        });
+
+        // Xử lý khi chọn loại thống kê từ dropdown
+        statsDropdownMenu.addEventListener("click", function (event) {
+          event.preventDefault(); // Ngăn hành vi mặc định của thẻ <a>
+          if (
+            event.target.tagName === "A" &&
+            event.target.hasAttribute("data-stats")
+          ) {
+            const selectedStats = event.target.getAttribute("data-stats");
+
+            // Ẩn cả hai khu vực trước
+            statsThePhatSection.style.display = "none";
+            statsBanThangSection.style.display = "none";
+
+            // Hiện khu vực được chọn
+            if (selectedStats === "the-phat") {
+              statsThePhatSection.style.display = "block"; // Hoặc 'flex'/'grid' nếu layout gốc dùng display khác
+            } else if (selectedStats === "ban-thang") {
+              statsBanThangSection.style.display = "block"; // Hoặc 'flex'/'grid'
+            }
+
+            statsDropdownMenu.classList.remove("show"); // Ẩn menu sau khi chọn
+          }
+        });
+
+        // Ẩn dropdown thống kê nếu nhấn ra ngoài
+        window.addEventListener("click", function (event) {
+          // Chỉ ẩn nếu click không phải vào nút hoặc menu
+          if (
+            !btnSelectStats.parentElement.contains(event.target) &&
+            !statsDropdownMenu.contains(event.target)
+          ) {
+            if (statsDropdownMenu.classList.contains("show")) {
+              statsDropdownMenu.classList.remove("show");
+            }
+          }
+        });
       });
     </script>
   </body>
