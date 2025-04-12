@@ -13,7 +13,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
-    <!-- CSS của bạn giữ nguyên -->
     <style>
       * {
         margin: 0;
@@ -276,7 +275,57 @@
       }
       /* -------------------sidebar-end------------------- */
 
-      /*----------content: list-league + footer------------ */
+      /*----------content: management+list-league + footer------------ */
+      /* Container cho các nút */
+      .management-actions {
+        background-color: #ecf0f5;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px; /* Khoảng cách giữa các nút */
+        justify-content: center;
+        padding: 10px 10px;
+      }
+
+      /* Style cho từng nút (thẻ a) */
+      .action-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* Căn giữa theo chiều dọc */
+        background-color: #5cb85c; /* Màu xanh lá cây như trong ảnh */
+        color: white;
+        padding: 20px 15px; /* Khoảng cách bên trong nút */
+        border-radius: 8px; /* Bo góc nhẹ */
+        text-decoration: none; /* Bỏ gạch chân link */
+        text-align: center;
+        min-width: 140px; /* Chiều rộng tối thiểu cho mỗi nút */
+        min-height: 100px; /* Chiều cao tối thiểu */
+        transition: background-color 0.2s ease, transform 0.2s ease; /* Hiệu ứng chuyển đổi */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ */
+        border: none; /* Bỏ viền mặc định */
+        flex: 1;
+        max-width: 150px;
+      }
+
+      .action-button:hover {
+        background-color: #4eab4e;
+        transform: translateY(-3px); /* Hiệu ứng nhấc lên nhẹ */
+        cursor: pointer;
+      }
+
+      .action-button i {
+        font-size: 2.5em; /* Kích thước icon */
+        margin-bottom: 12px; /* Khoảng cách giữa icon và chữ */
+        line-height: 1; /* Đảm bảo icon không chiếm thêm chiều cao */
+      }
+
+      /* Style cho chữ */
+      .action-button span {
+        font-size: 13px; /* Kích thước chữ */
+        font-weight: 600; /* Chữ hơi đậm */
+        text-transform: uppercase; /* Viết hoa chữ */
+        line-height: 1.3;
+      }
       .content-wrapper {
         flex: 1;
         display: block;
@@ -612,7 +661,6 @@
     </style>
   </head>
   <body>
-    <!-- Header giữ nguyên -->
     <header class="header">
       <div class="navbar">
         <div class="navbar-top">
@@ -672,6 +720,42 @@
         <!-- Sidebar will be loaded here -->
       </div>
       <div class="content-wrapper">
+        <div class="management-actions">
+          <a href="seasonManagement/lichthidau.html" class="action-button">
+            <i class="fa-solid fa-calendar-days"></i>
+            <span>LỊCH THI ĐẤU</span>
+          </a>
+          <a href="seasonManagement/bangxephang.html" class="action-button">
+            <i class="fa-solid fa-ranking-star"></i>
+            <span>BẢNG XẾP HẠNG</span>
+          </a>
+          <a href="seasonManagement/doithamdu.html" class="action-button">
+            <i class="fa-solid fa-users"></i>
+            <span>ĐỘI THAM DỰ</span>
+          </a>
+          <a href="seasonManagement/kqboctham.html" class="action-button">
+            <i class="fa-solid fa-list"></i>
+            <span>KẾT QUẢ BỐC THĂM</span>
+          </a>
+          <a href="seasonManagement/thongke.html" class="action-button">
+            <i class="fa-solid fa-chart-simple"></i>
+            <span>THỐNG KÊ</span>
+          </a>
+          <a href="seasonManagement/news.html" class="action-button">
+            <i class="fa-solid fa-newspaper"></i>
+            <span>TIN TỨC-THÔNG BÁO</span>
+          </a>
+          <a href="EditSeason.html" class="action-button">
+            <i class="fa-solid fa-gears"></i>
+            <span>CẤU HÌNH MÙA GIẢI</span>
+          </a>
+
+          <a href="seasonManagement/phanquyen.html" class="action-button">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>PHÂN QUYỀN</span>
+          </a>
+          <!-- Thêm các nút khác nếu cần -->
+        </div>
         <section class="content">
           <div class="list-league">
             <i class="fa-solid fa-check"></i>
