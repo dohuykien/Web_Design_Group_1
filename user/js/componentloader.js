@@ -45,6 +45,42 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
              console.warn("Header dropdown function (toggleDropdown or an initializer) not found.");
         }
+
+        // 1. Cập nhật header lần đầu tiên dựa trên dữ liệu từ localStorage
+        const initialData = {
+            firstName: localStorage.getItem("userProfile_firstname"),
+            lastName: localStorage.getItem("userProfile_lastname"),
+            avatar: localStorage.getItem("userProfile_avatar"),
+        };
+        console.log("Header Script: Dữ liệu ban đầu từ localStorage:", initialData);
+        updateHeaderDisplay(initialData); // Gọi hàm cập nhật với dữ liệu ban đầu
+
+        // 2. Lắng nghe sự kiện 'profileUpdated' được phát ra từ trang profile
+        document.addEventListener("profileUpdated", (event) => {
+            console.log(
+            "Header Script: Nhận được sự kiện 'profileUpdated'. Dữ liệu:",
+            event.detail
+            );
+            // Gọi hàm cập nhật với dữ liệu mới từ sự kiện
+            updateHeaderDisplay(event.detail);
+        });
+
+        // 3. Đảm bảo dropdown menu ẩn ban đầu (có thể đã được xử lý bởi CSS, nhưng chắc chắn hơn)
+        const menu = document.getElementById("dropdownMenu");
+        if (menu) {
+            menu.style.display = "none";
+        }
+
+        // 4. (Tùy chọn) Thêm các xử lý khác cho header ở đây nếu cần
+        // Ví dụ: Gắn sự kiện cho nút toggle sidebar nếu có trong header này
+        const sidebarToggleBtn = document.getElementById("sidebar-toggle-btn");
+        if (sidebarToggleBtn) {
+            sidebarToggleBtn.addEventListener("click", () => {
+            // Logic để toggle sidebar (ví dụ: thêm/xóa class trên body hoặc sidebar element)
+            document.body.classList.toggle("sidebar-collapsed"); // Giả sử dùng class trên body
+            console.log("Header Script: Sidebar toggle button clicked.");
+            });
+        }
     });
 
     // Load Sidebar

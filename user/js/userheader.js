@@ -45,7 +45,7 @@ function updateHeaderDisplay(data) {
 
   // --- Cập nhật Avatar ---
   if (headerImage) {
-    let newSrc = data.avatarSrc || defaultAvatar; // Dùng ảnh từ data, nếu không có thì dùng default
+    let newSrc = data.avatar || defaultAvatar; // Dùng ảnh từ data, nếu không có thì dùng default
     // Chỉ cập nhật DOM nếu src thực sự thay đổi
     if (headerImage.getAttribute("src") !== newSrc) {
       console.log(
@@ -113,41 +113,7 @@ function updateHeaderDisplay(data) {
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Header Script: DOMContentLoaded - Bắt đầu khởi tạo header.");
 
-  // 1. Cập nhật header lần đầu tiên dựa trên dữ liệu từ localStorage
-  const initialData = {
-    firstName: localStorage.getItem("userProfile_firstName"),
-    lastName: localStorage.getItem("userProfile_lastName"),
-    avatarSrc: localStorage.getItem("userProfile_avatarSrc"),
-  };
-  console.log("Header Script: Dữ liệu ban đầu từ localStorage:", initialData);
-  updateHeaderDisplay(initialData); // Gọi hàm cập nhật với dữ liệu ban đầu
-
-  // 2. Lắng nghe sự kiện 'profileUpdated' được phát ra từ trang profile
-  document.addEventListener("profileUpdated", (event) => {
-    console.log(
-      "Header Script: Nhận được sự kiện 'profileUpdated'. Dữ liệu:",
-      event.detail
-    );
-    // Gọi hàm cập nhật với dữ liệu mới từ sự kiện
-    updateHeaderDisplay(event.detail);
-  });
-
-  // 3. Đảm bảo dropdown menu ẩn ban đầu (có thể đã được xử lý bởi CSS, nhưng chắc chắn hơn)
-  const menu = document.getElementById("dropdownMenu");
-  if (menu) {
-    menu.style.display = "none";
-  }
-
-  // 4. (Tùy chọn) Thêm các xử lý khác cho header ở đây nếu cần
-  // Ví dụ: Gắn sự kiện cho nút toggle sidebar nếu có trong header này
-  const sidebarToggleBtn = document.getElementById("sidebar-toggle-btn");
-  if (sidebarToggleBtn) {
-    sidebarToggleBtn.addEventListener("click", () => {
-      // Logic để toggle sidebar (ví dụ: thêm/xóa class trên body hoặc sidebar element)
-      document.body.classList.toggle("sidebar-collapsed"); // Giả sử dùng class trên body
-      console.log("Header Script: Sidebar toggle button clicked.");
-    });
-  }
+  
 
   console.log("Header Script: Khởi tạo header hoàn tất.");
 });
