@@ -9,6 +9,11 @@
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
       rel="stylesheet"
     />
+    <!-- Thêm Source Sans Pro nếu cần -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -41,8 +46,9 @@
         padding: 0;
       }
       .content {
-        background-color: white;
+        background-color: white; /* Nền gốc là trắng */
         border-radius: 5px;
+        /* Không có margin gốc ở đây */
       }
       /* list-league */
       .list-league {
@@ -54,18 +60,20 @@
         justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
+        /* Không có border-bottom gốc */
+        /* Không có background-color gốc */
+        /* Không có border-radius gốc */
       }
       .list-league_left {
         font-family: "Source Sans Pro", sans-serif !important;
+        flex-grow: 1; /* Giữ nguyên */
       }
       .fa-solid.fa-check {
         color: #ff6f00;
         margin-right: 8px;
         font-size: 25px;
       }
-      .list-league_left {
-        flex-grow: 1;
-      }
+      /* .list-league_left { flex-grow: 1; } Đã có ở trên */
 
       .addother {
         color: rgb(255, 255, 255);
@@ -81,6 +89,7 @@
       }
       .addother:hover,
       .addseason:hover {
+        /* Giữ :hover gốc cho addseason */
         background-color: #dd1b18;
       }
       .fa-solid.fa-plus {
@@ -142,36 +151,45 @@
       .kienngu {
         background-color: #ecf0f5;
         padding-top: 10px;
+        /* Không có border-radius gốc */
+        /* Không có padding-bottom gốc */
       }
       .box {
         max-width: 1250px;
-        margin: 10px auto 0;
+        margin: 10px auto 0; /* Giữ margin gốc */
         padding: 20px 20px 5px 20px;
         background: #ffffff;
         border-radius: 3px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* Không có border gốc */
       }
       .box-success {
         max-width: 1250px;
         margin: 10px auto 0;
-        padding: 10px;
-        background: #ffffff;
+        padding: 10px; /* padding gốc */
+        background: #ffffff; /* Nền gốc */
         border-radius: 3px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* Không có border gốc */
+        display: none; /* Giữ display none gốc */
+        /* Không có text-align gốc */
       }
       .box-success p {
-        text-align: center;
+        text-align: center; /* Giữ text-align gốc */
         margin-bottom: 10px;
-        font-size: 14px;
+        font-size: 14px; /* font-size gốc */
         font-style: italic;
-        color: rgb(1, 167, 1);
+        color: rgb(1, 167, 1); /* color gốc */
+        /* Không có font-family gốc */
       }
+      /* Không có style p strong gốc */
+
       .addseason {
         color: rgb(255, 255, 255);
-        display: block;
-        margin: 0 auto;
-        padding: 7px 12px 6px 12px;
-        background-color: #f34541;
+        display: block; /* display gốc */
+        margin: 0 auto; /* margin gốc */
+        padding: 7px 12px 6px 12px; /* padding gốc */
+        background-color: #f34541; /* màu gốc */
         border-color: rgba(0, 0, 0, 0.25);
         border-style: solid;
         border-width: 0.8px;
@@ -180,6 +198,8 @@
         box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
         text-decoration: none !important;
       }
+      /* :hover cho addseason đã có ở trên */
+
       .forminput {
         margin-bottom: 12px;
         display: flex;
@@ -192,52 +212,225 @@
         text-align: right;
         margin-right: 20px;
       }
-      input[type="text"] {
-        width: 60%;
-        padding: 3px;
+      .forminput input[type="text"] {
+        width: 60%; /* width gốc */
+        padding: 3px; /* padding gốc */
         border: 1px solid #d0d0d0;
         font-size: 16px;
         box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px 0px inset;
       }
-      input:focus {
+      .forminput input:focus {
+        /* style focus gốc */
         outline: 0;
         border-color: #969696;
+        /* Không có box-shadow focus gốc */
       }
-      /* Ẩn nút file mặc định */
       #fileInput {
         display: none;
       }
 
-      /* Nút tùy chỉnh */
       .custom-button {
         background-color: rgb(76, 175, 80);
         color: white;
-        padding: 5px 15px;
+        padding: 5px 15px; /* padding gốc */
         border: 1px solid #ccc;
         cursor: pointer;
-        font-size: 16px;
+        font-size: 16px; /* font-size gốc */
       }
-
       .custom-button:hover {
         background-color: #4d9e51;
       }
-      .fa-solid.fa-arrow-left {
-        margin-right: 3px;
-        font-size: 15px;
-      }
-      .fa-solid.fa-upload {
+      .custom-button i {
+        /* style icon gốc */
         margin-right: 3px;
         font-size: 14px;
         position: relative;
         bottom: 3px;
       }
+
+      #preview {
+        /* style preview gốc */
+        max-width: 300px;
+        display: none;
+        margin-left: 50px;
+        /* Không có max-height gốc */
+        /* Không có border gốc */
+        /* Không có padding gốc */
+        /* Không có border-radius gốc */
+        /* Không có vertical-align gốc */
+      }
+
+      /* === HẾT CSS GỐC === */
+
+      /*--------------------- Responsive Styles  ------------------*/
+
+      /* --- Cho màn hình Tablet và nhỏ hơn (<= 768px) --- */
+      @media (max-width: 768px) {
+        .content {
+          margin: 10px;
+        } /* Thêm margin cho content */
+
+        .list-league {
+          padding: 10px;
+          font-size: 20px;
+        }
+        .list-league .fa-solid.fa-check {
+          /* Điều chỉnh icon check nếu cần */
+          font-size: 22px;
+        }
+        .list-league .wrap {
+          width: 100%; /* Nút chiếm hết hàng */
+          margin-top: 10px; /* Khoảng cách nếu nút xuống dòng */
+          display: flex; /* Bật flex cho wrap */
+          flex-wrap: wrap; /* Cho phép nút wrap */
+          justify-content: flex-start; /* Căn trái nút */
+          gap: 8px; /* Khoảng cách giữa các nút */
+        }
+        .list-league .wrap a button {
+          /* Thu nhỏ nút */
+          padding: 6px 10px;
+          font-size: 13px;
+        }
+        .list-league .wrap a button i {
+          /* Thu nhỏ icon trong nút */
+          font-size: 13px;
+          margin-right: 3px;
+          position: static; /* Reset position */
+          bottom: auto;
+        }
+
+        .forminput {
+          padding-left: 15px; /* Giảm padding trái form */
+          padding-right: 15px;
+          display: block; /* Cho label và input xếp chồng */
+          margin-bottom: 20px; /* Tăng khoảng cách */
+        }
+
+        .forminput label {
+          width: 100%; /* Label chiếm hết */
+          text-align: left; /* Căn trái label */
+          margin-right: 0;
+          margin-bottom: 8px; /* Khoảng cách dưới label */
+          font-size: 16px;
+        }
+
+        .forminput input[type="text"] {
+          width: 100%; /* Input chiếm hết */
+          font-size: 15px;
+          padding: 8px 10px; /* Tăng padding cho dễ chạm */
+        }
+
+        .forminput .custom-button {
+          /* Nút chọn ảnh */
+          display: inline-block;
+          width: auto; /* Kích thước tự nhiên */
+          padding: 7px 12px; /* Điều chỉnh padding */
+          font-size: 14px;
+          margin-right: 10px;
+        }
+        .forminput .custom-button i {
+          /* Icon trong nút chọn ảnh */
+          margin-right: 5px;
+          font-size: 13px;
+          position: static;
+          bottom: auto;
+        }
+
+        .forminput #preview {
+          /* Ảnh preview */
+          margin-left: 0;
+          margin-top: 10px; /* Xuống dòng */
+          max-width: 100px; /* Giảm kích thước */
+          max-height: 100px;
+          display: block; /* Đảm bảo hiển thị */
+          border: 1px dashed #ccc; /* Thêm border dashed */
+          padding: 4px; /* Thêm padding */
+        }
+
+        .box,
+        .box-success {
+          padding: 15px;
+          margin-left: 10px; /* Thêm margin cho box */
+          margin-right: 10px;
+        }
+        .box-success p {
+          font-size: 14px; /* Điều chỉnh cỡ chữ */
+        }
+        .box-success .addseason {
+          /* Nút tạo mùa giải */
+          padding: 7px 12px;
+          font-size: 14px;
+          display: inline-block; /* Không chiếm hết dòng */
+          margin: 5px auto 0 auto; /* Căn giữa */
+        }
+      }
+
+      /* --- Cho màn hình điện thoại nhỏ (<= 480px) --- */
+      @media (max-width: 480px) {
+        .content {
+          margin: 5px;
+        }
+        .list-league {
+          font-size: 18px;
+          padding: 8px;
+        }
+        .list-league .fa-solid.fa-check {
+          font-size: 20px;
+        }
+        .list-league .wrap {
+          justify-content: center;
+        }
+        .list-league .wrap a {
+          flex-basis: calc(50% - 4px);
+        } /* 2 nút 1 hàng */
+        .list-league .wrap a button {
+          width: 100%;
+          font-size: 12px;
+          padding: 8px 5px;
+        }
+
+        .forminput {
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+        .forminput label {
+          font-size: 15px;
+        }
+        .forminput input[type="text"] {
+          font-size: 14px;
+          padding: 9px 10px;
+        }
+        .forminput .custom-button {
+          padding: 7px 12px;
+          font-size: 13px;
+        }
+        .forminput #preview {
+          max-width: 80px;
+          max-height: 80px;
+        }
+
+        .box,
+        .box-success {
+          padding: 10px;
+          margin-left: 5px;
+          margin-right: 5px;
+        }
+        .box-success p {
+          font-size: 13px;
+        }
+        .box-success .addseason {
+          padding: 6px 10px;
+          font-size: 13px;
+        }
+      }
+      /* === HẾT PHẦN CSS RESPONSIVE === */
     </style>
   </head>
   <body>
     <header id="header-container" class="header">
-        <!-- Header will be loaded here -->
+      <!-- Header will be loaded here -->
     </header>
-  
+
     <div class="container">
       <div id="sidebar-container">
         <!-- Sidebar will be loaded here -->
@@ -245,9 +438,9 @@
       <div class="content-wrapper">
         <section class="content">
           <div class="list-league">
-            
-            <span class="list-league_left"><i class="fa-solid fa-check"></i> Tạo giải đấu</span>
-
+            <span class="list-league_left"
+              ><i class="fa-solid fa-check"></i> Tạo giải đấu</span
+            >
             <div class="wrap">
               <a href="addleague.html">
                 <button class="addother">
@@ -274,6 +467,7 @@
 
           <div class="kienngu">
             <div class="box">
+              <!-- Giữ nguyên cấu trúc div bên trong box gốc -->
               <div>
                 <div class="forminput">
                   <label for="nameleague">Tên giải đấu</label>
@@ -281,8 +475,6 @@
                 </div>
                 <div class="forminput">
                   <label for="fileInput">Logo</label>
-                  <!-- Nút tùy chỉnh để chọn ảnh -->
-
                   <button
                     class="custom-button"
                     onclick="document.getElementById('fileInput').click()"
@@ -290,11 +482,7 @@
                     <i class="fa-solid fa-upload"></i>
                     Chọn ảnh
                   </button>
-
-                  <!-- Input file bị ẩn -->
                   <input type="file" id="fileInput" accept="image/*" />
-
-                  <br /><br />
                   <img
                     id="preview"
                     src=""
@@ -307,13 +495,11 @@
             <div class="box-success">
               <div class="success">
                 <p id="success-message"></p>
-                <!-- chỗ hiện thông báo -->
                 <a href="addseason.html">
                   <button class="addseason">Tạo mùa giải</button>
                 </a>
               </div>
             </div>
-
             <footer id="footer" class="footer"></footer>
           </div>
         </section>
@@ -323,15 +509,10 @@
     <script src="/user/js/sidebar.js"></script>
     <script src="/user/js/userheader.js"></script>
     <script src="/user/js/componentloader.js"></script>
-
     <script>
-      // ===== PHẦN XỬ LÝ LOGO VÀ LƯU GIẢI ĐẤU =====
-      let leagueLogoDataUrl = null; // Biến lưu Data URL logo giải đấu
-
-      // Input logo league - Preview và Lưu Data URL
+      let leagueLogoDataUrl = null;
       const fileInput = document.getElementById("fileInput");
       const preview = document.getElementById("preview");
-
       if (fileInput && preview) {
         fileInput.addEventListener("change", function () {
           console.log("DEBUG (addleague): File input changed.");
@@ -344,7 +525,7 @@
             reader.onload = function (e) {
               preview.src = e.target.result;
               preview.style.display = "block";
-              leagueLogoDataUrl = e.target.result; // Lưu Data URL
+              leagueLogoDataUrl = e.target.result;
               console.log("DEBUG (addleague): League logo Data URL captured.");
             };
             reader.onerror = (e) => {
@@ -354,7 +535,7 @@
           } else if (file) {
             alert("Vui lòng chọn một file ảnh hợp lệ.");
             leagueLogoDataUrl = null;
-            fileInput.value = null; // Reset input file
+            fileInput.value = null;
           } else {
             leagueLogoDataUrl = null;
           }
@@ -363,7 +544,6 @@
         console.error("DEBUG (addleague): Cannot find #fileInput or #preview.");
       }
 
-      //------------ Xử lý nút Lưu giải đấu ------------
       const saveBtn = document.querySelector(".save");
       const nameLeagueInput = document.getElementById("nameleague");
       const boxInput = document.querySelector(".box");
@@ -373,7 +553,6 @@
         ".box-success a[href*='addseason.html']"
       );
 
-      // Ẩn box success khi tải trang
       if (boxSuccess) {
         document.addEventListener("DOMContentLoaded", () => {
           if (boxSuccess) boxSuccess.style.display = "none";
@@ -382,7 +561,6 @@
         console.error("DEBUG (addleague): Cannot find .box-success.");
       }
 
-      // Gắn sự kiện nút Lưu
       if (
         saveBtn &&
         nameLeagueInput &&
@@ -395,36 +573,30 @@
           e.preventDefault();
           console.log("DEBUG (addleague): Save button clicked.");
           const leagueName = nameLeagueInput.value.trim();
-
           if (leagueName === "") {
             alert("Bạn chưa nhập tên giải đấu!");
             nameLeagueInput.focus();
             return;
           }
-          // Không bắt buộc logo ở đây nữa
-
           console.log("DEBUG (addleague): Validation passed.");
           const newLeagueId = Date.now();
           const newLeagueData = {
             id: newLeagueId,
             name: leagueName,
-            logo: leagueLogoDataUrl, // Có thể là null
+            logo: leagueLogoDataUrl,
             createdAt: new Date().toISOString(),
-            creator: "Hải Đăng Nguyễn", // Tạm thời
+            creator: "Hải Đăng Nguyễn",
           };
-
           try {
-            const storageKey = "danhSachGiaiDau"; // Key cho giải đấu
+            const storageKey = "danhSachGiaiDau";
             let leagues = JSON.parse(localStorage.getItem(storageKey)) || [];
             leagues.push(newLeagueData);
             localStorage.setItem(storageKey, JSON.stringify(leagues));
             console.log(`DEBUG (addleague): League saved to '${storageKey}'.`);
-
-            addSeasonLink.href = `addseason.html?leagueId=${newLeagueId}`; // Cập nhật link quan trọng
+            addSeasonLink.href = `addseason.html?leagueId=${newLeagueId}`;
             console.log(
               `DEBUG (addleague): Updated addSeasonLink href: ${addSeasonLink.href}`
             );
-
             successMessageP.innerHTML = `Bạn đã tạo thành công giải đấu <strong>${leagueName}</strong>. Bước tiếp theo, hãy tạo mùa giải cho giải đấu này.`;
             if (boxInput) boxInput.style.display = "none";
             if (boxSuccess) boxSuccess.style.display = "block";
@@ -432,7 +604,7 @@
           } catch (error) {
             console.error("DEBUG (addleague): Error saving league:", error);
             alert("Lỗi khi lưu giải đấu. Kiểm tra console (F12).");
-            if (boxInput) boxInput.style.display = "block"; // Hiện lại form nếu lỗi
+            if (boxInput) boxInput.style.display = "block";
             if (boxSuccess) boxSuccess.style.display = "none";
           }
         });

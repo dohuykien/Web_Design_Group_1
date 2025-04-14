@@ -222,36 +222,38 @@
   </head>
   <body>
     <header id="header-container" class="header">
-        <!-- Header will be loaded here -->
+      <!-- Header will be loaded here -->
     </header>
-  
-    <div class="container">
-        <div id="sidebar-container">
-            <!-- Sidebar will be loaded here -->
-        </div>
 
-        <div class="content-wrapper">
-            <section class="content">
-            <div class="list-league">
-                <span class="list-league_left"><i class="fa-solid fa-list"></i>Danh sách mùa giải</span>
-                <a href="addseason.html" id="addNewButtonLink">
-                <button class="add">
-                    <i class="fa-solid fa-plus"></i> Thêm mới
-                </button>
-                </a>
+    <div class="container">
+      <div id="sidebar-container">
+        <!-- Sidebar will be loaded here -->
+      </div>
+
+      <div class="content-wrapper">
+        <section class="content">
+          <div class="list-league">
+            <span class="list-league_left"
+              ><i class="fa-solid fa-list"></i>Danh sách mùa giải</span
+            >
+            <a href="addseason.html" id="addNewButtonLink">
+              <button class="add">
+                <i class="fa-solid fa-plus"></i> Thêm mới
+              </button>
+            </a>
+          </div>
+          <div class="haidang">
+            <div class="cards-container" id="seasonListContainer">
+              <!-- Các card mùa giải sẽ được JS chèn vào đây -->
+              <p
+                id="noSeasonsMessage"
+                style="font-family: sans-serif; display: none; font-size: 18px"
+              >
+                Chưa có mùa giải nào được tạo.
+              </p>
             </div>
-            <div class="haidang">
-                <div class="cards-container" id="seasonListContainer">
-                <!-- Các card mùa giải sẽ được JS chèn vào đây -->
-                <p
-                    id="noSeasonsMessage"
-                    style="font-family: sans-serif; display: none; font-size: 18px"
-                >
-                    Chưa có mùa giải nào được tạo.
-                </p>
-                </div>
-            </div>
-            <footer id="footer" class="footer"></footer>
+          </div>
+          <footer id="footer" class="footer"></footer>
         </section>
       </div>
     </div>
