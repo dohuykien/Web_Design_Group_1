@@ -159,11 +159,6 @@
         flex-grow: 1; /* Để đẩy footer xuống dưới */
         margin-top: 5px; /* Khoảng cách với logo */
       }
-      /* Bỏ tên mùa giải nếu không có trong hình ảnh mẫu */
-      /* .season-card .card-body h3 {
-          margin: 10px 0;
-          font-size: 1.1em;
-        } */
 
       .season-card .card-info {
         text-align: center;
@@ -460,8 +455,6 @@
               cardError,
               season
             );
-            // Có thể thêm một card báo lỗi vào container nếu muốn
-            // container.insertAdjacentHTML("beforeend", `<div class="season-card" style="border: 1px solid red; padding: 10px; text-align: center;">Lỗi tạo card mùa giải ID ${season?.id}</div>`);
           }
         }); // Kết thúc forEach
       }); // Kết thúc DOMContentLoaded

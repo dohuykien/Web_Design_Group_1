@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
       rel="stylesheet"
     />
-    <!-- Thêm font nếu cần -->
+
     <link
       href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap"
       rel="stylesheet"
@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="/user/css/userfooter.css" />
 
     <style>
-      /* === PHẦN CSS GỐC CỦA BẠN - KHÔNG THAY ĐỔI === */
       * {
         margin: 0;
         padding: 0;
@@ -94,14 +93,11 @@
 
       /*------------------- Box-left-------------------- */
       .box-left {
-        /* Thêm selector cho box-left */
-        /* Không có width gốc, sẽ dựa vào content hoặc set responsive */
-        /* Cần thêm flex-basis hoặc width trong responsive */
         margin-bottom: 20px; /* Thêm khoảng cách dưới khi wrap */
       }
 
       .file-preview {
-        width: 130%; /* Make the container full width */ /* Width gốc này hơi lạ, > 100%? */
+        width: 130%;
         margin: 10px 10px 1px 18px; /* Space above the preview */
         padding: 5px;
         border: 1px solid #e4e2e2;
@@ -229,8 +225,6 @@
         margin-bottom: 7px;
       }
       .changePassword {
-        /* Class này để ẩn/hiện nhóm pass */
-        /* Sẽ được JS set display: none/block */
       }
 
       .save-section {
@@ -238,7 +232,6 @@
         padding: 20px;
         text-align: right; /* align gốc */
         margin-bottom: 30px; /* margin gốc */
-        /* Không có border-radius gốc */
       }
       .save-button {
         background-color: #00acec;
@@ -350,9 +343,6 @@
         .section-header {
           justify-content: center; /* Căn giữa icon và header */
         }
-        .section-right {
-          /* Không cần style đặc biệt */
-        }
         .form-group label {
           display: block; /* Label luôn ở trên */
           margin-bottom: 5px; /* Khoảng cách dưới label */
@@ -360,7 +350,6 @@
         .form-group input[type="text"],
         .form-group input[type="email"],
         .form-group input[type="password"] {
-          /* Đã là width 100% */
         }
         .save-section {
           text-align: center; /* Căn giữa nút save */
@@ -554,49 +543,75 @@
     <script src="/user/js/userheader.js"></script>
     <script src="/user/js/componentloader.js"></script>
     <script>
+      // --- Xử lý preview ảnh khi chọn file (Giữ nguyên) ---
       document
         .getElementById("logoFile")
         .addEventListener("change", function (e) {
           var file = e.target.files[0];
           if (!file) return;
+          // Optional: Add file size check here if needed
           var reader = new FileReader();
           reader.onload = function (event) {
             var img = document.createElement("img");
             img.src = event.target.result;
+            // Add error handling for the new preview image itself
+            img.onerror = function () {
+              console.error("Lỗi tải ảnh preview mới.");
+              // Optionally show a placeholder in preview if loading fails
+              var preview = document.getElementById("logoPreview");
+              if (preview)
+                preview.innerHTML =
+                  '<span style="color: #888; font-size: 12px;">Lỗi ảnh</span>';
+            };
             var preview = document.getElementById("logoPreview");
-            preview.innerHTML = "";
-            preview.appendChild(img);
+            if (preview) {
+              // Check if preview element exists
+              preview.innerHTML = ""; // Clear previous content
+              preview.appendChild(img);
+            }
+          };
+          reader.onerror = function (event) {
+            console.error("Lỗi đọc file:", event);
+            alert("Không thể đọc file ảnh này.");
           };
           reader.readAsDataURL(file);
         });
 
+      // --- Xử lý ẩn/hiện ô đổi mật khẩu (Giữ nguyên) ---
       document
         .getElementById("changePassword")
         .addEventListener("change", function () {
           var changePasswordBox = document.querySelector(".changePassword");
-          if (this.checked) {
-            changePasswordBox.style.display = "block";
-          } else {
-            changePasswordBox.style.display = "none";
+          if (changePasswordBox) {
+            // Check if element exists
+            changePasswordBox.style.display = this.checked ? "block" : "none";
           }
         });
 
+      // --- Ẩn ô đổi mật khẩu ban đầu khi DOM load (Giữ nguyên) ---
       window.addEventListener("DOMContentLoaded", function () {
-        document.querySelector(".changePassword").style.display = "none";
+        var initialChangePasswordBox =
+          document.querySelector(".changePassword");
+        if (initialChangePasswordBox) {
+          initialChangePasswordBox.style.display = "none";
+        }
       });
 
+      // --- Xử lý chính khi DOM của trang profile load xong ---
       document.addEventListener("DOMContentLoaded", function () {
+        // --- Lấy các element cần thiết trong trang profile ---
         const saveButton = document.querySelector(".save-button");
-        const logoPreview = document.getElementById("logoPreview");
-        const headerAvatar = document.getElementById("headerAvatar");
+        const logoPreview = document.getElementById("logoPreview"); // Preview trên trang profile
         const firstNameInput = document.getElementById("firstNameInput");
         const lastNameInput = document.getElementById("lastNameInput");
-        const headerUserNameSpan = document.getElementById("headerUserName");
         const usernameInput = document.getElementById("usernameInput");
         const phoneInput = document.getElementById("phoneInput");
         const addressInput = document.getElementById("addressInput");
+        // KHÔNG cần lấy headerAvatar và headerUserNameSpan ở đây nữa
 
+        // --- Hàm load dữ liệu ban đầu cho FORM PROFILE ---
         function loadProfileData() {
+          // Load các giá trị text input
           const loadValue = (element, storageKey) => {
             if (element) {
               const savedValue = localStorage.getItem(storageKey);
@@ -611,68 +626,97 @@
           loadValue(phoneInput, "userProfile_phone");
           loadValue(addressInput, "userProfile_address");
 
+          // Load avatar vào khu vực PREVIEW CỦA TRANG PROFILE
           const savedAvatarSrc = localStorage.getItem("userProfile_avatarSrc");
-          if (savedAvatarSrc && headerAvatar) {
-            headerAvatar.src = savedAvatarSrc;
-          }
-
-          const savedFirstName = localStorage.getItem("userProfile_firstName");
-          const savedLastName = localStorage.getItem("userProfile_lastName");
-          if ((savedFirstName || savedLastName) && headerUserNameSpan) {
-            const fullName = `${savedFirstName || ""} ${
-              savedLastName || ""
-            }`.trim();
-            const caretIconHTML =
-              headerUserNameSpan.querySelector("i.fa-caret-down")?.outerHTML ||
-              '<i class="fa-solid fa-caret-down"></i>';
-            headerUserNameSpan.innerHTML = `${
-              fullName || "Người dùng"
-            } ${caretIconHTML}`;
-          }
+          const initialProfileImg = logoPreview
+            ? logoPreview.querySelector("img")
+            : null; // Ảnh gốc 'dangoai' hoặc img đã tồn tại
 
           if (savedAvatarSrc && logoPreview) {
-            if (!logoPreview.querySelector("img")) {
+            // Nếu có ảnh trong LS, hiển thị nó trong preview
+            if (
+              !logoPreview.querySelector("img[src='" + savedAvatarSrc + "']")
+            ) {
+              // Chỉ thay đổi nếu khác
               const img = document.createElement("img");
               img.src = savedAvatarSrc;
+              img.onerror = function () {
+                logoPreview.innerHTML =
+                  '<span style="color: #888; font-size: 12px;">avatar</span>';
+              };
               logoPreview.innerHTML = "";
               logoPreview.appendChild(img);
-            } else {
-              // Nếu đã có ảnh (từ src="dangoai"), cập nhật src nếu có trong localStorage
-              const existingImg = logoPreview.querySelector("img");
-              if (existingImg.getAttribute("src") !== savedAvatarSrc) {
-                existingImg.src = savedAvatarSrc;
-              }
             }
+          } else if (initialProfileImg && logoPreview) {
+            // Nếu không có trong LS, xử lý ảnh gốc 'dangoai'
+            initialProfileImg.onerror = function () {
+              logoPreview.innerHTML =
+                '<span style="color: #888; font-size: 12px;">avatar</span>';
+            };
+            // Trigger onerror check if image didn't load initially
+            if (
+              !initialProfileImg.complete ||
+              initialProfileImg.naturalWidth === 0
+            ) {
+              // Use a small timeout to ensure the browser has attempted loading
+              setTimeout(() => {
+                if (
+                  !initialProfileImg.complete ||
+                  initialProfileImg.naturalWidth === 0
+                ) {
+                  initialProfileImg.onerror();
+                }
+              }, 50);
+            }
+          } else if (logoPreview) {
+            // Nếu không có ảnh LS và không có thẻ img ban đầu
+            logoPreview.innerHTML =
+              '<span style="color: #888; font-size: 12px;">avatar</span>';
           }
         }
 
+        // Gọi hàm load dữ liệu cho form profile
         loadProfileData();
 
+        // --- Xử lý khi nhấn nút SAVE ---
         if (saveButton) {
           saveButton.addEventListener("click", function (event) {
-            event.preventDefault();
-            const previewImage = logoPreview.querySelector("img");
-            let currentAvatarSrc = headerAvatar ? headerAvatar.src : ""; // Kiểm tra headerAvatar tồn tại
-            if (previewImage && previewImage.src) {
-              if (headerAvatar) headerAvatar.src = previewImage.src; // Cập nhật header nếu có
-              currentAvatarSrc = previewImage.src;
-            } else {
-              console.log("Không có ảnh mới trong preview.");
-            }
+            event.preventDefault(); // Ngăn form submit (nếu có)
 
+            // --- Lấy dữ liệu mới từ form ---
             const firstName = firstNameInput.value.trim();
             const lastName = lastNameInput.value.trim();
-            const fullName = `${firstName} ${lastName}`.trim();
-            if (headerUserNameSpan) {
-              // Kiểm tra headerUserNameSpan tồn tại
-              const caretIconHTML =
-                headerUserNameSpan.querySelector("i.fa-caret-down")
-                  ?.outerHTML || '<i class="fa-solid fa-caret-down"></i>';
-              headerUserNameSpan.innerHTML = `${
-                fullName || "Người dùng"
-              } ${caretIconHTML}`;
-            }
+            const username = usernameInput.value.trim();
+            const phone = phoneInput.value.trim();
+            const address = addressInput.value.trim();
 
+            // --- Xác định nguồn ảnh đại diện cuối cùng để lưu ---
+            const previewImage = logoPreview
+              ? logoPreview.querySelector("img")
+              : null;
+            let finalAvatarSrc =
+              localStorage.getItem("userProfile_avatarSrc") ||
+              "/user/images/dhk.jpg"; // Default hoặc từ LS cũ
+
+            if (
+              previewImage &&
+              previewImage.src &&
+              previewImage.src.startsWith("data:image")
+            ) {
+              // Ưu tiên ảnh mới dạng data URL từ preview
+              finalAvatarSrc = previewImage.src;
+            } else if (
+              previewImage &&
+              previewImage.src &&
+              !previewImage.src.endsWith("/dangoai") &&
+              !previewImage.src.includes("avatar</span>")
+            ) {
+              // Nếu ảnh preview là URL hợp lệ (không phải data:, không phải lỗi dangoai, không phải span báo lỗi)
+              finalAvatarSrc = previewImage.src;
+            }
+            // Nếu không có ảnh mới hợp lệ trong preview, finalAvatarSrc sẽ giữ giá trị từ LS cũ hoặc default
+
+            // --- Lưu tất cả thông tin vào localStorage ---
             const saveValue = (element, storageKey) => {
               if (element) {
                 localStorage.setItem(storageKey, element.value.trim());
@@ -684,43 +728,54 @@
             saveValue(phoneInput, "userProfile_phone");
             saveValue(addressInput, "userProfile_address");
 
-            if (currentAvatarSrc && currentAvatarSrc.startsWith("data:image")) {
-              try {
-                localStorage.setItem("userProfile_avatarSrc", currentAvatarSrc);
-              } catch (e) {
-                console.error("Lỗi lưu ảnh:", e);
+            // Lưu avatar vào localStorage (chỉ data URL cần try-catch)
+            if (finalAvatarSrc) {
+              if (finalAvatarSrc.startsWith("data:image")) {
+                try {
+                  localStorage.setItem("userProfile_avatarSrc", finalAvatarSrc);
+                  console.log("Đã lưu avatar (data URL) vào localStorage.");
+                } catch (e) {
+                  console.error("Lỗi lưu ảnh (data URL) vào localStorage:", e);
+                  alert(
+                    "Lỗi: Không thể lưu ảnh đại diện do kích thước quá lớn."
+                  );
+                  // Cân nhắc không dispatch hoặc dispatch với avatarSrc cũ/null nếu lưu lỗi
+                  // Ở đây ta sẽ dispatch với giá trị null nếu lưu lỗi data URL
+                  localStorage.removeItem("userProfile_avatarSrc"); // Xóa nếu lưu lỗi
+                  finalAvatarSrc = null; // Đặt là null để dispatch
+                }
+              } else {
+                // Lưu URL thông thường trực tiếp
+                localStorage.setItem("userProfile_avatarSrc", finalAvatarSrc);
+                console.log("Đã lưu avatar (URL) vào localStorage.");
               }
-            } else if (
-              currentAvatarSrc &&
-              !currentAvatarSrc.startsWith("data:image")
-            ) {
-              console.log("Ảnh không phải data URL.");
+            } else {
+              // Nếu không có avatar hợp lệ nào, xóa khỏi localStorage
+              localStorage.removeItem("userProfile_avatarSrc");
             }
 
-            console.log("Thông tin đã cập nhật và lưu.");
-            alert("Đã lưu thông tin thành công!");
+            // --- !!! PHÁT SỰ KIỆN ĐỂ THÔNG BÁO CHO HEADER !!! ---
+            const dataForEvent = {
+              firstName: localStorage.getItem("userProfile_firstName"), // Lấy từ LS để đảm bảo nhất quán
+              lastName: localStorage.getItem("userProfile_lastName"),
+              avatarSrc: localStorage.getItem("userProfile_avatarSrc"), // Lấy avatar đã lưu (hoặc null)
+            };
+            const profileUpdateEvent = new CustomEvent("profileUpdated", {
+              detail: dataForEvent,
+            });
+            document.dispatchEvent(profileUpdateEvent);
+            console.log(
+              "Profile Script: Đã phát sự kiện 'profileUpdated' với detail:",
+              dataForEvent
+            );
+
+            console.log("Thông tin đã cập nhật và lưu vào localStorage.");
+            alert("Đã lưu thông tin thành công!"); // Thông báo cho người dùng
           });
         } else {
           console.error("Không tìm thấy nút Save '.save-button'");
         }
-
-        const initialPreviewImg = logoPreview.querySelector("img");
-        if (initialPreviewImg) {
-          initialPreviewImg.onerror = function () {
-            logoPreview.innerHTML =
-              '<span style="color: #888; font-size: 12px;">avatar</span>';
-          };
-          if (
-            !initialPreviewImg.complete ||
-            initialPreviewImg.naturalWidth === 0
-          ) {
-            initialPreviewImg.onerror();
-          }
-        } else if (!localStorage.getItem("userProfile_avatarSrc")) {
-          logoPreview.innerHTML =
-            '<span style="color: #888; font-size: 12px;">avatar</span>';
-        }
-      });
+      }); // Kết thúc DOMContentLoaded của trang profile
     </script>
   </body>
 </html>
