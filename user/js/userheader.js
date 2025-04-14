@@ -109,11 +109,3 @@ function updateHeaderDisplay(data) {
   }
 }
 
-// --- Xử lý khi trang (hoặc component header) được load xong ---
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("Header Script: DOMContentLoaded - Bắt đầu khởi tạo header.");
-
-  
-
-  console.log("Header Script: Khởi tạo header hoàn tất.");
-});

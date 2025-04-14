@@ -27,7 +27,7 @@ function updateHeaderUI() {
         return;
     }
 
-    const defaultAvatar = '/images/thanaftai.jpg'; // <<<--- PATH TO YOUR DEFAULT AVATAR
+    const defaultAvatar = '/user/images/dhk.jpg'; // <<<--- PATH TO YOUR DEFAULT AVATAR
 
     if (isLoggedIn()) {
         const username = localStorage.getItem('userProfile_username') || 'User';
