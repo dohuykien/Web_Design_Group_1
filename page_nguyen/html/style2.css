@@ -23,11 +23,13 @@ body {
     font-family: 'Open Sans', sans-serif;
     color: var(--foreground);
     background-color: var(--background);
+    line-height: 1.6; /* Added for better readability */
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto Condensed', sans-serif;
     margin-top: 0;
+    line-height: 1.3; /* Added for better heading spacing */
 }
 
 a {
@@ -43,13 +45,14 @@ ul {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 1rem; /* Standard padding */
 }
 
 .gray-bg {
@@ -58,8 +61,9 @@ ul {
 
 .row {
     display: flex;
-    justify-content: space-between;
+    /* Removed justify-content: space-between; globally, apply where needed */
     align-items: center;
+    flex-wrap: wrap; /* Allow items to wrap */
 }
 
 /* Button styles */
@@ -77,13 +81,19 @@ ul {
     background-color: var(--primary);
     color: var(--primary-foreground);
     padding: 0.75rem 1.5rem;
-    font-size: 1.125rem;
+    font-size: 1rem; /* Adjusted for consistency */
 }
 
 .btn-secondary {
     background-color: transparent;
     color: var(--secondary-foreground);
+    /* Ensure visibility on dark background */
+    border: 1px solid transparent; /* Add placeholder for potential border hover */
 }
+.btn-secondary:hover {
+     background-color: rgba(255, 255, 255, 0.1); /* Slight hover effect */
+}
+
 
 /* Header styles */
 .main-header {
@@ -94,7 +104,12 @@ ul {
     background-color: var(--secondary);
     color: var(--secondary-foreground);
     padding: 0.5rem 0;
+    font-size: 0.9rem; /* Slightly smaller text */
 }
+.topbar .container .row {
+     justify-content: space-between; /* Keep space-between for topbar */
+}
+
 
 .topsocial ul, .toplinks ul {
     display: flex;
@@ -102,36 +117,49 @@ ul {
 }
 
 .toplinks ul {
-    gap: 1rem;
+    gap: 0.5rem; /* Reduced gap */
 }
+.toplinks .btn {
+    padding: 0.3rem 0.6rem; /* Smaller buttons in topbar */
+    font-size: 0.85rem;
+}
+
 
 .logo-navbar {
     background-color: #fff;
-    padding: 1rem 0;
+    padding: 0.75rem 0; /* Reduced padding */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
+.logo-navbar .container .row {
+    justify-content: space-between; /* Keep space-between for logo/nav */
+}
+
 
 .logo-img {
-    width: 80px;
-    height: 80px;
+    width: 60px; /* Slightly smaller logo */
+    height: 60px;
     border-radius: 50%;
     object-fit: cover;
 }
 
 .main-nav-container {
     flex: 1;
+    display: flex; /* Ensure it takes space */
+    justify-content: flex-end; /* Align nav/toggle right */
+    align-items: center;
 }
 
 .main-nav ul {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 2rem;
+    gap: 1.5rem; /* Adjusted gap */
 }
 
 .nav-item a {
     padding: 0.5rem 0;
     transition: color 0.3s ease;
+    font-size: 0.95rem; /* Slightly smaller nav font */
 }
 
 .nav-item a:hover {
@@ -141,8 +169,9 @@ ul {
 .buy-ticket a {
     background-color: var(--primary);
     color: var(--primary-foreground);
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem; /* Adjusted padding */
     border-radius: 4px;
+    font-size: 0.9rem;
 }
 
 .mobile-nav-toggle {
@@ -150,6 +179,7 @@ ul {
     background: none;
     border: none;
     cursor: pointer;
+    padding: 0.5rem; /* Add some padding for easier tapping */
 }
 
 .mobile-nav-toggle span {
@@ -158,7 +188,12 @@ ul {
     height: 3px;
     background-color: var(--secondary);
     margin: 5px 0;
+    transition: background-color 0.3s ease; /* Smooth transition */
 }
+.mobile-nav-toggle:hover span {
+    background-color: var(--primary); /* Hover effect */
+}
+
 
 /* Hero section */
 .hero-section {
@@ -187,17 +222,12 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem; /* Add padding */
 }
 
-.hero-content h1 {
-    font-size: 3rem;
-    color: white;
-    text-align: center;
-    margin-bottom: 1rem;
-}
-
-.hover-title {
-    font-size: 70px;
+/* h0 is not a standard HTML tag, assuming it should be h1 */
+.hero-content h1, .hero-content .hover-title { /* Applied style to both */
+    font-size: 2.5rem; /* Adjusted base size */
     font-weight: bold;
     cursor: pointer;
     position: relative;
@@ -208,79 +238,70 @@ ul {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradient 5s infinite linear, neonGlow 1.5s infinite alternate;
+    text-align: center; /* Ensure centered text */
 }
+
 
 .hover-title:hover {
     transform: scale(1.1) rotate(-3deg);
     animation: shake 0.3s infinite alternate ease-in-out;
-    text-shadow: 0 0 10px #fff, 0 0 20px #ff6699, 0 0 30px #00ccff; /* Thêm hiệu ứng phát sáng */
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff6699, 0 0 30px #00ccff;
 }
 
-/* Gradient màu chữ động */
-@keyframes gradientFlow {
+/* Removed h0 tag specific styles as it's non-standard */
+
+/* Gradient animation (Corrected name from gradientFlow) */
+@keyframes gradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* Hiệu ứng phát sáng neon */
 @keyframes neonGlow {
-    0% { text-shadow: 0 0 100px #fff, 0 0 20px #ff6699, 0 0 30px #00ccff; }
+    0% { text-shadow: 0 0 10px #fff, 0 0 20px #ff6699, 0 0 30px #00ccff; }
     100% { text-shadow: 0 0 10px #fff, 0 0 30px #ff6699, 0 0 40px #00ccff; }
 }
 
-/* Hiệu ứng lấp lánh */
-.hover-title::after {
-    content: "✨";
-    font-size: 30px;
-    position: absolute;
-    right: -40px;
-    top: 10px;
-    animation: sparkle 1s infinite alternate ease-in-out;
-}
+/* Removed sparkle effect for simplicity and potential layout issues */
+/* .hover-title::after { ... } */
+/* @keyframes sparkle { ... } */
 
-@keyframes sparkle {
-    0% { opacity: 1; transform: scale(1); }
-    100% { opacity: 0.4; transform: scale(1.3); }
-}
-
-/* Hover thêm lung linh */
-.hover-title:hover {
-    transform: scale(1.1) rotate(-3deg);
-    animation: shake 0.3s infinite alternate ease-in-out;
-}
-
-/* Hiệu ứng rung nhẹ */
 @keyframes shake {
     0% { transform: scale(1.1) rotate(-3deg); }
     100% { transform: scale(1.1) rotate(3deg); }
 }
 
+
 /* Team info section */
 .team-info {
     background-color: white;
-    padding: 3rem 0;
+    padding: 2rem 0; /* Adjusted padding */
 }
 
 .info-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    /* grid uses auto-fit and minmax, which is already responsive */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly smaller min */
+    gap: 1rem; /* Reduced gap */
+    margin-bottom: 1.5rem; /* Adjusted margin */
 }
 
 .info-card {
-    padding: 1.5rem;
+    padding: 1rem; /* Reduced padding */
     background-color: white;
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     text-align: center;
 }
+.info-card h3 {
+    font-size: 1rem; /* Adjusted font size */
+    word-break: break-word; /* Prevent long text overflow */
+}
 
 .icon-container {
-    margin: 0 auto 1rem;
-    width: 70px;
-    height: 70px;
+    margin: 0 auto 0.8rem; /* Adjusted margin */
+    width: 50px; /* Smaller icon container */
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -288,65 +309,95 @@ ul {
     border-radius: 50%;
     color: var(--primary);
 }
+.icon-container svg {
+    width: 28px; /* Smaller icon size */
+    height: 28px;
+}
 
 .join-team-btn {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 1.5rem; /* Adjusted margin */
+}
+.join-team-btn .btn-primary {
+    font-size: 1rem; /* Consistent button size */
+    padding: 0.6rem 1.2rem;
 }
 
 /* Members section */
 .members-section {
     background-color: var(--muted);
-    padding: 3rem 0;
+    padding: 2rem 0; /* Adjusted padding */
     text-align: center;
 }
 
 .members-section h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    transform: translate(0px, -80px);
+    font-size: 1.8rem; /* Adjusted size */
+    margin-bottom: 0.5rem; /* Reduced margin */
+    transform: none; /* Removed transform */
 }
 .members-section h3 {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    transform: translate(0px, -80px);
+    font-size: 1.3rem; /* Adjusted size */
+    margin-bottom: 1.5rem; /* Adjusted margin */
+    color: var(--muted-foreground); /* Subdued color */
+    transform: none; /* Removed transform */
+    font-weight: 400; /* Normal weight */
 }
 .empty-state {
     background-color: white;
-    margin-top: -400px;
-    padding: 3rem 2rem;
+    margin-top: 0; /* Removed negative margin */
+    padding: 1.5rem; /* Adjusted padding */
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    text-align: center;
+    text-align: center; /* Center align content */
+    max-width: 800px; /* Limit width for better readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.empty-state img {
+    width: 100%; /* Make image responsive */
+    max-width: 200px; /* Limit max size */
+    height: auto;
+    margin: 0 auto 1.5rem auto; /* Center image and add bottom margin */
+    display: block; /* Ensure block display for margin auto */
+    transform: none; /* Removed transform */
 }
 
 .empty-state p {
-    color: var(--muted-foreground);
+    color: var(--foreground); /* Use standard text color */
     margin-bottom: 0.5rem;
-    font-size: 1.125rem;
-    text-align: left;
-    transform: translate(100px, -80px);
-    font-weight: bold;
+    font-size: 1rem; /* Adjusted font size */
+    text-align: center; /* Centered text */
+    transform: none; /* Removed transform */
+    font-weight: normal; /* Normal weight unless specified */
+    line-height: 1.5; /* Better line spacing */
 }
-.empty-state img {
-    width: 50%;
-    height: auto;
-    margin-top: 1rem;
-    transform: translate(190px, 80%);
+.empty-state p:first-of-type { /* Style the first player name */
+    font-weight: bold; /* Keep captain bold */
 }
+.empty-state p:last-of-type { /* Style the quote */
+    margin-top: 1.5rem; /* Add space before quote */
+    font-style: italic;
+    color: var(--muted-foreground);
+    border-top: 1px solid var(--border); /* Separator */
+    padding-top: 1rem;
+}
+
+
 /* Uniform section */
 .uniform-section {
-    padding: 3rem 0;
+    padding: 2rem 0; /* Adjusted padding */
 }
 
 .uniform-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    /* Grid uses auto-fit and minmax, already responsive */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly smaller min */
+    gap: 1.5rem; /* Adjusted gap */
 }
 
 .section-title {
-    font-size: 1.5rem;
+    font-size: 1.3rem; /* Adjusted size */
     margin-bottom: 1rem;
     padding-left: 0.75rem;
     border-left: 4px solid var(--primary);
@@ -354,7 +405,7 @@ ul {
 
 .uniform-card {
     background-color: white;
-    padding: 1.5rem;
+    padding: 1rem; /* Adjusted padding */
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
@@ -364,124 +415,168 @@ ul {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: #aaa;
-    padding: 2rem 0;
+    color: var(--foreground); /* Use standard text color */
+    padding: 1rem 0; /* Adjusted padding */
+    text-align: center;
 }
 
 .uniform-placeholder p {
     margin-top: 1rem;
+    font-weight: 600; /* Make description bold */
 }
 .uniform-placeholder img {
-    width: 320px;
-    height: 320px;
-    border-radius: 10px; /* Bo góc nhẹ */
-    transition: transform 0.5s ease, box-shadow 0.5s ease; /* Hiệu ứng chuyển động mượt */
+    width: 100%; /* Make image responsive */
+    max-width: 300px; /* Limit max size */
+    height: auto;     /* Maintain aspect ratio */
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Faster transition */
     position: relative;
     z-index: 1;
+    display: block; /* Ensure block for centering */
+    margin: 0 auto; /* Center image */
 }
 
+/* Keep hover effects, but maybe tone down the shadow slightly */
 .uniform-placeholder img:hover {
-    transform: scale(1.1) rotate(5deg); /* Phóng to và xoay nhẹ khi hover */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 0 15px #ff6699, 0 0 25px #00ccff; /* Hiệu ứng phát sáng */
-    filter: brightness(1.2); /* Tăng độ sáng */
-    z-index: 2; /* Đưa ảnh lên trên khi hover */
+    transform: scale(1.05) rotate(3deg); /* Slightly less scale/rotate */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 10px #ff6699, 0 0 15px #00ccff; /* Adjusted shadow */
+    filter: brightness(1.1); /* Slightly less brightness */
+    z-index: 2;
 }
 
-/* Hiệu ứng lấp lánh */
-.uniform-placeholder img::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    pointer-events: none;
-    animation: sparkleEffect 2s infinite;
-}
+/* Removed sparkle animation for simplicity */
+/* @keyframes sparkleEffect { ... } */
 
-@keyframes sparkleEffect {
-    0% {
-        box-shadow: 0 0 5px #ff6699, 0 0 10px #00ccff;
-    }
-    50% {
-        box-shadow: 0 0 15px #ff6699, 0 0 25px #00ccff;
-    }
-    100% {
-        box-shadow: 0 0 5px #ff6699, 0 0 10px #00ccff;
-    }
-}
+
 /* Footer */
-
 .footer {
     background-color: #1E2430;
-    color: white;
-    padding: 20px 0;
-    font-size: 16px;
-    margin-top: 50px;
+    color: #ccc; /* Lighter text color */
+    padding: 2rem 0 1rem 0; /* Added padding */
+    font-size: 0.9rem; /* Slightly smaller font */
+    margin-top: 3rem; /* Increased margin */
 }
 
 .footer-container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 1.5rem; /* Add gap between columns when wrapped */
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 1rem; /* Consistent padding */
 }
 
 .footer-left, .footer-right {
-    flex: 1;
+    flex: 1 1 300px; /* Allow shrinking and growing, base width 300px */
 }
 
 .footer-left p, .footer-right p {
-    margin: 20px 0;
+    margin: 0.5rem 0; /* Reduced margin */
+    line-height: 1.6;
+}
+.footer-left p i, .footer-right p i {
+    margin-right: 0.5rem; /* Space after icon */
+    width: 16px; /* Align icons */
+    text-align: center;
+    color: var(--primary); /* Color icons */
 }
 
 .footer-apps {
     display: flex;
     gap: 10px;
-    margin-top: 10px;
+    margin-top: 1rem;
 }
 
 .footer-apps img {
-    height: 40px;
+    height: 35px; /* Slightly smaller app icons */
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+.footer-apps img:hover {
+    opacity: 1;
 }
 
-/* Mobile navigation */
+.footer .text-center {
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Separator line */
+    padding-top: 1rem;
+    margin-top: 1.5rem;
+    color: #aaa; /* Dimmer color for copyright */
+    font-size: 0.85rem;
+}
+.footer .text-center p {
+    margin-bottom: 0;
+}
+
+
+/* Mobile navigation (Side menu) */
 .mobile-nav {
-    display: none;
+    display: none; /* Initially hidden */
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: -100%; /* Start off-screen */
+    width: 80%; /* Take up most of the screen width */
+    max-width: 300px; /* Limit maximum width */
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: var(--secondary); /* Use dark bg */
     z-index: 1000;
-    padding: 2rem 1rem;
+    padding: 3rem 1rem 1rem 1rem; /* Adjust padding */
+    overflow-y: auto; /* Allow scrolling if needed */
+    transition: left 0.3s ease-in-out; /* Smooth transition */
+    box-shadow: 5px 0 15px rgba(0,0,0,0.2); /* Add shadow */
+}
+.mobile-nav.active { /* Class added by JS to show menu */
+    left: 0;
 }
 
 .mobile-nav ul {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem; /* Reduced gap */
 }
 
 .mobile-nav a {
     display: block;
     padding: 0.75rem 1rem;
     color: white;
-    font-size: 1.125rem;
+    font-size: 1rem; /* Adjusted font size */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.2s ease; /* Hover effect */
 }
+.mobile-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
 
 .mobile-nav .buy-ticket a {
     background-color: var(--primary);
     border-radius: 4px;
+    text-align: center;
+    margin-top: 1rem; /* Space before button */
+    border-bottom: none; /* Remove border */
 }
+.mobile-nav .buy-ticket a:hover {
+    background-color: var(--accent); /* Darker hover */
+}
+
+/* Add a close button for the mobile nav */
+.mobile-nav-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.5rem;
+}
+
 
 /* Bottom mobile navigation */
 .navigation-mb {
-    display: none;
+    display: none; /* Hidden by default */
     position: fixed;
     bottom: 0;
     left: 0;
@@ -489,11 +584,12 @@ ul {
     background-color: white;
     border-top: 1px solid var(--border);
     z-index: 999;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05); /* Add subtle shadow */
 }
 
 .navigation-mb ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around; /* Distribute items evenly */
 }
 
 .navigation-mb .list {
@@ -503,58 +599,182 @@ ul {
 
 .navigation-mb a {
     display: block;
-    padding: 0.75rem 0.5rem;
+    padding: 0.5rem 0.25rem; /* Adjusted padding */
+    color: var(--muted-foreground); /* Default color */
+    transition: color 0.2s ease;
 }
+.navigation-mb a:hover,
+.navigation-mb .list.active a { /* Style for active link */
+    color: var(--primary);
+}
+
 
 .navigation-mb .text {
     display: block;
-    font-size: 0.75rem;
-    margin-top: 0.25rem;
+    font-size: 0.7rem; /* Smaller text */
+    margin-top: 0.1rem; /* Reduced margin */
 }
+/* Add simple icons (using text placeholders, replace with actual icons/SVG later) */
+.navigation-mb .icon {
+    font-size: 1.2rem; /* Icon size */
+    display: block;
+    margin-bottom: 0.1rem;
+}
+
 
 /* Media queries */
-@media (max-width: 768px) {
-    .row {
-        flex-direction: column;
+@media (max-width: 992px) {
+    /* Adjust gaps and sizes for medium screens */
+    .main-nav ul {
         gap: 1rem;
     }
-    
-    .toplinks ul {
-        justify-content: center;
+    .nav-item a {
+        font-size: 0.9rem;
     }
-    
-    .logo-navbar .row {
-        flex-direction: row;
-    }
-    
-    .main-nav {
-        display: none;
-    }
-    
-    .mobile-nav-toggle {
-        display: block;
-    }
-    
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    
-    .navigation-mb {
-        display: block;
-    }
-    
-    /* Adjust padding to accommodate bottom navigation */
-    body {
-        padding-bottom: 60px;
+    .container {
+        padding: 0 1.5rem; /* Slightly more padding */
     }
 }
 
-@media (min-width: 769px) {
+
+@media (max-width: 768px) {
+    /* --- General Adjustments --- */
+    .container {
+        padding: 0 1rem; /* Standard mobile padding */
+    }
+    h1, .hero-content .hover-title { /* Target hero title specifically */
+        font-size: 2rem; /* Further reduce hero title size */
+    }
+     h2 { font-size: 1.6rem; }
+     h3 { font-size: 1.2rem; }
+
+    /* --- Header --- */
+     .topbar .container .row {
+        justify-content: center; /* Center topbar content */
+        gap: 0.5rem 1rem; /* Add gap for wrapping */
+    }
+    .topsocial { order: 2; } /* Move social link below on wrap */
+    .toplinks { order: 1; }
+
+    .logo-navbar .container .row {
+        /* Logo stays left, toggle stays right (already set by justify-content: space-between) */
+        align-items: center; /* Ensure vertical alignment */
+    }
+
+    .main-nav {
+        display: none; /* Hide desktop nav */
+    }
+
     .mobile-nav-toggle {
-        display: none;
+        display: block; /* Show hamburger */
     }
-    
-    .mobile-nav {
-        display: none !important;
+
+    /* --- Hero --- */
+    .hero-image {
+        height: 250px; /* Reduce height more for mobile */
     }
+
+    /* --- Team Info --- */
+    .info-cards {
+        grid-template-columns: 1fr; /* Stack cards vertically */
+        gap: 1rem;
+    }
+
+    /* --- Members --- */
+    /* .empty-state styles already adjusted above for responsiveness */
+    /* Ensure text is readable */
+     .empty-state p {
+        font-size: 0.95rem;
+        text-align: left; /* Align text left for readability on mobile */
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .empty-state p:last-of-type { /* Center quote */
+         text-align: center;
+         padding-left: 0.5rem;
+         padding-right: 0.5rem;
+    }
+     .empty-state img {
+        max-width: 150px; /* Smaller image on mobile */
+    }
+
+
+    /* --- Uniforms --- */
+    .uniform-grid {
+        grid-template-columns: 1fr; /* Stack uniforms vertically */
+        gap: 1.5rem;
+    }
+    .uniform-placeholder img {
+        max-width: 250px; /* Slightly smaller max-width */
+    }
+    /* Disable hover effects on touch devices if desired (optional) */
+    /* .uniform-placeholder img:hover { transform: none; box-shadow: none; filter: none; } */
+
+
+    /* --- Footer --- */
+    .footer-container {
+        flex-direction: column; /* Stack footer columns */
+        text-align: center; /* Center text */
+        gap: 1rem;
+    }
+    .footer-left, .footer-right {
+        flex-basis: auto; /* Reset flex-basis */
+        text-align: left; /* Re-align text left for readability */
+    }
+    .footer-apps {
+        justify-content: flex-start; /* Align app icons left */
+    }
+     .footer-left p i, .footer-right p i {
+         width: auto; /* Reset fixed icon width */
+    }
+
+
+    /* --- Mobile Navigations --- */
+    .navigation-mb {
+        display: block; /* Show bottom nav */
+    }
+
+    /* Adjust padding-bottom to prevent content hiding behind bottom nav */
+    body {
+        padding-bottom: 60px; /* Match approx height of bottom nav */
+    }
+
+    /* Remove main wrapper padding bottom if it exists */
+    .wrapper {
+         padding-bottom: 0;
+    }
+
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 0.75rem; /* Slightly less padding */
+    }
+    h1, .hero-content .hover-title {
+        font-size: 1.8rem; /* Even smaller title */
+    }
+    .btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    .topbar { font-size: 0.8rem;}
+    .toplinks .btn { padding: 0.2rem 0.5rem; font-size: 0.75rem;}
+    .logo-img { width: 50px; height: 50px; }
+
+    .info-card h3 { font-size: 0.95rem; }
+    .icon-container { width: 45px; height: 45px; }
+    .icon-container svg { width: 24px; height: 24px; }
+
+    .empty-state p { font-size: 0.9rem; }
+    .empty-state img { max-width: 120px; }
+
+    .footer { font-size: 0.85rem; }
+    .footer-apps img { height: 30px; }
+
+    .navigation-mb a { padding: 0.4rem 0.2rem; }
+    .navigation-mb .icon { font-size: 1.1rem; }
+    .navigation-mb .text { font-size: 0.65rem; }
+    body { padding-bottom: 55px; } /* Adjust if nav height changes */
+
 }

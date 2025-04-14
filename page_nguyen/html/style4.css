@@ -32,9 +32,9 @@ body {
 
 .container {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+    max-width: 1200px; /* Giới hạn chiều rộng tối đa */
+    margin: 0 auto; /* Căn giữa container */
+    padding: 0 15px; /* Padding hai bên */
 }
 
 a {
@@ -46,10 +46,18 @@ ul {
     list-style: none;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Loại bỏ khoảng trống thừa dưới ảnh */
+}
+
 /* Header Styles */
 header {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* Cần thiết cho định vị mobile menu */
+    z-index: 100; /* Đảm bảo header nằm trên các nội dung khác */
 }
 
 .top-header {
@@ -62,6 +70,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
 }
 
 .logo-container {
@@ -86,10 +95,12 @@ header {
     margin-left: 15px;
     color: #fff;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .auth-link:hover {
-    text-decoration: underline;
+    color: #ebac2b; /* Màu hover ví dụ */
+    text-decoration: none;
 }
 
 /* Main Navigation */
@@ -98,78 +109,157 @@ header {
     padding: 10px 0;
 }
 
-.nav-menu {
+.main-nav .container {
     display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    justify-content: space-between; /* Đẩy menu và toggle ra hai bên */
+    align-items: center;
+}
+
+.nav-menu {
+    display: flex; /* Chỉ hiển thị trên desktop */
+    flex-wrap: wrap; /* Cho phép xuống dòng nếu quá chật (dù thường sẽ ẩn đi trước) */
 }
 
 .nav-menu li {
-    margin-right: 20px;
-    transform: translate(450px, 0);
-    font-size:20px;
+    margin-right: 20px; /* Khoảng cách giữa các mục menu */
+}
+
+.nav-menu li:last-child {
+    margin-right: 0;
 }
 
 .nav-menu li a {
     color: #fff;
     font-weight: bold;
-    padding: 5px 0;
+    padding: 10px 5px; /* Tăng padding dọc */
     display: block;
+    transition: color 0.3s ease;
+    font-size: 16px; /* Cỡ chữ menu */
+    text-transform: uppercase; /* Viết hoa chữ */
 }
 
 .nav-menu li a:hover,
 .nav-menu li a.active {
-    border-bottom: none;
+    color: #f0c041; /* Màu khi hover hoặc active */
 }
 
+/* Mobile Menu Toggle Button */
 .mobile-menu-toggle {
-    display: none;
+    display: none; /* Ẩn mặc định trên desktop */
     flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
     cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0;
 }
 
 .mobile-menu-toggle span {
-    width: 25px;
+    width: 100%;
     height: 3px;
     background-color: #fff;
-    margin-bottom: 5px;
+    border-radius: 2px;
+    transition: all 0.3s linear;
 }
 
-/* Mobile Menu (hidden by default) */
+/* Mobile Menu Panel */
 .mobile-menu {
-    display: none;
+    display: none; /* Ẩn mặc định */
     background-color: #2c2523;
     color: #fff;
-    padding: 20px 0;
+    position: absolute;
+    top: 100%; /* Ngay dưới header */
+    left: 0;
+    width: 100%;
+    z-index: 99; /* Dưới header nhưng trên nội dung khác */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-height: calc(100vh - 60px); /* Chiều cao tối đa, trừ đi chiều cao header ước tính */
+    overflow-y: auto; /* Thêm scroll nếu nội dung dài */
+}
+
+/* --- QUAN TRỌNG: Cần JavaScript để thêm/xóa class 'active' cho body hoặc mobile-menu --- */
+/* Ví dụ CSS khi mobile menu được kích hoạt (thêm class 'mobile-menu-active' vào body) */
+/*
+body.mobile-menu-active .mobile-menu {
+    display: block;
+}
+body.mobile-menu-active .mobile-menu-toggle span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+body.mobile-menu-active .mobile-menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+body.mobile-menu-active .mobile-menu-toggle span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+*/
+
+.mobile-menu .container {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .mobile-logo {
     text-align: center;
     margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #444;
 }
+.mobile-logo .logo {
+    height: 40px;
+    margin: 0 auto;
+}
+
 
 .mobile-nav-links {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #444;
 }
 
 .mobile-nav-links li {
     margin: 0 10px;
 }
+.mobile-nav-links a {
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.mobile-nav-links a:hover {
+    color: #f0c041;
+}
 
 .mobile-nav-menu li {
-    border-bottom: 1px solid #444;
+    /* border-bottom: 1px solid #444; */ /* Bỏ border dưới mỗi item */
+}
+.mobile-nav-menu li:last-child {
+    border-bottom: none;
 }
 
 .mobile-nav-menu li a {
-    padding: 12px 0;
+    padding: 12px 15px;
     display: block;
+    text-align: left; /* Căn trái cho dễ đọc */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-bottom: 1px solid #444; /* Thêm border vào link thay vì li */
+}
+.mobile-nav-menu li:last-child a {
+     border-bottom: none; /* Loại bỏ border cho link cuối cùng */
+}
+
+.mobile-nav-menu li a:hover {
+    background-color: #444;
+    color: #f0c041;
 }
 
 .app-download-links {
     text-align: center;
     margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #444;
 }
 
 .app-download-links p {
@@ -179,10 +269,11 @@ header {
 .store-links {
     display: flex;
     justify-content: center;
+    gap: 10px;
 }
 
 .store-links a {
-    margin: 0 5px;
+    display: inline-block;
 }
 
 .store-links img {
@@ -194,7 +285,7 @@ header {
     background-image: url('https://ext.same-assets.com/2295336092/549760056.jpeg');
     background-size: cover;
     background-position: center;
-    padding: 60px 0;
+    padding: 60px 0; /* Tăng padding */
     text-align: center;
     position: relative;
 }
@@ -206,55 +297,68 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Lớp phủ tối */
 }
 
 .page-title h1 {
     color: #fff;
     font-family: 'Oswald', sans-serif;
-    font-size: 32px;
+    font-size: 36px; /* Tăng cỡ chữ */
     position: relative;
     z-index: 1;
+    text-transform: uppercase;
 }
 
 /* Teams Grid */
 .teams-grid {
-    padding: 40px 0;
+    padding: 40px 0; /* Tăng padding */
 }
 
 .teams-container {
     display: grid;
+    /* Mặc định 4 cột trên màn hình lớn */
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 25px; /* Khoảng cách giữa các card */
 }
 
 .team-card {
     background-color: #fff;
-    border-radius: 4px;
+    border-radius: 5px; /* Bo góc nhẹ */
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
 .team-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
 .team-link {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Đảm bảo link chiếm toàn bộ card */
 }
 
 .team-image {
-    height: 150px;
+    height: 180px; /* Chiều cao cố định cho ảnh */
     overflow: hidden;
     position: relative;
+    width: 100%;
 }
 
 .team-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Đảm bảo ảnh đầy khung mà không bị méo */
+    transition: transform 0.3s ease;
 }
+.team-card:hover .team-image img {
+     transform: scale(1.05); /* Hiệu ứng zoom nhẹ khi hover */
+}
+
 
 .team-rating {
     background-color: #b41f26;
@@ -270,43 +374,55 @@ header {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFD700'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 .team-name {
     font-family: 'Oswald', sans-serif;
     text-align: center;
-    padding: 10px;
-    font-size: 16px;
+    padding: 15px 10px; /* Tăng padding */
+    font-size: 18px; /* Tăng cỡ chữ */
     color: #2c2523;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin-top: auto; /* Đẩy tên đội xuống dưới cùng */
+    font-weight: bold;
+    /* Xử lý text dài nếu cần */
+     /* white-space: nowrap; */
+     /* overflow: hidden; */
+     /* text-overflow: ellipsis; */
 }
 
 /* Footer */
 footer {
     background-color: #292e2f;
-    color: #fff;
-    padding: 30px 0;
+    color: #ccc; /* Màu chữ mặc định nhạt hơn */
+    padding: 40px 0 0; /* Thêm padding trên, bỏ padding dưới */
+}
+
+.footer-top .container {
+    padding-bottom: 30px; /* Padding dưới cho phần widget */
 }
 
 .footer-widgets {
     display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-bottom: 30px;
+    flex-wrap: wrap; /* Cho phép xuống dòng */
+    gap: 30px; /* Khoảng cách giữa các widget */
+    margin-bottom: 30px; /* Khoảng cách với phần social */
+    justify-content: space-between; /* Phân bố đều widget */
 }
 
 .footer-widget {
-    flex: 1;
-    min-width: 200px;
+    flex: 1; /* Cho phép widget co giãn */
+    min-width: 200px; /* Chiều rộng tối thiểu trước khi xuống dòng */
 }
 
 .footer-widget h3 {
     font-size: 16px;
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* Tăng khoảng cách */
     position: relative;
     padding-bottom: 10px;
+    text-transform: uppercase;
+    color: #fff; /* Màu tiêu đề trắng */
+    font-family: 'Oswald', sans-serif; /* Dùng font Oswald */
 }
 
 .footer-widget h3:after {
@@ -314,28 +430,31 @@ footer {
     position: absolute;
     left: 0;
     bottom: 0;
-    width: 30px;
-    height: 2px;
+    width: 40px; /* Tăng chiều dài gạch chân */
+    height: 3px; /* Tăng độ dày */
     background-color: #ebac2b;
 }
 
 .footer-widget ul li {
-    margin-bottom: 8px;
+    margin-bottom: 10px; /* Tăng khoảng cách */
 }
 
 .footer-widget ul li a {
     color: #ccc;
     font-size: 14px;
+    transition: color 0.3s ease;
 }
 
 .footer-widget ul li a:hover {
     color: #ebac2b;
+    text-decoration: underline;
 }
 
 .footer-social {
     text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid #3a3f40;
+    padding: 20px 0; /* Padding trên dưới */
+    border-top: 1px solid #3a3f40; /* Đường kẻ ngăn cách */
+    background-color: #222728; /* Màu nền khác biệt nhẹ */
 }
 
 .footer-social ul {
@@ -349,43 +468,185 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 40px; /* Tăng kích thước icon */
+    height: 40px;
     background-color: #3a3f40;
     border-radius: 50%;
     color: #fff;
-    transition: background-color 0.3s;
+    font-size: 18px; /* Tăng cỡ icon */
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .footer-social ul li a:hover {
     background-color: #ebac2b;
+    color: #292e2f;
 }
 
 .footer-social p {
-    font-size: 12px;
-    color: #ccc;
+    font-size: 13px; /* Cỡ chữ copyright */
+    color: #aaa; /* Màu chữ nhạt hơn */
 }
 
-/* Responsive tweaks */
+/* ------------------------- */
+/* Responsive Styles        */
+/* ------------------------- */
+
+/* Tablets and Larger Mobile (e.g., iPads ngang) */
 @media (max-width: 992px) {
-    .main-header .container {
-        flex-direction: column;
-        align-items: center;
+    .container {
+        max-width: 960px; /* Điều chỉnh max-width */
+        padding: 0 20px; /* Tăng padding hai bên */
+    }
+
+    .nav-menu {
+        display: none; /* Ẩn menu desktop */
+    }
+
+    .mobile-menu-toggle {
+        display: flex; /* Hiện nút hamburger */
+    }
+
+    .page-title {
+        padding: 50px 0;
+    }
+     .page-title h1 {
+        font-size: 30px; /* Giảm cỡ chữ tiêu đề */
+    }
+
+    .teams-container {
+        grid-template-columns: repeat(2, 1fr); /* Chuyển sang 2 cột */
+        gap: 20px; /* Giảm khoảng cách */
+    }
+    .team-image {
+        height: 160px; /* Có thể điều chỉnh chiều cao ảnh */
+    }
+    .team-name {
+        font-size: 17px;
+    }
+
+    .footer-widgets {
+        gap: 25px; /* Điều chỉnh khoảng cách widget */
+    }
+    .footer-widget {
+        min-width: calc(50% - 15px); /* Ướm 2 cột cho widget */
+        flex-basis: calc(50% - 15px); /* Ướm 2 cột cho widget */
+    }
+}
+
+/* Mobile Devices (Portrait) */
+@media (max-width: 767px) {
+    .container {
+        max-width: 100%; /* Full width */
+        padding: 0 15px; /* Giữ padding chuẩn */
+    }
+
+    .top-header .container {
+        flex-direction: column; /* Xếp chồng logo và auth links */
+        gap: 10px;
         text-align: center;
     }
-      
-    .main-nav ul {
+
+    .logo-container {
         justify-content: center;
+        width: 100%;
+        margin-bottom: 5px; /* Khoảng cách nhỏ */
+    }
+     .logo {
+        height: 35px; /* Logo nhỏ hơn */
+    }
+
+    .header-text {
+         display: none; /* Ẩn dòng text phụ nếu cần */
+    }
+
+    .auth-links {
+        justify-content: center;
+        width: 100%;
+        margin-top: 5px; /* Khoảng cách nhỏ */
+    }
+     .auth-link {
+        margin: 0 10px; /* Khoảng cách giữa Đăng ký/Đăng nhập */
+    }
+
+    .main-nav {
+        padding: 8px 0; /* Giảm padding nav chính */
+    }
+
+    .page-title {
+        padding: 40px 0;
+    }
+     .page-title h1 {
+        font-size: 24px; /* Cỡ chữ tiêu đề nhỏ hơn nữa */
+    }
+
+    .teams-grid {
+        padding: 30px 0; /* Giảm padding section */
+    }
+
+    .teams-container {
+        grid-template-columns: 1fr; /* Chuyển sang 1 cột */
+        gap: 20px;
+    }
+    .team-image {
+        height: 200px; /* Có thể tăng chiều cao ảnh ở chế độ 1 cột */
+    }
+    .team-name {
+        font-size: 18px; /* Giữ hoặc tăng nhẹ cỡ chữ tên đội */
+        padding: 15px;
+    }
+
+    .footer-widgets {
+        flex-direction: column; /* Xếp chồng các widget */
+        align-items: center; /* Căn giữa widget */
+        text-align: center; /* Căn giữa nội dung widget */
+        gap: 30px; /* Khoảng cách giữa các widget xếp chồng */
+    }
+    .footer-widget {
+         min-width: 100%; /* Widget chiếm toàn bộ chiều rộng */
+         flex-basis: auto; /* Reset flex-basis */
+         margin-bottom: 0;
+    }
+    .footer-widget h3 {
+        margin-bottom: 15px; /* Giảm khoảng cách dưới tiêu đề */
+    }
+    .footer-widget h3::after {
+         left: 50%; /* Căn giữa gạch chân */
+         transform: translateX(-50%);
+    }
+
+    .footer-social ul {
+        gap: 12px; /* Giảm khoảng cách icon */
+    }
+     .footer-social ul li a {
+        width: 36px; /* Icon nhỏ hơn */
+        height: 36px;
+        font-size: 16px;
+    }
+     .footer-social p {
+        font-size: 12px; /* Chữ copyright nhỏ hơn */
+     }
+}
+
+/* Very Small Mobile Devices (Optional Refinements) */
+@media (max-width: 480px) {
+    .page-title h1 {
+        font-size: 22px;
+    }
+    .team-name {
+        font-size: 16px;
+    }
+    .auth-link {
+        font-size: 13px; /* Có thể giảm cỡ chữ link đăng nhập/ký */
+    }
+    .store-links img {
+        height: 32px; /* Icon store nhỏ hơn */
     }
 }
 
-@media (max-width: 576px) {
-    .post-meta {
-        flex-direction: column;
-        gap: 5px;
-    }
-    
-    .footer-widgets {
-        flex-direction: column;
-    }
+/* Ensure FontAwesome icons are displayed (if using locally or via CDN) */
+.fab {
+    /* FontAwesome 5 Brands */
+    font-family: "Font Awesome 5 Brands", sans-serif; /* Cung cấp fallback */
+    font-weight: 400;
 }
+/* Add .fas or .far if you use Solid or Regular icons */

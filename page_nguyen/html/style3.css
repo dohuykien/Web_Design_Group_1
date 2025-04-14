@@ -5,12 +5,16 @@
     --primary: #e63946; /* Màu chính nổi bật */
     --primary-foreground: #ffffff;
     --secondary: #f1faee; /* Màu phụ nhẹ nhàng */
-    --secondary-foreground: #ffffff;
+    --secondary-foreground: #1E2430; /* Updated for topbar text - Changed for better contrast on #F59EA0 */
     --accent: #8b3d49;
     --accent-foreground: #ffffff;
-    --muted: #f9f9f9;
-    --muted-foreground: #959aa6;
+    --muted: #f2f2f2; /* Slightly adjusted muted color */
+    --muted-foreground: #777; /* Slightly darker muted text */
     --border: #e2e8f0;
+    --header-bg: #ffffff; /* White background for header */
+    --topbar-bg: #F59EA0; /* Defined topbar background */
+    --footer-bg: #1E2430; /* Defined footer background */
+    --footer-text: #ffffff; /* Defined footer text color */
 }
 
 * {
@@ -19,24 +23,46 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth; /* Optional: Smooth scrolling */
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     color: var(--foreground);
     background-color: var(--background);
+    line-height: 1.6; /* Improved readability */
+    /* Add padding-bottom to prevent content being hidden by fixed bottom nav */
+    /* Padding applied via media query */
+    min-height: 100vh; /* Ensure body takes full height */
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto Condensed', sans-serif;
     margin-top: 0;
+    margin-bottom: 0.75rem; /* Added default bottom margin */
+    line-height: 1.3; /* Consistent line height */
+    font-weight: 700; /* Default bold headings */
 }
 
 a {
     color: inherit;
     text-decoration: none;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+a:hover {
+    color: var(--primary); /* Default hover effect */
 }
 
 ul {
     list-style: none;
+}
+
+img {
+    max-width: 100%; /* Prevent images from overflowing containers */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove extra space below images */
 }
 
 .wrapper {
@@ -49,8 +75,14 @@ ul {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 1rem; /* Consistent horizontal padding */
 }
+/* Use container-fluid for full-width sections if needed */
+.container-fluid {
+    width: 100%;
+    padding: 0 1rem; /* Add padding similar to container */
+}
+
 
 .gray-bg {
     background-color: var(--background);
@@ -60,6 +92,7 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
 /* Button styles */
@@ -70,100 +103,167 @@ ul {
     font-weight: 600;
     text-align: center;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s; /* Thêm hiệu ứng chuyển tiếp */
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Thêm hiệu ứng chuyển tiếp */
+    border: none; /* Ensure buttons don't have borders */
+    line-height: 1.5; /* Ensure text vertical alignment */
+    font-family: 'Open Sans', sans-serif; /* Ensure consistent font */
 }
 
 .btn-primary {
     background-color: var(--primary);
     color: var(--primary-foreground);
     padding: 0.75rem 1.5rem;
-    font-size: 1.125rem;
+    font-size: 1.125rem; /* Slightly larger primary button */
 }
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--secondary-foreground);
+    color: var(--secondary-foreground); /* Color for topbar buttons */
+    border: 1px solid var(--secondary-foreground); /* Added border for visibility */
+}
+
+.btn-secondary:hover {
+    background-color: rgba(30, 36, 48, 0.1); /* Subtle hover for secondary */
+    color: var(--secondary-foreground); /* Keep color on hover */
 }
 
 .btn:hover {
-    background-color: var(--primary);
-    transform: translateY(-3px); /* Hiệu ứng nhấc lên khi hover */
+    transform: translateY(-2px); /* Less intense hover effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
 }
+
+.btn-primary:hover {
+    background-color: #d62828; /* Darker primary on hover */
+    color: var(--primary-foreground); /* Ensure text color remains */
+}
+
+/* Utility Classes */
+.mt-3 { margin-top: 1rem !important; }
+.mb-0 { margin-bottom: 0 !important; }
+.text-center { text-align: center !important; }
+
 
 /* Header styles */
 .main-header {
     width: 100%;
+    position: sticky; /* Make header sticky */
+    top: 0;
+    z-index: 1000; /* Ensure header stays on top */
+    background-color: var(--header-bg); /* Ensure background covers content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow */
 }
 
 .topbar {
-    background-color: #F59EA0;
+    background-color: var(--topbar-bg);
     color: var(--secondary-foreground);
     padding: 0.5rem 0;
+    font-size: 0.9rem; /* Slightly smaller topbar text */
+}
+
+.topbar .container .row {
+    min-height: 30px; /* Ensure minimum height */
+    gap: 1rem; /* Add gap for spacing */
 }
 
 .topsocial ul, .toplinks ul {
     display: flex;
     align-items: center;
+    gap: 0.5rem; /* Reduced gap */
 }
 
-.toplinks ul {
-    gap: 1rem;
+.topsocial {
+    flex-grow: 1; /* Allow social link to take space */
 }
 
 .logo-navbar {
-    background-color: #fff;
-    padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    /* background-color: var(--header-bg); Remove, already on main-header */
+    padding: 0.75rem 0; /* Slightly reduced padding */
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); Remove, already on main-header */
 }
 
-.logo-img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
+.logo a {
+    display: block; /* Ensure link covers image */
+}
+
+.logo img { /* Adjusted logo image selector */
+    width: 60px;
+    height: 60px;
+    /* Removed border-radius and object-fit as it's in the HTML */
 }
 
 .main-nav-container {
     flex: 1;
+    display: flex;
+    justify-content: flex-end; /* Align nav items to the right */
+    align-items: center; /* Align toggle button vertically */
 }
 
 .main-nav ul {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    gap: 2rem;
+    gap: 1.5rem; /* Adjusted gap */
 }
 
 .nav-item a {
     padding: 0.5rem 0;
     transition: color 0.3s ease;
+    font-weight: 600; /* Slightly bolder nav links */
+    color: var(--foreground); /* Default color */
 }
 
-.nav-item a:hover {
+.nav-item a:hover,
+.nav-item.active a { /* Style for active page link if needed */
     color: var(--primary);
 }
 
-.buy-ticket a {
+.buy-ticket a.btn { /* Be more specific */
     background-color: var(--primary);
     color: var(--primary-foreground);
     padding: 0.5rem 1rem;
-    border-radius: 4px;
+    border-radius: 50px; /* Consistent rounded style */
+    transition: background-color 0.3s;
+    border: none; /* Override potential btn border */
+}
+
+.buy-ticket a.btn:hover {
+    background-color: #d62828; /* Darker hover */
+    color: var(--primary-foreground);
+    transform: translateY(-2px); /* Add hover effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-nav-toggle {
-    display: none;
+    display: none; /* Hide by default */
     background: none;
     border: none;
     cursor: pointer;
+    padding: 0.5rem;
+    margin-left: 1rem; /* Space from nav items if they were visible */
+    z-index: 1001; /* Above main content, below mobile nav overlay if used */
 }
 
 .mobile-nav-toggle span {
     display: block;
     width: 25px;
     height: 3px;
-    background-color: var(--secondary);
+    background-color: var(--foreground); /* Use foreground color */
     margin: 5px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border-radius: 1px; /* Slightly rounded ends */
 }
+
+/* --- Mobile Nav Toggle Animation --- */
+.mobile-nav-toggle.is-active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.mobile-nav-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+}
+.mobile-nav-toggle.is-active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+/* --- End Mobile Nav Toggle Animation --- */
+
 
 /* Hero section */
 .hero-section {
@@ -173,14 +273,16 @@ ul {
 .hero-image {
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 450px; /* Slightly taller */
+    background-color: #333; /* Fallback color */
+    overflow: hidden; /* Ensure button elements don't overflow */
 }
 
 .hero-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.7);
+    filter: brightness(0.6); /* Slightly darker */
 }
 
 .hero-content {
@@ -192,285 +294,11 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1rem; /* Add padding */
 }
 
-.hero-content h1 {
-    color: white;
-    font-size: 3rem;
-    font-weight: 700;
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Thêm bóng cho chữ */
-}
-
-/* Team info section */
-.team-info {
-    background-color: white;
-    padding: 3rem 0;
-}
-
-.info-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.info-card {
-    padding: 1.5rem;
-    background-color: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    text-align: center;
-    transition: transform 0.3s; /* Hiệu ứng chuyển động cho card */
-}
-
-.info-card:hover {
-    transform: translateY(-5px); /* Nhấc card lên khi hover */
-}
-
-.icon-container {
-    margin: 0 auto 1rem;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--muted);
-    border-radius: 50%;
-    color: var(--primary);
-}
-
-.join-team-btn {
-    text-align: center;
-    margin-top: 2rem;
-}
-
-/* Members section */
-.members-section {
-    background-color: var(--muted);
-    padding: 3rem 0;
-    text-align: center;
-}
-
-.members-section h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-}
-
-.empty-state {
-    background-color: white;
-    padding: 3rem 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.empty-state p {
-    color: var(--muted-foreground);
-    margin-bottom: 0.5rem;
-    font-size: 1.125rem;
-}
-
-/* Uniform section */
-.uniform-section {
-    padding: 3rem 0;
-}
-
-.uniform-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.section-title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    padding-left: 0.75rem;
-    border-left: 4px solid var(--primary);
-}
-
-.uniform-card {
-    background-color: white;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.uniform-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #aaa;
-    padding: 2rem 0;
-}
-
-.uniform-placeholder p {
-    margin-top: 1rem;
-}
-
-/* Footer */
-.footer {
-    background-color: #1E2430;
-    color: white;
-    padding: 20px 0;
-    font-size: 16px;
-    margin-top: 50px;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Bóng cho footer */
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.footer-left, .footer-right {
-    flex: 1;
-}
-
-.footer-left p, .footer-right p {
-    margin: 20px 0;
-}
-
-.footer-apps {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.footer-apps img {
-    height: 40px;
-}
-
-.app-downloads {
-    display: flex;
-    align-items: center;
-    margin-top: 1rem;
-}
-
-.app-downloads img {
-    margin-right: 1rem;
-}
-
-.company-name {
-    font-weight: 600;
-}
-
-/* Mobile navigation */
-.mobile-nav {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
-    padding: 2rem 1rem;
-}
-
-.mobile-nav ul {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.mobile-nav a {
-    display: block;
-    padding: 0.75rem 1rem;
-    color: white;
-    font-size: 1.125rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.mobile-nav .buy-ticket a {
-    background-color: var(--primary);
-    border-radius: 4px;
-}
-
-/* Bottom mobile navigation */
-.navigation-mb {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: white;
-    border-top: 1px solid var(--border);
-    z-index: 999;
-}
-
-.navigation-mb ul {
-    display: flex;
-    justify-content: space-between;
-}
-
-.navigation-mb .list {
-    flex: 1;
-    text-align: center;
-}
-
-.navigation-mb a {
-    display: block;
-    padding: 0.75rem 0.5rem;
-}
-
-.navigation-mb .text {
-    display: block;
-    font-size: 0.75rem;
-    margin-top: 0.25rem;
-}
-
-/* Media queries */
-@media (max-width: 768px) {
-    .row {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .toplinks ul {
-        justify-content: center;
-    }
-    
-    .logo-navbar .row {
-        flex-direction: row;
-    }
-    
-    .main-nav {
-        display: none;
-    }
-    
-    .mobile-nav-toggle {
-        display: block;
-    }
-    
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    
-    .navigation-mb {
-        display: block;
-    }
-    
-    /* Adjust padding to accommodate bottom navigation */
-    body {
-        padding-bottom: 60px;
-    }
-}
-
-@media (min-width: 769px) {
-    .mobile-nav-toggle {
-        display: none;
-    }
-    
-    .mobile-nav {
-        display: none !important;
-    }
-}
-
-button {
+/* --- Hero Button Styling --- */
+.hero-content button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -481,73 +309,695 @@ button {
     text-transform: uppercase;
     cursor: pointer;
     border: none;
-    font-weight: 600;
+    font-weight: 700; /* Bolder */
     font-size: 17px;
     background: linear-gradient(45deg, #fdd835, #e53935);
     border-radius: 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* Important for the animation */
     transition: all 0.3s ease;
+    font-family: 'Roboto Condensed', sans-serif; /* Match headings */
 }
 
-button:hover {
+.hero-content button:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 }
 
-button:active {
+.hero-content button:active {
     transform: scale(0.95);
     transition: all 100ms ease;
 }
 
-button svg {
-    transition: all 0.5s ease;
+.hero-content button svg {
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Added easing */
     z-index: 2;
+    flex-shrink: 0; /* Prevent SVG from shrinking */
 }
 
-button:hover svg {
-    transform: scale(3) translate(50%);
-}
-
-.now {
+/* State before hover */
+.hero-content .now {
     position: absolute;
-    left: 0;
-    transform: translateX(-100%);
-    transition: all 0.5s ease;
+    left: 50%; /* Start centered */
+    top: 50%;
+    transform: translate(-50%, -50%); /* Center precisely */
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     z-index: 2;
     font-size: 15px;
     display: flex;
     align-items: center;
     gap: 10px;
-    color:#EFBF4D;
-    padding: 0.75rem 1.5rem; /* Padding cho chữ */
-}
-.play {
-    color: #FFA01B; 
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7),
-                 -2px -2px 5px rgba(255, 255, 255, 0.3); 
-    font-size: 20px; 
-    font-weight: bold; 
-    transition: text-shadow 0.3s ease, color 0.3s ease; 
-    opacity: 0.7;
+    color:#EFBF4D; /* Changed color slightly */
+    font-weight: 600;
+    white-space: nowrap; /* Prevent wrapping */
+    opacity: 0; /* Hide initially */
+    padding: 0 1.5rem; /* Add padding for spacing */
 }
 
-button:hover .play {
-    color: #e53935; /* Đổi màu chữ khi hover */
-    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9), /* Bóng đậm hơn khi hover */
-                 -3px -3px 10px rgba(255, 255, 255, 0.5); /* Bóng sáng hơn khi hover */
+.hero-content .play {
+    color: var(--primary-foreground); /* Use white initially */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* Adjusted shadow */
+    font-size: 18px; /* Slightly adjusted */
+    font-weight: bold;
+    transition: all 0.4s ease; /* Adjust timing */
+    opacity: 1; /* Make it fully visible */
+    white-space: nowrap; /* Prevent wrapping */
+    z-index: 1; /* Ensure it's behind SVG/Now on hover transition */
+    display: block; /* Ensure it takes space */
 }
 
-button:hover .now {
-    transform: translateX(10px);
-    transition-delay: 300ms;
+/* Hover state */
+.hero-content button:hover svg {
+    transform: scale(3) translateX(60%); /* Adjust translate */
 }
 
-button:hover .play {
-    transform: translateX(200%);
-    transition-delay: 300ms;
+.hero-content button:hover .now {
+    transform: translate(0, -50%); /* Slide in from left */
+    left: 1.5rem; /* Position inside the button */
+    opacity: 1;
+    transition-delay: 0.1s; /* Delay slightly */
 }
-button svg rect {
-    display: none;
+
+.hero-content button:hover .play {
+    opacity: 0;
+    transform: translateX(20px); /* Move out slightly */
+    transition-delay: 0s; /* Hide immediately */
+}
+
+/* --- End Hero Button Styling --- */
+
+
+/* Main Content */
+main {
+    flex-grow: 1; /* Allow main to take up available space */
+}
+
+/* Team info section */
+.team-info {
+    background-color: var(--header-bg); /* Use white background */
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border); /* Add separator */
+}
+
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Explicitly 3 columns on desktop */
+    gap: 1.5rem;
+    margin-bottom: 2.5rem; /* Increased margin */
+}
+
+.info-card {
+    padding: 1.5rem;
+    background-color: var(--header-bg);
+    border-radius: 8px; /* Slightly larger radius */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07); /* Softer shadow */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smoother transition */
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack icon and text */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center vertically */
+}
+
+.info-card:hover {
+    transform: translateY(-5px); /* Keep hover effect */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Enhance shadow on hover */
+}
+
+.icon-container {
+    margin-bottom: 1rem; /* Keep margin */
+    width: 60px; /* Slightly smaller icon container */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--muted);
+    border-radius: 50%;
+    color: var(--primary);
+    flex-shrink: 0; /* Prevent shrinking */
+}
+.icon-container svg {
+    width: 28px; /* Adjust icon size */
+    height: 28px;
+}
+
+.info-card h3 {
+    font-size: 1.1rem; /* Adjust heading size */
+    font-weight: 600;
+    color: var(--foreground);
+    margin-bottom: 0; /* Remove bottom margin */
+    line-height: 1.4; /* Adjust line height */
+}
+
+.join-team-btn {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Members section */
+.members-section {
+    background-color: var(--background); /* Use main background color */
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.members-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2.5rem; /* Increased margin */
+    color: var(--foreground);
+}
+
+.empty-state {
+    background-color: var(--header-bg); /* White background */
+    padding: 3rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    max-width: 600px; /* Limit width */
+    margin: 0 auto; /* Center */
+}
+
+.empty-state p {
+    color: var(--muted-foreground);
+    margin-bottom: 1rem; /* Space between paragraphs */
+    font-size: 1.1rem; /* Slightly larger text */
+    line-height: 1.7;
+}
+
+.empty-state p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* Uniform section */
+.uniform-section {
+    padding: 3rem 0;
+    background-color: var(--header-bg); /* White background */
+}
+
+.uniform-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Explicitly 2 columns */
+    gap: 2.5rem; /* Increased gap */
+}
+
+.home-uniform, .away-uniform {
+    text-align: center; /* Center titles */
+}
+
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    padding-left: 0; /* Remove padding */
+    border-left: none; /* Remove border */
+    display: inline-block; /* Allow centering */
+    position: relative; /* For pseudo-element */
+}
+
+/* Optional: Add underline style to title */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary);
+    margin: 0.5rem auto 0; /* Center the underline */
+}
+
+.uniform-card {
+    background-color: var(--header-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+}
+
+.uniform-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted-foreground);
+    padding: 1rem 0; /* Reduced padding */
+}
+
+.uniform-placeholder img {
+    /* Width/height set in HTML, use max-width/height here for safety */
+    max-width: 180px;
+    max-height: 180px;
+    width: auto; /* Let HTML attribute define initial */
+    height: auto; /* Let HTML attribute define initial */
+    object-fit: contain; /* Ensure image fits well */
+    margin-bottom: 1rem; /* Space below image */
+    border: 1px solid var(--border); /* Add subtle border */
+    border-radius: 4px;
+}
+
+.uniform-placeholder p {
+    margin-top: 0.5rem; /* Reduced margin */
+    font-style: normal; /* Changed from italic */
+    color: var(--foreground); /* Darker text */
+    font-weight: 600;
+}
+
+
+/* Footer */
+.footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    padding: 2.5rem 0 1.5rem 0; /* Adjust padding */
+    font-size: 0.9rem; /* Slightly smaller footer text */
+    margin-top: auto; /* Push footer to bottom in flex column */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 2rem; /* Add gap between columns */
+    max-width: 1200px; /* Match container */
+    margin: 0 auto; /* Center */
+    padding: 0 1rem; /* Add padding */
+}
+
+.footer-left, .footer-right {
+    flex: 1;
+    min-width: 280px; /* Minimum width before wrapping */
+}
+
+.footer-left p, .footer-right p {
+    margin: 0.5rem 0; /* Consistent margin */
+    display: flex; /* Align icons and text */
+    align-items: center;
+    gap: 0.75rem; /* Increased space between icon and text */
+    line-height: 1.6; /* Improved line height */
+}
+
+.footer-left p i, .footer-right p i {
+    width: 18px; /* Fixed width for icons */
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7); /* Slightly muted icons */
+    flex-shrink: 0; /* Prevent icon shrinking */
+}
+
+.footer-apps {
+    display: flex;
+    gap: 10px;
+    margin-top: 1rem;
+    flex-wrap: wrap; /* Allow wrapping if needed */
+}
+
+.footer-apps img {
+    height: 40px;
+    width: auto; /* Maintain aspect ratio */
+    border-radius: 4px; /* Slightly rounded corners */
+}
+
+.footer .text-center {
+    margin-top: 2rem; /* Space above copyright */
+    padding-top: 1.5rem; /* Space */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Separator line */
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+.footer .text-center p { /* Ensure footer copyright p has no extra margin */
+    margin-bottom: 0;
+}
+
+/* Mobile navigation */
+.mobile-nav {
+    display: block; /* Use block but transform it */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 85%; /* Don't cover full screen */
+    max-width: 320px; /* Max width */
+    height: 100%; /* Full viewport height */
+    background-color: var(--footer-bg); /* Use footer-like background */
+    color: var(--footer-text);
+    z-index: 1050; /* Above header */
+    padding: 6rem 1rem 2rem 1rem; /* Padding top adjusted for sticky header, bottom */
+    overflow-y: auto; /* Allow scrolling if content exceeds height */
+    transform: translateX(-100%); /* Start off-screen */
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1); /* Smooth slide */
+    box-shadow: 5px 0 15px rgba(0,0,0,0.2); /* Add shadow */
+}
+
+.mobile-nav.is-active { /* Class added by JS to show menu */
+    transform: translateX(0);
+}
+
+.mobile-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem; /* Tighter gap */
+}
+
+.mobile-nav .nav-item a { /* Target specific links */
+    display: block;
+    padding: 0.75rem 1rem;
+    color: white;
+    font-size: 1.1rem; /* Slightly smaller font */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+    font-weight: 600; /* Match desktop */
+}
+
+.mobile-nav .nav-item a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white; /* Keep color */
+}
+
+.mobile-nav .nav-item:last-child a {
+     border-bottom: none; /* Remove border from last item */
+}
+
+.mobile-nav .buy-ticket a.btn { /* Specific styling for button */
+    background-color: var(--primary);
+    border-radius: 50px;
+    text-align: center;
+    margin-top: 1.5rem; /* Space above button */
+    border-bottom: none; /* Remove border */
+    color: var(--primary-foreground);
+    padding: 0.75rem 1rem;
+    display: block; /* Make it full width within padding */
+}
+
+.mobile-nav .buy-ticket a.btn:hover {
+    background-color: #d62828;
+    box-shadow: none; /* Remove box shadow for mobile nav button */
+    transform: none; /* Remove transform */
+}
+
+
+/* Bottom mobile navigation */
+.navigation-mb {
+    display: none; /* Hidden by default on larger screens */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--header-bg); /* White background */
+    border-top: 1px solid var(--border);
+    z-index: 990; /* High z-index but below mobile nav overlay */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.05); /* Subtle shadow */
+}
+
+.navigation-mb ul {
+    display: flex;
+    justify-content: space-around; /* Distribute items evenly */
+}
+
+.navigation-mb .list {
+    flex: 1;
+    text-align: center;
+}
+
+.navigation-mb a {
+    display: flex; /* Use flex for icon and text */
+    flex-direction: column; /* Stack icon and text */
+    align-items: center; /* Center items */
+    justify-content: center; /* Center vertically */
+    padding: 0.5rem 0.25rem; /* Adjust padding */
+    color: var(--muted-foreground); /* Muted color */
+    transition: color 0.3s ease;
+    min-height: 55px; /* Ensure consistent height */
+    font-size: 0.7rem; /* Base size for text */
+}
+
+/* Using Font Awesome icons */
+.navigation-mb a i {
+    font-size: 1.2rem; /* Icon size */
+    margin-bottom: 0.15rem; /* Space between icon and text */
+    line-height: 1; /* Prevent extra icon height */
+}
+
+.navigation-mb a:hover,
+.navigation-mb .list.active a { /* Style for active/hover */
+    color: var(--primary);
+}
+
+.navigation-mb .text {
+    display: block;
+    /* font-size: 0.7rem; Set on anchor */
+    margin-top: 0; /* Remove margin as flex handles spacing */
+    line-height: 1.2; /* Adjust line height */
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+/* ============================================ */
+/*            RESPONSIVE ADJUSTMENTS            */
+/* ============================================ */
+
+/* Medium Devices (Tablets, etc.) */
+@media (max-width: 992px) {
+    .container, .footer-container {
+        max-width: 960px; /* Adjust container width */
+    }
+
+    .main-nav ul {
+        gap: 1rem; /* Reduce gap in main nav */
+    }
+
+    .info-cards {
+        /* Switch to 2 columns or use auto-fit */
+        /* grid-template-columns: repeat(2, 1fr); */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .uniform-grid {
+        gap: 1.5rem; /* Reduce gap */
+    }
+
+    .hero-image {
+        height: 400px; /* Slightly shorter hero */
+    }
+}
+
+
+/* Small Devices (Tablets Portrait, Large Phones Landscape) */
+@media (max-width: 768px) {
+    body {
+        font-size: 15px; /* Slightly smaller base font */
+        padding-bottom: 60px; /* Ensure space for bottom nav */
+    }
+
+    .container, .container-fluid, .footer-container {
+        padding: 0 0.75rem; /* Reduce horizontal padding */
+    }
+
+    /* --- Header Adjustments --- */
+    .topbar {
+        font-size: 0.8rem;
+        padding: 0.3rem 0; /* Reduce padding */
+    }
+     .topbar .container .row {
+        justify-content: center; /* Center topbar items */
+        gap: 1rem;
+    }
+    .topsocial {
+        flex-grow: 0; /* Don't let it grow */
+    }
+
+    .main-nav {
+        display: none; /* Hide desktop navigation */
+    }
+
+    .mobile-nav-toggle {
+        display: block; /* Show hamburger icon */
+    }
+
+    .logo-navbar .container .row {
+        justify-content: space-between; /* Keep logo left, toggle right */
+    }
+    .logo img {
+         width: 55px; /* Slightly smaller logo */
+         height: 55px;
+    }
+
+
+    /* --- Hero Adjustments --- */
+    .hero-image {
+        height: 300px; /* Significantly shorter hero */
+    }
+     .hero-content button {
+        font-size: 15px; /* Smaller button text */
+        padding: 0.6rem 1.2rem;
+    }
+     .hero-content button svg {
+        width: 30px;
+        height: 30px;
+    }
+    .hero-content .play {
+        font-size: 16px; /* Adjusted */
+    }
+     .hero-content .now {
+        font-size: 14px;
+        padding: 0 1.2rem; /* Adjust padding */
+    }
+
+    /* --- Info Cards Adjustments --- */
+    .team-info {
+        padding: 2rem 0;
+    }
+    .info-cards {
+        grid-template-columns: 1fr; /* Stack cards vertically */
+        gap: 1rem;
+    }
+    .info-card {
+        padding: 1.25rem; /* Adjust padding */
+    }
+
+    /* --- Members Section Adjustments --- */
+    .members-section {
+        padding: 2rem 0;
+    }
+     .members-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem; /* Adjust margin */
+    }
+    .empty-state {
+        padding: 2rem 1rem;
+    }
+     .empty-state p {
+         font-size: 1rem; /* Adjust font size */
+     }
+
+    /* --- Uniform Section Adjustments --- */
+     .uniform-section {
+        padding: 2rem 0;
+    }
+    .uniform-grid {
+        grid-template-columns: 1fr; /* Stack uniforms vertically */
+        gap: 2rem; /* Increase gap when stacked */
+    }
+     .section-title {
+        font-size: 1.3rem;
+        margin-bottom: 1.25rem; /* Adjust */
+    }
+     .uniform-placeholder img {
+        /* Keep HTML size but ensure max */
+        max-width: 150px;
+        max-height: 150px;
+    }
+
+    /* --- Footer Adjustments --- */
+    .footer {
+        padding: 2rem 0 1rem 0;
+    }
+    .footer-container {
+        flex-direction: column; /* Stack footer columns */
+        text-align: center; /* Center text */
+        gap: 1.5rem;
+    }
+    .footer-left p, .footer-right p {
+        justify-content: center; /* Center icon + text */
+        text-align: center; /* Ensure text itself is centered */
+        font-size: 0.85rem; /* Slightly smaller */
+    }
+     .footer-apps {
+        justify-content: center; /* Center app icons */
+    }
+     .footer .text-center {
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+    }
+
+    /* --- Show Bottom Navigation --- */
+    .navigation-mb {
+        display: block; /* Show bottom navigation */
+    }
+
+}
+
+/* Extra Small Devices (Phones Portrait) */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+        padding-bottom: 55px; /* Adjust for potentially smaller bottom nav */
+    }
+
+    .container, .container-fluid, .footer-container {
+        padding: 0 0.5rem;
+    }
+
+    .btn-primary {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    }
+
+    .topbar .container .row {
+        flex-direction: column; /* Stack topbar items fully */
+        gap: 0.5rem;
+        padding: 0.5rem 0; /* Add padding when stacked */
+    }
+     .topbar .toplinks ul {
+        gap: 0.3rem;
+        justify-content: center; /* Center buttons */
+    }
+     .topbar .btn-secondary {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9em;
+    }
+
+
+    .logo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .hero-image {
+        height: 250px;
+    }
+    .hero-content button {
+        font-size: 14px;
+        padding: 0.5rem 1rem;
+        gap: 5px;
+    }
+    .hero-content button svg {
+        width: 24px;
+        height: 24px;
+    }
+     .hero-content .play {
+        font-size: 14px; /* Adjusted */
+    }
+     .hero-content .now {
+        font-size: 13px;
+        padding: 0 1rem; /* Adjust padding */
+    }
+
+
+    .info-card h3 {
+        font-size: 1rem;
+    }
+     .icon-container {
+        width: 50px;
+        height: 50px;
+    }
+     .icon-container svg {
+        width: 24px;
+        height: 24px;
+    }
+
+     .section-title {
+        font-size: 1.2rem;
+    }
+     .section-title::after {
+         width: 40px; /* Smaller underline */
+         height: 2px;
+     }
+
+    /* Adjust bottom nav text size if needed */
+    .navigation-mb a {
+        padding: 0.4rem 0.1rem; /* Further adjust padding */
+        font-size: 0.65rem; /* Smaller text */
+        min-height: 50px; /* Adjust height */
+    }
+    .navigation-mb a i {
+        font-size: 1.1rem; /* Smaller icons */
+    }
+     .footer-left p, .footer-right p {
+         font-size: 0.8rem; /* Even smaller footer text */
+     }
 }
