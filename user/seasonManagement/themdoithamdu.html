@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="/user/css/userheader.css" />
     <link rel="stylesheet" href="/user/css/userfooter.css" />
 
+    <link rel="stylesheet" href="/user/seasonManagement/css/management-actions.css"/>
+
+
     <style>
         * {
           margin: 0;
@@ -44,56 +47,6 @@
         }
         .content {
             background-color: #ecf0f5;
-        }
-        /* Container cho các nút */
-        .management-actions {
-            background-color: #ecf0f5;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px; /* Khoảng cách giữa các nút */
-            justify-content: center;
-            padding: 10px 10px;
-        }
-
-        /* Style cho từng nút (thẻ a) */
-        .action-button {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center; /* Căn giữa theo chiều dọc */
-            background-color: #5cb85c; /* Màu xanh lá cây như trong ảnh */
-            color: white;
-            padding: 20px 15px; /* Khoảng cách bên trong nút */
-            border-radius: 8px; /* Bo góc nhẹ */
-            text-decoration: none; /* Bỏ gạch chân link */
-            text-align: center;
-            min-width: 140px; /* Chiều rộng tối thiểu cho mỗi nút */
-            min-height: 100px; /* Chiều cao tối thiểu */
-            transition: background-color 0.2s ease, transform 0.2s ease; /* Hiệu ứng chuyển đổi */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ */
-            border: none; /* Bỏ viền mặc định */
-            flex: 1;
-            max-width: 150px;
-        }
-
-        .action-button:hover {
-            background-color: #4eab4e;
-            transform: translateY(-3px); /* Hiệu ứng nhấc lên nhẹ */
-            cursor: pointer;
-        }
-
-        .action-button i {
-            font-size: 2.5em; /* Kích thước icon */
-            margin-bottom: 12px; /* Khoảng cách giữa icon và chữ */
-            line-height: 1; /* Đảm bảo icon không chiếm thêm chiều cao */
-        }
-
-        /* Style cho chữ */
-        .action-button span {
-            font-size: 13px; /* Kích thước chữ */
-            font-weight: 600; /* Chữ hơi đậm */
-            text-transform: uppercase; /* Viết hoa chữ */
-            line-height: 1.3;
         }
         .content-wrapper {
             flex: 1;

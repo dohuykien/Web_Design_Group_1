@@ -165,10 +165,10 @@
     }
 
     .content-wrapper {
-        overflow-x: hidden; /* Prevent accidental horizontal scroll */
+        overflow-x: hidden; 
     }
     .list-league {
-        margin-top: 76px; /* Maybe reduce gap slightly on mobile */
+        margin-top: 76px; 
     }
     .list-league {
         flex-direction: column; /* Stack title and toolbar */
@@ -179,5 +179,6 @@
     .list-league_left {
         text-align: center; /* Center title */
     }
+    
 
 }
