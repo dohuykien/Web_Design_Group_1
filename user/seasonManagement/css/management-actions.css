@@ -58,4 +58,8 @@
     .list-league {
         margin-top: 0px; 
     }
+    .action-button {
+        min-width: 100px;
+        min-height: 80px;
+    }
 }
