@@ -1,0 +1,553 @@
+/* Base styles */
+:root {
+    --background: #f9f9f9; /* Màu nền sáng hơn */
+    --foreground: #333; /* Màu chữ tối hơn */
+    --primary: #e63946; /* Màu chính nổi bật */
+    --primary-foreground: #ffffff;
+    --secondary: #f1faee; /* Màu phụ nhẹ nhàng */
+    --secondary-foreground: #ffffff;
+    --accent: #8b3d49;
+    --accent-foreground: #ffffff;
+    --muted: #f9f9f9;
+    --muted-foreground: #959aa6;
+    --border: #e2e8f0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--foreground);
+    background-color: var(--background);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto Condensed', sans-serif;
+    margin-top: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.gray-bg {
+    background-color: var(--background);
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 50px; /* Bo tròn các nút */
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; /* Thêm hiệu ứng chuyển tiếp */
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--secondary-foreground);
+}
+
+.btn:hover {
+    background-color: var(--primary);
+    transform: translateY(-3px); /* Hiệu ứng nhấc lên khi hover */
+}
+
+/* Header styles */
+.main-header {
+    width: 100%;
+}
+
+.topbar {
+    background-color: #F59EA0;
+    color: var(--secondary-foreground);
+    padding: 0.5rem 0;
+}
+
+.topsocial ul, .toplinks ul {
+    display: flex;
+    align-items: center;
+}
+
+.toplinks ul {
+    gap: 1rem;
+}
+
+.logo-navbar {
+    background-color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logo-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.main-nav-container {
+    flex: 1;
+}
+
+.main-nav ul {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 2rem;
+}
+
+.nav-item a {
+    padding: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+.nav-item a:hover {
+    color: var(--primary);
+}
+
+.buy-ticket a {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.mobile-nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--secondary);
+    margin: 5px 0;
+}
+
+/* Hero section */
+.hero-section {
+    width: 100%;
+}
+
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content h1 {
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Thêm bóng cho chữ */
+}
+
+/* Team info section */
+.team-info {
+    background-color: white;
+    padding: 3rem 0;
+}
+
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.info-card {
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s; /* Hiệu ứng chuyển động cho card */
+}
+
+.info-card:hover {
+    transform: translateY(-5px); /* Nhấc card lên khi hover */
+}
+
+.icon-container {
+    margin: 0 auto 1rem;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--muted);
+    border-radius: 50%;
+    color: var(--primary);
+}
+
+.join-team-btn {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Members section */
+.members-section {
+    background-color: var(--muted);
+    padding: 3rem 0;
+    text-align: center;
+}
+
+.members-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.empty-state {
+    background-color: white;
+    padding: 3rem 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.empty-state p {
+    color: var(--muted-foreground);
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+}
+
+/* Uniform section */
+.uniform-section {
+    padding: 3rem 0;
+}
+
+.uniform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    padding-left: 0.75rem;
+    border-left: 4px solid var(--primary);
+}
+
+.uniform-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.uniform-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    padding: 2rem 0;
+}
+
+.uniform-placeholder p {
+    margin-top: 1rem;
+}
+
+/* Footer */
+.footer {
+    background-color: #1E2430;
+    color: white;
+    padding: 20px 0;
+    font-size: 16px;
+    margin-top: 50px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1); /* Bóng cho footer */
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-left, .footer-right {
+    flex: 1;
+}
+
+.footer-left p, .footer-right p {
+    margin: 20px 0;
+}
+
+.footer-apps {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.footer-apps img {
+    height: 40px;
+}
+
+.app-downloads {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.app-downloads img {
+    margin-right: 1rem;
+}
+
+.company-name {
+    font-weight: 600;
+}
+
+/* Mobile navigation */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    padding: 2rem 1rem;
+}
+
+.mobile-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.mobile-nav a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: white;
+    font-size: 1.125rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-nav .buy-ticket a {
+    background-color: var(--primary);
+    border-radius: 4px;
+}
+
+/* Bottom mobile navigation */
+.navigation-mb {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid var(--border);
+    z-index: 999;
+}
+
+.navigation-mb ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navigation-mb .list {
+    flex: 1;
+    text-align: center;
+}
+
+.navigation-mb a {
+    display: block;
+    padding: 0.75rem 0.5rem;
+}
+
+.navigation-mb .text {
+    display: block;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .toplinks ul {
+        justify-content: center;
+    }
+    
+    .logo-navbar .row {
+        flex-direction: row;
+    }
+    
+    .main-nav {
+        display: none;
+    }
+    
+    .mobile-nav-toggle {
+        display: block;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .navigation-mb {
+        display: block;
+    }
+    
+    /* Adjust padding to accommodate bottom navigation */
+    body {
+        padding-bottom: 60px;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-nav-toggle {
+        display: none;
+    }
+    
+    .mobile-nav {
+        display: none !important;
+    }
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    font-size: 17px;
+    background: linear-gradient(45deg, #fdd835, #e53935);
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: scale(0.95);
+    transition: all 100ms ease;
+}
+
+button svg {
+    transition: all 0.5s ease;
+    z-index: 2;
+}
+
+button:hover svg {
+    transform: scale(3) translate(50%);
+}
+
+.now {
+    position: absolute;
+    left: 0;
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+    z-index: 2;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color:#EFBF4D;
+    padding: 0.75rem 1.5rem; /* Padding cho chữ */
+}
+.play {
+    color: #FFA01B; 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7),
+                 -2px -2px 5px rgba(255, 255, 255, 0.3); 
+    font-size: 20px; 
+    font-weight: bold; 
+    transition: text-shadow 0.3s ease, color 0.3s ease; 
+    opacity: 0.7;
+}
+
+button:hover .play {
+    color: #e53935; /* Đổi màu chữ khi hover */
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9), /* Bóng đậm hơn khi hover */
+                 -3px -3px 10px rgba(255, 255, 255, 0.5); /* Bóng sáng hơn khi hover */
+}
+
+button:hover .now {
+    transform: translateX(10px);
+    transition-delay: 300ms;
+}
+
+button:hover .play {
+    transform: translateX(200%);
+    transition-delay: 300ms;
+}
+button svg rect {
+    display: none;
+}
