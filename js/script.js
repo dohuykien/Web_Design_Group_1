@@ -1,6 +1,63 @@
-document.getElementById("menu-toggle").addEventListener("click", function () {
-    document.querySelector(".navbar-collapse").classList.toggle("active");
+document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mainMenu = document.getElementById('main-menu');
+    const closeMenu = document.getElementById('close-menu');
+    const authToggle = document.getElementById('auth-toggle');
+    const authDropdown = document.getElementById('auth-dropdown');
+  
+    // 👉 Toggle menu trái
+    menuToggle.addEventListener('click', () => {
+      mainMenu.classList.add('active');
+      document.body.classList.add('menu-overlay-active');
+    });
+  
+    closeMenu.addEventListener('click', () => {
+      mainMenu.classList.remove('active');
+      document.body.classList.remove('menu-overlay-active');
+    });
+  
+    // 👉 Bấm ra ngoài để đóng menu trái
+    document.addEventListener('click', function (e) {
+      if (
+        mainMenu.classList.contains('active') &&
+        !mainMenu.contains(e.target) &&
+        !menuToggle.contains(e.target)
+      ) {
+        mainMenu.classList.remove('active');
+        document.body.classList.remove('menu-overlay-active');
+      }
+    });
+  
+    // 👉 Toggle auth dropdown bên phải
+    authToggle.addEventListener('click', () => {
+      authDropdown.classList.toggle('active');
+    });
+  
+    // 👉 Bấm ra ngoài để đóng auth menu
+    document.addEventListener('click', (e) => {
+      if (
+        !authToggle.contains(e.target) &&
+        !authDropdown.contains(e.target)
+      ) {
+        authDropdown.classList.remove('active');
+      }
+    });
   });
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
   
 
 // -------------------------------- Login Logout -----------------
@@ -20,10 +77,18 @@ document.getElementById("menu-toggle").addEventListener("click", function () {
 const loginModal = document.getElementById("loginout");
 const openLoginBtn = document.getElementById("openLoginBtn");
 const closeBtn = document.querySelector(".close-btn");
+const openRegisterBtn = document.getElementById("openRegisterBtn");
 
 // Khi bấm nút Đăng Nhập -> Hiện modal
 openLoginBtn.addEventListener("click", () => {
     loginModal.style.display = "flex";
+    container.classList.remove("active"); // Hiện giao diện Đăng Nhập
+});
+
+// Khi bấm nút Đăng Ký trong dropdown
+openRegisterBtn.addEventListener("click", () => {
+    loginModal.style.display = "flex";
+    container.classList.add("active"); // Hiện giao diện Đăng Ký
 });
 
 // Khi bấm nút X -> Ẩn modal
@@ -37,6 +102,8 @@ window.addEventListener("click", (event) => {
         loginModal.style.display = "none";
     }
 });
+
+
 
 
 
@@ -130,18 +197,20 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ------------------------ --------------------------
-document.getElementById("xemChiTiet").addEventListener("click", function (event) {
-    event.preventDefault(); // Ngăn hành vi mặc định của thẻ <a>
+document.querySelectorAll(".xemChiTiet").forEach(a => {
+    a.addEventListener("click", function (event) {
+        event.preventDefault();
 
-    // Tìm menu "Thống Kê - Xếp Hạng"
-    const tkxhMenu = Array.from(document.querySelectorAll(".league-menu-item"))
-        .find(item => item.textContent.trim() === "Thống Kê - Xếp Hạng");
+        const tkxhMenu = Array.from(document.querySelectorAll(".league-menu-item"))
+            .find(item => item.textContent.trim() === "Thống Kê - Xếp Hạng");
 
-    if (tkxhMenu) {
-        tkxhMenu.click(); // Kích hoạt sự kiện click của menu
-        tkxhMenu.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
+        if (tkxhMenu) {
+            tkxhMenu.click();
+            tkxhMenu.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+    });
 });
+
 
 
 // ----------------------------------- Slider Logo Detail ---------------------
@@ -282,4 +351,194 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
+
+function goBack() {
+    window.history.back(); // Quay lại trang trước đó
+}
+// Giả lập dữ liệu đội bóng (sau này có thể lấy từ API hoặc localStorage)
+document.addEventListener("DOMContentLoaded", function () {
+    const teamInfo = JSON.parse(localStorage.getItem("selectedTeam")) || {
+        name: "IT65A",
+        coach: "Ngô Hữu Nghĩa",
+        members: 13,
+        matches: [
+            { date: "14-03-2025", time: "08:00", match: "IT65A 4 - 0 CS65", field: "Sân A" },
+            { date: "16-03-2025", time: "08:30", match: "IT65B 2 - 4 IT65A", field: "Định Công 2" },
+            { date: "14-03-2025", time: "08:00", match: "IT65A 11 - 1 IT66A", field: "Sân B" }
+        ]
+    };
+
+    document.getElementById("team-name").textContent = teamInfo.name;
+    document.getElementById("coach-name").textContent = teamInfo.coach;
+    document.getElementById("members-count").textContent = teamInfo.members;
+
+    let matchTable = document.getElementById("match-data");
+    matchTable.innerHTML = "";
+    teamInfo.matches.forEach(match => {
+        let row = `<tr>
+            <td>${match.date}</td>
+            <td>${match.time}</td>
+            <td>${match.match}</td>
+            <td>${match.field}</td>
+        </tr>`;
+        matchTable.innerHTML += row;
+    });
+});
+
+
+
+// 
+function saveTeamData(name, coach, members) {
+    let teamData = {
+        name: name,
+        coach: coach,
+        members: members,
+        matches: [
+            { date: "14-03-2025", time: "08:00", match: name + " 4 - 0 CS65", field: "Sân A" },
+            { date: "16-03-2025", time: "08:30", match: "IT65B 2 - 4 " + name, field: "Định Công 2" },
+            { date: "14-03-2025", time: "08:00", match: name + " 11 - 1 IT66A", field: "Sân B" }
+        ]
+    };
+    localStorage.setItem("selectedTeam", JSON.stringify(teamData));
+}
+
+
+
+
+// 
+document.addEventListener("DOMContentLoaded", function () {
+    const img = document.querySelector(".pull-right img");
+    const modal = document.getElementById("modal-nockout");
+    const closeButton = document.querySelector(".close");
+    const body = document.body;
+
+    if (img && modal) {
+        img.addEventListener("click", function () {
+            modal.style.display = "block";
+            modal.classList.add("show");
+            modal.setAttribute("aria-hidden", "false");
+            body.classList.add("modal-open"); // Làm mờ nền
+            body.style.overflow = "hidden"; // Chặn cuộn trang
+        });
+    }
+
+    if (closeButton) {
+        closeButton.addEventListener("click", function () {
+            closeModal();
+        });
+    }
+
+    // Đóng modal khi nhấp ra ngoài hoặc nhấn phím ESC
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closeModal();
+        }
+    });
+
+    function closeModal() {
+        modal.style.display = "none";
+        modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
+        body.classList.remove("modal-open"); // Gỡ bỏ hiệu ứng mờ nền
+        body.style.overflow = ""; // Khôi phục cuộn trang
+    }
+
+    // Thêm CSS để làm mờ nền khi modal mở
+    const style = document.createElement("style");
+    style.innerHTML = `
+        .modal-open::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1040;
+        }
+    `;
+    document.head.appendChild(style);
+});
+
+
+// 
+document.addEventListener("DOMContentLoaded", function () {
+    const backToTop = document.querySelector(".back-top");
+
+    if (backToTop) {
+        // Ẩn nút khi chưa cuộn xuống
+        backToTop.style.display = "none";
+
+        // Hiển thị nút khi cuộn xuống
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 300) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
+        });
+
+        // Cuộn lên đầu khi nhấn vào nút
+        backToTop.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+});
+
+// 
+document.addEventListener("DOMContentLoaded", function () {
+    const citySelect = document.getElementById("city");
+    const districtSelect = document.getElementById("district");
+    const resetButton = document.getElementById("resetFilter");
+
+    // Danh sách quận/huyện theo từng thành phố
+    const districtsData = {
+        hanoi: [
+            { value: "ba_dinh", text: "Quận Ba Đình" },
+            { value: "hoan_kiem", text: "Quận Hoàn Kiếm" },
+            { value: "tay_ho", text: "Quận Tây Hồ" },
+            { value: "long_bien", text: "Quận Long Biên" },
+            { value: "cau_giay", text: "Quận Cầu Giấy" }
+        ],
+        hcm: [
+            { value: "quan_1", text: "Quận 1" },
+            { value: "quan_3", text: "Quận 3" },
+            { value: "quan_5", text: "Quận 5" },
+            { value: "quan_7", text: "Quận 7" },
+            { value: "thu_duc", text: "Thành phố Thủ Đức" }
+        ]
+    };
+
+    // Khi chọn một thành phố
+    citySelect.addEventListener("change", function () {
+        const selectedCity = citySelect.value;
+        districtSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>'; // Reset danh sách
+
+        if (selectedCity && districtsData[selectedCity]) {
+            districtsData[selectedCity].forEach(district => {
+                const option = document.createElement("option");
+                option.value = district.value;
+                option.textContent = district.text;
+                districtSelect.appendChild(option);
+            });
+
+            resetButton.style.display = "block"; // Hiện nút "Bỏ Lọc"
+        } else {
+            resetButton.style.display = "none"; // Ẩn nút nếu không chọn gì
+        }
+    });
+
+    // Khi nhấn nút "Bỏ Lọc"
+    resetButton.addEventListener("click", function () {
+        citySelect.value = "";
+        districtSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>';
+        resetButton.style.display = "none";
+    });
+});
 
