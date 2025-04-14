@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             firstName: localStorage.getItem("userProfile_firstname"),
             lastName: localStorage.getItem("userProfile_lastname"),
             avatar: localStorage.getItem("userProfile_avatar"),
+            username: localStorage.getItem("userProfile_username")
         };
         console.log("Header Script: Dữ liệu ban đầu từ localStorage:", initialData);
         updateHeaderDisplay(initialData); // Gọi hàm cập nhật với dữ liệu ban đầu

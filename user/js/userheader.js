@@ -89,7 +89,7 @@ function updateHeaderDisplay(data) {
     // Xây dựng tên đầy đủ, có fallback là 'Người dùng'
     const firstName = data.firstName || ""; // Lấy từ data, fallback là chuỗi rỗng
     const lastName = data.lastName || ""; // Lấy từ data, fallback là chuỗi rỗng
-    const fullName = `${firstName} ${lastName}`.trim() || "Người dùng"; // Nối tên, trim và fallback
+    const fullName = `${firstName} ${lastName}`.trim() || data.username; // Nối tên, trim và fallback
 
     // Tạo nội dung HTML mới cho span, bao gồm tên và icon
     const newHTML = `${fullName} ${caretIconHTML}`; // Thêm khoảng trắng giữa tên và icon
