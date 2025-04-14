@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông số trận đấu</title>
+    <link rel="icon" type="logo.png" href="../images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+     <!-- Source Sans Pro added for consistency -->
+     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/user/css/userheader.css" />
+    <link rel="stylesheet" href="/user/css/userfooter.css" />
+
+    <link rel="stylesheet" href="/user/team/teamManagement/css/managementNav.css" />
+
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: Oswald, sans-serif; /* Default font */
+
+        }
+        body {
+          background-color: #ecf0f5;
+        }
+
+        /*----------------------Layout-------------------------*/
+        .container { 
+            display: flex; 
+            width: 100%; }
+        .content-wrapper { 
+            flex: 1; 
+            display: block; 
+            margin: 0; padding: 0; 
+            background-color: #ecf0f5; 
+        }
+        .content { 
+            background-color: #ecf0f5; 
+            padding-bottom: 20px; 
+        }
+
+        .list-league {
+            color: rgb(34, 34, 34);
+            font-size: 24px;
+            font-weight: normal;
+            padding: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            min-height: 70px;
+        }
+        .list-league_left {
+          font-family: "Source Sans Pro", sans-serif !important;
+        }
+        .fa-solid.fa-list {
+          color: #ff6f00;
+          margin-right: 5px;
+          font-size: 25px;
+        }
+        .list-league_left {
+          flex-grow: 1;
+        }
+
+        .list-league i {
+            margin-right: 5px;
+        }
+
+        /* Back Button */
+        .fixture-back {
+            color: rgb(255, 255, 255);
+            padding: 6px 12px;
+            background-color: #dd4b39; /* Danger color */
+            border-color: #d73925;
+            border-style: solid;
+            border-width: 1px;
+            cursor: pointer;
+            text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+            border-radius: 3px;
+            font-size: 14px;
+            line-height: 1.5;
+            text-decoration: none; /* For link styling */
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.15s ease-in-out;
+        }
+        .fixture-back:hover {
+            background-color: #d73925;
+        }
+        .fixture-back i { margin-right: 0; }
+
+        /* Styling for the content box */
+        .content-box {
+            background-color: #ffffff;
+            padding: 20px;
+            margin: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-top: 3px solid #00c0ef; /* Info color top border */
+        }
+        .content-box, .content-box label, .content-box input, .content-box select, .content-box button, .content-box option, .content-box div {
+             font-family: "Source Sans Pro", sans-serif;
+        }
+
+        /* Score Header */
+        .score-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+            text-align: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .score-team {
+            width: 100%; /* Take full width when wrapping */
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .score-vs {
+            position: relative;
+            width: 10%;
+            display: flex;
+            justify-content: center; /* Center the span inside */
+            align-items: center;
+        }
+        .score-header .team-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 45%;
+        }
+        .score-header .team-info.team-a {
+            justify-content: right;
+        }
+         .score-header .team-info img.team-logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+        .score-header .team-name {
+            font-weight: 600;
+            font-size: 18px;
+        }
+        .score-header input.score-input {
+            width: 55px;
+            height: 40px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 5px;
+            /* Remove spinner buttons */
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+        .score-header input.score-input::-webkit-outer-spin-button,
+        .score-header input.score-input::-webkit-inner-spin-button {
+             -webkit-appearance: none;
+             margin: 0;
+        }
+        .score-header .penalty-info {
+            width: 100%; /* Take full width when wrapping */
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .score-header .penalty-info .penalty-label {
+            font-weight: bold;
+            color: #c82333;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .score-header .penalty-info input.penalty-score {
+            width: 40px;
+            height: 30px;
+            font-size: 16px;
+             /* Inherit score-input styles */
+             font-weight: bold;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+             /* Remove spinner buttons */
+             -moz-appearance: textfield;
+             appearance: textfield;
+        }
+        .score-header .penalty-info input.penalty-score::-webkit-outer-spin-button,
+        .score-header .penalty-info input.penalty-score::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+         }
+
+
+        /* Stats Input Area */
+        .stats-input-area {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px; /* Gap between team columns */
+            margin-bottom: 20px;
+             flex-wrap: wrap; /* Allow columns to wrap on small screens */
+        }
+        .team-stats-column {
+            flex: 1;
+            min-width: 300px; /* Prevent columns from becoming too narrow */
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+             background-color: #f9f9f9;
+        }
+        .team-stats-column h4 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
+        .stat-row {
+            display: flex;
+            gap: 8px; /* Gap between inputs in a row */
+            margin-bottom: 10px;
+            align-items: center; /* Vertically align items in a row */
+        }
+         /* Adjust flex properties for inputs within a row */
+         .stat-row select[name="scorer"],
+         .stat-row select[name="assist"] {
+             flex: 3; /* Allow more space for player names */
+         }
+         .stat-row input[name="time"] {
+             flex: 1;
+             min-width: 50px; /* Ensure time input isn't too small */
+         }
+         .stat-row select[name="goalType"] {
+             flex: 2;
+         }
+        .stat-row input, .stat-row select {
+            padding: 6px 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+        .stat-row button.action-btn {
+            padding: 5px 8px;
+            font-size: 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            color: white;
+             flex-shrink: 0; /* Prevent buttons shrinking */
+        }
+        .stat-row button.remove-row-btn {
+            background-color: #dc3545; /* Red */
+            border-color: #c82333;
+        }
+        .stat-row button.remove-row-btn:hover {
+            background-color: #c82333;
+        }
+        .add-row-container {
+             text-align: right;
+             margin-top: 10px;
+        }
+        button.add-row-btn {
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            color: white;
+            background-color: #28a745; /* Green */
+            border-color: #218838;
+        }
+        button.add-row-btn:hover {
+             background-color: #218838;
+        }
+        button.add-row-btn i, .stat-row button.action-btn i {
+             margin-right: 3px;
+        }
+
+        /* Save Button Area */
+        .save-button-container {
+            margin-top: 30px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .save-button-container .btn-save {
+            padding: 10px 25px;
+            font-size: 16px;
+            background-color: #3c8dbc;
+            border-color: #367fa9;
+            color: white;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            cursor: pointer;
+             transition: background-color 0.15s ease-in-out;
+        }
+        .save-button-container .btn-save:hover {
+             background-color: #367fa9;
+        }
+        .save-button-container .btn-save i {
+            margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            /* --- Adjust Content Box Padding --- */
+            .content-box {
+                padding: 15px;
+                margin: 10px;
+            }
+
+            /* --- Score Header Adjustments --- */
+            .score-header {
+                gap: 10px; /* Reduce gap */
+                 flex-direction: column; /* Stack main score and penalty */
+                 align-items: center;
+            }
+
+            .score-team {
+                 width: 100%; /* Ensure score team container takes full width */
+                 justify-content: space-around; /* Space out team blocks */
+                 flex-wrap: nowrap; /* Prevent team blocks themselves wrapping initially */
+                 gap: 5px; /* Reduce gap between team blocks and VS */
+                 align-items: flex-start; /* Align blocks to top */
+            }
+
+            .score-header .team-info {
+                width: auto; /* Remove fixed percentage */
+                flex: 1; /* Allow blocks to share space */
+                flex-direction: column; /* Stack Logo, Name, Score */
+                align-items: center; /* Center items vertically */
+                gap: 5px; /* Gap between logo, name, score */
+            }
+            /* No need for justify-content: right on team-a anymore */
+            .score-header .team-info.team-a {
+                justify-content: center;
+            }
+
+            .score-header .team-name {
+                font-size: 15px; /* Slightly smaller name */
+                word-break: break-word; /* Allow long names to wrap */
+                overflow-wrap: break-word; /* Standard property */
+                hyphens: auto; /* Optional: Assist wrapping */
+                text-align: center;
+                line-height: 1.3;
+                 min-height: 2.6em; /* Reserve space for 2 lines */
+            }
+
+            .score-header .team-info img.team-logo {
+                width: 45px; /* Smaller logo */
+                height: 45px;
+            }
+            .score-header input.score-input {
+                width: 50px; /* Slightly smaller input */
+                height: 35px;
+                font-size: 20px;
+            }
+             .score-vs {
+                 width: auto; /* Let VS take minimal space */
+                 padding: 0 5px; /* Add some padding */
+                 align-self: center; /* Center VS vertically */
+             }
+            .score-header .penalty-info {
+                 margin-top: 15px; /* More space above penalty */
+                 gap: 8px;
+                 width: 100%;
+                 justify-content: center;
+             }
+             .score-header .penalty-info input.penalty-score {
+                 width: 35px;
+                 height: 28px;
+                 font-size: 15px;
+             }
+
+            /* --- Stats Input Area Adjustments --- */
+            .stats-input-area {
+                flex-direction: column; /* Stack team columns */
+                gap: 25px; /* Increase gap between stacked columns */
+            }
+
+            .team-stats-column {
+                min-width: unset; /* Remove min-width constraint */
+                width: 100%; /* Ensure columns take full width */
+                 padding: 10px;
+            }
+
+            .stat-row {
+                flex-wrap: wrap; /* Allow inputs within a row to wrap */
+                gap: 6px; /* Adjust gap for wrapping */
+            }
+             .stat-row select, .stat-row input {
+                flex-grow: 1; /* Allow inputs/selects to grow */
+                min-width: 70px; /* Minimum width before wrapping */
+                font-size: 12px; /* Smaller font */
+             }
+            /* Adjust flex basis for potentially better wrapping */
+            .stat-row select[name="scorer"],
+            .stat-row select[name="assist"] {
+                 flex-basis: 120px; /* Suggest a base width for player selects */
+             }
+            .stat-row select[name="goalType"] {
+                 flex-basis: 80px;
+            }
+            .stat-row input[name="time"] {
+                flex-basis: 50px;
+            }
+
+             .stat-row button.action-btn {
+                padding: 4px 6px;
+                font-size: 11px;
+                 margin-left: auto; /* Push remove button to the right when wrapped */
+             }
+            .add-row-container {
+                text-align: center; /* Center add button */
+            }
+
+            /* --- Save Button --- */
+            .save-button-container .btn-save {
+                 padding: 8px 20px;
+                 font-size: 15px;
+             }
+        }
+    </style>
+</head>
+<body>
+    <header id="header-container" class="header">
+        <!-- Header will be loaded here -->
+    </header>
+
+    <div class="container">
+        <div id="sidebar-container">
+             <!-- Sidebar will be loaded here -->
+        </div>
+        <div class="content-wrapper">
+            <section class="content">
+                <!-- Title and Action Buttons -->
+                <div id="management-nav-placeholder">
+                    <!-- Nav will load here -->
+                </div>
+                <div class="list-league">
+                    <span class="list-league_left"><i class="fa-solid fa-list"></i>Thông số trận đấu</span>
+                    <a href="#" id="back-to-fixtures" class="fixture-back"><i class="fas fa-calendar-alt"></i> Lịch thi đấu</a>
+                </div>
+
+                <!-- Content Box for Stats -->
+                <div class="content-box">
+                    <!-- Score Header -->
+                    <div id="score-header" class="score-header">
+                        <div class="score-team">
+                            <div class="team-info team-a">
+                                <span id="teamAName" class="team-name">Đội A</span>
+                                <img id="teamALogo" src="https://via.placeholder.com/50/cccccc/FFFFFF?text=A" alt="Team A Logo" class="team-logo">
+                                <input type="number" id="scoreA" class="score-input" min="0" value="0">
+                            </div>
+    
+                            <div class="score-vs"><span style="font-size: 18px; color: #555;">vs</span></div>
+    
+                            <div class="team-info team-b">
+                                <input type="number" id="scoreB" class="score-input" min="0" value="0">
+                                <img id="teamBLogo" src="https://via.placeholder.com/50/cccccc/FFFFFF?text=B" alt="Team B Logo" class="team-logo">
+                                <span id="teamBName" class="team-name">Đội B</span>
+                            </div>
+                        </div>
+
+                        <div class="penalty-info">
+                             <input type="number" id="penaltyA" class="penalty-score" min="0">
+                             <span class="penalty-label">Penalty</span>
+                             <input type="number" id="penaltyB" class="penalty-score" min="0">
+                        </div>
+                    </div>
+
+                    <!-- Stats Input Area -->
+                    <div id="stats-input-area" class="stats-input-area">
+                        <!-- Team A Column -->
+                        <div class="team-stats-column" id="teamAStatsColumn">
+                            <h4 id="teamAStatsHeader">Thống kê Đội A</h4>
+                            <div id="teamAScoresContainer">
+                                <!-- Score rows will be added here -->
+                            </div>
+                            <div class="add-row-container">
+                                <button class="add-row-btn" data-team="A"><i class="fas fa-plus"></i> Thêm</button>
+                            </div>
+                        </div>
+
+                        <!-- Team B Column -->
+                        <div class="team-stats-column" id="teamBStatsColumn">
+                             <h4 id="teamBStatsHeader">Thống kê Đội B</h4>
+                             <div id="teamBScoresContainer">
+                                 <!-- Score rows will be added here -->
+                            </div>
+                             <div class="add-row-container">
+                                 <button class="add-row-btn" data-team="B"><i class="fas fa-plus"></i> Thêm</button>
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Save Button -->
+                    <div class="save-button-container">
+                        <button id="saveStatsBtn" class="btn-save"><i class="fas fa-save"></i> Lưu thay đổi</button>
+                    </div>
+                </div>
+
+                 <!-- Template for Stat Row (Hidden) -->
+                 <template id="stat-row-template">
+                     <div class="stat-row">
+                         <select name="scorer" required>
+                             <option value="" disabled selected>Ghi Bàn</option>
+                             <!-- Player options added by JS -->
+                         </select>
+                         <select name="assist">
+                             <option value="" selected>Kiến Tạo</option>
+                              <!-- Player options added by JS -->
+                         </select>
+                         <input type="text" name="time" placeholder="TG" size="4">
+                         <select name="goalType" required>
+                             <option value="Bàn thắng" selected>Loại bàn</option>
+                             <option value="Penalty">Penalty</option>
+                             <option value="Phản lưới">Phản lưới</option>
+                             <!-- Add other types if needed: Đá phạt, ... -->
+                         </select>
+                         <button class="remove-row-btn action-btn" title="Xóa dòng"><i class="fas fa-minus"></i></button>
+                     </div>
+                 </template>
+
+
+            </section>
+
+            <footer id="footer" class="footer">
+                <!-- Footer will be loaded here -->
+            </footer>
+        </div>
+    </div>
+
+    <script src="/user/js/sidebar.js"></script>
+    <script src="/user/js/userheader.js"></script>
+    <script src="/user/js/componentloader.js"></script>
+    <script src="/user/team/teamManagement/js/managementNav.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          // Attempt to load nav, handle potential errors gracefully
+          try {
+              loadAndSetupManagementNav('management-nav-placeholder', 'managementNav.html');
+          } catch (error) {
+              console.error("Could not load managementNav:", error);
+              const placeholder = document.getElementById('management-nav-placeholder');
+              if(placeholder) placeholder.innerHTML = "<p style='color: red; text-align: center;'>Error loading navigation.</p>";
+          }
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // --- Globals ---
+            let currentFixture = null;
+            let teamA = null;
+            let teamB = null;
+            let viewingTeamId = null; // ID of the team from the URL param
+            let allPlayers = [];
+            let allFixtures = [];
+            let allScores = [];
+
+            // --- DOM Elements ---
+            const backButton = document.getElementById('back-to-fixtures');
+            const scoreHeader = document.getElementById('score-header');
+            const teamANameEl = document.getElementById('teamAName');
+            const teamALogoEl = document.getElementById('teamALogo');
+            const scoreAInput = document.getElementById('scoreA');
+            const teamBNameEl = document.getElementById('teamBName');
+            const teamBLogoEl = document.getElementById('teamBLogo');
+            const scoreBInput = document.getElementById('scoreB');
+            const penaltyAInput = document.getElementById('penaltyA');
+            const penaltyBInput = document.getElementById('penaltyB');
+            const teamAStatsHeaderEl = document.getElementById('teamAStatsHeader');
+            const teamBStatsHeaderEl = document.getElementById('teamBStatsHeader');
+            const teamAScoresContainer = document.getElementById('teamAScoresContainer');
+            const teamBScoresContainer = document.getElementById('teamBScoresContainer');
+            const statsInputArea = document.getElementById('stats-input-area');
+            const saveStatsBtn = document.getElementById('saveStatsBtn');
+            const statRowTemplate = document.getElementById('stat-row-template');
+
+            // --- Functions ---
+
+            function loadData() {
+                const storedTeams = localStorage.getItem('teams');
+                const storedFixtures = localStorage.getItem('fixtures');
+                const storedPlayers = localStorage.getItem('teamMembersData');
+                const storedScores = localStorage.getItem('scores');
+
+                teams = storedTeams ? JSON.parse(storedTeams) : [];
+                allFixtures = storedFixtures ? JSON.parse(storedFixtures) : [];
+                allPlayers = storedPlayers ? JSON.parse(storedPlayers) : [];
+                allScores = storedScores ? JSON.parse(storedScores) : [];
+
+                // Basic validation
+                if (teams.length === 0) console.warn("LocalStorage 'teams' is empty.");
+                if (allFixtures.length === 0) console.warn("LocalStorage 'fixtures' is empty.");
+                if (allPlayers.length === 0) console.warn("LocalStorage 'teamMembersData' is empty.");
+                 // scores can be empty initially
+            }
+
+            function getTeamById(id) {
+                return teams.find(t => t.id === id);
+            }
+
+            function getFixtureById(id) {
+                return allFixtures.find(f => f.id === id);
+            }
+
+            function getPlayersByTeamId(teamId) {
+                return allPlayers.filter(p => p.teamId === teamId);
+            }
+
+             function populatePlayerSelect(selectElement, teamId, includeAssistNone = false) {
+                 const players = getPlayersByTeamId(teamId);
+                 // Clear existing options except the first placeholder/default one
+                 const firstOption = selectElement.options[0];
+                 selectElement.innerHTML = '';
+                 selectElement.appendChild(firstOption);
+
+                 // Add "None" option for Assists if requested
+                 if (includeAssistNone) {
+                    const noneOption = document.createElement('option');
+                    noneOption.value = ""; // Represents no assist
+                    noneOption.textContent = "Không có";
+                    selectElement.appendChild(noneOption);
+                 }
+
+
+                 players.sort((a, b) => (a.name || '').localeCompare(b.name || '')); // Sort players by name
+                 players.forEach(player => {
+                     const option = document.createElement('option');
+                     option.value = player.id;
+                     option.textContent = `${player.name || 'N/A'} (${player.jerseyNumber || '?'})`;
+                     selectElement.appendChild(option);
+                 });
+             }
+
+             function addStatRow(team, scoreData = null) {
+                const teamId = (team === 'A') ? teamA.id : teamB.id;
+                const container = (team === 'A') ? teamAScoresContainer : teamBScoresContainer;
+
+                const templateContent = statRowTemplate.content.cloneNode(true);
+                const newRow = templateContent.querySelector('.stat-row');
+
+                const scorerSelect = newRow.querySelector('select[name="scorer"]');
+                const assistSelect = newRow.querySelector('select[name="assist"]');
+                const timeInput = newRow.querySelector('input[name="time"]');
+                const typeSelect = newRow.querySelector('select[name="goalType"]');
+                const removeBtn = newRow.querySelector('.remove-row-btn');
+
+                populatePlayerSelect(scorerSelect, teamId);
+                populatePlayerSelect(assistSelect, teamId, true); // Include "None" for assists
+
+                if (scoreData) {
+                    // *** MODIFIED: Convert numeric ID to string for select value assignment ***
+                    scorerSelect.value = String(scoreData.scorerId || ""); // Handle potential null/undefined
+                    assistSelect.value = String(scoreData.assistId || ""); // Empty string represents "None" or null assist
+                    timeInput.value = scoreData.time || "";
+                    typeSelect.value = scoreData.type || "Bàn thắng";
+                }
+
+                removeBtn.addEventListener('click', () => removeStatRow(removeBtn));
+
+                container.appendChild(newRow);
+            }
+
+            function removeStatRow(buttonElement) {
+                const rowToRemove = buttonElement.closest('.stat-row');
+                if (rowToRemove) {
+                    rowToRemove.remove();
+                }
+            }
+
+            function loadFixtureDetails() {
+                if (!currentFixture || !teamA || !teamB) {
+                    scoreHeader.innerHTML = "<p style='color: red;'>Lỗi: Không thể tải thông tin trận đấu.</p>";
+                    return;
+                }
+
+                // Populate Header
+                teamANameEl.textContent = teamA.teamName;
+                teamALogoEl.src = teamA.logo || 'https://via.placeholder.com/50/cccccc/FFFFFF?text=A';
+                teamALogoEl.alt = `${teamA.teamName} Logo`;
+                scoreAInput.value = currentFixture.scoreA ?? ''; // Use nullish coalescing for potential null/undefined
+
+                teamBNameEl.textContent = teamB.teamName;
+                teamBLogoEl.src = teamB.logo || 'https://via.placeholder.com/50/cccccc/FFFFFF?text=B';
+                teamBLogoEl.alt = `${teamB.teamName} Logo`;
+                scoreBInput.value = currentFixture.scoreB ?? '';
+
+                penaltyAInput.value = currentFixture.penaltyA ?? '';
+                penaltyBInput.value = currentFixture.penaltyB ?? '';
+
+                 // Update column headers
+                 teamAStatsHeaderEl.textContent = `Thống kê ${teamA.teamName}`;
+                 teamBStatsHeaderEl.textContent = `Thống kê ${teamB.teamName}`;
+
+                // Load existing score rows
+                teamAScoresContainer.innerHTML = ''; // Clear existing rows
+                teamBScoresContainer.innerHTML = '';
+                const fixtureScores = allScores.filter(s => s.fixtureId === currentFixture.id);
+
+                fixtureScores.forEach(score => {
+                    if (score.teamId === teamA.id) {
+                        addStatRow('A', score);
+                    } else if (score.teamId === teamB.id) {
+                        addStatRow('B', score);
+                    }
+                });
+
+                // Add one empty row if none exist for a team
+                 if (teamAScoresContainer.children.length === 0) {
+                    addStatRow('A');
+                 }
+                 if (teamBScoresContainer.children.length === 0) {
+                     addStatRow('B');
+                 }
+            }
+
+            function handleSaveStats() {
+                if (!currentFixture) {
+                    alert("Lỗi: Không tìm thấy thông tin trận đấu để lưu.");
+                    return;
+                }
+
+                // 1. Save Final Scores (no changes needed here)
+                const fixtureIndex = allFixtures.findIndex(f => f.id === currentFixture.id);
+                if (fixtureIndex === -1) {
+                    alert("Lỗi nghiêm trọng: Không tìm thấy trận đấu trong danh sách.");
+                    return;
+                }
+                allFixtures[fixtureIndex].scoreA = parseInt(scoreAInput.value, 10) || 0;
+                allFixtures[fixtureIndex].scoreB = parseInt(scoreBInput.value, 10) || 0;
+                allFixtures[fixtureIndex].penaltyA = penaltyAInput.value !== '' ? parseInt(penaltyAInput.value, 10) : null;
+                allFixtures[fixtureIndex].penaltyB = penaltyBInput.value !== '' ? parseInt(penaltyBInput.value, 10) : null;
+
+                // 2. Collect Individual Score Events
+                const newScoresForFixture = [];
+
+                const processTeamScores = (container, teamId) => {
+                    const rows = container.querySelectorAll('.stat-row');
+                    rows.forEach(row => {
+                        const scorerValue = row.querySelector('select[name="scorer"]').value;
+                        const assistValue = row.querySelector('select[name="assist"]').value; // Will be string or empty string ""
+                        const time = row.querySelector('input[name="time"]').value.trim();
+                        const type = row.querySelector('select[name="goalType"]').value;
+
+                        // *** MODIFIED: Convert selected string values to numbers ***
+                        const scorerId = scorerValue ? parseInt(scorerValue, 10) : null;
+                        // Convert assist value: empty string "" becomes null, otherwise parse to int
+                        const assistId = assistValue ? parseInt(assistValue, 10) : null;
+
+                        // Only save row if a valid scorer ID was parsed
+                        if (scorerId !== null && !isNaN(scorerId)) { // Check if scorerId is a valid number
+                            newScoresForFixture.push({
+                                scoreId: `score-${Date.now()}-${Math.random().toString(16).slice(2)}`, // Unique ID
+                                fixtureId: currentFixture.id,
+                                teamId: teamId,
+                                scorerId: scorerId, // Save as number
+                                assistId: (assistId !== null && !isNaN(assistId)) ? assistId : null, // Save assist as number or null
+                                time: time,
+                                type: type
+                            });
+                        } else if (scorerValue) {
+                            // Optional: Log a warning if a value was selected but couldn't be parsed
+                            console.warn(`Could not parse scorer ID: '${scorerValue}' in team ${teamId}`);
+                        }
+                    });
+                };
+
+                processTeamScores(teamAScoresContainer, teamA.id);
+                processTeamScores(teamBScoresContainer, teamB.id);
+
+                // 3. Update Global Scores Array (no changes needed here)
+                allScores = allScores.filter(s => s.fixtureId !== currentFixture.id);
+                allScores.push(...newScoresForFixture);
+
+                // 4. Save to LocalStorage (no changes needed here)
+                try {
+                    localStorage.setItem('fixtures', JSON.stringify(allFixtures));
+                    localStorage.setItem('scores', JSON.stringify(allScores));
+                    alert("Đã lưu thông số trận đấu thành công!");
+                } catch (error) {
+                    console.error("Lỗi khi lưu vào LocalStorage:", error);
+                    alert("Đã xảy ra lỗi khi lưu dữ liệu.");
+                }
+            }
+
+
+            function initialize() {
+                loadData();
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const fixtureId = urlParams.get('fixtureId');
+                viewingTeamId = urlParams.get('id'); // ID of team who clicked the link
+
+                if (!fixtureId || !viewingTeamId) {
+                    document.querySelector('.content-box').innerHTML = '<p style="color:red; text-align:center;">Thiếu thông tin trận đấu hoặc đội trong URL (cần fixtureId và teamId).</p>';
+                    return;
+                }
+
+                 // Setup Back Button Link
+                 backButton.href = `fixtures.html?id=${viewingTeamId}`;
+
+
+                currentFixture = getFixtureById(fixtureId);
+                if (!currentFixture) {
+                    document.querySelector('.content-box').innerHTML = `<p style="color:red; text-align:center;">Không tìm thấy trận đấu với ID: ${fixtureId}.</p>`;
+                    return;
+                }
+
+                teamA = getTeamById(currentFixture.teamAId);
+                teamB = getTeamById(currentFixture.teamBId);
+
+                if (!teamA || !teamB) {
+                    document.querySelector('.content-box').innerHTML = `<p style="color:red; text-align:center;">Không tìm thấy thông tin đầy đủ của các đội tham gia.</p>`;
+                    return;
+                }
+
+                loadFixtureDetails();
+
+                // Add event listeners
+                saveStatsBtn.addEventListener('click', handleSaveStats);
+
+                statsInputArea.addEventListener('click', (event) => {
+                     if (event.target.closest('.add-row-btn')) {
+                         const team = event.target.closest('.add-row-btn').dataset.team;
+                         addStatRow(team);
+                     }
+                     // Remove button listener is added dynamically in addStatRow
+                 });
+            }
+
+            initialize();
+        }); // End DOMContentLoaded
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thêm Đội Bóng</title>
+    <link rel="icon" type="logo.png" href="../images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/user/css/userheader.css" />
+    <link rel="stylesheet" href="/user/css/userfooter.css" />
+
+    <link
+      rel="stylesheet"
+      href="/user/seasonManagement/css/management-actions.css"
+    />
+
+    <!-- CSS NGUYÊN BẢN -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Oswald, sans-serif; /* Default font */
+      }
+      body {
+        background-color: white;
+      }
+      .container {
+        display: flex;
+        width: 100%;
+      }
+      .content-wrapper {
+        flex: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      .content {
+        background-color: #ecf0f5;
+      }
+      .content-wrapper {
+        /* Có vẻ dư thừa, nhưng giữ lại theo code gốc */
+        flex: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      .list-league {
+        color: rgb(34, 34, 34);
+        font-size: 24px;
+        font-weight: normal;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: white;
+      }
+      .list-league_left {
+        font-family: "Source Sans Pro", sans-serif !important;
+      }
+      .fa-solid.fa-check {
+        color: #ff6f00;
+        margin-right: 5px;
+        font-size: 25px;
+      }
+      .list-league_left {
+        flex-grow: 1;
+      }
+      .form-layout {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 20px 15px;
+        margin: 15px;
+      }
+      .form-fields-area {
+        flex: 2;
+        min-width: 300px;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 20px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+      .form-upload-area {
+        flex: 1;
+        min-width: 250px;
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 20px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        gap: 20px;
+      }
+      .form-grid {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+      .form-column {
+        flex: 1;
+        min-width: 200px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      .form-column:last-child {
+        border: none;
+        padding: 0;
+        background-color: transparent;
+      }
+      .form-group {
+        margin-bottom: 0;
+      }
+      .form-group label:not(.file-upload-label) {
+        display: block;
+        margin-bottom: 5px;
+        color: #240808;
+        font-size: 16px;
+      }
+      .form-control {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #d0d0d0;
+        font-size: 16px;
+        box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px 0px inset;
+      }
+      .form-control:focus {
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      }
+      .file-upload-label {
+        display: inline-block;
+        padding: 8px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        text-align: center;
+        transition: background-color 0.2s ease;
+      }
+      .file-upload-label i {
+        margin-right: 5px;
+      }
+      .file-upload-label:hover {
+        background-color: #0056b3;
+      }
+      .file-upload-label.kit-upload {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 5px;
+        background-color: rgb(76, 175, 80);
+      }
+      .file-upload-label.kit-upload:hover {
+        background-color: #4d9e51;
+      }
+      .logo-upload,
+      .cover-upload {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: rgb(76, 175, 80);
+      }
+      .logo-upload:hover,
+      .cover-upload:hover {
+        background-color: #4d9e51;
+      }
+      .upload-section {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .image-preview {
+        margin-top: 10px;
+        padding: 10px;
+        border: 1px dashed #ccc;
+        border-radius: 4px;
+        min-height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .image-preview:empty {
+        min-height: 150px;
+      }
+      .image-preview img {
+        max-width: 100%;
+        max-height: 150px;
+        display: block;
+        border-radius: 4px;
+        object-fit: contain;
+      }
+      .kit-preview {
+        width: 100%;
+        margin-top: 10px;
+        border: 1px dashed #ccc;
+        border-radius: 4px;
+        min-height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        box-sizing: border-box;
+        background-color: #fff;
+      }
+      .kit-preview:empty {
+        min-height: 60px;
+      }
+      .kit-preview img {
+        max-width: 100%;
+        max-height: 80px;
+        display: block;
+        border-radius: 3px;
+        object-fit: contain;
+        border: none;
+      }
+      .retry {
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: rgb(0, 172, 236);
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .retry:hover {
+        background-color: #428bca;
+      }
+      .save {
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: rgb(76, 175, 80);
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .save:hover {
+        background-color: #4d9e51;
+      }
+      .return {
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: #f34541;
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .return:hover {
+        background-color: #dd1b18;
+      }
+      .list-league i {
+        margin-right: 5px;
+      }
+    </style>
+    <!-- HẾT CSS NGUYÊN BẢN -->
+  </head>
+  <body>
+    <header id="header-container" class="header"></header>
+    <div class="container">
+      <div id="sidebar-container"></div>
+      <div class="content-wrapper">
+        <div class="management-actions">
+          <a href="lichthidau.html" class="action-button">
+            <i class="fa-solid fa-calendar-days"></i> <span>LỊCH THI ĐẤU</span>
+          </a>
+          <a href="bangxephang.html" class="action-button">
+            <i class="fa-solid fa-ranking-star"></i> <span>BẢNG XẾP HẠNG</span>
+          </a>
+          <a href="doithamdu.html" class="action-button">
+            <i class="fa-solid fa-users"></i> <span>ĐỘI THAM DỰ</span>
+          </a>
+          <a href="kqboctham.html" class="action-button">
+            <i class="fa-solid fa-list"></i> <span>KẾT QUẢ BỐC THĂM</span>
+          </a>
+          <a href="thongke.html" class="action-button">
+            <i class="fa-solid fa-chart-simple"></i> <span>THỐNG KÊ</span>
+          </a>
+          <a href="news.html" class="action-button">
+            <i class="fa-solid fa-newspaper"></i> <span>TIN TỨC-THÔNG BÁO</span>
+          </a>
+          <a href="/user/EditSeason.html" class="action-button">
+            <i class="fa-solid fa-gears"></i> <span>CẤU HÌNH MÙA GIẢI</span>
+          </a>
+          <a href="phanquyen.html" class="action-button">
+            <i class="fa-solid fa-shield-halved"></i> <span>PHÂN QUYỀN</span>
+          </a>
+        </div>
+        <section class="content">
+          <div class="list-league">
+            <span class="list-league_left">
+              <i class="fa-solid fa-check"></i>Đăng ký đội bóng tham dự
+            </span>
+            <div>
+              <button id="saveButton" type="button" class="save">
+                <i class="fas fa-save"></i> Lưu
+              </button>
+              <button type="button" class="retry">
+                <i class="fas fa-sync-alt"></i> Nhập lại
+              </button>
+              <a href="doithamdu.html" style="text-decoration: none">
+                <button type="button" class="return">
+                  <i class="fas fa-arrow-left"></i> Danh sách đội
+                </button>
+              </a>
+            </div>
+          </div>
+          <form id="addTeamForm">
+            <!-- Thêm ID cho form để reset dễ hơn -->
+            <div class="form-layout">
+              <div class="form-fields-area">
+                <div class="form-group">
+                  <label for="teamName">Tên đội bóng</label>
+                  <input
+                    type="text"
+                    id="teamName"
+                    name="teamName"
+                    class="form-control"
+                    placeholder="Nhập tên đội bóng (Bắt buộc)"
+                    required
+                  />
+                </div>
+                <div class="form-grid">
+                  <div class="form-column">
+                    <div class="form-group">
+                      <label for="managerName">Người quản lý</label>
+                      <input
+                        type="text"
+                        id="managerName"
+                        name="managerName"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="you@example.com"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Trang phục sân nhà</label>
+                      <label
+                        for="homeKitFile"
+                        class="file-upload-label kit-upload"
+                      >
+                        <i class="fas fa-upload"></i> Chọn ảnh...
+                      </label>
+                      <input
+                        type="file"
+                        id="homeKitFile"
+                        name="homeKitFile"
+                        accept="image/*"
+                        style="display: none"
+                      />
+                      <div id="homeKitPreview" class="kit-preview"></div>
+                    </div>
+                  </div>
+                  <div class="form-column">
+                    <div class="form-group">
+                      <label for="phone">Điện thoại</label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="facebook">Facebook</label>
+                      <input
+                        type="url"
+                        id="facebook"
+                        name="facebook"
+                        class="form-control"
+                        placeholder="https://facebook.com/yourpage"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Trang phục sân khách</label>
+                      <label
+                        for="awayKitFile"
+                        class="file-upload-label kit-upload"
+                      >
+                        <i class="fas fa-upload"></i> Chọn ảnh...
+                      </label>
+                      <input
+                        type="file"
+                        id="awayKitFile"
+                        name="awayKitFile"
+                        accept="image/*"
+                        style="display: none"
+                      />
+                      <div id="awayKitPreview" class="kit-preview"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-upload-area">
+                <div class="upload-section">
+                  <label for="logoFile" class="file-upload-label logo-upload">
+                    <i class="fas fa-upload"></i> Upload ảnh Logo...
+                  </label>
+                  <input
+                    type="file"
+                    id="logoFile"
+                    name="logoFile"
+                    accept="image/*"
+                    style="display: none"
+                  />
+                  <div class="image-preview" id="logoPreview">
+                    <img
+                      src="../images/logo.png"
+                      alt="Default Logo Preview"
+                      style="
+                        max-width: 150px;
+                        max-height: 150px;
+                        border-radius: 5px;
+                      "
+                    />
+                  </div>
+                </div>
+                <div class="upload-section">
+                  <label for="coverFile" class="file-upload-label cover-upload">
+                    <i class="fas fa-upload"></i> Upload ảnh bìa...
+                  </label>
+                  <input
+                    type="file"
+                    id="coverFile"
+                    name="coverFile"
+                    accept="image/*"
+                    style="display: none"
+                  />
+                  <div class="image-preview" id="coverPreview"></div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </section>
+        <footer id="footer" class="footer"></footer>
+      </div>
+    </div>
+
+    <script src="/user/js/sidebar.js"></script>
+    <script src="/user/js/userheader.js"></script>
+    <script src="/user/js/componentloader.js"></script>
+
+    <!-- *** SCRIPT ĐÃ SỬA ĐỔI - CÓ XỬ LÝ LỖI *** -->
+    <script>
+      // --- Image Preview Functionality (Giữ nguyên) ---
+      function previewImage(input, previewElementId) {
+        const preview = document.getElementById(previewElementId);
+        const file = input.files[0];
+        if (!preview) {
+          console.error("Preview element not found:", previewElementId);
+          return;
+        }
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            let imgStyle = `max-width: 100%; display: block; border-radius: 3px; object-fit: contain;`;
+            // Giữ nguyên style height từ code gốc của bạn
+            if (
+              previewElementId === "homeKitPreview" ||
+              previewElementId === "awayKitPreview"
+            ) {
+              imgStyle += ` max-height: 150px;`;
+            } else {
+              imgStyle += ` max-height: 150px;`;
+            }
+            preview.innerHTML = `<img src="${e.target.result}" alt="Preview Image" style="${imgStyle}"/>`;
+          };
+          reader.onerror = () => {
+            console.error("Lỗi đọc file ảnh.");
+            preview.innerHTML = "Lỗi xem trước";
+          }; // Thêm xử lý lỗi đọc file
+          reader.readAsDataURL(file);
+        } else {
+          if (previewElementId === "logoPreview") {
+            preview.innerHTML = `<img src="../images/logo.png" alt="Default Logo Preview" style="max-width: 150px; max-height: 150px; border-radius: 5px;"/>`;
+          } else {
+            preview.innerHTML = "";
+          }
+        }
+      }
+
+      // --- Attach event listeners (Giữ nguyên) ---
+      document.addEventListener("DOMContentLoaded", function () {
+        const homeKitInput = document.getElementById("homeKitFile");
+        const awayKitInput = document.getElementById("awayKitFile");
+        const logoInput = document.getElementById("logoFile");
+        const coverInput = document.getElementById("coverFile");
+
+        if (homeKitInput)
+          homeKitInput.addEventListener("change", function () {
+            previewImage(this, "homeKitPreview");
+          });
+        if (awayKitInput)
+          awayKitInput.addEventListener("change", function () {
+            previewImage(this, "awayKitPreview");
+          });
+        if (logoInput)
+          logoInput.addEventListener("change", function () {
+            previewImage(this, "logoPreview");
+          });
+        if (coverInput)
+          coverInput.addEventListener("change", function () {
+            previewImage(this, "coverPreview");
+          });
+
+        const retryButton = document.querySelector(".retry");
+        if (retryButton) {
+          retryButton.addEventListener("click", () => {
+            resetForm();
+          });
+        }
+      });
+
+      // --- Save Button Functionality (SỬA ĐỔI - Thêm xử lý lỗi) ---
+      document
+        .getElementById("saveButton")
+        .addEventListener("click", async function () {
+          console.log("Nút Lưu được nhấn."); // Log cơ bản
+
+          let teams = [];
+          try {
+            const storedTeams = localStorage.getItem("teams");
+            if (storedTeams) {
+              teams = JSON.parse(storedTeams);
+              // Đảm bảo teams luôn là một mảng
+              if (!Array.isArray(teams)) {
+                console.warn(
+                  "Dữ liệu 'teams' trong localStorage không phải là mảng, khởi tạo lại."
+                );
+                teams = [];
+              }
+            }
+            console.log("Đã đọc teams từ localStorage:", teams);
+          } catch (e) {
+            console.error("Lỗi khi đọc hoặc parse 'teams' từ localStorage:", e);
+            // Nếu lỗi parse, coi như bắt đầu với mảng rỗng
+            teams = [];
+          }
+
+          const currentUser = { id: 1, name: "Nguyen Hai Dang" }; // Nên lấy từ hệ thống login
+
+          const teamNameInput = document.getElementById("teamName");
+          const teamName = teamNameInput.value.trim();
+          if (teamName === "") {
+            alert("Vui lòng nhập tên đội bóng!");
+            teamNameInput.focus();
+            return;
+          }
+
+          // Gom dữ liệu ảnh (có thể lâu, nên có thể thêm hiệu ứng loading)
+          let logoData, coverData, homeKitData, awayKitData;
+          try {
+            console.log("Bắt đầu lấy dữ liệu ảnh...");
+            logoData = await getImageData("logoFile");
+            coverData = await getImageData("coverFile");
+            homeKitData = await getImageData("homeKitFile");
+            awayKitData = await getImageData("awayKitFile");
+            console.log("Đã lấy xong dữ liệu ảnh.");
+          } catch (error) {
+            console.error("Lỗi khi lấy dữ liệu ảnh:", error);
+            alert("Đã xảy ra lỗi khi xử lý ảnh. Vui lòng thử lại.");
+            return; // Dừng lại nếu không lấy được ảnh
+          }
+
+          const teamData = {
+            id: `team-${Date.now()}-${Math.random().toString(16).slice(2)}`,
+            userId: currentUser.id,
+            teamName: teamName,
+            managerName: document.getElementById("managerName").value.trim(),
+            email: document.getElementById("email").value.trim(),
+            phone: document.getElementById("phone").value.trim(),
+            facebook: document.getElementById("facebook").value.trim(),
+            logo: logoData,
+            cover: coverData,
+            homeKit: homeKitData,
+            awayKit: awayKitData,
+          };
+
+          console.log("Dữ liệu đội mới:", teamData);
+
+          teams.push(teamData);
+          console.log("Mảng teams sau khi thêm:", teams);
+
+          try {
+            localStorage.setItem("teams", JSON.stringify(teams));
+            console.log("ĐÃ LƯU 'teams' vào localStorage thành công!");
+            alert("Đội bóng đã được lưu!");
+            resetForm();
+          } catch (e) {
+            console.error("!!! LỖI KHI LƯU vào localStorage:", e);
+            // Cố gắng xóa bớt nếu lỗi do đầy bộ nhớ (QUOTA_EXCEEDED_ERR)
+            if (e.name === "QuotaExceededError" && teams.length > 1) {
+              try {
+                console.warn("localStorage đầy, thử xóa đội cũ nhất...");
+                teams.shift(); // Xóa đội đầu tiên (cũ nhất)
+                localStorage.setItem("teams", JSON.stringify(teams));
+                alert(
+                  "Đội bóng đã được lưu, nhưng bộ nhớ đầy nên đã xóa bớt dữ liệu cũ."
+                );
+                resetForm();
+              } catch (e2) {
+                alert(
+                  "Lỗi nghiêm trọng khi lưu dữ liệu: localStorage bị đầy hoặc không được hỗ trợ. Vui lòng liên hệ quản trị viên."
+                );
+              }
+            } else {
+              alert(
+                "Đã xảy ra lỗi khi lưu đội bóng. Không thể lưu vào localStorage."
+              );
+            }
+            // Rollback: Xóa đội vừa thêm khỏi mảng nếu lưu thất bại
+            teams.pop();
+          }
+        });
+
+      // --- Convert image to Base64 (SỬA ĐỔI - Thêm xử lý lỗi) ---
+      function getImageData(inputId) {
+        return new Promise((resolve, reject) => {
+          // Sử dụng reject để báo lỗi
+          const fileInput = document.getElementById(inputId);
+          if (fileInput && fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            // Optional: Kiểm tra kích thước file
+            // if (file.size > 5 * 1024 * 1024) { // Ví dụ: giới hạn 5MB
+            //     reject(new Error(`File ${file.name} quá lớn (tối đa 5MB).`));
+            //     return;
+            // }
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result); // Thành công
+            reader.onerror = (error) => {
+              console.error(`FileReader error for ${inputId}:`, error);
+              reject(new Error(`Không thể đọc file cho ${inputId}.`)); // Báo lỗi
+            };
+            reader.readAsDataURL(file);
+          } else if (inputId === "logoFile") {
+            // Fetch default logo only if no file selected for logo
+            fetch("../images/logo.png")
+              .then((response) => {
+                if (!response.ok)
+                  throw new Error("Network response was not ok");
+                return response.blob();
+              })
+              .then((blob) => {
+                const reader = new FileReader();
+                reader.onloadend = () => resolve(reader.result);
+                reader.onerror = (error) => {
+                  console.error(`FileReader error for default logo:`, error);
+                  reject(new Error(`Không thể đọc file logo mặc định.`));
+                };
+                reader.readAsDataURL(blob);
+              })
+              .catch((error) => {
+                console.error("Lỗi fetch logo mặc định:", error);
+                resolve(null); // Có thể trả về null nếu logo mặc định không quan trọng
+                // hoặc reject(error); nếu bắt buộc phải có logo
+              });
+          } else {
+            resolve(null); // Không có file và không phải logo -> thành công với giá trị null
+          }
+        });
+      }
+
+      // --- Function to clear form after saving (Giữ nguyên) ---
+      function resetForm() {
+        const form = document.getElementById("addTeamForm"); // Reset bằng ID
+        if (form) form.reset();
+
+        [
+          "logoPreview",
+          "coverPreview",
+          "homeKitPreview",
+          "awayKitPreview",
+        ].forEach((id) => {
+          const previewElement = document.getElementById(id);
+          if (previewElement) {
+            if (id === "logoPreview") {
+              previewElement.innerHTML = `<img src="../images/logo.png" alt="Default Logo Preview" style="max-width: 150px; max-height: 150px; border-radius: 5px;"/>`;
+            } else {
+              previewElement.innerHTML = "";
+            }
+          }
+        });
+        // Đặt lại focus vào trường tên đội (tùy chọn)
+        const teamNameInput = document.getElementById("teamName");
+        if (teamNameInput) teamNameInput.focus();
+      }
+
+      // Function displayImage (Không cần thiết, có thể xóa)
+      // function displayImage(previewElementId, imageData) { ... }
+    </script>
+    <!-- *** KẾT THÚC SCRIPT *** -->
+  </body>
+</html>

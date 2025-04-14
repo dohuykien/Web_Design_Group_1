@@ -1,0 +1,184 @@
+/*----------Header----------*/
+.developed-by {
+    position: absolute;
+    left: 250px;
+    top: 7px;
+    color: #ffffff;
+    font-size: 14px;
+    z-index: 2;
+}
+.navbar-top {
+    background-color: #1565c0;
+    color: white;
+    padding: 10px 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 75px;
+}
+  .navbar-bottom {
+    position: relative;
+}
+/*------------------------- Logo ---------------------------------*/
+.logo {
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    left: 170px;
+}
+.logo img {
+    height: 65px;
+    max-width: 100%;
+    margin-right: 10px;
+}
+
+/* Menu chính */
+.navbar-collapse {
+    background-color: #ff6f00;
+    padding: 7px 0px;
+    height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+.navbar-collapse::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    left: -15px;
+    width: 101%;
+    height: 50px;
+    background-color: #ff6f00;
+    clip-path: polygon(0 350%, 15% 0, 100% 0, 100% 100%);
+}
+.navbar-nav {
+    display: flex;
+    margin-left: -200px;
+}
+.navbar-nav li a {
+    left: 10px;
+    color: white;
+    text-decoration: none;
+    /* margin: 0 7px; */
+    top: -20px;
+    position: relative;
+    z-index: 2;
+    font-size: 16px;
+}
+
+.nav-item {
+    padding: 0 15px;
+    list-style: none;
+}
+.navbar-nav a:hover {
+    text-decoration: underline;
+}
+
+
+.header .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative; /* Đổi từ absolute sang relative */
+    right: 60px;
+    top: -20px;
+    cursor: pointer;
+    z-index: 1000;
+ }
+.header .user-info img {
+    width: 30px;
+    height: 30px;
+}
+.user-info span i {
+    position: relative;
+    top: -2px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    min-width: 160px;
+    z-index: 1000;
+    padding: 5px 0px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 5px 15px;
+    color: #333333;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+.dropdown-menu a:hover {
+    background-color: #f34541;
+    color: #ffffff;
+}
+.fa-solid.fa-caret-down {
+    color: #333333;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+/* Responsive cho Mobile */
+@media (max-width: 768px) {
+    .navbar {
+        position: fixed;
+        top: 0; /* Stick it to the top of the viewport */
+        left: 0; /* Stick it to the left edge of the viewport (optional, but common) */
+        width: 100%; /* Make it span the entire width of the viewport (optional, but common) */
+        background-color: #f0f0f0; /* Add a background color for better visibility */
+        /* Add any other styling you want for your header */
+        z-index: 100; /* Ensure it stays on top of other content */
+        align-items: center;
+    }
+    .developed-by {
+        display: none;
+    }
+
+    .logo {
+        margin-left: 75px;
+        margin-top: 5px;
+    }
+    .header .user-info {
+        position: fixed; /* Keep it fixed relative to viewport */
+        top: 20px;
+        right: 15px;
+        z-index: 1010;
+
+
+    }
+    .user-info span {
+        display: none;
+    }
+    .navbar-bottom {
+        display: none;
+    }
+
+    .content-wrapper {
+        overflow-x: hidden; 
+    }
+    .list-league {
+        margin-top: 76px; 
+    }
+    .list-league {
+        flex-direction: column; /* Stack title and toolbar */
+        align-items: stretch; /* Stretch items full width */
+        gap: 15px; /* Add gap */
+        padding-bottom: 15px; /* Add padding */
+    }
+    .list-league_left {
+        text-align: center; /* Center title */
+    }
+    
+
+}

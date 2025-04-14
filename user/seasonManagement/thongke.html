@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Thống Kê</title>
+    <link rel="icon" type="logo.png" href="/images/logo.png" />
+    <!-- Thay đổi đường dẫn nếu cần -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/user/css/userheader.css" />
+    <link rel="stylesheet" href="/user/css/userfooter.css" />
+
+    <link rel="stylesheet" href="/user/seasonManagement/css/management-actions.css"/>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Oswald, sans-serif;
+        text-decoration: none;
+      }
+      body {
+        background-color: white;
+      }
+      
+
+      /*----------------------Layout-------------------------*/
+      .container {
+        display: flex;
+        width: 100%;
+      }
+      
+
+      /*----------content: management + list-league + footer------------ */
+      .content-wrapper {
+        flex: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      .content {
+        background-color: white;
+        border-radius: 5px;
+      }
+      /* list-league */
+      .list-league {
+        color: rgb(34, 34, 34);
+        font-size: 24px;
+        font-weight: normal;
+        padding: 12px; /* Giữ nguyên padding */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .list-league_left {
+        font-family: "Source Sans Pro", sans-serif !important;
+        flex-grow: 1;
+        margin-right: 15px;
+      }
+      .list-league .fa-solid.fa-list {
+        color: #ff6f00;
+        margin-right: 8px;
+        font-size: 25px;
+      }
+
+      /* Khu vực chứa nút chọn thống kê và export */
+      .statistics-actions-header {
+        display: flex;
+        align-items: center; /* Thêm căn giữa dọc */
+        gap: 10px;
+        position: relative; /* Thêm position relative cho dropdown */
+      }
+
+      .btn-select-stats,
+      .btn-export-excel {
+        padding: 8px 15px; /* Đệm bên trong nút */
+        border: none; /* Bỏ viền */
+        cursor: pointer;
+        font-size: 14px; /* Cỡ chữ */
+        font-weight: 500; /* Độ đậm chữ */
+        transition: background-color 0.2s ease; /* Hiệu ứng chuyển màu nền */
+        color: white; /* Màu chữ trắng */
+        display: inline-flex; /* Để icon và chữ trên cùng hàng */
+        align-items: center; /* Căn giữa icon và chữ theo chiều dọc */
+        gap: 5px; /* Khoảng cách giữa icon và chữ */
+      }
+
+      .btn-select-stats {
+        background-color: #8e44ad; /* Màu tím */
+      }
+      .btn-select-stats:hover {
+        background-color: #732d91; /* Màu tím đậm hơn khi hover */
+      }
+      .btn-select-stats i.fa-solid.fa-caret-down {
+        /* Style gốc của bạn cho caret */
+        font-size: 12px;
+        position: relative;
+        top: 0px; /* Bỏ top -4px */
+        color: #ffffff !important;
+      }
+
+      .btn-export-excel {
+        background-color: #28a745; /* Màu xanh lá */
+      }
+      .btn-export-excel:hover {
+        background-color: #218838; /* Màu xanh lá đậm hơn khi hover */
+      }
+      .btn-export-excel i {
+        font-size: 16px; /* Kích thước icon excel */
+      }
+
+      /* --- CSS MỚI CHỈ DÀNH CHO DROPDOWN THỐNG KÊ --- */
+      .stats-dropdown-menu-wrapper {
+        /* Wrapper để định vị dropdown */
+        position: relative;
+        display: inline-block; /* Hoặc block tùy layout */
+      }
+      .stats-dropdown-menu {
+        display: none; /* Ẩn ban đầu */
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 10;
+        right: 0; /* Căn phải với nút */
+        top: 100%; /* Ngay dưới nút */
+        margin-top: 2px;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .stats-dropdown-menu a {
+        color: black;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+        font-size: 14px;
+        border-bottom: 1px solid #eee;
+        white-space: nowrap;
+      }
+      .stats-dropdown-menu a:last-child {
+        border-bottom: none;
+      }
+      .stats-dropdown-menu a:hover {
+        background-color: #ddd;
+      }
+      .stats-dropdown-menu.show {
+        display: block;
+      } /* Lớp để hiện menu */
+      /* --- HẾT CSS MỚI CHO DROPDOWN --- */
+
+      /* === PHẦN BẢNG THỐNG KÊ (GIỮ NGUYÊN STYLE CỦA BẠN) === */
+      .statistics-section {
+        background-color: #ecf0f5 !important;
+        border-top: 1px solid #dee2e6;
+        border-radius: 0 0 4px 4px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+      }
+
+      .statistics-title {
+        /* Style gốc của bạn */
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .table-scroll-wrapper {
+        /* Style gốc của bạn */
+        overflow-x: auto;
+        background-color: #ffffff;
+      }
+
+      .statistics-table {
+        /* Style gốc của bạn */
+        width: 100%;
+        min-width: 800px;
+        border-collapse: collapse;
+        background-color: #ffffff;
+      }
+
+      .statistics-table th, /* Style gốc của bạn */
+      .statistics-table td {
+        /* Style gốc của bạn */
+        border: 1px solid #e0e0e0;
+        padding: 10px 12px;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 14px;
+        white-space: nowrap;
+      }
+
+      .statistics-table thead th {
+        /* Style gốc của bạn */
+        background-color: #2c3e50;
+        color: white;
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
+      /* Định dạng cho hàng tiêu đề thứ 2 */
+      .statistics-table thead tr:nth-child(2) th {
+        /* Style gốc của bạn */
+        background-color: #34495e;
+        top: 42px; /* Điều chỉnh nếu chiều cao header thay đổi */
+      }
+
+      .statistics-table tbody tr:hover {
+        /* Style gốc của bạn */
+        background-color: #f1f1f1;
+      }
+
+      /* Căn lề cụ thể nếu cần */
+      .statistics-table td:first-child, /* Style gốc của bạn */
+      .statistics-table th:first-child {
+        /* Style gốc của bạn */
+        text-align: left;
+        padding-left: 15px;
+      }
+
+      /* Định dạng chỉ báo cuộn */
+      .scroll-indicators {
+        /* Style gốc của bạn */
+        background-color: #fff;
+        border-top: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+        padding: 2px 10px;
+        line-height: 1;
+      }
+
+      .scroll-indicators .arrow {
+        /* Style gốc của bạn */
+        color: #aaa;
+        font-size: 14px;
+        cursor: default;
+        padding: 3px 0;
+      }
+
+      /* Bỏ viền cho hàng trống */
+      .statistics-table tbody tr td[colspan="12"] {
+        /* Style gốc của bạn */
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+        height: 10px !important;
+        padding: 0;
+      }
+      /* === HẾT PHẦN BẢNG THỐNG KÊ === */
+
+
+    </style>
+  </head>
+  <body>
+    <header id="header-container" class="header">
+        <!-- Header will be loaded here -->
+    </header>
+
+
+    <div class="container">
+      <div id="sidebar-container">
+        <!-- Sidebar sẽ được tải vào đây bằng JavaScript -->
+      </div>
+
+      <div class="content-wrapper">
+        <div class="management-actions">
+          <a href="lichthidau.html" class="action-button"
+            ><i class="fa-solid fa-calendar-days"></i
+            ><span>LỊCH THI ĐẤU</span></a
+          >
+          <a href="bangxephang.html" class="action-button"
+            ><i class="fa-solid fa-ranking-star"></i
+            ><span>BẢNG XẾP HẠNG</span></a
+          >
+          <a href="doithamdu.html" class="action-button"
+            ><i class="fa-solid fa-users"></i><span>ĐỘI THAM DỰ</span></a
+          >
+          <a href="kqboctham.html" class="action-button"
+            ><i class="fa-solid fa-list"></i><span>KẾT QUẢ BỐC THĂM</span></a
+          >
+          <a href="thongke.html" class="action-button"
+            ><i class="fa-solid fa-chart-simple"></i><span>THỐNG KÊ</span></a
+          >
+          <a href="news.html" class="action-button"
+            ><i class="fa-solid fa-newspaper"></i
+            ><span>TIN TỨC-THÔNG BÁO</span></a
+          >
+          <a href="/user/EditSeason.html" class="action-button"
+            ><i class="fa-solid fa-gears"></i><span>CẤU HÌNH MÙA GIẢI</span></a
+          >
+          <a href="phanquyen.html" class="action-button"
+            ><i class="fa-solid fa-shield-halved"></i><span>PHÂN QUYỀN</span></a
+          >
+        </div>
+
+        <section class="content">
+          <div class="list-league">
+            
+            <span class="list-league_left"><i class="fa-solid fa-list"></i>Thống Kê</span>
+
+            <div class="statistics-actions-header">
+              <!-- THÊM WRAPPER CHO DROPDOWN -->
+              <div class="stats-dropdown-menu-wrapper">
+                <button class="btn-select-stats" id="btnSelectStats">
+                  <!-- ID cho nút -->
+                  Chọn thống kê <i class="fa-solid fa-caret-down"></i>
+                </button>
+                <!-- THÊM MENU DROPDOWN -->
+                <div class="stats-dropdown-menu" id="statsDropdownMenu">
+                  <a href="#" data-stats="the-phat">Thống kê thẻ phạt</a>
+                  <a href="#" data-stats="ban-thang">Tổng hợp bàn thắng</a>
+                </div>
+              </div>
+              <button class="btn-export-excel">
+                <i class="fa-solid fa-file-excel"></i> Export Excel
+              </button>
+            </div>
+          </div>
+
+          <!-- KHU VỰC THỐNG KÊ THẺ PHẠT -->
+          <div id="stats-the-phat-section" class="statistics-section">
+            <!-- Thêm ID -->
+            <div class="statistics-title">Thống kê thẻ phạt</div>
+            <div class="table-scroll-wrapper">
+              <table class="statistics-table">
+                <thead>
+                  <tr>
+                    <th rowspan="2">Cầu Thủ</th>
+                    <th rowspan="2">Số áo</th>
+                    <th colspan="2">Vòng 1</th>
+                    <th colspan="2">Vòng 2</th>
+                    <th colspan="2">Vòng 3</th>
+                    <th colspan="2">Bán kết</th>
+                    <th colspan="2">Chung kết</th>
+                  </tr>
+                  <tr>
+                    <th>TV</th>
+                    <th>TĐ</th>
+                    <th>TV</th>
+                    <th>TĐ</th>
+                    <th>TV</th>
+                    <th>TĐ</th>
+                    <th>TV</th>
+                    <th>TĐ</th>
+                    <th>TV</th>
+                    <th>TĐ</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="12"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="scroll-indicators">
+              <span class="arrow left-arrow">◀</span>
+              <span class="arrow right-arrow">▶</span>
+            </div>
+          </div>
+
+          <!-- KHU VỰC TỔNG HỢP BÀN THẮNG (Ẩn ban đầu, cấu trúc tương tự thẻ phạt) -->
+          <div
+            id="stats-ban-thang-section"
+            class="statistics-section"
+            style="display: none"
+          >
+            <!-- Thêm ID và ẩn -->
+            <div class="statistics-title">Tổng hợp bàn thắng</div>
+            <div class="table-scroll-wrapper">
+              <table class="statistics-table">
+                <thead>
+                  <tr>
+                    <th rowspan="2">Cầu Thủ</th>
+                    <th rowspan="2">Số áo</th>
+                    <th colspan="2">Vòng 1</th>
+                    <th colspan="2">Vòng 2</th>
+                    <th colspan="2">Vòng 3</th>
+                    <th colspan="2">Bán kết</th>
+                    <th colspan="2">Chung kết</th>
+                  </tr>
+                  <tr>
+                    <th>BT</th>
+                    <th>OG</th>
+                    <th>BT</th>
+                    <th>OG</th>
+                    <th>BT</th>
+                    <th>OG</th>
+                    <th>BT</th>
+                    <th>OG</th>
+                    <th>BT</th>
+                    <th>OG</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Hàng trống -->
+                  <tr>
+                    <td colspan="12"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="scroll-indicators">
+              <span class="arrow left-arrow">◀</span>
+              <span class="arrow right-arrow">▶</span>
+            </div>
+          </div>
+
+          
+          <footer id="footer" class="footer">
+
+          </footer>
+
+        </section>
+        <!-- End .content -->
+      </div>
+      <!-- End .content-wrapper -->
+    </div>
+    <!-- End .container -->
+
+    <script src="/user/js/sidebar.js"></script>
+    <script src="/user/js/userheader.js"></script>
+    <script src="/user/js/componentloader.js"></script>
+
+    <script>
+
+      // --- Statistics Dropdown Script (SCRIPT MỚI THÊM) ---
+      document.addEventListener("DOMContentLoaded", function () {
+        const btnSelectStats = document.getElementById("btnSelectStats");
+        const statsDropdownMenu = document.getElementById("statsDropdownMenu");
+        const statsThePhatSection = document.getElementById(
+          "stats-the-phat-section"
+        );
+        const statsBanThangSection = document.getElementById(
+          "stats-ban-thang-section"
+        );
+
+        // Kiểm tra các element có tồn tại không
+        if (
+          !btnSelectStats ||
+          !statsDropdownMenu ||
+          !statsThePhatSection ||
+          !statsBanThangSection
+        ) {
+          console.error(
+            "JS Error: Một hoặc nhiều thành phần thống kê không tìm thấy trong DOM!"
+          );
+          return; // Dừng nếu thiếu element quan trọng
+        }
+
+        // Hiển thị/Ẩn dropdown thống kê khi nhấn nút
+        btnSelectStats.addEventListener("click", function (event) {
+          event.stopPropagation(); // Ngăn click lan ra window
+          statsDropdownMenu.classList.toggle("show");
+        });
+
+        // Xử lý khi chọn loại thống kê từ dropdown
+        statsDropdownMenu.addEventListener("click", function (event) {
+          event.preventDefault(); // Ngăn hành vi mặc định của thẻ <a>
+          if (
+            event.target.tagName === "A" &&
+            event.target.hasAttribute("data-stats")
+          ) {
+            const selectedStats = event.target.getAttribute("data-stats");
+
+            // Ẩn cả hai khu vực trước
+            statsThePhatSection.style.display = "none";
+            statsBanThangSection.style.display = "none";
+
+            // Hiện khu vực được chọn
+            if (selectedStats === "the-phat") {
+              statsThePhatSection.style.display = "block"; // Hoặc 'flex'/'grid' nếu layout gốc dùng display khác
+            } else if (selectedStats === "ban-thang") {
+              statsBanThangSection.style.display = "block"; // Hoặc 'flex'/'grid'
+            }
+
+            statsDropdownMenu.classList.remove("show"); // Ẩn menu sau khi chọn
+          }
+        });
+
+        // Ẩn dropdown thống kê nếu nhấn ra ngoài
+        window.addEventListener("click", function (event) {
+          // Chỉ ẩn nếu click không phải vào nút hoặc menu
+          if (
+            !btnSelectStats.parentElement.contains(event.target) &&
+            !statsDropdownMenu.contains(event.target)
+          ) {
+            if (statsDropdownMenu.classList.contains("show")) {
+              statsDropdownMenu.classList.remove("show");
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

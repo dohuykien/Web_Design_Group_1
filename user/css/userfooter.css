@@ -1,0 +1,99 @@
+/* --------------------- FOOTER --------------------*/
+.footer {
+    box-sizing: border-box;
+    background-color: #ecf0f5; /* Light grey background */
+    color: rgb(51, 51, 51);    /* Dark grey text */
+    font-size: 14px;
+    font-weight: 500;
+    /* text-shadow: rgb(255, 255, 255) 1px 1px 1px; */ /* Text shadow often reduces readability */
+    border-top: 1px solid #ddd; /* Use a slightly darker border */
+    padding: 25px 20px; /* Add padding */
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space out left and right sections */
+    align-items: flex-start; /* Align items to the top */
+    flex-wrap: wrap; /* Allow wrapping if needed */
+    gap: 30px; /* Add gap between left and right sections */
+}
+  
+  /* Remove styles for the now-deleted .footer-container */
+  /* .footer-container { ... } */
+  
+.footer-left,
+.footer-right {
+    flex: 1; /* Allow growing */
+    min-width: 300px; /* Prevent excessive squishing before stacking (adjust as needed) */
+    box-sizing: border-box;
+}
+  
+.footer-left p,
+.footer-right p {
+    margin: 10px 0; /* Adjust paragraph margin */
+    line-height: 1.6; /* Sensible line height for readability */
+    display: flex; /* Align icon and text nicely */
+    align-items: flex-start; /* Align icon to top of text */
+    gap: 8px; /* Space between icon and text */
+}
+  
+  .footer-right p i.fa {
+    margin-top: 4px; /* Small adjustment for icon vertical alignment */
+    width: 16px; /* Give icon a fixed width for alignment consistency */
+    text-align: center; /* Center icon within its space */
+    flex-shrink: 0; /* Prevent icon from shrinking */
+  }
+  
+  .footer-apps {
+    display: flex;
+    flex-wrap: wrap; /* Allow app icons to wrap if needed */
+    gap: 12px;
+    margin-top: 15px; /* Space above app icons */
+    align-items: center; /* Vertically align icons */
+  }
+  
+  .footer-apps img {
+    height: 30px;
+    width: auto; /* Maintain aspect ratio */
+  }
+  
+
+/* --- Responsive adjustments for Mobile --- */
+@media (max-width: 768px) {
+    .footer {
+      flex-direction: column; /* Stack left and right sections vertically */
+      align-items: center; /* Center sections horizontally */
+      text-align: center; /* Center text within sections */
+      padding: 20px 15px; /* Slightly reduce padding */
+      gap: 25px; /* Adjust gap between stacked sections */
+    }
+  
+    .footer-left,
+    .footer-right {
+      min-width: unset; /* Remove min-width on mobile */
+      width: 100%; /* Ensure each section takes full width */
+      max-width: 450px; /* Optional: Limit max width for better readability */
+      text-align: center; /* Ensure text inside is centered */
+    }
+  
+     .footer-right p {
+          justify-content: center; /* Center icon + text container */
+          padding: 0 10px; /* Add slight horizontal padding if text gets too close to edge */
+     }
+  
+    .footer-apps {
+      justify-content: center; /* Center the app icons */
+      margin-top: 12px;
+    }
+  }
+  
+  /* Optional: Fine-tuning for very small screens */
+  @media (max-width: 400px) {
+       .footer-left p,
+       .footer-right p {
+          font-size: 13px; /* Slightly smaller font */
+       }
+        .footer-apps {
+           gap: 8px;
+       }
+        .footer-apps img {
+            height: 28px; /* Slightly smaller icons */
+        }
+  }

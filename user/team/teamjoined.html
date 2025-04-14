@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang danh sách đội tham gia</title>
+    <link rel="icon" type="logo.png" href="images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/user/css/userheader.css" />
+    <link rel="stylesheet" href="/user/css/userfooter.css" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Oswald, sans-serif;
+      }
+      body {
+        background-color: white;
+      }
+
+      /*------------Layout------------*/
+      .container {
+        display: flex;
+        width: 100%;
+      }
+      
+      /*content: list-league + footer */
+      .content-wrapper {
+        flex: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      .content {
+        background-color: white;
+        border-radius: 5px;
+      }
+      /* list-league */
+      .list-league {
+        color: rgb(34, 34, 34);
+        font-size: 24px;
+        font-weight: normal;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .list-league_left {
+        font-family: "Source Sans Pro", sans-serif !important;
+      }
+      .fa-solid.fa-list {
+        color: #ff6f00;
+        margin-right: 5px;
+        font-size: 25px;
+      }
+      .list-league_left {
+        flex-grow: 1;
+      }
+
+    /* ------------- Team Card Styles ------------- */
+    #team-list-container {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 15px; /* Add padding inside the container */
+        gap: 15px; /* Space between cards */
+        background-color: #ecf0f5; /* Match outer background */
+        flex-grow: 1; /* Allow this container to fill space */
+    }
+
+    .team-card {
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: calc(25% - 12px); /* Adjust width for 4 cards per row, considering gap */
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+        text-align: center;
+        overflow: hidden; /* Ensure buttons don't overflow */
+    }
+
+    .team-logo {
+        width: 150px; /* Adjust size */
+        height: 150px;
+        border-radius: 50%; /* Make it circular */
+        object-fit: cover; /* Ensure image covers the area */
+        margin-bottom: 15px;
+        border: 1px solid #eee; /* Subtle border */
+    }
+
+    .team-name {
+        font-size: 16px;
+        font-weight: 600; /* Bold name */
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .team-members {
+        font-size: 13px;
+        color: #777;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .team-members i.fa-users {
+        font-size: 12px; /* Adjust icon size */
+    }
+
+
+    /* Responsive adjustments for cards */
+    @media (max-width: 1200px) {
+        .team-card {
+            width: calc(33.333% - 10px); /* 3 cards per row */
+        }
+    }
+    @media (max-width: 768px) {
+        .team-card {
+            width: calc(50% - 8px); /* 2 cards per row */
+        }
+        .content-wrapper {
+            padding: 10px;
+        }
+        #team-list-container {
+            padding: 10px;
+            gap: 10px;
+        }
+    }
+    @media (max-width: 480px) {
+        .team-card {
+            width: 100%; /* 1 card per row */
+        }
+        .navbar-nav { padding-left: 10px; margin-left: 0;} /* Adjust mobile nav */
+        .developed-by { display: none; } /* Hide on very small screens */
+        .header .user-info { margin-right: 10px;}
+    }
+    </style>
+  </head>
+  <body>
+    <header id="header-container" class="header">
+        <!-- Header will be loaded here -->
+    </header>
+
+    <div class="container">
+        <div id="sidebar-container">
+            <!-- Sidebar will be loaded here -->
+        </div>  
+            
+      <div class="content-wrapper">
+        <section class="content">
+          <div class="list-league">         
+            <span class="list-league_left"><i class="fa-solid fa-list"></i>Danh sách đội bạn tham gia</span>
+          </div>
+
+          <div id="team-list-container">
+
+          </div>
+
+          <footer id="footer" class="footer">
+
+          </footer>
+
+        </section>
+      </div>
+    </div>
+
+    <script src="/user/js/sidebar.js"></script>
+    <script src="/user/js/userheader.js"></script>
+    <script src="/user/js/componentloader.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        console.log("DOM fully loaded. Initializing joined teams list...");
+
+        // ----- User Data -----
+        const currentUser = {
+            id: 1, // The ID of the user viewing the page
+            // name: "Nguyen Hai Dang" // Name not strictly needed for this logic
+        };
+
+        // ----- Helper: Load and Parse data from localStorage -----
+        function loadDataFromLocalStorage(key) {
+            const storedData = localStorage.getItem(key);
+            let data = [];
+            try {
+                data = storedData ? JSON.parse(storedData) : [];
+                if (!Array.isArray(data)) {
+                    console.warn(`Invalid data found in localStorage for '${key}', resetting to empty array.`);
+                    data = [];
+                    // Optionally clear the invalid item: localStorage.removeItem(key);
+                }
+            } catch (error) {
+                console.error(`Error parsing '${key}' from localStorage:`, error);
+                data = [];
+            }
+            return data;
+        }
+
+        // ----- Load Data -----
+        const allTeamsData = loadDataFromLocalStorage("teams"); // Load ALL team definitions
+        const allMembersData = loadDataFromLocalStorage("teamMembersData"); // Load ALL member relationship data
+
+        console.log("All Teams Data:", allTeamsData);
+        console.log("All Members Data:", allMembersData);
+
+        // ----- Process Data -----
+
+        // 1. Find the IDs of teams the currentUser has joined
+        const joinedTeamIds = new Set(); // Use a Set to automatically handle duplicate entries
+        allMembersData.forEach(member => {
+            // IMPORTANT: Check the member's ID against currentUser.id
+            if (member && member.userId === currentUser.id && member.teamId) {
+                joinedTeamIds.add(member.teamId);
+            }
+        });
+        console.log("User is a member of Team IDs:", joinedTeamIds);
+
+        // 2. Calculate total member counts for ALL teams (for efficiency)
+        const memberCountsByTeamId = {};
+        allMembersData.forEach(member => {
+            if (member && member.teamId) {
+                const teamId = member.teamId;
+                memberCountsByTeamId[teamId] = (memberCountsByTeamId[teamId] || 0) + 1;
+            }
+        });
+        console.log("Calculated member counts for all teams:", memberCountsByTeamId);
+
+        // 3. Filter the main teams list to get only the joined teams and add member counts
+        const joinedTeamsDetails = allTeamsData
+            .filter(team => team && team.id && joinedTeamIds.has(team.id)) // Keep only teams whose IDs are in the joined set
+            .map(team => ({ // Create a new object structure if needed, or just add the count
+                ...team, // Spread existing team properties (id, teamName, logo, userId etc.)
+                memberCount: memberCountsByTeamId[team.id] || 0 // Add the calculated member count
+            }));
+
+        console.log("Details of teams user joined:", joinedTeamsDetails);
+
+
+        // ----- Display Logic -----
+        function displayJoinedTeams() {
+            const container = document.getElementById('team-list-container');
+            if (!container) {
+                console.error("Team list container not found!");
+                return;
+            }
+            container.innerHTML = ''; // Clear existing cards
+
+            if (joinedTeamsDetails.length === 0) {
+                container.innerHTML = '<p style="text-align: center; width: 100%; padding: 20px; color: #666;">Bạn chưa tham gia đội bóng nào.</p>';
+                return;
+            }
+
+            joinedTeamsDetails.forEach((team) => {
+                // Basic check for valid team object after processing
+                if (!team || !team.id) {
+                    console.warn("Skipping invalid joined team data during display:", team);
+                    return;
+                }
+
+                let imgSrc = team.logo || 'images/logo.png'; // Default placeholder
+
+                // --- Image Source Handling (same as before) ---
+                if (team.logo && typeof team.logo === 'string' && team.logo.trim() !== '') {
+                    if (!team.logo.startsWith('data:image') && !team.logo.startsWith('images/')) {
+                        console.warn(`Team ${team.id} logo format issue. Using placeholder.`);
+                        imgSrc = 'images/logo.png';
+                    } else {
+                        imgSrc = team.logo;
+                    }
+                } else {
+                    imgSrc = 'images/logo.png';
+                }
+                // --- End Image Source Handling ---
+
+                const cardHTML = `
+                    <div class="team-card"> <!-- Removed data-identifier as no actions needed -->
+                        <img src="${imgSrc}" alt="Logo đội ${team.teamName || 'Không tên'}" class="team-logo" onerror="this.onerror=null; this.src='images/logo.png';">
+                        <h3 class="team-name">${team.teamName || 'Đội không tên'}</h3>
+                        <p class="team-members">
+                            <i class="fa-solid fa-users"></i> ${team.memberCount} Thành viên
+                        </p>
+                        <!-- No card-actions div needed for this view -->
+                    </div>
+                `;
+                container.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+
+        // --- Initial Display Call ---
+        displayJoinedTeams();
+
+    }); // End DOMContentLoaded
+    </script>
+  </body>
+</html>

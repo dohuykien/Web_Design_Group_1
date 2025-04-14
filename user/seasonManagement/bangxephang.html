@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang bảng xếp hạng</title>
+    <link rel="icon" type="logo.png" href="/images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/user/css/userheader.css" />
+    <link rel="stylesheet" href="/user/css/userfooter.css" />
+
+    <link rel="stylesheet" href="/user/seasonManagement/css/management-actions.css"/>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Oswald, sans-serif;
+        text-decoration: none;
+      }
+      body {
+        background-color: white;
+      }
+
+      /*----------------------Layout-------------------------*/
+      .container {
+        display: flex;
+        width: 100%;
+      }
+
+      /*----------content: list-league + footer------------ */
+      
+      .content-wrapper {
+        flex: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      .content {
+        background-color: white;
+        border-radius: 5px;
+      }
+      /* list-league */
+      .list-league {
+        color: rgb(34, 34, 34);
+        font-size: 24px;
+        font-weight: normal;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .list-league_left {
+        font-family: "Source Sans Pro", sans-serif !important;
+      }
+      .list-league .fa-solid.fa-list {
+        color: #ff6f00;
+        margin-right: 8px;
+        font-size: 25px;
+      }
+      .list-league_left {
+        flex-grow: 1;
+      }
+
+      .fa-solid.fa-plus {
+        margin-right: 3px;
+        font-size: 15px;
+      }
+
+      .Nhaplai {
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: rgb(0, 172, 236);
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .Nhaplai:hover {
+        background-color: #428bca;
+      }
+
+      /*---------------------inputleague------------------*/
+      .box {
+        max-width: 1250px;
+        margin: 10px auto 0;
+        padding: 20px 20px 5px 20px;
+        background: #ffffff;
+        border-radius: 3px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .box-success {
+        max-width: 1250px;
+        margin: 10px auto 0;
+        padding: 10px;
+        background: #ffffff;
+        border-radius: 3px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .box-success p {
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 14px;
+        font-style: italic;
+        color: rgb(1, 167, 1);
+      }
+      .addseason {
+        color: rgb(255, 255, 255);
+        display: block;
+        margin: 0 auto;
+        padding: 7px 12px 6px 12px;
+        background-color: #f34541;
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+        text-decoration: none !important;
+      }
+      .forminput {
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        padding-left: 200px;
+      }
+      .forminput label {
+        width: 100px;
+        font-size: 17px;
+        text-align: right;
+        margin-right: 20px;
+      }
+      input[type="text"] {
+        width: 60%;
+        padding: 3px;
+        border: 1px solid #d0d0d0;
+        font-size: 16px;
+        box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px 0px inset;
+      }
+      input:focus {
+        outline: 0;
+        border-color: #969696;
+      }
+      /* Ẩn nút file mặc định */
+      #fileInput {
+        display: none;
+      }
+
+      /* Nút tùy chỉnh */
+      .custom-button {
+        background-color: rgb(76, 175, 80);
+        color: white;
+        padding: 5px 15px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      .custom-button:hover {
+        background-color: #4d9e51;
+      }
+      .fa-solid.fa-arrow-left {
+        margin-right: 3px;
+        font-size: 15px;
+      }
+      .fa-solid.fa-upload {
+        margin-right: 3px;
+        font-size: 14px;
+        position: relative;
+        bottom: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header-container" class="header">
+        <!-- Header will be loaded here -->
+    </header>
+    <div class="container">
+      <div id="sidebar-container">
+        <!-- Sidebar will be loaded here -->
+      </div>
+      <div class="content-wrapper">
+        <div class="content-wrapper">
+          <div class="management-actions">
+            <a href="lichthidau.html" class="action-button">
+              <i class="fa-solid fa-calendar-days"></i>
+              <span>LỊCH THI ĐẤU</span>
+            </a>
+            <a href="bangxephang.html" class="action-button">
+              <i class="fa-solid fa-ranking-star"></i>
+              <span>BẢNG XẾP HẠNG</span>
+            </a>
+            <a href="doithamdu.html" class="action-button">
+              <i class="fa-solid fa-users"></i>
+              <span>ĐỘI THAM DỰ</span>
+            </a>
+            <a href="kqboctham.html" class="action-button">
+              <i class="fa-solid fa-list"></i>
+              <span>KẾT QUẢ BỐC THĂM</span>
+            </a>
+            <a href="thongke.html" class="action-button">
+              <i class="fa-solid fa-chart-simple"></i>
+              <span>THỐNG KÊ</span>
+            </a>
+            <a href="news.html" class="action-button">
+              <i class="fa-solid fa-newspaper"></i>
+              <span>TIN TỨC-THÔNG BÁO</span>
+            </a>
+            <a href="/user/EditSeason.html" class="action-button">
+              <i class="fa-solid fa-gears"></i>
+              <span>CẤU HÌNH MÙA GIẢI</span>
+            </a>
+
+            <a href="phanquyen.html" class="action-button">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>PHÂN QUYỀN</span>
+            </a>
+            <!-- Thêm các nút khác nếu cần -->
+          </div>
+        </div>
+        <section class="content">
+          <div class="list-league">
+            <span class="list-league_left"><i class="fa-solid fa-list"></i>Bảng xếp hạng</span>
+
+            <div class="wrap">
+              <a href="#">
+                <button class="Nhaplai">
+                  <i class="fa-solid fa-plus"></i> Đăng ký
+                </button>
+              </a>
+            </div>
+          </div>
+
+            <footer id="footer" class="footer">
+
+            </footer>
+        </section>
+      </div>
+    </div>
+
+    <script src="/user/js/sidebar.js"></script>
+    <script src="/user/js/userheader.js"></script>
+    <script src="/user/js/componentloader.js"></script>
+
+  </body>
+</html>

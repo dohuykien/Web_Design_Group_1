@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh sách đội quản lý</title>
+    <link rel="icon" type="logo.png" href="images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/user/css/userheader.css" />
+    <link rel="stylesheet" href="/user/css/userfooter.css" />
+
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Oswald, sans-serif;
+      }
+      body {
+        background-color: white;
+      }
+      /*------------Layout------------*/
+      .container {
+        display: flex;
+        width: 100%;
+      }
+      
+      /*content: list-league + footer */
+      .content-wrapper {
+        flex: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      .content {
+        background-color: white;
+        border-radius: 5px;
+      }
+      /* list-league */
+      .list-league {
+        color: rgb(34, 34, 34);
+        font-size: 24px;
+        font-weight: normal;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .list-league_left {
+        font-family: "Source Sans Pro", sans-serif !important;
+      }
+      .fa-solid.fa-list {
+        color: #ff6f00;
+        margin-right: 5px;
+        font-size: 25px;
+      }
+      .list-league_left {
+        flex-grow: 1;
+      }
+      .add {
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: rgb(0, 172, 236);
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .add:hover {
+        background-color: #428bca;
+      }
+
+            /* ------------- Team Card Styles ------------- */
+            #team-list-container {
+          display: flex;
+          flex-wrap: wrap;
+          padding: 15px; /* Add padding inside the container */
+          gap: 15px; /* Space between cards */
+          background-color: #ecf0f5; /* Match outer background */
+          flex-grow: 1; /* Allow this container to fill space */
+      }
+
+      .team-card {
+          background-color: #ffffff;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          width: calc(25% - 12px); /* Adjust width for 4 cards per row, considering gap */
+          box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding-top: 20px;
+          text-align: center;
+          overflow: hidden; /* Ensure buttons don't overflow */
+      }
+
+      .team-logo {
+          width: 150px; /* Adjust size */
+          height: 150px;
+          border-radius: 50%; /* Make it circular */
+          object-fit: cover; /* Ensure image covers the area */
+          margin-bottom: 15px;
+          border: 1px solid #eee; /* Subtle border */
+      }
+
+      .team-name {
+          font-size: 16px;
+          font-weight: 600; /* Bold name */
+          color: #333;
+          margin-bottom: 5px;
+      }
+
+      .team-members {
+          font-size: 13px;
+          color: #777;
+          margin-bottom: 15px;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+      }
+       .team-members i.fa-users {
+           font-size: 12px; /* Adjust icon size */
+       }
+
+      .card-actions {
+          display: flex;
+          width: 100%;
+          margin-top: auto; /* Push actions to the bottom */
+          border-top: 1px solid #eee; /* Separator */
+      }
+
+      .action-btn {
+          flex: 1; /* Each button takes half the width */
+          padding: 8px 0;
+          border: none;
+          cursor: pointer;
+          color: white;
+          font-size: 14px;
+          transition: background-color 0.2s;
+      }
+
+      .edit-btn {
+          background-color: rgb(76, 175, 80); /* Light green like image */
+          border-bottom-left-radius: 5px; /* Round bottom-left */
+      }
+      .edit-btn:hover {
+          background-color: #4d9e51; /* Darker green */
+      }
+
+      .delete-btn {
+          background-color: #f34541; /* Light red like image */
+          border-bottom-right-radius: 5px; /* Round bottom-right */
+      }
+       .delete-btn:hover {
+           background-color: #dd1b18; /* Darker red */
+       }
+
+      .action-btn i {
+          pointer-events: none; /* Ensure icon doesn't interfere with button click */
+      }
+
+      /* Responsive adjustments for cards */
+      @media (max-width: 1200px) {
+           .team-card {
+               width: calc(33.333% - 10px); /* 3 cards per row */
+           }
+       }
+       @media (max-width: 768px) {
+           /* --- REMOVED padding from content-wrapper --- */
+           /* .content-wrapper {
+               padding: 10px;
+           } */
+
+           /* Add overflow hidden as a safeguard if needed */
+
+           #team-list-container {
+                padding: 10px; /* Keep padding inside the card list area */
+                gap: 10px; /* Maybe reduce gap slightly on mobile */
+            }
+           .team-card {
+               width: 100%; /* Ensure card takes full width *within* its padded container */
+               /* No need for calc() here anymore */
+           }
+       }
+    </style>
+  </head>
+  <body>
+    <header id="header-container" class="header">
+        <!-- Header will be loaded here -->
+    </header>
+
+    <div class="container">
+        <div id="sidebar-container">
+            <!-- Sidebar will be loaded here -->
+        </div>  
+
+      <div class="content-wrapper">
+        <section class="content">
+          <div class="list-league">   
+            <span class="list-league_left"><i class="fa-solid fa-list"></i>Danh sách đội bóng</span>
+            <a href="addteam.html">
+              <button class="add">
+                <i class="fa-solid fa-plus"></i> Thêm mới
+              </button>
+            </a>
+          </div>
+          <div id="team-list-container">
+            <!-- Team cards will be inserted here by JavaScript -->
+         </div>
+         
+         <footer id="footer" class="footer">
+
+         </footer>
+
+
+        </section>
+      </div>
+    </div>
+
+
+    <script src="/user/js/sidebar.js"></script>
+    <script src="/user/js/userheader.js"></script>
+    <script src="/user/js/componentloader.js"></script>
+
+    <script src="/user/team/js/teamuser.js"></script>
+  </body>
+</html>

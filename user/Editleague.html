@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang chỉnh sửa thông tin giải đấu</title>
+    <link rel="icon" type="logo.png" href="images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/user/css/userheader.css" />
+    <link rel="stylesheet" href="/user/css/userfooter.css" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Oswald, sans-serif;
+        text-decoration: none;
+      }
+      body {
+        background-color: white;
+      }
+      
+      
+      /*----------------------Layout-------------------------*/
+      .container {
+        display: flex;
+        width: 100%;
+      }
+      
+
+      /*----------content: list-league + footer------------ */
+      .content-wrapper {
+        flex: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      .content {
+        background-color: white;
+        border-radius: 5px;
+      }
+      /* list-league */
+      .list-league {
+        color: rgb(34, 34, 34);
+        font-size: 24px;
+        font-weight: normal;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px; /* Khoảng cách nút */
+      }
+      .list-league_left {
+        font-family: "Source Sans Pro", sans-serif !important;
+      }
+      .fa-solid.fa-edit {
+        /* Thay icon */
+        color: #ff6f00;
+        margin-right: 8px;
+        font-size: 25px;
+      }
+      .list-league_left {
+        flex-grow: 1;
+      }
+
+      .fa-solid.fa-plus {
+        margin-right: 3px;
+        font-size: 15px;
+      }
+      .save {
+        /* Nút Lưu */
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: rgb(0, 172, 236);
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .save:hover {
+        background-color: #428bca;
+      }
+      .fa-solid.fa-rotate {
+        margin-right: 3px;
+        font-size: 15px;
+      }
+      .fa-regular.fa-floppy-disk {
+        margin-right: 3px;
+        font-size: 15px;
+      }
+      .Nhaplai {
+        /* Nút Nhập lại */
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: rgb(0, 172, 236);
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .Nhaplai:hover {
+        background-color: #428bca;
+      }
+      .return {
+        /* Nút Quay lại */
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: #f34541;
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .return:hover {
+        background-color: #dd1b18;
+      }
+
+      /*---------------------inputleague------------------*/
+      .kienngu {
+        background-color: #ecf0f5;
+        padding-top: 10px;
+      }
+      .success {
+        max-width: 1250px; /* Căn chỉnh với box */
+        margin: 0 auto 10px auto; /* Căn giữa và thêm margin dưới */
+        padding: 5px 15px;
+        color: #155724; /* Màu chữ đậm hơn */
+        font-size: 14px;
+        background-color: #d4edda; /* Màu nền xanh lá nhạt */
+        border: 1px solid #c3e6cb; /* Viền xanh lá */
+        display: none; /* Mặc định ẩn đi */
+        text-align: center; /* Căn giữa text */
+      }
+      .box {
+        max-width: 1250px;
+        margin: 10px auto 0;
+        padding: 20px 20px 20px 20px;
+        background: #ffffff;
+        border-radius: 3px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .forminput {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        padding-left: 200px;
+        flex-wrap: wrap; /* Xuống dòng nếu cần */
+      }
+      .forminput label {
+        width: 100px;
+        font-size: 17px;
+        text-align: right;
+        margin-right: 20px;
+        flex-shrink: 0; /* Không co label */
+      }
+      input[type="text"]#nameleague {
+        width: 60%;
+        min-width: 300px;
+        padding: 6px 10px;
+        border: 1px solid #d0d0d0;
+        font-size: 16px;
+        box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px 0px inset;
+      }
+      input[type="text"]#nameleague:focus {
+        outline: 0;
+        border-color: #88bde7;
+        box-shadow: 0 0 5px rgba(136, 189, 231, 0.5);
+      }
+      /* Ẩn nút file mặc định */
+      #fileInput {
+        display: none;
+      }
+
+      /* Nút tùy chỉnh */
+      .custom-button {
+        background-color: rgb(76, 175, 80);
+        color: white;
+        padding: 6px 15px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: auto;
+      }
+
+      .custom-button:hover {
+        background-color: #45a049;
+      }
+      /* Style cho ảnh preview */
+      #preview {
+        max-width: 300px; /* Giảm kích thước cho vừa bên cạnh nút */
+        max-height: 150px; /* Giảm chiều cao */
+        display: none; /* Ban đầu ẩn */
+        vertical-align: middle; /* Căn giữa theo chiều dọc với nút */
+        margin-left: 70px; /* Khoảng cách với nút */
+        border: 1px solid #ddd; /* Viền nhẹ */
+        border-radius: 3px;
+        padding: 3px; /* Padding nhỏ */
+        background-color: #f8f8f8; /* Nền nhạt */
+      }
+      /* Span báo lỗi */
+      .error-message {
+        color: red;
+        font-size: 12px;
+        /* Hiển thị dưới input nameleague */
+        display: block;
+        margin-left: 320px; /* Căn lề với input (100 label + 20 margin + 200 padding-left) */
+        margin-top: -10px; /* Kéo lên gần */
+        margin-bottom: 10px;
+        height: 15px; /* Giữ chỗ */
+      }
+
+      .fa-solid.fa-arrow-left {
+        margin-right: 3px;
+        font-size: 15px;
+      }
+      .fa-solid.fa-upload {
+        margin-right: 5px;
+        font-size: 14px;
+        position: relative;
+        bottom: 0px;
+      }
+
+      
+    </style>
+  </head>
+  <body>
+    <header id="header-container" class="header">
+        <!-- Header will be loaded here -->
+    </header>
+  
+
+    <div class="container">
+      <div id="sidebar-container">
+        <!-- Sidebar will be loaded here -->
+      </div>
+      <div class="content-wrapper">
+        <section class="content">
+          <div class="list-league">
+            <span class="list-league_left"><i class="fa-solid fa-edit"></i>Sửa thông tin giải đấu</span>
+
+            <div class="wrap">
+              <!-- Nút Lưu -->
+              <button class="save" id="saveButton">
+                <!-- Thêm ID -->
+                <i class="fa-regular fa-floppy-disk"></i> Lưu
+              </button>
+              <!-- Nút Nhập lại -->
+              <button class="Nhaplai" id="resetButton">
+                <!-- Thêm ID -->
+                <i class="fa-solid fa-rotate"></i> Nhập lại
+              </button>
+              <!-- Nút Quay lại -->
+              <a href="Dashboard.html">
+                <button class="return">
+                  <i class="fa-solid fa-arrow-left"></i> Quay lại
+                </button>
+              </a>
+            </div>
+          </div>
+
+          <div class="kienngu">
+            <div class="success" id="successMessageDiv">
+              <!-- Thêm ID -->
+              Cập nhật thông tin giải đấu thành công!
+            </div>
+            <div class="box">
+              <form id="editLeagueForm">
+                <!-- Wrap in form -->
+                <div class="forminput">
+                  <label for="nameleague">Tên giải đấu</label>
+                  <input
+                    type="text"
+                    name="nameleague"
+                    id="nameleague"
+                    required
+                  />
+                </div>
+                <!-- Span báo lỗi -->
+                <div class="error-message" id="nameError"></div>
+
+                <div class="forminput">
+                  <label for="fileInput" style="margin-bottom: auto"
+                    >Logo</label
+                  >
+                  <!-- Nút tùy chỉnh để chọn ảnh -->
+                  <button
+                    type="button"
+                    class="custom-button"
+                    onclick="document.getElementById('fileInput').click()"
+                  >
+                    <i class="fa-solid fa-upload"></i> Chọn ảnh mới
+                  </button>
+                  <!-- Input file bị ẩn -->
+                  <input type="file" id="fileInput" accept="image/*" />
+                  <!-- Ảnh xem trước ĐẶT NGAY SAU INPUT FILE -->
+                  <img id="preview" src="#" alt="Ảnh xem trước" />
+                </div>
+              </form>
+            </div>
+
+            <footer id="footer" class="footer"></footer>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="/user/js/sidebar.js"></script>
+    <script src="/user/js/userheader.js"></script>
+    <script src="/user/js/componentloader.js"></script>
+
+
+    <!-- ========= JAVASCRIPT CHO CHỨC NĂNG CẬP NHẬT ========= -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("DEBUG (edit): DOM loaded.");
+
+        // === Lấy DOM Elements ===
+        const nameInput = document.getElementById("nameleague");
+        const fileInput = document.getElementById("fileInput");
+        const previewImg = document.getElementById("preview");
+        const saveButton = document.getElementById("saveButton"); // ID nút Lưu
+        const resetButton = document.getElementById("resetButton"); // ID nút Nhập lại
+        const successMessageDiv = document.getElementById("successMessageDiv"); // ID div success
+        const nameErrorSpan = document.getElementById("nameError"); // ID span báo lỗi tên
+        const editForm = document.getElementById("editLeagueForm"); // ID form
+
+        // --- Kiểm tra sự tồn tại của các element ---
+        if (
+          !nameInput ||
+          !fileInput ||
+          !previewImg ||
+          !saveButton ||
+          !resetButton ||
+          !successMessageDiv ||
+          !nameErrorSpan ||
+          !editForm
+        ) {
+          console.error(
+            "DEBUG (edit): One or more essential elements not found! Check IDs."
+          );
+          alert(
+            "Lỗi: Không thể tìm thấy các thành phần cần thiết trên trang. Vui lòng kiểm tra lại HTML."
+          );
+          return; // Dừng nếu thiếu element
+        }
+
+        // === Biến toàn cục ===
+        const leaguesDataKey = "danhSachGiaiDau";
+        const defaultLeagueLogo = "images/logo.png"; // Đường dẫn logo mặc định
+        let editingLeagueId = null;
+        let originalLeagueData = null; // Lưu trữ dữ liệu gốc để reset
+        let newLogoDataUrl = null; // Lưu Data URL của logo mới (nếu có)
+
+        // === Hàm hỗ trợ ===
+        function getQueryParam(param) {
+          const urlParams = new URLSearchParams(window.location.search);
+          // **QUAN TRỌNG**: Sử dụng 'id' như đã thống nhất ở trang Dashboard
+          return urlParams.get("id");
+        }
+
+        // Hàm load dữ liệu giải đấu vào form
+        function loadLeagueData(leagueId) {
+          console.log(
+            `DEBUG (edit): Attempting to load league ID: ${leagueId}`
+          );
+          nameErrorSpan.textContent = ""; // Xóa lỗi cũ
+          successMessageDiv.style.display = "none"; // Ẩn thông báo cũ
+
+          try {
+            const leagues =
+              JSON.parse(localStorage.getItem(leaguesDataKey)) || [];
+            const leagueToEdit = leagues.find(
+              (league) => league && league.id === leagueId
+            );
+
+            if (leagueToEdit) {
+              console.log("DEBUG (edit): League found:", leagueToEdit);
+              originalLeagueData = { ...leagueToEdit }; // Lưu bản sao dữ liệu gốc
+
+              nameInput.value = originalLeagueData.name || "";
+              // Lấy logo hiện tại HOẶC logo mặc định NẾU logo hiện tại không có
+              const currentLogoSrc =
+                originalLeagueData.logo || defaultLeagueLogo;
+              previewImg.src = currentLogoSrc;
+              previewImg.style.display = "inline-block"; // Hiển thị ảnh preview (inline để nằm cạnh nút)
+
+              // Reset biến logo mới và input file
+              newLogoDataUrl = null;
+              fileInput.value = null;
+
+              console.log("DEBUG (edit): Form populated with original data.");
+              return true;
+            } else {
+              console.error(
+                `DEBUG (edit): League with ID ${leagueId} not found.`
+              );
+              alert(
+                `Lỗi: Không tìm thấy giải đấu với ID ${leagueId} để chỉnh sửa.`
+              );
+              window.location.href = "Dashboard.html"; // Quay về trang danh sách
+              return false;
+            }
+          } catch (error) {
+            console.error("DEBUG (edit): Error loading league data:", error);
+            alert("Lỗi khi tải dữ liệu giải đấu từ localStorage.");
+            window.location.href = "Dashboard.html";
+            return false;
+          }
+        }
+
+        // === Khởi tạo khi tải trang ===
+        editingLeagueId = getQueryParam("id"); // Lấy ID từ URL
+        if (editingLeagueId) {
+          editingLeagueId = parseInt(editingLeagueId, 10); // Chuyển sang số
+          if (isNaN(editingLeagueId)) {
+            console.error("DEBUG (edit): Invalid league ID in URL.");
+            alert("ID giải đấu không hợp lệ.");
+            window.location.href = "Dashboard.html";
+          } else {
+            // Tải dữ liệu nếu ID hợp lệ
+            loadLeagueData(editingLeagueId);
+          }
+        } else {
+          console.error("DEBUG (edit): Missing league ID in URL.");
+          alert("Không tìm thấy ID giải đấu để chỉnh sửa trong URL.");
+          window.location.href = "Dashboard.html"; // Không có ID thì quay về
+        }
+
+        // === Xử lý sự kiện ===
+
+        // 1. Chọn file logo mới
+        fileInput.addEventListener("change", function () {
+          console.log("DEBUG (edit): File input changed.");
+          const file = this.files[0];
+          newLogoDataUrl = null; // Reset trước khi đọc file mới
+
+          if (file && file.type.startsWith("image/")) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              previewImg.src = e.target.result;
+              previewImg.style.display = "inline-block"; // Đảm bảo hiển thị
+              newLogoDataUrl = e.target.result; // Lưu Data URL của ảnh MỚI
+              console.log(
+                "DEBUG (edit): New logo preview shown, Data URL stored."
+              );
+            };
+            reader.onerror = (e) => {
+              console.error("DEBUG (edit): FileReader error:", e);
+              alert("Lỗi khi đọc file ảnh. Vui lòng thử lại.");
+              // Nếu lỗi, quay lại ảnh gốc
+              previewImg.src = originalLeagueData.logo || defaultLeagueLogo;
+              newLogoDataUrl = null;
+              fileInput.value = null;
+            };
+            reader.readAsDataURL(file);
+          } else if (file) {
+            console.warn("DEBUG (edit): Invalid file type selected.");
+            alert("Vui lòng chọn một file ảnh hợp lệ (JPG, PNG, GIF, v.v.).");
+            // Quay lại ảnh gốc
+            previewImg.src = originalLeagueData.logo || defaultLeagueLogo;
+            newLogoDataUrl = null;
+            fileInput.value = null;
+          } else {
+            // Không chọn file nào
+            console.log("DEBUG (edit): No file selected in prompt.");
+            // Giữ nguyên ảnh preview (là ảnh gốc) và newLogoDataUrl (vẫn là null)
+          }
+        });
+
+        // 2. Nút Lưu
+        saveButton.addEventListener("click", function (e) {
+          e.preventDefault(); // Ngăn hành vi mặc định (nếu nút trong form)
+          console.log("DEBUG (edit): Save button clicked.");
+          nameErrorSpan.textContent = ""; // Xóa lỗi cũ
+          successMessageDiv.style.display = "none"; // Ẩn thông báo cũ
+
+          const newName = nameInput.value.trim();
+
+          // Validate tên
+          if (newName === "") {
+            console.warn("DEBUG (edit): Validation failed - Name is empty.");
+            nameErrorSpan.textContent = "Tên giải đấu không được để trống!";
+            nameInput.focus();
+            return;
+          }
+
+          try {
+            let leagues =
+              JSON.parse(localStorage.getItem(leaguesDataKey)) || [];
+            const leagueIndex = leagues.findIndex(
+              (league) => league && league.id === editingLeagueId
+            );
+
+            if (leagueIndex !== -1) {
+              // Cập nhật tên
+              leagues[leagueIndex].name = newName;
+
+              // Chỉ cập nhật logo NẾU người dùng đã chọn ảnh mới (newLogoDataUrl khác null)
+              if (newLogoDataUrl !== null) {
+                leagues[leagueIndex].logo = newLogoDataUrl;
+                console.log("DEBUG (edit): Updating logo with new Data URL.");
+              } else {
+                console.log(
+                  "DEBUG (edit): Logo not changed by user, keeping original."
+                );
+                // Không làm gì, logo trong leagues[leagueIndex] vẫn là cái cũ
+              }
+
+              // Thêm/cập nhật thời gian sửa
+              leagues[leagueIndex].updatedAt = new Date().toISOString();
+
+              // Lưu lại vào localStorage
+              localStorage.setItem(leaguesDataKey, JSON.stringify(leagues));
+              console.log(
+                `DEBUG (edit): League ID ${editingLeagueId} updated in localStorage.`
+              );
+
+              // Hiển thị thông báo thành công
+              successMessageDiv.style.display = "block";
+
+              // Cập nhật lại originalLeagueData sau khi lưu thành công
+              originalLeagueData = { ...leagues[leagueIndex] };
+
+              // Reset trạng thái logo mới sau khi đã lưu
+              newLogoDataUrl = null;
+              fileInput.value = null; // Xóa hiển thị file đã chọn
+
+              // Tùy chọn: Tự động ẩn thông báo sau vài giây
+              setTimeout(() => {
+                if (successMessageDiv) successMessageDiv.style.display = "none";
+              }, 3000); // Ẩn sau 3 giây
+            } else {
+              console.error(
+                `DEBUG (edit): League index not found for ID ${editingLeagueId} during save.`
+              );
+              alert("Lỗi nghiêm trọng: Không tìm thấy giải đấu để cập nhật!");
+              window.location.href = "Dashboard.html"; // Chuyển về nếu lỗi nghiêm trọng
+            }
+          } catch (error) {
+            console.error(
+              "DEBUG (edit): Error saving updated league data:",
+              error
+            );
+            alert("Đã xảy ra lỗi khi lưu cập nhật. Vui lòng thử lại.");
+            // Có thể ẩn thông báo thành công nếu nó vô tình hiển thị
+            successMessageDiv.style.display = "none";
+          }
+        });
+
+        // 3. Nút Nhập lại
+        resetButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          console.log("DEBUG (edit): Reset button clicked.");
+          if (originalLeagueData) {
+            // Quay lại dữ liệu gốc đã lưu lúc tải trang
+            nameInput.value = originalLeagueData.name || "";
+            const originalLogoSrc =
+              originalLeagueData.logo || defaultLeagueLogo;
+            previewImg.src = originalLogoSrc;
+            previewImg.style.display = "inline-block"; // Hiển thị lại ảnh
+
+            // Reset trạng thái logo mới và input file
+            newLogoDataUrl = null;
+            fileInput.value = null;
+
+            // Xóa thông báo lỗi/thành công
+            nameErrorSpan.textContent = "";
+            successMessageDiv.style.display = "none";
+            console.log("DEBUG (edit): Form reset to original loaded data.");
+          } else {
+            console.warn(
+              "DEBUG (edit): Cannot reset, original data not available."
+            );
+            // Thử tải lại dữ liệu nếu cần
+            if (editingLeagueId) loadLeagueData(editingLeagueId);
+          }
+        });
+
+        // Ngăn form submit mặc định (an toàn hơn khi có thẻ form)
+        editForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          console.log("DEBUG (edit): Form default submission prevented.");
+          // Có thể tự động click nút lưu nếu muốn submit bằng Enter
+          // saveButton.click();
+        });
+      }); // End DOMContentLoaded
+    </script>
+  </body>
+</html>

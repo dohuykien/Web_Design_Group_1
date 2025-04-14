@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang yêu cầu tham gia đội</title>
+    <link rel="icon" type="logo.png" href="images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/user/css/userheader.css" />
+    <link rel="stylesheet" href="/user/css/userfooter.css" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Oswald, sans-serif;
+      }
+      body {
+        background-color: white;
+      }
+
+      /*------------Layout------------*/
+      .container {
+        display: flex;
+        width: 100%;
+      }
+      /*content: list-league + footer */
+      .content-wrapper {
+        flex: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      .content {
+        background-color: white;
+        border-radius: 5px;
+      }
+      /* list-league */
+      .list-league {
+        color: rgb(34, 34, 34);
+        font-size: 24px;
+        font-weight: normal;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .list-league_left {
+        font-family: "Source Sans Pro", sans-serif !important;
+      }
+      .fa-solid.fa-list {
+        color: #ff6f00;
+        margin-right: 5px;
+        font-size: 25px;
+      }
+      .list-league_left {
+        flex-grow: 1;
+      }
+      /* ----------------------Table---------------------- */
+      .haidang {
+        box-sizing: border-box;
+        background-color: #ecf0f5;
+        color: rgb(51, 51, 51);
+        font-size: 14px;
+        font-weight: 500;
+        text-shadow: rgb(255, 255, 255) 1px 1px 1px;
+        border-top: 1px solid #e4e2e2;
+      }
+      .table-container {
+        margin: 18px 15px 0 15px;
+        overflow-x: auto;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        padding-bottom: 10px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        min-width: 580px;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 9px;
+        border-right: 1px solid #efecec;
+        border-bottom: 1px solid #efecec;
+        white-space: nowrap;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      th {
+        background-color: #f9fafc;
+        font-weight: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header-container" class="header">
+        <!-- Header will be loaded here -->
+    </header>
+
+    <div class="container">
+      <div id="sidebar-container">
+        <!-- Sidebar will be loaded here -->
+      </div>
+
+      <div class="content-wrapper">
+        <section class="content">
+          <div class="list-league">
+            <span class="list-league_left"><i class="fa-solid fa-list"></i>Yêu cầu tham gia đội</span>
+          </div>
+
+          <div class="haidang">
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>STT</th>
+                    <th>Đội</th>
+                    <th>Ngày gửi</th>
+                    <th>Trạng thái</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Không có dữ liệu -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <footer id="footer" class="footer"></footer>
+        </section>
+      </div>
+    </div>
+
+    <script src="/user/js/sidebar.js"></script>
+    <script src="/user/js/userheader.js"></script>
+    <script src="/user/js/componentloader.js"></script>
+
+  </body>
+</html>

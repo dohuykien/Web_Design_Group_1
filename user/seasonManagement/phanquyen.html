@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang phân quyền</title>
+    <link rel="icon" type="logo.png" href="/images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/user/css/userheader.css" />
+    <link rel="stylesheet" href="/user/css/userfooter.css" />
+
+    <link rel="stylesheet" href="/user/seasonManagement/css/management-actions.css"/>
+
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Oswald, sans-serif;
+        text-decoration: none;
+      }
+      body {
+        background-color: white;
+      }
+    
+
+      /*----------------------Layout-------------------------*/
+      .container {
+        display: flex;
+        width: 100%;
+      }
+
+      /*----------content: list-league + footer------------ */
+      
+      .content-wrapper {
+        flex: 1;
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+      .content {
+        background-color: white;
+        border-radius: 5px;
+      }
+      /* list-league */
+      .list-league {
+        color: rgb(34, 34, 34);
+        font-size: 24px;
+        font-weight: normal;
+        padding: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .list-league_left {
+        font-family: "Source Sans Pro", sans-serif !important;
+      }
+      .list-league .fa-solid.fa-list {
+        color: #ff6f00;
+        margin-right: 8px;
+        font-size: 25px;
+      }
+      .list-league_left {
+        flex-grow: 1;
+      }
+
+      .fa-solid.fa-plus {
+        margin-right: 3px;
+        font-size: 15px;
+      }
+
+      .Nhaplai {
+        color: rgb(255, 255, 255);
+        padding: 7px 12px 6px 12px;
+        background-color: rgb(0, 172, 236);
+        border-color: rgba(0, 0, 0, 0.25);
+        border-style: solid;
+        border-width: 0.8px;
+        cursor: pointer;
+        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+      }
+      .Nhaplai:hover {
+        background-color: #428bca;
+      }
+
+      /* Styling for the content box and table */
+      .concua {
+        background-color: #ecf0f5;
+        padding: 10px;
+        margin-top: auto;
+      }
+      .content-box {
+        background-color: #ffffff; /* White background for the box */
+        padding: 20px;
+        margin: 15px; /* Add some margin around the box */
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        border-top: 3px solid #d2d6de; /* Subtle top border like AdminLTE */
+        font-family: "Source Sans Pro", sans-serif;
+      }
+
+
+      /* Styles for the search input and dropdown */
+      .add-manager-section {
+        display: flex;
+        gap: 10px;
+        align-items: center; /* Align items top */
+        margin-bottom: 20px;
+      }
+
+      .search-container {
+        position: relative; /* Crucial for absolute positioning of dropdown */
+        flex-grow: 1; /* Allow container to take available space */
+      }
+
+      #addManagerInput {
+        /* Input takes full width of its container */
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+
+        box-sizing: border-box;
+        font-size: 14px;
+        font-family: "Source Sans Pro", sans-serif !important;
+      }
+
+      .user-dropdown {
+        display: none; /* Hidden by default */
+        position: absolute;
+        top: 100%; /* Position directly below the input */
+        left: 0;
+        right: 0;
+        background-color: white;
+        border: 1px solid #ccc;
+        border-top: none; /* Optional: avoid double border */
+        border-radius: 0 0 4px 4px;
+        max-height: 250px; /* Limit height and enable scrolling */
+        overflow-y: auto;
+        z-index: 1000; /* Ensure it's above other elements */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .user-dropdown-item {
+        padding: 8px 12px;
+        cursor: pointer;
+        border-bottom: 1px solid #eee; /* Separator line */
+        font-size: 14px;
+        font-family: "Source Sans Pro", sans-serif !important;
+        white-space: nowrap; /* Prevent wrapping */
+        overflow: hidden;
+        text-overflow: ellipsis; /* Add ... if text is too long */
+      }
+
+      .user-dropdown-item:last-child {
+        border-bottom: none;
+      }
+
+      .user-dropdown-item:hover {
+        background-color: #f0f0f0;
+      }
+
+      .user-dropdown .no-results {
+        /* Style for no results message */
+        padding: 8px 12px;
+        color: #888;
+        font-style: italic;
+        font-family: "Source Sans Pro", sans-serif !important;
+      }
+
+      /* Style for the Add button */
+      .add-btn {
+        padding: 8px 12px;
+        background-color: #007bff; /* Blue color */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.2s ease;
+        flex-shrink: 0;
+      }
+      .add-btn:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+      }
+
+      .table-responsive {
+        overflow-x: auto; /* Allows horizontal scrolling on small screens */
+      }
+
+      .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+        font-size: 14px;
+        color: #333;
+      }
+
+      .data-table th,
+      .data-table td {
+        border: 1px solid #f4f4f4; /* Lighter borders */
+        padding: 10px 12px; /* More padding */
+        text-align: left;
+        vertical-align: middle; /* Align content vertically */
+        font-family: "Source Sans Pro", sans-serif;
+      }
+
+      .data-table thead th {
+        background-color: #f8f9fa; /* Lighter header background */
+        font-weight: 600; /* Slightly bolder */
+        color: #495057;
+        border-bottom: 2px solid #dee2e6; /* Stronger bottom border for header */
+      }
+
+      /* Style specific columns */
+      .data-table td:nth-child(1) {
+        /* STT column */
+        width: 50px; /* Fixed width for STT */
+        text-align: center;
+      }
+
+      .data-table td:nth-child(3) {
+        /* Vai trò column */
+        color: red;
+        font-weight: 500; /* Slightly bolder role text */
+      }
+
+      .data-table td:nth-child(4) {
+        /* Action column */
+        width: 80px; /* Fixed width */
+        text-align: center;
+      }
+
+      .delete-btn {
+        background-color: #dc3545; /* Bootstrap danger red */
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px; /* Adjust icon size via font-size */
+        line-height: 1; /* Ensure button height fits icon */
+        transition: background-color 0.2s ease;
+      }
+
+      .delete-btn:hover {
+        background-color: #c82333; /* Darker red on hover */
+      }
+
+      .delete-btn i {
+        pointer-events: none; /* Prevent icon from interfering with click */
+      }
+
+      /* Optional: Add alternating row colors */
+      .data-table tbody tr:nth-of-type(odd) {
+        background-color: #fdfdfd;
+      }
+      .data-table tbody tr:hover {
+        background-color: #f1f1f1; /* Highlight on hover */
+      }
+
+      /* Add scroll indicators if desired (using pseudo-elements - basic example) */
+      .table-responsive {
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+    <header id="header-container" class="header">
+        <!-- Header will be loaded here -->
+    </header>
+    <div class="container">
+      <div id="sidebar-container">
+        <!-- Sidebar will be loaded here -->
+      </div>
+      <div class="content-wrapper">
+        <div class="content-wrapper">
+          <div class="management-actions">
+            <a href="lichthidau.html" class="action-button">
+              <i class="fa-solid fa-calendar-days"></i>
+              <span>LỊCH THI ĐẤU</span>
+            </a>
+            <a href="bangxephang.html" class="action-button">
+              <i class="fa-solid fa-ranking-star"></i>
+              <span>BẢNG XẾP HẠNG</span>
+            </a>
+            <a href="doithamdu.html" class="action-button">
+              <i class="fa-solid fa-users"></i>
+              <span>ĐỘI THAM DỰ</span>
+            </a>
+            <a href="kqboctham.html" class="action-button">
+              <i class="fa-solid fa-list"></i>
+              <span>KẾT QUẢ BỐC THĂM</span>
+            </a>
+            <a href="thongke.html" class="action-button">
+              <i class="fa-solid fa-chart-simple"></i>
+              <span>THỐNG KÊ</span>
+            </a>
+            <a href="news.html" class="action-button">
+              <i class="fa-solid fa-newspaper"></i>
+              <span>TIN TỨC-THÔNG BÁO</span>
+            </a>
+            <a href="/user/EditSeason.html" class="action-button">
+              <i class="fa-solid fa-gears"></i>
+              <span>CẤU HÌNH MÙA GIẢI</span>
+            </a>
+
+            <a href="phanquyen.html" class="action-button">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>PHÂN QUYỀN</span>
+            </a>
+            <!-- Thêm các nút khác nếu cần -->
+          </div>
+        </div>
+        <section class="content">
+          <div class="list-league">
+            
+            <span class="list-league_left"
+              ><i class="fa-solid fa-list"></i>Danh sách tài khoản quản lý giải</span
+            >
+          </div>
+
+          <div class="concua">
+            <div class="content-box">
+              <!-- Existing container -->
+              <div class="management-container">
+                <!-- Updated Section for Adding Managers -->
+                <div class="add-manager-section">
+                  <div class="search-container">
+                    <!-- New wrapper -->
+                    <input
+                      type="text"
+                      id="addManagerInput"
+                      placeholder="Thêm quản lý theo tên hoặc email..."
+                      autocomplete="off"
+                    />
+                    <div id="userDropdown" class="user-dropdown">
+                      <!-- Search results will be dynamically added here -->
+                    </div>
+                  </div>
+                  <button id="addManagerBtn" class="add-btn">
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+                <!-- End Updated Section -->
+
+                <div class="table-responsive">
+                  <table id="managerTable" class="data-table">
+                    <thead>
+                      <tr>
+                        <th>STT</th>
+                        <th>Tài Khoản - Email</th>
+                        <th>Vai trò</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- User rows will be inserted here by JavaScript -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <footer id="footer" class="footer">
+
+          </footer>
+        </section>
+      </div>
+    </div>
+
+    <script src="/user/js/sidebar.js"></script>
+    <script src="/user/js/userheader.js"></script>
+    <script src="/user/js/componentloader.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const users = [
+          { id: 1, email: "haidang@gmail.com", name: "Nguyễn Hải Đăng" }, // Team Creator for team123
+          { id: 2, email: "duckhai289@gmail.com", name: "ddd12345" }, // Manager for team123
+          { id: 3, email: "anothercreator@example.com", name: "Creator 2" }, // Creator for team456
+          { id: 4, email: "manager_only@example.com", name: "Manager X" }, // A user not assigned yet
+        ];
+
+        const currentUser = {
+          id: 1,
+          email: "haidang@gmail.com",
+          name: "Nguyễn Hải Đăng",
+        };
+
+        // 1. Get currentTeamId from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentSeasonId = urlParams.get("id");
+        const currentLeagueId = urlParams.get("leagueId");
+
+        const tableBody = document
+          .getElementById("managerTable")
+          ?.querySelector("tbody");
+        const addManagerInput = document.getElementById("addManagerInput");
+        const userDropdown = document.getElementById("userDropdown"); // Dropdown container
+        const addManagerBtn = document.getElementById("addManagerBtn");
+
+        // Variable to store the ID of the user selected from the dropdown
+        let selectedUserIdToAdd = null;
+
+        // --- Helper Functions (Keep findUserById, getManagersForTeam, getTeamsData) ---
+        function findUserById(userId) {
+          return users.find((user) => user.id === userId);
+        }
+        function getManagersForTeam(leagueId, seasonId) {
+          /* ... keep implementation ... */
+          try {
+            const allManagersData = JSON.parse(
+              localStorage.getItem("managersSeasonData") || "[]"
+            );
+            return allManagersData.filter((m) => m.leagueId === currentLeagueId && m.seasonId === currentSeasonId);
+          } catch (error) {
+            console.error(
+              "Error reading managersSeasonData from localStorage:",
+              error
+            );
+            return [];
+          }
+        }
+        function getSeasonData() {
+          try {
+            return JSON.parse(localStorage.getItem("danhSachMuaGiai") || "[]");
+          } catch (error) {
+            return [];
+          }
+        }
+        function getLeagueData() {
+          try {
+            return JSON.parse(localStorage.getItem("danhSachGiaiDau") || "[]");
+          } catch (error) {
+            return [];
+          }
+        }
+
+        // --- Dropdown Logic ---
+
+        function showDropdown(matchingUsers) {
+          if (!userDropdown || !addManagerInput) return;
+
+          userDropdown.innerHTML = ""; // Clear previous results
+          selectedUserIdToAdd = null; // Reset selection when showing new results
+          addManagerInput.removeAttribute("data-selected-user-id"); // Clear data attribute
+
+          if (matchingUsers.length === 0) {
+            userDropdown.innerHTML =
+              '<div class="no-results">Không tìm thấy kết quả</div>';
+            userDropdown.style.display = "block"; // Show "no results"
+            return;
+          }
+
+          matchingUsers.forEach((user) => {
+            const item = document.createElement("div");
+            item.className = "user-dropdown-item";
+            // Display name and email for clarity
+            item.textContent = `${user.name || "N/A"} (${user.email})`;
+            item.setAttribute("data-user-id", user.id);
+            // Store full user representation in the input field on selection
+            item.setAttribute(
+              "data-user-display",
+              `${user.name || user.email} (${user.email})`
+            );
+            userDropdown.appendChild(item);
+          });
+
+          userDropdown.style.display = "block"; // Show the dropdown
+        }
+
+        function hideDropdown() {
+          if (userDropdown) {
+            userDropdown.style.display = "none";
+          }
+        }
+
+        // Event listener for typing in the input
+        addManagerInput.addEventListener("input", () => {
+          const searchTerm = addManagerInput.value.trim().toLowerCase();
+
+          if (searchTerm.length < 1) {
+            // Minimum characters to trigger search (optional)
+            hideDropdown();
+            selectedUserIdToAdd = null; // Clear selection if input is cleared
+            addManagerInput.removeAttribute("data-selected-user-id");
+            return;
+          }
+
+          // Filter users based on search term (name or email)
+          const filteredUsers = users.filter(
+            (user) =>
+              (user.name && user.name.toLowerCase().includes(searchTerm)) ||
+              (user.email && user.email.toLowerCase().includes(searchTerm))
+          );
+
+          showDropdown(filteredUsers);
+        });
+
+        // Event listener for selecting a user from the dropdown
+        userDropdown.addEventListener("click", (event) => {
+          const target = event.target;
+          // Check if the clicked element is a dropdown item
+          if (target.classList.contains("user-dropdown-item")) {
+            selectedUserIdToAdd = target.getAttribute("data-user-id");
+            const displayValue =
+              target.getAttribute("data-user-display") || target.textContent; // Get display text
+
+            addManagerInput.value = displayValue; // Set input value to selected user's display text
+            // Store the ID separately using a data attribute on the input (optional but clean)
+            addManagerInput.setAttribute(
+              "data-selected-user-id",
+              selectedUserIdToAdd
+            );
+
+            hideDropdown();
+            addManagerInput.focus(); // Keep focus on input (optional)
+          }
+        });
+
+        // Hide dropdown if clicked outside
+        document.addEventListener("click", (event) => {
+          if (
+            !addManagerInput.contains(event.target) &&
+            !userDropdown.contains(event.target)
+          ) {
+            hideDropdown();
+          }
+        });
+
+        // Hide dropdown on input blur IF no selection was made from dropdown
+        addManagerInput.addEventListener("blur", () => {
+          // Use a small timeout because clicking the dropdown item causes blur FIRST
+          setTimeout(() => {
+            if (
+              userDropdown.style.display === "block" &&
+              !userDropdown.contains(document.activeElement)
+            ) {
+              hideDropdown();
+            }
+          }, 150); // Adjust timeout if needed
+        });
+
+        // --- Core Logic: Rendering the Table (Keep from previous version) ---
+        function renderManagerTable() {
+          if (!tableBody) {
+            console.error("Table body not found!");
+            return;
+          }
+          if (!currentLeagueId) {
+            console.error("League ID not found.");
+            tableBody.innerHTML = '<tr><td colspan="4">...</td></tr>';
+            return;
+          }
+          tableBody.innerHTML = "";
+          const leaguesData = getLeagueData();
+          const seasonsData = getSeasonData();
+          const currentSeason = seasonsData.find(
+            (season) => season.id === currentSeasonId
+          )
+          const currentLeague = leaguesData.find(
+            (league) => league.id === currentLeagueId
+          )
+          if (!currentSeasonId) {
+            console.error(`Season ${currentSeasonId} not found.`);
+            tableBody.innerHTML = `<tr><td colspan="4">...</td></tr>`;
+            return;
+          }
+
+          let stt = 1;
+          const teamUsersToDisplay = [];
+          const creator = findUserById(currentUser.id);
+          if (creator) {
+            teamUsersToDisplay.push({
+              ...creator,
+              role: "Tài khoản tạo giải",
+              isCreator: true,
+            });
+          } else {
+            console.warn(`Creator ${currentUser.id} not found.`);
+          }
+
+          const managerRelations = getManagersForTeam(currentSeasonId, currentLeagueId);
+          managerRelations.forEach((relation) => {
+            const manager = findUserById(relation.userId);
+            if (manager && manager.id !== currentUser.id) {
+              teamUsersToDisplay.push({
+                ...manager,
+                role: "Quản lý mùa giải",
+                isCreator: false,
+              });
+            } else if (!manager) {
+              console.warn(`Manager ${relation.userId} not found.`);
+            }
+          });
+
+          if (teamUsersToDisplay.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="4">...</td></tr>';
+            return;
+          }
+          teamUsersToDisplay.sort(/* ... sorting logic ... */); // Keep sorting
+
+          teamUsersToDisplay.forEach((user) => {
+            const row = tableBody.insertRow();
+            row.insertCell(0).textContent = stt++;
+            row.insertCell(1).textContent = user.name
+              ? `${user.name} - ${user.email}`
+              : user.email;
+            row.insertCell(2).textContent = user.role;
+            const actionCell = row.insertCell(3);
+            if (!user.isCreator) {
+              /* ... add delete button ... */
+              const deleteButton = document.createElement("button");
+              deleteButton.className = "delete-btn";
+              deleteButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+              deleteButton.setAttribute("data-user-id", user.id);
+              deleteButton.setAttribute("title", "Xóa quản lý");
+              actionCell.appendChild(deleteButton);
+            } else {
+              actionCell.textContent = "";
+            }
+          });
+        }
+
+        // --- Core Logic: Deleting a Manager (Keep from previous version) ---
+        function handleDeleteUser(event) {
+          // ... (Keep the exact implementation using event delegation) ...
+          const target = event.target;
+          const deleteButton = target.closest(".delete-btn");
+          if (deleteButton) {
+            const userIdToDeleteString =
+              deleteButton.getAttribute("data-user-id");
+            const userIdToDelete = parseInt(userIdToDeleteString);
+            if (
+              userIdToDelete &&
+              confirm(`Bạn chắc chắn muốn xóa quản lý ID: ${userIdToDelete}?`)
+            ) {
+              try {
+                let managersData = JSON.parse(
+                  localStorage.getItem("managersSeasonData") || "[]"
+                );
+                const updatedManagersData = managersData.filter(
+                  (m) =>
+                    !(m.seasonId === currentSeasonId && m.leagueId === currentLeagueId && m.userId === userIdToDelete)
+                );
+                localStorage.setItem(
+                  "managersSeasonData",
+                  JSON.stringify(updatedManagersData)
+                );
+                console.log(
+                  `Manager ${userIdToDelete} removed from season ${currentSeasonId}.`
+                );
+                renderManagerTable();
+              } catch (error) {
+                console.error("Error deleting manager:", error);
+                alert("Lỗi xóa quản lý.");
+              }
+            }
+          }
+        }
+
+        // --- Core Logic: Adding a Manager (UPDATED to use selection) ---
+        function handleAddManager() {
+          if (!currentSeasonId) {
+            console.error("Cannot add manager: currentSeasonId is missing.");
+            return;
+          }
+          // --- USE THE SELECTED USER ID ---
+          const userIdToAdd = addManagerInput.getAttribute(
+            "data-selected-user-id"
+          ); // Get from data attribute
+
+          if (!userIdToAdd) {
+            alert("Vui lòng tìm kiếm và chọn một người dùng từ danh sách.");
+            addManagerInput.focus(); // Bring focus back to input
+            return;
+          }
+
+          const userToAdd = findUserById(parseInt(userIdToAdd));
+
+          // This check should technically be unnecessary if findUserById worked, but good safeguard
+          if (!userToAdd) {
+            alert(
+              `Lỗi: Không tìm thấy thông tin người dùng cho ID: ${userIdToAdd}. Vui lòng chọn lại.`
+            );
+            // Clear potentially invalid selection
+            addManagerInput.value = "";
+            addManagerInput.removeAttribute("data-selected-user-id");
+            selectedUserIdToAdd = null;
+            return;
+          }
+
+          // Check if the user is the creator
+
+          const seasonsData = getSeasonData();
+          const currentSeason = seasonsData.find(
+            (season) => season.id === currentSeasonId
+          );
+
+          const leaguesData = getLeagueData();
+          const currentLeague = leaguesData.find(
+            (league) => league.id === currentLeagueId
+          );
+
+          if (userToAdd.id === currentUser.id) {
+            alert(
+              "Người dùng này đã là người tạo mùa giải, không thể thêm làm quản lý."
+            );
+            return;
+          }
+
+          try {
+            let managersData = JSON.parse(
+              localStorage.getItem("managersSeasonData") || "[]"
+            );
+
+            // Check if this user is ALREADY a manager for THIS team
+            const alreadyExists = managersData.some(
+              (m) => m.seasonId === currentSeasonId && m.leagueId === currentLeagueId && m.userId === userToAdd.id
+            );
+
+            if (alreadyExists) {
+              alert(
+                `Người dùng ${
+                  userToAdd.name || userToAdd.email
+                } đã là quản lý của mùa giải này.`
+              );
+              // Clear input after message
+              addManagerInput.value = "";
+              addManagerInput.removeAttribute("data-selected-user-id");
+              selectedUserIdToAdd = null;
+              return;
+            }
+
+            // Add the new manager relationship
+            managersData.push({ seasonId: currentSeasonId, leagueId: currentLeagueId, userId: userToAdd.id });
+            localStorage.setItem("managersSeasonData", JSON.stringify(managersData));
+
+            console.log(
+              `Added manager relationship: User ${userToAdd.id} for Season ${currentSeasonId}`
+            );
+            alert(`Đã thêm ${userToAdd.name || userToAdd.email} làm quản lý.`);
+
+            // Clear input and selection state after successful add
+            addManagerInput.value = "";
+            addManagerInput.removeAttribute("data-selected-user-id");
+            selectedUserIdToAdd = null;
+
+            renderManagerTable(); // Refresh table
+          } catch (error) {
+            console.error("Error updating managersData:", error);
+            alert("Đã xảy ra lỗi khi thêm quản lý.");
+          }
+        }
+
+        // --- Initial Setup and Event Listeners ---
+        if (tableBody) {
+          renderManagerTable();
+          tableBody.addEventListener("click", handleDeleteUser);
+        } else {
+          console.error("Could not find table body.");
+        }
+
+        if (addManagerBtn) {
+          addManagerBtn.addEventListener("click", handleAddManager);
+        }
+        // Removed the keypress listener for Enter on input, as selection is now preferred.
+        // If you want Enter to add the *selected* user, you could re-add it, checking
+        // for `selectedUserIdToAdd`.
+      });
+    </script>
+  </body>
+</html>
