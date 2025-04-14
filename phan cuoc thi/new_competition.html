@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="css/style_new_competition.css" />
+    <link
+      rel="shortcut icon"
+      href="https://cdn.ketnoibongda.vn/media-c/300-300-100/upload/images/contest/2023-06-12-130914-2024-08-09.jpg"
+      type="image/x-icon"
+    />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/theme_team/asset/css/custom.css" />
+    <link rel="stylesheet" href="/theme_team/asset/css/responsive.css" />
+    <link rel="stylesheet" href="/theme_team/asset/css/color.css" />
+    <link rel="stylesheet" href="/theme_team/asset/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/theme_team/asset/css/fontawesome.css" />
+    <link rel="stylesheet" href="/theme_team/asset/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="/theme_team/asset/css/prettyphoto.css" />
+    <!--Rev Slider Start-->
+    <link
+      rel="stylesheet"
+      href="/theme_team/asset/css/settings.css"
+      type="text/css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      href="/theme_team/asset/css/layers.css"
+      type="text/css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      href="/theme_team/asset/css/navigation.css"
+      type="text/css"
+      media="all"
+    />
+    <!--Rev Slider End-->
+    <script src="/theme_team/asset/js/jquery-3.3.1.min.js"></script>
+
+    <title>Tạo cuộc thi mới</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="FagLeague" />
+    <meta name="robots" content="index,follow,all" />
+    <meta name="generator" content="FagLeague" />
+    <meta property="og:title" content="Tạo cuộc thi mới" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Tạo cuộc thi mới" />
+    <meta property="og:site_name" content="FagLeague" />
+    <meta
+      property="og:image"
+      content="https://cdn.ketnoibongda.vn/upload/images/contest/national-team-ukraine-football-wallpaper-preview-2024-08-12.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://fagleague.vn/cuoc-thi/tao-cuoc-thi-moi"
+    />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-129307175-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-129307175-1");
+    </script>
+  </head>
+  <body>
+    <!--Wrapper Start-->
+    <div class="wrapper gray-bg">
+      <!--Header Start-->
+      <header id="" class="main-header white-header">
+        <!--topbar-->
+        <div class="topbar">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-sm-6">
+                <ul class="topsocial">
+                  <li><a href="/">FagLeague</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <ul class="toplinks">
+                  <li class="lang-btn">
+                    <a
+                      class="btn btn-secondary"
+                      href="/acount/register.html?next=/clubs"
+                      >Đăng ký</a
+                    >
+                  </li>
+                  <li class="lang-btn">
+                    <a
+                      class="btn btn-secondary"
+                      href="/acount/log-in.html?next=/clubs"
+                      >Đăng nhập</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--topbar end-->
+        <!--Logo + Navbar Start-->
+        <div class="logo-navbar">
+          <div class="container">
+            <div class="row">
+              <div
+                class="col-md-2 col-sm-5"
+                style="display: flex; align-items: center"
+              >
+                <div class="logo" style="padding: 0px">
+                  <a href="./new_competition.html">
+                    <img
+                      src="https://cdn.ketnoibongda.vn/media-c/60-60-100/upload/images/contest/2023-06-12-130914-2024-08-09.jpg"
+                      alt="nhn"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div class="col-md-10 col-sm-7">
+                <nav class="main-nav">
+                  <ul>
+                    <li class="nav-item">
+                      <a href="./new_competition.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="./gioithieu.html">Giới thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="./bxh.html">Bảng xếp hạng</a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Logo + Navbar End-->
+      </header>
+      <!--Header End-->
+      <style type="text/css">
+        .contest-item {
+          border-width: 0.5px;
+          border-radius: 50px;
+          overflow: hidden;
+          cursor: pointer;
+          border-style: solid;
+          border-color: rgb(185, 30, 31, 0.8);
+          margin-bottom: 30px;
+        }
+        .contest-item a {
+          color: #02042d;
+        }
+        .contest-item img {
+          object-position: top;
+          object-fit: cover;
+          width: 100%;
+          display: block;
+          vertical-align: middle;
+
+          /* position: absolute;
+    height: 100%;
+    width: 100%;
+    inset: 0px;*/
+          color: transparent;
+          transition-property: color, background-color, border-color,
+            text-decoration-color, fill, stroke, opacity, box-shadow, transform,
+            filter, backdrop-filter, -webkit-backdrop-filter;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-duration: 0.15s;
+        }
+        .infor {
+          position: relative;
+          background: #fff;
+          text-align: center;
+        }
+        .infor p {
+          margin: 0px;
+        }
+        .infor:after {
+          content: "";
+          background-image: linear-gradient(180deg, hsla(0, 0%, 100%, 0), #fff);
+          position: absolute;
+          width: 100%;
+          height: 64px;
+          bottom: 100%;
+          left: 0;
+          z-index: 20;
+        }
+        .infor .font-source {
+          font-size: 24px;
+          font-weight: 600;
+          padding-top: 16px;
+        }
+        .text-vote {
+          padding: 8px 0px 15px 0px;
+        }
+        .text-vote .count-vote {
+          color: #b91e1f;
+          font-size: 24px;
+          font-weight: 600;
+        }
+        .sbd {
+          font-weight: 600;
+          font-size: 18px;
+          background-color: #b91e1f;
+          color: #fff;
+          border-radius: 22px;
+          justify-content: center;
+          margin: 0px;
+          padding: 5px 10px;
+          top: 20px;
+          left: 30px;
+          position: absolute;
+        }
+        .icon-vote {
+          position: absolute;
+          color: #b91e1f;
+          top: 20px;
+          right: 30px;
+          font-size: 24px;
+        }
+      </style>
+      <!--Main Slider Start-->
+      <div class="main-slider">
+        <div class="home2-slider rev_slider_wrapper">
+          <!-- START REVOLUTION SLIDER -->
+          <div class="rev_slider_wrapper fullwidthbanner-container">
+            <div id="rev-slider2" class="rev_slider fullwidthabanner">
+              <ul>
+                <li data-transition="fade">
+                  <img
+                    src="./images/anharg.jpg"
+                    alt=""
+                    width="1920"
+                    height="750"
+                    data-bgposition="top center"
+                    data-bgfit="cover"
+                    data-bgrepeat="no-repeat"
+                    data-bgparallax="1"
+                  />
+                  <div
+                    class="tp-caption tp-resizeme"
+                    alt=""
+                    width="1920"
+                    height="750"
+                    data-bgposition="top center"
+                    data-bgfit="cover"
+                    data-bgrepeat="no-repeat"
+                    data-bgparallax="1"
+                  />
+                  <div
+                    class="tp-caption tp-resizeme"
+                    data-x="left"
+                    data-hoffset="400"
+                    data-y="top"
+                    data-voffset="175"
+                    data-transform_idle="o:1;"
+                    data-transform_in="x:[-75%];y:0px;z:0;rX:0;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0.01;s:3000;e:Power3.easeOut;"
+                    data-transform_out="s:1000;e:Power3.easeInOut;s:1000;e:Power3.easeInOut;"
+                    data-mask_in="x:[100%];y:0;s:inherit;e:inherit;"
+                    data-splitin="none"
+                    data-splitout="none"
+                    data-start="700"
+                  >
+                    <!-- <div class="slide-content-box">
+                  <h1></h1>
+                </div> -->
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- END REVOLUTION SLIDER -->
+        </div>
+      </div>
+      <!--Main Slider Start-->
+      <!--Main Content Start-->
+      <div class="main-content wf100">
+        <!--News & Updates Start-->
+        <section class="news-updates wf100 p90">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section-title">
+                  <h2>Danh sách bài thi</h2>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-3">
+                <div
+                  class="contest-item"
+                  style="visibility: visible; animation-name: fadeInUp"
+                >
+                  <a class="overlay" href="./baithi.html" title="Bài thi số 5">
+                    <div class="solution-item-wrap">
+                      <div class="img">
+                        <img
+                          src="https://cdn.ketnoibongda.vn/upload/images/contest/crop-1723257353.png"
+                          alt="Bài thi số 5"
+                          class="center-block"
+                        />
+                      </div>
+                      <div class="infor">
+                        <p class="font-source">Bài thi số 5</p>
+                        <p class="text-vote">
+                          Lượt bình chọn: <span class="count-vote">1</span>
+                        </p>
+                      </div>
+                      <p class="sbd">SBD: 005</p>
+                      <i class="far fa-heart icon-vote"></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-3">
+                <div
+                  class="contest-item"
+                  style="visibility: visible; animation-name: fadeInUp"
+                >
+                  <a
+                    class="overlay"
+                    href="/bai-thi/ten-bai-thi-202408093FCD"
+                    title="Tên bài thi"
+                  >
+                    <div class="solution-item-wrap">
+                      <div class="img">
+                        <img
+                          src="https://cdn.ketnoibongda.vn/upload/images/contest/crop-1723220905.png"
+                          alt="Tên bài thi"
+                          class="center-block"
+                        />
+                      </div>
+                      <div class="infor">
+                        <p class="font-source">Tên bài thi</p>
+                        <p class="text-vote">
+                          Lượt bình chọn: <span class="count-vote">0</span>
+                        </p>
+                      </div>
+                      <p class="sbd">SBD:001</p>
+                      <i class="far fa-heart icon-vote"></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-3">
+                <div
+                  class="contest-item"
+                  style="visibility: visible; animation-name: fadeInUp"
+                >
+                  <a
+                    class="overlay"
+                    href="/bai-thi/ten-bai-thi-02-202408091B04"
+                    title="Tên bài thi 02"
+                  >
+                    <div class="solution-item-wrap">
+                      <div class="img">
+                        <img
+                          src="https://cdn.ketnoibongda.vn/upload/images/contest/crop-1723221021.png"
+                          alt="Tên bài thi 02"
+                          class="center-block"
+                        />
+                      </div>
+                      <div class="infor">
+                        <p class="font-source">Tên bài thi 02</p>
+                        <p class="text-vote">
+                          Lượt bình chọn: <span class="count-vote">0</span>
+                        </p>
+                      </div>
+                      <p class="sbd">SBD: 002</p>
+                      <i class="far fa-heart icon-vote"></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-3">
+                <div
+                  class="contest-item"
+                  style="visibility: visible; animation-name: fadeInUp"
+                >
+                  <a
+                    class="overlay"
+                    href="/bai-thi/ten-bai-so-3-2024080995F3"
+                    title="Tên bài số 3"
+                  >
+                    <div class="solution-item-wrap">
+                      <div class="img">
+                        <img
+                          src="https://cdn.ketnoibongda.vn/upload/images/contest/crop-1723221763.png"
+                          alt="Tên bài số 3"
+                          class="center-block"
+                        />
+                      </div>
+                      <div class="infor">
+                        <p class="font-source">Tên bài số 3</p>
+                        <p class="text-vote">
+                          Lượt bình chọn: <span class="count-vote">0</span>
+                        </p>
+                      </div>
+                      <p class="sbd">SBD: 003</p>
+                      <i class="far fa-heart icon-vote"></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-3">
+                <div
+                  class="contest-item"
+                  style="visibility: visible; animation-name: fadeInUp"
+                >
+                  <a
+                    class="overlay"
+                    href="/bai-thi/bai-thi-so-4-cap-nhat-202408097337"
+                    title="Bài thi số 4 cập nhật"
+                  >
+                    <div class="solution-item-wrap">
+                      <div class="img">
+                        <img
+                          src="https://cdn.ketnoibongda.vn/upload/images/contest/crop-1723221877.png"
+                          alt="Bài thi số 4 cập nhật"
+                          class="center-block"
+                        />
+                      </div>
+                      <div class="infor">
+                        <p class="font-source">Bài thi số 4 cập nhật</p>
+                        <p class="text-vote">
+                          Lượt bình chọn: <span class="count-vote">0</span>
+                        </p>
+                      </div>
+                      <p class="sbd">SBD: 004</p>
+                      <i class="far fa-heart icon-vote"></i>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--News & Updates End-->
+
+        <!--News & Media Gallery End-->
+      </div>
+      <!--Main Content End-->
+
+      <!--Main Footer Start-->
+      <!-- STart Footer ----->
+      <footer
+        class="container-fluid footer wf100 footer-three"
+        style="color: #fff; background: #20283f"
+      >
+        <div class="container">
+          <div class="row">
+            <div
+              class="col-md-6 col-sm-6 col-xs-12"
+              style="
+                margin: 20px 0px;
+                padding-left: 150px;
+                text-align: left;
+                line-height: 40px;
+              "
+            >
+              <p>Bản quyền thuộc FAG</p>
+              <p>Copyright © 2018 - 2025 FAG. All rights reserved.</p>
+              <p>Chỉ được phát hành lại nội dung khi có sự đồng ý của FAG</p>
+              <div style="margin: auto">
+                <img
+                  style="width: 36px; margin-right: 15px"
+                  src="https://cdn.ketnoibongda.vn/images/logo-app-fag.png"
+                />
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.fagleague_v2"
+                >
+                  <img
+                    style="margin-right: 15px"
+                    src="https://cdn.ketnoibongda.vn/images/googleplay.svg"
+                    width="106"
+                    height="36"
+                  />
+                </a>
+                <a
+                  href="https://apps.apple.com/vn/app/fagleague/id6449701833?l=vi"
+                >
+                  <img
+                    style="margin-right: 15px"
+                    src="https://cdn.ketnoibongda.vn/images/ios.svg"
+                    width="106"
+                    height="36"
+                  />
+                </a>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-sm-6 col-xs-12"
+              style="
+                margin: 20px 0px;
+                padding-right: 150px;
+                text-align: left;
+                line-height: 40px;
+              "
+            >
+              <p class="phone">
+                <i class="fa fa-building" aria-hidden="true"> </i> CÔNG TY CỔ
+                PHẦN TỔ CHỨC SỰ KIỆN VÀ TRUYỀN THÔNG FAG
+              </p>
+              <p class="phone">
+                <i class="fa fa-map-marker" aria-hidden="true"></i> Số 2, ngách
+                105/7, ngõ 105 đường An Dương Vương, Phường Phú Thượng, Quận Tây
+                Hồ, Hà Nội
+              </p>
+              <p class="phone">
+                <i class="fa fa-mobile" aria-hidden="true"></i> 091 321 7102
+              </p>
+              <p class="web">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                fag.khanh@gmail.com
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- End Footer ----->
+
+      <!--Main Footer End-->
+    </div>
+    <!--Wrapper End-->
+    <!-- Optional JavaScript -->
+    <script src="/theme_team/asset/js/popper.min.js"></script>
+    <script src="/theme_team/asset/js/mobile-nav.js"></script>
+    <script src="/theme_team/asset/js/owl.carousel.min.js"></script>
+    <script src="/theme_team/asset/js/isotope.js"></script>
+    <script src="/theme_team/asset/js/jquery.prettyPhoto.js"></script>
+    <script src="/theme_team/asset/js/jquery.countdown.js"></script>
+    <script src="/theme_team/asset/js/bootstrap.min.js"></script>
+    <script src="/theme_team/asset/js/custom.js"></script>
+    <!--Rev Slider Start-->
+    <script
+      type="text/javascript"
+      src="/theme_team/asset/js/jquery.themepunch.tools.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/theme_team/asset/js/jquery.themepunch.revolution.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/theme_team/asset/js/rev-slider.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/theme_team/asset/js/revolution.extension.actions.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/theme_team/asset/js/revolution.extension.carousel.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/theme_team/asset/js/revolution.extension.kenburn.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/theme_team/asset/js/revolution.extension.layeranimation.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/theme_team/asset/js/revolution.extension.migration.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/theme_team/asset/js/revolution.extension.navigation.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/theme_team/asset/js/revolution.extension.parallax.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/theme_team/asset/js/revolution.extension.slideanims.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="/theme_team/asset/js/revolution.extension.video.min.js"
+    ></script>
+
+    <!-- STart Menu Mobile ----->
+    <!-- Start Menu Bottom Mobile -->
+    <link rel="stylesheet" href="/menu-mobile-sticky/style.css?v=1743499275" />
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="/menu-mobile-sticky/script.js"></script>
+    <!-- End Menu Bottom Mobile -->
+    <!-- End  Menu Mobile ----->
+  </body>
+</html>

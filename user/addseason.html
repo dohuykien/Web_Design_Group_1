@@ -28,13 +28,13 @@
       body {
         background-color: white;
       }
-      
+
       /*----------------------Layout-------------------------*/
       .container {
         display: flex;
         width: 100%;
       }
-    
+
       /*----------content: list-league + footer------------ */
       .content-wrapper {
         flex: 1;
@@ -270,8 +270,8 @@
       }
       /* Specific Kit Preview Area - NOW FULL WIDTH */
       .file-preview {
-        width: 100%; /* Make the container full width */
-        margin-top: 15px; /* Space above the preview */
+        width: 100%;
+        margin-top: 15px;
         border: 1px dashed #ccc;
         border-radius: 6px;
         min-height: 60px;
@@ -283,15 +283,15 @@
         background-color: #fff;
       }
       .file-preview:empty {
-        min-height: 100px; /* Explicitly set for empty kit preview */
+        min-height: 100px;
       }
       .file-preview img {
-        max-width: 100%; /* Image fits container width */
+        max-width: 100%;
         max-height: 80px;
         display: block;
         border-radius: 8px;
-        object-fit: contain; /* Maintain aspect ratio */
-        border: none; /* Remove inner border if not needed */
+        object-fit: contain;
+        border: none;
       }
 
       .location,
@@ -307,9 +307,9 @@
   </head>
   <body>
     <header id="header-container" class="header">
-        <!-- Header will be loaded here -->
+      <!-- Header will be loaded here -->
     </header>
-  
+
     <div class="container">
       <div id="sidebar-container">
         <!-- Sidebar will be loaded here -->
@@ -317,7 +317,9 @@
       <div class="content-wrapper">
         <section class="content">
           <div class="list-league">
-            <span class="list-league_left"><i class="fa-solid fa-check"></i>Thêm mùa giải</span>
+            <span class="list-league_left"
+              ><i class="fa-solid fa-check"></i>Thêm mùa giải</span
+            >
 
             <div class="wrap">
               <a href="#">
@@ -623,7 +625,7 @@
       let logoDataUrl = null;
       let wpDataUrl = null;
 
-      // --- DOM Elements (Lấy bằng ID bạn đã thêm) ---
+      // --- DOM Elements ---
       const logoFileInput = document.getElementById("logoFile");
       const logoPreview = document.getElementById("logoPreview");
       const wallpaperFileInput = document.getElementById("wpFile");
@@ -642,7 +644,7 @@
       const successMsg = document.querySelector(".success");
       const tenMuaGiaiInput = document.getElementById("tenMuaGiai");
       const soDoiThamDuInput = document.getElementById("soDoiThamDu");
-      // Lấy các element input khác bằng ID tương ứng bạn đã thêm
+      // Lấy các element input khác bằng ID tương ứng
       const thoiGianBatDauInput = document.getElementById("thoiGianBatDau");
       const thoiGianKetThucInput = document.getElementById("thoiGianKetThuc");
       const roundRobinTurnsSelect = document.getElementById("roundRobinTurns");
@@ -668,9 +670,8 @@
       const locationInput = document.getElementById("location");
       const fanpageInput = document.getElementById("fanpage");
 
-      // --- Hàm Preview ảnh và Lưu Data URL (Giữ nguyên) ---
+      // --- Hàm Preview ảnh và Lưu Data URL ---
       function previewImage(inputElement, previewElement, setDataUrlCallback) {
-        // ... (Code hàm previewImage giữ nguyên như trước) ...
         if (!inputElement || !previewElement) {
           console.error(`DEBUG (addseason): Missing elements for preview.`);
           return;
@@ -731,7 +732,7 @@
           );
           return;
         }
-        // **** SỬA CÁCH SO SÁNH Ở ĐÂY ****
+
         const selectedFormatValue = formatSelect.value; // Lấy VALUE từ select
         const isChiaBang = selectedFormatValue === "group_knockout"; // So sánh với VALUE
         // *******************************
@@ -842,15 +843,6 @@
             } else {
               alert("Thêm mùa giải thành công!");
             }
-
-            // Tùy chọn: Reset form sau khi lưu
-            // document.getElementById('editSeasonFormLeft')?.reset(); // Nếu có form tag
-            // document.getElementById('editSeasonFormGroupKO')?.reset();
-            // document.getElementById('editSeasonFormRight')?.reset();
-            // if(logoPreview) logoPreview.innerHTML = '';
-            // if(wallpaperPreview) wallpaperPreview.innerHTML = '';
-            // logoDataUrl = null; wpDataUrl = null;
-            // updateUIBasedOnFormat(); // Reset UI ẩn/hiện
           } catch (error) {
             console.error("DEBUG (addseason): Error saving season:", error);
             alert("Lỗi khi lưu mùa giải.");
