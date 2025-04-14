@@ -27,7 +27,7 @@ function loadComponent(url, containerId, callback) {
         const container = document.getElementById(containerId);
         if (container) container.innerHTML = `<p style="color: red; text-align: center;">Error loading content from ${url}.</p>`;
       });
-  }
+}
 
 // Use DOMContentLoaded to ensure placeholder containers exist before fetching
 document.addEventListener('DOMContentLoaded', () => {

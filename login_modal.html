@@ -1,0 +1,71 @@
+<!-- login_modal.html -->
+<div class="loginout" id="loginout" style="display: none;">
+    <div class="container" id="container">
+        <span class="close-btn">×</span>
+        <div class="form-container sign-up">
+            <!-- Add id to the form -->
+            <form id="signUpForm">
+                <h1>Tạo tài khoản</h1>
+                <div class="social-icons">
+                    <!-- Social icons... -->
+                </div>
+                <span>hoặc sử dụng tài khoản email của bạn để đăng ký</span>
+                <!-- Add ids to inputs -->
+                <input type="text" id="signup-name" name="name" placeholder="Name" required>
+                <input type="email" id="signup-email" name="email" placeholder="Email" required>
+                <input type="password" id="signup-password" name="password" placeholder="Password" required>
+                <!-- Placeholder for messages -->
+                <div class="form-message" id="signup-message"></div>
+                <button type="submit" class="btn">Đăng Ký</button>
+            </form>
+        </div>
+
+        <div class="form-container sign-in">
+            <!-- Add id to the form -->
+            <form id="signInForm">
+                <h1>Đăng Nhập</h1>
+                <div class="social-icons">
+                    <!-- Social icons... -->
+                </div>
+                <span>hoặc sử dụng tài khoản của bạn</span>
+                <!-- Add ids to inputs -->
+                <input type="email" id="signin-email" name="email" placeholder="Email" required>
+                <input type="password" id="signin-password" name="password" placeholder="Password" required>
+                <a href="#">Quên mật khẩu?</a>
+                <!-- Placeholder for messages -->
+                <div class="form-message" id="signin-message"></div>
+                <button type="submit" class="btn">Đăng Nhập</button>
+            </form>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Chào mừng trở lại!</h1>
+                    <p>Bạn đã sẵn sàng vượt qua giới hạn...</p>
+                    <button type="button" class="hidden btn" id="login">Đăng Nhập</button> <!-- Changed type to button to prevent form submission -->
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1> IT LEAGUE</h1>
+                    <p>SINH RA ĐỂ CHƠI...</p>
+                    <button type="button" class="hidden btn" id="register">Đăng Ký</button> <!-- Changed type to button -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add some basic styling for messages -->
+<style>
+    .form-message {
+        font-size: 0.9em;
+        margin-top: 10px;
+        min-height: 1.2em; /* Reserve space */
+    }
+    .form-message.error {
+        color: red;
+    }
+    .form-message.success {
+        color: green;
+    }
+
+</style>

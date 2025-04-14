@@ -21,9 +21,16 @@
                         <a href="index.html"><img src="images/logo.png" alt="Logo"></a> 
                     </div>
                     <span class="developed-by">Hệ thống được phát triển bởi Eternal Phoenix</span>
-                    <span class="auth-links">
-                        <button id="">ĐĂNG KÝ</button> | <button id="openLoginBtn">ĐĂNG NHẬP</button>
-                    </span>
+                    <div class="auth-menu-wrapper">
+                        <div class="auth-toggler" id="auth-toggle">
+                            <a href="/user/Dashboard.html">👤</a>
+                            <button id="logout2Btn" style="background-color: transparent; border: none; font-size: 24px; margin-left: -20px;">🚪</button>
+                        </div>
+                        <div class="auth-dropdown" id="auth-dropdown">
+                          <button id="openRegisterBtn">ĐĂNG KÝ</button> | 
+                          <button id="openLoginBtn">ĐĂNG NHẬP</button>
+                        </div>
+                    </div>
                     <button class="navbar-toggler" id="menu-toggle">
                         ☰
                     </button>
@@ -3280,7 +3287,7 @@
 
 
 
-
+<div id="modal-placeholder"></div>
 <!-- --------------------------------------- FOOTER -------------------------------------- -->
 <footer class="footer">
     <div class="container-fluid">
