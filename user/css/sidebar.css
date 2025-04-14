@@ -90,3 +90,76 @@
     margin-left: auto;
   }
   /* -------------------sidebar-end------------------- */
+
+  /* --- NEW Responsive Styles --- */
+
+/* Style for the toggle button (Hamburger Icon) */
+#sidebar-toggle-btn {
+    display: none; /* Hidden by default on larger screens */
+    position: fixed; /* Keep it fixed relative to viewport */
+    top: 15px;
+    left: 15px;
+    z-index: 1010; /* Above sidebar when closed, below when open? Adjust as needed */
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 12px;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 4px;
+}
+#sidebar-toggle-btn:hover {
+    background: #555;
+}
+
+/* Style for the overlay */
+#sidebar-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 999; /* Below sidebar, above main content */
+}
+
+/* --- Media Query for Small Screens (e.g., Phones) --- */
+@media (max-width: 768px) {
+    #sidebar-toggle-btn {
+        display: block; /* Show the toggle button */
+        /* Add specific styles if needed to position/style it within the header */
+        /* Example: Maybe remove fixed positioning if it's inside the header flow */
+        /* position: static; */ /* Or adjust relative to header */
+        /* margin: 10px; */
+    }
+
+    .sidebar {
+        position: fixed; /* Keep it fixed */
+        left: 0;
+        top: 75px;  /* Set top to the height of your header */
+        transform: translateX(-100%); /* Hide off-screen */
+        box-shadow: 2px 0 5px rgba(0,0,0,0.2); /* Optional shadow */
+        transition: transform 0.3s ease-in-out; /* Keep transition */
+        /* Ensure width, background, etc. are still correct */
+        width: 230px; /* Or your desired width */
+        background: #333333; /* Or your sidebar background */
+        z-index: 1001; /* Ensure it's above header and overlay */
+        /* Add overflow-y if content might exceed calculated height */
+        overflow-y: auto;
+    }
+
+    .sidebar.open {
+        transform: translateX(0); /* Slide in */
+        /* z-index is set above */
+    }
+
+    #sidebar-overlay.active {
+        display: block; /* Show the overlay when sidebar is open */
+        /* Ensure overlay starts from top if needed, or also below header */
+        /* top: 0; */ /* Usually keep overlay covering everything behind */
+         z-index: 999; /* Below sidebar, potentially below header too */
+    }
+
+
+}

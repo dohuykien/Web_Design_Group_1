@@ -305,7 +305,51 @@
 
          /* We don't need a separate button, the header acts as the trigger area */
          /* Make header clickable to trigger file input */
-         .upload-header { cursor: pointer; }
+        .upload-header { cursor: pointer; }
+
+        @media (max-width: 768px) {
+            /* Stack main form layout sections */
+            .form-layout {
+                flex-direction: column; /* Force stacking */
+                gap: 25px; /* Adjust vertical gap */
+            }
+
+            .form-fields-area,
+            .form-upload-area {
+                flex: none; /* Remove flex grow/shrink behavior */
+                width: 100%; /* Make each section take full width */
+                min-width: unset; /* Remove min-width constraint */
+            }
+
+            /* Adjust form grid for single column layout */
+            .form-grid {
+                grid-template-columns: 1fr; /* Change to single column */
+                gap: 8px 0; /* Adjust row gap, no column gap */
+            }
+
+            .form-grid label {
+                text-align: left; /* Align labels to the left */
+                padding-right: 0; /* Remove right padding */
+                margin-bottom: 2px; /* Add small space below label */
+            }
+        }
+        @media (max-width: 480px) {
+             /* Further fine-tuning for very small screens */
+             .list-league button, .list-league a button {
+                 font-size: 13px; /* Smaller button text */
+                 padding: 6px 8px;
+             }
+             .form-grid label,
+             .form-grid input[type="text"],
+             .form-grid input[type="email"],
+             .form-grid input[type="tel"],
+             .form-grid input[type="url"] {
+                 font-size: 13px; /* Smaller form text */
+             }
+              .upload-header {
+                  font-size: 14px;
+              }
+        }
     </style>
 </head>
 <body>

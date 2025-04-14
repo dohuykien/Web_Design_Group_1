@@ -288,84 +288,370 @@
         .btn i { margin-right: 0; } /* Use gap */
 
         /* Specific Button Colors (AdminLTE Theme) */
-        .btn-success { background-color: #00a65a; border-color: #008d4c; color: white; }
-        .btn-success:hover { background-color: #008d4c; }
-        .btn-primary { background-color: #3c8dbc; border-color: #367fa9; color: white; }
-        .btn-primary:hover { background-color: #367fa9; }
-        .btn-danger { background-color: #dd4b39; border-color: #d73925; color: white; }
-        .btn-danger:hover { background-color: #d73925; }
-        .btn-warning { background-color: #f39c12; border-color: #e08e0b; color: white; }
-        .btn-warning:hover { background-color: #e08e0b; }
-        .btn-info { background-color: #00c0ef; border-color: #00acd6; color: white; }
-        .btn-info:hover { background-color: #00acd6; }
-        .btn-secondary { background-color: #f4f4f4; color: #444; border: 1px solid #ddd; }
-        .btn-secondary:hover { background-color: #e7e7e7; border-color: #ccc;}
-        .btn:disabled, .btn.disabled { background-color: #d2d6de; border-color: #d2d6de; color: #777; cursor: not-allowed; opacity: 0.65; }
+        .btn-success {
+            background-color: #00a65a;
+            border-color: #008d4c;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #008d4c;
+        }
+
+        .btn-primary {
+            background-color: #3c8dbc;
+            border-color: #367fa9;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #367fa9;
+        }
+
+        .btn-danger {
+            background-color: #dd4b39;
+            border-color: #d73925;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #d73925;
+        }
+
+        .btn-warning {
+            background-color: #f39c12;
+            border-color: #e08e0b;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background-color: #e08e0b;
+        }
+
+        .btn-info {
+            background-color: #00c0ef;
+            border-color: #00acd6;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background-color: #00acd6;
+        }
+
+        .btn-secondary {
+            background-color: #f4f4f4;
+            color: #444;
+            border: 1px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e7e7e7;
+            border-color: #ccc;
+        }
+
+        .btn:disabled,
+            .btn.disabled {
+            background-color: #d2d6de;
+            border-color: #d2d6de;
+            color: #777;
+            cursor: not-allowed;
+            opacity: 0.65;
+        }
 
 
         /* --- Dialog Styles (Mostly Unchanged) --- */
-        .dialog-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 1000; justify-content: center; align-items: center; }
-        .dialog-overlay.show { display: flex; }
-        .dialog-content { background-color: #fff; padding: 25px 30px; border-radius: 5px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); width: 90%; max-width: 600px; position: relative; max-height: 90vh; overflow-y: auto; border-top: 3px solid #3c8dbc; /* Match primary button */ }
-        .dialog-content h3 { margin-top: 0; margin-bottom: 20px; color: #333; text-align: left; font-family: "Source Sans Pro", sans-serif; border-bottom: 1px solid #eee; padding-bottom: 10px; font-size: 18px; font-weight: 600; }
-        .close-button { position: absolute; top: 10px; right: 15px; font-size: 50px; font-weight: bold; color: #999; cursor: pointer; line-height: 1; }
-        .close-button:hover { color: #666; }
-        #fixture-form .form-group { margin-bottom: 15px; }
-        #fixture-form label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; color: #555; }
-        #fixture-form input[type="text"], #fixture-form input[type="datetime-local"], #fixture-form select { width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 3px; font-size: 14px; box-sizing: border-box; line-height: 1.5; }
-        #fixture-form input[readonly] { background-color: #e9ecef; cursor: not-allowed; }
-        #fixture-form .teams-container, #fixture-form .location-container { display: flex; gap: 10px; }
-        #fixture-form .teams-container > *, #fixture-form .location-container > * { flex: 1; }
-        #fixture-form #teamBWrapper { flex: 1; position: relative; /* Keep for dropdown */ }
-        #fixture-form #teamBWrapper > * { width: 100%; box-sizing: border-box; /* Ensure consistency */ }
-        #fixture-form .form-actions { margin-top: 25px; text-align: right; border-top: 1px solid #eee; padding-top: 15px; }
-        #fixture-form .form-actions .btn { margin-left: 10px; }
+        .dialog-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dialog-overlay.show {
+            display: flex;
+        }
+
+        .dialog-content {
+            background-color: #fff;
+            padding: 25px 30px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-top: 3px solid #3c8dbc; /* Match primary button */
+        }
+
+        .dialog-content h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: left;
+            font-family: "Source Sans Pro", sans-serif;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 50px;
+            font-weight: bold;
+            color: #999;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .close-button:hover {
+            color: #666;
+        }
+
+        #fixture-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        #fixture-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+            color: #555;
+        }
+
+        #fixture-form input[type="text"],
+        #fixture-form input[type="datetime-local"],
+        #fixture-form select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+
+        #fixture-form input[readonly] {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+        }
+
+        #fixture-form .teams-container,
+        #fixture-form .location-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        #fixture-form .teams-container > *,
+        #fixture-form .location-container > * {
+            flex: 1;
+        }
+
+        #fixture-form #teamBWrapper {
+            flex: 1;
+            position: relative; /* Keep for dropdown */
+        }
+
+        #fixture-form #teamBWrapper > * {
+            width: 100%;
+            box-sizing: border-box; /* Ensure consistency */
+        }
+
+        #fixture-form .form-actions {
+            margin-top: 25px;
+            text-align: right;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        #fixture-form .form-actions .btn {
+            margin-left: 10px;
+        }
 
         /* Placeholder styles */
-        ::placeholder { color: #999; opacity: 1; }
+        ::placeholder {
+            color: #999;
+            opacity: 1;
+        }
         /* Add other vendor prefixes if needed */
 
         /* Styles for Searchable Dropdown */
-        .search-results-dropdown { display: none; position: absolute; background-color: white; border: 1px solid #ccc; border-top: none; max-height: 150px; overflow-y: auto; width: 100%; z-index: 1001; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border-radius: 0 0 4px 4px; left: 0; top: 100%; }
-        .search-result-item { padding: 8px 12px; cursor: pointer; font-size: 14px; color: #333; }
-        .search-result-item:hover { background-color: #f0f0f0; }
-        .search-result-item.no-results { font-style: italic; color: #888; cursor: default; }
-        #fixture-form #teamBWrapper > input[type="text"] { width: 100%; box-sizing: border-box; }
+        .search-results-dropdown {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-top: none;
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+            z-index: 1001;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 4px 4px;
+            left: 0;
+            top: 100%;
+        }
 
-        /* --- Responsiveness Adjustments --- */
+        .search-result-item {
+        padding: 8px 12px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #333;
+        }
+
+        .search-result-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .search-result-item.no-results {
+            font-style: italic;
+            color: #888;
+            cursor: default;
+        }
+
+        #fixture-form #teamBWrapper > input[type="text"] {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* General adjustments for tablets and below */
         @media (max-width: 768px) {
             .list-league {
-                 justify-content: center; /* Center items when wrapping */
+                flex-direction: column; /* Stack title and toolbar */
+                align-items: stretch; /* Stretch items full width */
+                gap: 15px; /* Add gap */
+                padding-bottom: 15px; /* Add padding */
+            }
+            .list-league_left {
+                text-align: center; /* Center title */
             }
             .toolbar {
                  width: 100%; /* Make toolbar full width */
                  justify-content: space-between; /* Space out filter/button */
+                 flex-wrap: wrap; /* Allow wrapping if needed */
+                 gap: 10px; /* Add gap */
             }
-
-            /* Make card content stack vertically */
-            .fixture-card .main-content {
-                 flex-direction: column;
-                 align-items: center; /* Center items vertically stacked */
-                 gap: 10px; /* Add gap between stacked items */
+            .toolbar .filter-container, .toolbar div:last-child {
+                flex-grow: 1; /* Allow filter/button container to grow */
+                min-width: 150px; /* Prevent excessive squishing */
             }
-            .fixture-card .team {
-                 width: auto; /* Allow team width to adjust */
-                 max-width: 150px; /* Limit max width */
-            }
-            .fixture-card .match-info {
-                 order: -1; /* Move match info (time/date) to top */
-                 margin: 0 0 10px 0; /* Adjust margin */
-            }
-
-            /* Center actions buttons */
-            .fixture-card .actions {
-                 justify-content: center;
-            }
+             .toolbar button, .toolbar select {
+                 width: 100%; /* Make filter/button take full width of their container */
+                 justify-content: center; /* Center content in button/select */
+             }
 
             /* Stack form elements in dialog */
             #fixture-form .teams-container,
             #fixture-form .location-container {
                 flex-direction: column;
+            }
+
+            /* Make card actions centered and slightly smaller */
+            .fixture-card .actions {
+                 justify-content: center;
+                 margin-top: 10px;
+                 padding-top: 8px;
+            }
+            .fixture-card .actions .btn {
+                 padding: 5px 10px; /* Slightly smaller buttons */
+                 font-size: 13px;
+            }
+        }
+
+        /* Specific adjustments to keep teams horizontal on smaller mobile */
+        @media (max-width: 600px) {
+            .fixture-card {
+                padding: 10px; /* Reduce card padding */
+            }
+
+            .fixture-card .main-content {
+                gap: 8px; /* Reduce gap between team/info */
+                align-items: flex-start; /* Align to top maybe better */
+            }
+
+            .fixture-card .team {
+                width: 75px; /* <<< Reduce team block width */
+                flex-shrink: 0; /* Keep preventing shrinking */
+            }
+
+            .fixture-card .team img {
+                width: 50px; /* <<< Reduce logo size */
+                height: 50px;
+                margin-bottom: 4px;
+            }
+
+            .fixture-card .team .team-name {
+                font-size: 13px; /* <<< Reduce team name font size */
+                line-height: 1.3; /* Adjust line height */
+                /* Ensure text overflow is active */
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .fixture-card .match-info {
+                margin: 0 5px; /* Reduce horizontal margins */
+                min-width: 70px; /* <<< Reduce minimum width */
+                flex-grow: 1; /* Allow growth */
+                 padding-top: 5px; /* Add slight top padding to align better */
+            }
+
+            .fixture-card .match-info .time {
+                font-size: 16px; /* <<< Reduce time font size */
+                padding: 3px 6px;
+            }
+
+            .fixture-card .match-info .date {
+                font-size: 12px; /* <<< Reduce date font size */
+                padding: 3px 6px;
+            }
+            .fixture-card .match-info .venue {
+                font-size: 11px; /* <<< Reduce venue font size */
+                margin-top: 4px;
+                /* Ensure text overflow is active */
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+
+        /* Further adjustments for very small screens */
+        @media (max-width: 420px) {
+             .fixture-card .team {
+                 width: 60px; /* Even smaller team block */
+             }
+             .fixture-card .team img {
+                 width: 40px;
+                 height: 40px;
+             }
+             .fixture-card .team .team-name {
+                 font-size: 12px;
+             }
+             .fixture-card .match-info {
+                 min-width: 50px;
+                 margin: 0 3px;
+             }
+            .fixture-card .match-info .time { font-size: 14px; }
+            .fixture-card .match-info .date { font-size: 11px; }
+            .fixture-card .match-info .venue { font-size: 10px; }
+
+            .fixture-card .actions {
+                 gap: 5px; /* Less gap between buttons */
+            }
+             .fixture-card .actions .btn {
+                 padding: 4px 6px; /* Even smaller buttons */
+                 font-size: 11px;
+                 gap: 3px; /* Less gap in buttons */
             }
         }
     </style>

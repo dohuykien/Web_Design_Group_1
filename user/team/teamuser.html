@@ -171,30 +171,27 @@
       }
 
       /* Responsive adjustments for cards */
-       @media (max-width: 1200px) {
+      @media (max-width: 1200px) {
            .team-card {
                width: calc(33.333% - 10px); /* 3 cards per row */
            }
        }
        @media (max-width: 768px) {
-           .team-card {
-               width: calc(50% - 8px); /* 2 cards per row */
-           }
-           .content-wrapper {
+           /* --- REMOVED padding from content-wrapper --- */
+           /* .content-wrapper {
                padding: 10px;
-           }
-            #team-list-container {
-                padding: 10px;
-                gap: 10px;
+           } */
+
+           /* Add overflow hidden as a safeguard if needed */
+
+           #team-list-container {
+                padding: 10px; /* Keep padding inside the card list area */
+                gap: 10px; /* Maybe reduce gap slightly on mobile */
             }
-       }
-       @media (max-width: 480px) {
            .team-card {
-               width: 100%; /* 1 card per row */
+               width: 100%; /* Ensure card takes full width *within* its padded container */
+               /* No need for calc() here anymore */
            }
-            .navbar-nav { padding-left: 10px; margin-left: 0;} /* Adjust mobile nav */
-            .developed-by { display: none; } /* Hide on very small screens */
-            .header .user-info { margin-right: 10px;}
        }
     </style>
   </head>
@@ -210,9 +207,8 @@
 
       <div class="content-wrapper">
         <section class="content">
-          <div class="list-league">
-            <i class="fa-solid fa-list"></i>
-            <span class="list-league_left">Danh sách đội bóng</span>
+          <div class="list-league">   
+            <span class="list-league_left"><i class="fa-solid fa-list"></i>Danh sách đội bóng</span>
             <a href="addteam.html">
               <button class="add">
                 <i class="fa-solid fa-plus"></i> Thêm mới

@@ -34,9 +34,19 @@
         }
 
         /*----------------------Layout-------------------------*/
-        .container { display: flex; width: 100%; }
-        .content-wrapper { flex: 1; display: block; margin: 0; padding: 0; background-color: #ecf0f5; }
-        .content { background-color: #ecf0f5; padding-bottom: 20px; }
+        .container { 
+            display: flex; 
+            width: 100%; }
+        .content-wrapper { 
+            flex: 1; 
+            display: block; 
+            margin: 0; padding: 0; 
+            background-color: #ecf0f5; 
+        }
+        .content { 
+            background-color: #ecf0f5; 
+            padding-bottom: 20px; 
+        }
 
         .list-league {
             color: rgb(34, 34, 34);
@@ -106,7 +116,7 @@
         /* Score Header */
         .score-header {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
             padding-bottom: 20px;
             border-bottom: 1px solid #eee;
@@ -115,10 +125,29 @@
             gap: 15px;
             flex-wrap: wrap;
         }
+        .score-team {
+            width: 100%; /* Take full width when wrapping */
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .score-vs {
+            position: relative;
+            width: 10%;
+            display: flex;
+            justify-content: center; /* Center the span inside */
+            align-items: center;
+        }
         .score-header .team-info {
             display: flex;
             align-items: center;
             gap: 15px;
+            width: 45%;
+        }
+        .score-header .team-info.team-a {
+            justify-content: right;
         }
          .score-header .team-info img.team-logo {
             width: 50px;
@@ -293,6 +322,124 @@
             margin-right: 5px;
         }
 
+        @media (max-width: 768px) {
+            /* --- Adjust Content Box Padding --- */
+            .content-box {
+                padding: 15px;
+                margin: 10px;
+            }
+
+            /* --- Score Header Adjustments --- */
+            .score-header {
+                gap: 10px; /* Reduce gap */
+                 flex-direction: column; /* Stack main score and penalty */
+                 align-items: center;
+            }
+
+            .score-team {
+                 width: 100%; /* Ensure score team container takes full width */
+                 justify-content: space-around; /* Space out team blocks */
+                 flex-wrap: nowrap; /* Prevent team blocks themselves wrapping initially */
+                 gap: 5px; /* Reduce gap between team blocks and VS */
+                 align-items: flex-start; /* Align blocks to top */
+            }
+
+            .score-header .team-info {
+                width: auto; /* Remove fixed percentage */
+                flex: 1; /* Allow blocks to share space */
+                flex-direction: column; /* Stack Logo, Name, Score */
+                align-items: center; /* Center items vertically */
+                gap: 5px; /* Gap between logo, name, score */
+            }
+            /* No need for justify-content: right on team-a anymore */
+            .score-header .team-info.team-a {
+                justify-content: center;
+            }
+
+            .score-header .team-name {
+                font-size: 15px; /* Slightly smaller name */
+                word-break: break-word; /* Allow long names to wrap */
+                overflow-wrap: break-word; /* Standard property */
+                hyphens: auto; /* Optional: Assist wrapping */
+                text-align: center;
+                line-height: 1.3;
+                 min-height: 2.6em; /* Reserve space for 2 lines */
+            }
+
+            .score-header .team-info img.team-logo {
+                width: 45px; /* Smaller logo */
+                height: 45px;
+            }
+            .score-header input.score-input {
+                width: 50px; /* Slightly smaller input */
+                height: 35px;
+                font-size: 20px;
+            }
+             .score-vs {
+                 width: auto; /* Let VS take minimal space */
+                 padding: 0 5px; /* Add some padding */
+                 align-self: center; /* Center VS vertically */
+             }
+            .score-header .penalty-info {
+                 margin-top: 15px; /* More space above penalty */
+                 gap: 8px;
+                 width: 100%;
+                 justify-content: center;
+             }
+             .score-header .penalty-info input.penalty-score {
+                 width: 35px;
+                 height: 28px;
+                 font-size: 15px;
+             }
+
+            /* --- Stats Input Area Adjustments --- */
+            .stats-input-area {
+                flex-direction: column; /* Stack team columns */
+                gap: 25px; /* Increase gap between stacked columns */
+            }
+
+            .team-stats-column {
+                min-width: unset; /* Remove min-width constraint */
+                width: 100%; /* Ensure columns take full width */
+                 padding: 10px;
+            }
+
+            .stat-row {
+                flex-wrap: wrap; /* Allow inputs within a row to wrap */
+                gap: 6px; /* Adjust gap for wrapping */
+            }
+             .stat-row select, .stat-row input {
+                flex-grow: 1; /* Allow inputs/selects to grow */
+                min-width: 70px; /* Minimum width before wrapping */
+                font-size: 12px; /* Smaller font */
+             }
+            /* Adjust flex basis for potentially better wrapping */
+            .stat-row select[name="scorer"],
+            .stat-row select[name="assist"] {
+                 flex-basis: 120px; /* Suggest a base width for player selects */
+             }
+            .stat-row select[name="goalType"] {
+                 flex-basis: 80px;
+            }
+            .stat-row input[name="time"] {
+                flex-basis: 50px;
+            }
+
+             .stat-row button.action-btn {
+                padding: 4px 6px;
+                font-size: 11px;
+                 margin-left: auto; /* Push remove button to the right when wrapped */
+             }
+            .add-row-container {
+                text-align: center; /* Center add button */
+            }
+
+            /* --- Save Button --- */
+            .save-button-container .btn-save {
+                 padding: 8px 20px;
+                 font-size: 15px;
+             }
+        }
     </style>
 </head>
 <body>
@@ -319,18 +466,20 @@
                 <div class="content-box">
                     <!-- Score Header -->
                     <div id="score-header" class="score-header">
-                        <div class="team-info team-a">
-                            <span id="teamAName" class="team-name">Đội A</span>
-                            <img id="teamALogo" src="https://via.placeholder.com/50/cccccc/FFFFFF?text=A" alt="Team A Logo" class="team-logo">
-                            <input type="number" id="scoreA" class="score-input" min="0" value="0">
-                        </div>
-
-                        <span style="font-size: 18px; color: #555;">vs</span>
-
-                        <div class="team-info team-b">
-                            <input type="number" id="scoreB" class="score-input" min="0" value="0">
-                            <img id="teamBLogo" src="https://via.placeholder.com/50/cccccc/FFFFFF?text=B" alt="Team B Logo" class="team-logo">
-                            <span id="teamBName" class="team-name">Đội B</span>
+                        <div class="score-team">
+                            <div class="team-info team-a">
+                                <span id="teamAName" class="team-name">Đội A</span>
+                                <img id="teamALogo" src="https://via.placeholder.com/50/cccccc/FFFFFF?text=A" alt="Team A Logo" class="team-logo">
+                                <input type="number" id="scoreA" class="score-input" min="0" value="0">
+                            </div>
+    
+                            <div class="score-vs"><span style="font-size: 18px; color: #555;">vs</span></div>
+    
+                            <div class="team-info team-b">
+                                <input type="number" id="scoreB" class="score-input" min="0" value="0">
+                                <img id="teamBLogo" src="https://via.placeholder.com/50/cccccc/FFFFFF?text=B" alt="Team B Logo" class="team-logo">
+                                <span id="teamBName" class="team-name">Đội B</span>
+                            </div>
                         </div>
 
                         <div class="penalty-info">
