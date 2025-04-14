@@ -58,4 +58,14 @@
     .list-league {
         margin-top: 0px; 
     }
+    .action-button {
+        min-width: 75px;
+        min-height: 50px;
+    }
+    .action-button i {
+        font-size: 1em;
+    }
+    .action-button span {
+        font-size: 0.75em;
+    }
 }

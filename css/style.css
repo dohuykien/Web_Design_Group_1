@@ -1098,3 +1098,37 @@ p {
     padding-left: 7.5px;
     padding-top: 8px;
 }
+
+.auth-dropdown img.user-avatar {
+    width: 30px;           /* Adjust size as needed */
+    height: 30px;          /* Adjust size as needed */
+    border-radius: 50%;    /* Make it circular */
+    margin-right: 8px;
+    vertical-align: middle; /* Align nicely with text */
+    object-fit: cover;     /* Crop image nicely if not square */
+  }
+  
+  .auth-dropdown .user-info a {
+      text-decoration: none; /* Style the link */
+      color: inherit;        /* Use parent color */
+      font-weight: bold;
+      vertical-align: middle;
+  }
+  
+  .auth-dropdown .user-info a:hover {
+      text-decoration: underline;
+  }
+  
+  .auth-dropdown #logoutBtn {
+      margin-left: 10px; /* Space before logout button */
+      background: none;
+      border: none;
+      font-weight: bold;
+      color: #e3ff0e; /* Example logout color */
+      cursor: pointer;
+      padding: 5px;
+      vertical-align: middle;
+  }
+  .auth-dropdown #logoutBtn:hover {
+      text-decoration: underline;
+  }

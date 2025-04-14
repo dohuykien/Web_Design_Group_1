@@ -22,7 +22,10 @@
                     </div>
                     <span class="developed-by">Hệ thống được phát triển bởi Eternal Phoenix</span>
                     <div class="auth-menu-wrapper">
-                        <button class="auth-toggler" id="auth-toggle">👤</button>
+                        <div class="auth-toggler" id="auth-toggle">
+                            <a href="/user/Dashboard.html">👤</a>
+                            <button id="logout2Btn" style="background-color: transparent; border: none; font-size: 24px; margin-left: -20px;">🚪</button>
+                        </div>
                         <div class="auth-dropdown" id="auth-dropdown">
                           <button id="openRegisterBtn">ĐĂNG KÝ</button> | 
                           <button id="openLoginBtn">ĐĂNG NHẬP</button>
@@ -36,7 +39,7 @@
                         <li class="nav-item"><a href="index.html" class="nav-link">TRANG CHỦ</a></li>
                         <li class="nav-item"><a href="tournament_progress.html" class="nav-link">GIẢI ĐANG DIỄN RA</a></li>
                         <li class="nav-item"><a href="tournament_monitor.html" class="nav-link">GIẢI ĐANG THEO DÕI</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">ĐỘI BÓNG</a></li>
+                        <li class="nav-item"><a href="page_nguyen/html/doibong.html" class="nav-link">ĐỘI BÓNG</a></li>
                         <li class="nav-item"><a href="catch_team.html" class="nav-link">BẮT ĐỐI</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">HƯỚNG DẪN</a></li>
                         <li class="nav-item"><a href="#" class="nav-link">CUỘC THI</a></li>
@@ -408,58 +411,9 @@
 
 
 <!-- --------------------------------- LOG IN - LOG OUT ------------------------------------- -->
-<div class="loginout" id="loginout">
-    <!-- <span class="close-btn">X</span> -->
-    <div class="container" id="container">
-        <span class="close-btn">&times;</span>
-        <div class="form-container sign-up">
-            <form>
-                <h1>Tạo tài khoản</h1>
-                <div class="social-icons">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <span>hoặc sử dụng tài khoản email của bạn để đăng ký</span>
-                <input type="text" name="name" placeholder="Name">
-                <input type="email" name="email" placeholder="Email">
-                <input type="password" name="password" placeholder="Password">
-                <button type="submit" class="btn">Đăng Ký</button>
-            </form>
-        </div>
+<!-- Placeholder for the modal -->
+<div id="modal-placeholder"></div>
 
-        <div class="form-container sign-in">
-            <form>
-                <h1>Đăng Nhập</h1>
-                <div class="social-icons">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <span>hoặc sử dụng tài khoản của bạn</span>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <a href="#">Quên mật khẩu?</a>
-                <button type="submit" class="btn">Đăng Nhập</button>
-            </form>
-        </div>
-
-        <div class="toggle-container">
-            <div class="toggle">
-                <div class="toggle-panel toggle-left">
-                    <h1>Chào mừng trở lại!</h1>
-                    <p>Bạn đã sẵn sàng vượt qua giới hạn và theo đuổi đam mê bóng đá của mình bằng cả trái tim chưa ⚽🔥💪</p>
-                    <button class="hidden btn" id="login">Đăng Nhập</button>
-                </div>
-                <div class="toggle-panel toggle-right">
-                    <h1> IT LEAGUE</h1>
-                    <p>SINH RA ĐỂ CHƠI, TẬP LUYỆN ĐỂ CHIẾN THẮNG </p>
-                    <button class="hidden btn" id="register">Đăng Ký</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- --------------------------------------- FOOTER -------------------------------------- -->
 <footer class="footer">
@@ -492,7 +446,7 @@
 <div class="back-top" style="display: block;">
     <i class="fa-solid fa-circle-up"></i>
 </div>
-
+<script src="js/script.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         console.log("DOM đã sẵn sàng, script bắt đầu chạy!");
@@ -521,6 +475,6 @@
 
 
 
-    <script src="js/script.js"></script>
+
 </body>
 </html>

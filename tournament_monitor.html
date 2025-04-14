@@ -20,9 +20,16 @@
                         <a href="index.html"><img src="images/logo.png" alt="Logo"></a> 
                     </div>
                     <span class="developed-by">Hệ thống được phát triển bởi Eternal Phoenix</span>
-                    <span class="auth-links">
-                        <button id="">ĐĂNG KÝ</button> | <button id="openLoginBtn">ĐĂNG NHẬP</button>
-                    </span>
+                    <div class="auth-menu-wrapper">
+                        <div class="auth-toggler" id="auth-toggle">
+                            <a href="/user/Dashboard.html">👤</a>
+                            <button id="logout2Btn" style="background-color: transparent; border: none; font-size: 24px; margin-left: -20px;">🚪</button>
+                        </div>
+                        <div class="auth-dropdown" id="auth-dropdown">
+                          <button id="openRegisterBtn">ĐĂNG KÝ</button> | 
+                          <button id="openLoginBtn">ĐĂNG NHẬP</button>
+                        </div>
+                    </div>
                     <button class="navbar-toggler" id="menu-toggle">
                         ☰
                     </button>
@@ -404,58 +411,7 @@
 
 
 <!-- --------------------------------- LOG IN - LOG OUT ------------------------------------- -->
-<div class="loginout" id="loginout">
-    <!-- <span class="close-btn">X</span> -->
-    <div class="container" id="container">
-        <span class="close-btn">&times;</span>
-        <div class="form-container sign-up">
-            <form>
-                <h1>Tạo tài khoản</h1>
-                <div class="social-icons">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <span>hoặc sử dụng tài khoản email của bạn để đăng ký</span>
-                <input type="text" name="name" placeholder="Name">
-                <input type="email" name="email" placeholder="Email">
-                <input type="password" name="password" placeholder="Password">
-                <button type="submit" class="btn">Đăng Ký</button>
-            </form>
-        </div>
-
-        <div class="form-container sign-in">
-            <form>
-                <h1>Đăng Nhập</h1>
-                <div class="social-icons">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <span>hoặc sử dụng tài khoản của bạn</span>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <a href="#">Quên mật khẩu?</a>
-                <button type="submit" class="btn">Đăng Nhập</button>
-            </form>
-        </div>
-
-        <div class="toggle-container">
-            <div class="toggle">
-                <div class="toggle-panel toggle-left">
-                    <h1>Chào mừng trở lại!</h1>
-                    <p>Bạn đã sẵn sàng vượt qua giới hạn và theo đuổi đam mê bóng đá của mình bằng cả trái tim chưa ⚽🔥💪</p>
-                    <button class="hidden btn" id="login">Đăng Nhập</button>
-                </div>
-                <div class="toggle-panel toggle-right">
-                    <h1> IT LEAGUE</h1>
-                    <p>SINH RA ĐỂ CHƠI, TẬP LUYỆN ĐỂ CHIẾN THẮNG </p>
-                    <button class="hidden btn" id="register">Đăng Ký</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<div id="modal-placeholder"></div>
 
 <!-- --------------------------------------- FOOTER -------------------------------------- -->
     <footer class="footer">

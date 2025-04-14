@@ -652,11 +652,7 @@
           const fileInput = document.getElementById(inputId);
           if (fileInput && fileInput.files.length > 0) {
             const file = fileInput.files[0];
-            // Optional: Kiểm tra kích thước file
-            // if (file.size > 5 * 1024 * 1024) { // Ví dụ: giới hạn 5MB
-            //     reject(new Error(`File ${file.name} quá lớn (tối đa 5MB).`));
-            //     return;
-            // }
+
             const reader = new FileReader();
             reader.onloadend = () => resolve(reader.result); // Thành công
             reader.onerror = (error) => {
@@ -716,9 +712,6 @@
         const teamNameInput = document.getElementById("teamName");
         if (teamNameInput) teamNameInput.focus();
       }
-
-      // Function displayImage (Không cần thiết, có thể xóa)
-      // function displayImage(previewElementId, imageData) { ... }
     </script>
     <!-- *** KẾT THÚC SCRIPT *** -->
   </body>

@@ -1,544 +1,408 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.getElementById('menu-toggle');
-    const mainMenu = document.getElementById('main-menu');
-    const closeMenu = document.getElementById('close-menu');
-    const authToggle = document.getElementById('auth-toggle');
+// --- UI Update Functions ---
+function isLoggedIn() {
+    return !!localStorage.getItem('userProfile_id');
+}
+
+
+function clearUserProfile() {
+    localStorage.removeItem('userProfile_id');
+    localStorage.removeItem('userProfile_username');
+    localStorage.removeItem('userProfile_email');
+    localStorage.removeItem('userProfile_firstname');
+    localStorage.removeItem('userProfile_lastname');
+    localStorage.removeItem('userProfile_address');
+    localStorage.removeItem('userProfile_password');
+    localStorage.removeItem('userProfile_avatar');
+    localStorage.removeItem('userProfile_phone');
+}
+
+
+
+// Update header based on login status
+function updateHeaderUI() {
     const authDropdown = document.getElementById('auth-dropdown');
-  
-    // 👉 Toggle menu trái
-    menuToggle.addEventListener('click', () => {
-      mainMenu.classList.add('active');
-      document.body.classList.add('menu-overlay-active');
-    });
-  
-    closeMenu.addEventListener('click', () => {
-      mainMenu.classList.remove('active');
-      document.body.classList.remove('menu-overlay-active');
-    });
-  
-    // 👉 Bấm ra ngoài để đóng menu trái
-    document.addEventListener('click', function (e) {
-      if (
-        mainMenu.classList.contains('active') &&
-        !mainMenu.contains(e.target) &&
-        !menuToggle.contains(e.target)
-      ) {
-        mainMenu.classList.remove('active');
-        document.body.classList.remove('menu-overlay-active');
-      }
-    });
-  
-    // 👉 Toggle auth dropdown bên phải
-    authToggle.addEventListener('click', () => {
-      authDropdown.classList.toggle('active');
-    });
-  
-    // 👉 Bấm ra ngoài để đóng auth menu
-    document.addEventListener('click', (e) => {
-      if (
-        !authToggle.contains(e.target) &&
-        !authDropdown.contains(e.target)
-      ) {
-        authDropdown.classList.remove('active');
-      }
-    });
-  });
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-
-// -------------------------------- Login Logout -----------------
-  const container = document.getElementById('container');
-  const registerBtn = document.getElementById('register');
-  const loginBtn = document.getElementById('login');
-  
-  registerBtn.addEventListener('click', () => {
-    container.classList.add('active');
-  }); 
-  
-  loginBtn.addEventListener('click', () => {
-    container.classList.remove('active');
-  }); 
-  
-// Lấy các phần tử cần thiết
-const loginModal = document.getElementById("loginout");
-const openLoginBtn = document.getElementById("openLoginBtn");
-const closeBtn = document.querySelector(".close-btn");
-const openRegisterBtn = document.getElementById("openRegisterBtn");
-
-// Khi bấm nút Đăng Nhập -> Hiện modal
-openLoginBtn.addEventListener("click", () => {
-    loginModal.style.display = "flex";
-    container.classList.remove("active"); // Hiện giao diện Đăng Nhập
-});
-
-// Khi bấm nút Đăng Ký trong dropdown
-openRegisterBtn.addEventListener("click", () => {
-    loginModal.style.display = "flex";
-    container.classList.add("active"); // Hiện giao diện Đăng Ký
-});
-
-// Khi bấm nút X -> Ẩn modal
-closeBtn.addEventListener("click", () => {
-    loginModal.style.display = "none";
-});
-
-// Khi click ra ngoài modal -> Ẩn modal
-window.addEventListener("click", (event) => {
-    if (event.target === loginModal) {
-        loginModal.style.display = "none";
-    }
-});
-
-
-
-
-
-// -------------------------- Menu Detail ---------------------
-document.addEventListener("DOMContentLoaded", function () {
-    const menuItems = document.querySelectorAll(".league-menu-item");
-    const contentSections = document.querySelectorAll(".content");
-    const viewAll = document.getElementById("view-all");
-    const sidebar = document.querySelector(".col-4.sidebar");
-    
-    // Định nghĩa các phần cần hiển thị cho từng menu
-    const menuConfig = {
-        "Trang Chủ": ["league-logo-slider", "match-detail", "sponsor", "view-all", "media"],
-        "LTD - KQ": ["league-logo-slider", "sponsor", "media"],
-        "Thống Kê - Xếp Hạng": ["league-logo-slider", "sponsor", "media"],
-        "Đội Bóng": ["league-logo-slider", "sponsor", "media"],
-        "Bình Chọn": ["league-logo-slider", "sponsor", "media"],
-        "Tin Tức": ["league-logo-slider", "sponsor", "media"],
-        "Thông Tin Giải": ["infor-league"]
-    };
-    
-    // Các mục con bên trong "view all"
-    const viewAllConfig = {
-        "LTD - KQ": [0, 1], // Lịch thi đấu, Kết quả
-        "Thống Kê - Xếp Hạng": [4], // Thống kê các bảng xếp hạng
-        "Đội Bóng": [5], // Danh sách đội bóng
-        "Bình Chọn": [6], // Hạng mục bình chọn
-        "Tin Tức": [7] // Tin tức
-    };
-
-    function updateContent(menuName) {
-        // Ẩn toàn bộ nội dung
-        if (menuName !== "Trang Chủ") {
-            contentSections.forEach(section => section.style.display = "none");
-        }
-        
-        // Hiển thị các phần theo cấu hình
-        if (menuConfig[menuName]) {
-            menuConfig[menuName].forEach(id => {
-                const section = document.getElementById(id);
-                if (section) section.style.display = "block";
-            });
-        }
-
-        if (menuName === "Trang Chủ") {
-            const inforLeague = document.getElementById("infor-league");
-            if (inforLeague) {
-                inforLeague.style.display = "none";
-            }
-        }
-
-        if (viewAll) {
-            if (menuName === "Trang Chủ") {
-                viewAll.style.display = "block";
-                viewAll.querySelectorAll(".item-center").forEach((item, index) => {
-                    // item.style.display = "block"; // Hiển thị tất cả mục trong view all
-                    if ([4, 5, 6, 7].includes(index)) {
-                        item.style.display = "none";
-                    } else {
-                        item.style.display = "block"; // Hiển thị các phần còn lại
-                    }
-                });
-            } else if (viewAllConfig[menuName]) {
-                viewAll.style.display = "block";
-                const items = viewAll.querySelectorAll(".item-center");
-                items.forEach((item, index) => {
-                    item.style.display = viewAllConfig[menuName].includes(index) ? "block" : "none";
-                });
-            } else {
-                viewAll.style.display = "none";
-            }
-        }
-
-        // Hiển thị sidebar nếu có trong danh sách
-        sidebar.style.display = ["LTD - KQ", "Thống Kê - Xếp Hạng", "Đội Bóng", "Bình Chọn", "Tin Tức"].includes(menuName) ? "block" : "none";
-    }
-
-    menuItems.forEach(item => {
-        item.addEventListener("click", function () {
-            // Xóa class active khỏi tất cả các menu
-            menuItems.forEach(menu => menu.classList.remove("active"));
-            this.classList.add("active");
-            
-            // Cập nhật nội dung hiển thị
-            updateContent(this.textContent.trim());
-        });
-    });
-    
-    // Hiển thị mặc định khi tải trang
-    updateContent("Trang Chủ");
-});
-
-// ------------------------ --------------------------
-document.querySelectorAll(".xemChiTiet").forEach(a => {
-    a.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        const tkxhMenu = Array.from(document.querySelectorAll(".league-menu-item"))
-            .find(item => item.textContent.trim() === "Thống Kê - Xếp Hạng");
-
-        if (tkxhMenu) {
-            tkxhMenu.click();
-            tkxhMenu.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-    });
-});
-
-
-
-// ----------------------------------- Slider Logo Detail ---------------------
-document.addEventListener("DOMContentLoaded", function () {
-  const track = document.querySelector(".logo-track");
-  const logos = document.querySelectorAll(".team-logo");
-  let index = 0;
-  const visibleLogos = 8; // Số logo hiển thị mỗi lần
-  const totalLogos = logos.length;
-
-  // Nhân đôi danh sách logo để tránh khoảng trắng
-  track.innerHTML += track.innerHTML;
-  function slideLogos() {
-      index++;
-      track.style.transform = `translateX(-${index * (150 + 20)}px)`;
-      // Khi đến nửa danh sách, reset về đầu để vòng lặp liên tục
-      if (index >= totalLogos) {
-          setTimeout(() => {
-              track.style.transition = "none"; // Tắt hiệu ứng để reset nhanh
-              track.style.transform = "translateX(0)";
-              index = 0;
-              setTimeout(() => {
-                  track.style.transition = "transform 1s ease-in-out";
-              }, 50);
-          }, 1000);
-      }
-  }
-  setInterval(slideLogos, 5000); // 5 giây lướt 1 lần
-});
-
-
-// 
-// Thiết lập thời gian trận đấu tiếp theo
-const targetDate = new Date("2025-04-07T08:00:00").getTime();
-function updateCountdown() {
-    const now = new Date().getTime();
-    const timeLeft = targetDate - now;
-
-    if (timeLeft < 0) {
-        document.querySelector(".countdown").innerHTML = "<p>Trận đấu đã diễn ra!</p>";
+    const authToggle = document.getElementById('auth-toggle'); // Get the main toggle button
+    if (!authDropdown || !authToggle) {
+        console.error("Auth dropdown or toggle button not found!");
         return;
     }
 
-    // Tính số ngày, giờ, phút, giây
-    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    const defaultAvatar = '/user/images/dhk.jpg'; // <<<--- PATH TO YOUR DEFAULT AVATAR
 
-    // Hiển thị thời gian đếm ngược
-    document.querySelector(".countdown").innerHTML = `
-        <div class="time-box"><span>${days}</span> Ngày</div>
-        <div class="time-box"><span>${hours}</span> Giờ</div>
-        <div class="time-box"><span>${minutes}</span> Phút</div>
-        <div class="time-box"><span>${seconds}</span> Giây</div>
-    `;
-}
-// Cập nhật mỗi giây
-setInterval(updateCountdown, 1000);
-updateCountdown();
+    if (isLoggedIn()) {
+        const username = localStorage.getItem('userProfile_username') || 'User';
+        const userAvatar = localStorage.getItem('userProfile_avatar'); // Might be null or Base64 string
 
+        // Determine avatar source: use stored Base64 or the default image path
+        const avatarSrc = (userAvatar && userAvatar.startsWith('data:image')) ? userAvatar : defaultAvatar;
 
+        // Update the main toggle button text/icon if desired (optional)
+        // authToggle.innerHTML = '👤'; // Or potentially the first letter of username
 
-// 
-document.addEventListener("DOMContentLoaded", function () {
-    const selectRound = document.querySelector(".select-round-1");
-    const matchDivs = document.querySelectorAll(".item-center-match");
+        // Construct the logged-in state HTML
+        authDropdown.innerHTML = `
+            <span class="user-info">
+                <img src="${avatarSrc}" alt="Avatar" class="user-avatar">
+                <a href="/user/Dashboard.html">${username}</a>
+            </span>
+            <button id="logoutBtn">ĐĂNG XUẤT</button>
+        `;
 
-    selectRound.addEventListener("change", function () {
-        let selectedRound = selectRound.value; // Lấy vòng được chọn
-
-        // Ẩn tất cả các div trận đấu
-        matchDivs.forEach(div => div.classList.remove("active"));
-
-        // Hiện div trận đấu tương ứng với vòng được chọn
-        let targetDiv = document.querySelector(`.list-match-${selectedRound}`).closest(".item-center-match");
-        if (targetDiv) {
-            targetDiv.classList.add("active");
+        // Add event listener for the newly created logout button
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', handleLogout);
+        } else {
+            console.error("Logout button could not be found after UI update.");
         }
-    });
-});
 
-
-document.addEventListener("DOMContentLoaded", function () {
-    const selectRound = document.querySelector(".round-static");
-    const matchDivs = document.querySelectorAll(".item-center-result");
-
-    selectRound.addEventListener("change", function () {
-        let selectedRound = selectRound.value; // Lấy vòng được chọn
-
-        // Ẩn tất cả các div trận đấu
-        matchDivs.forEach(div => div.classList.remove("active"));
-
-        // Hiện div trận đấu tương ứng với vòng được chọn
-        let targetDiv = document.querySelector(`.list-result-${selectedRound}`).closest(".item-center-result");
-        if (targetDiv) {
-            targetDiv.classList.add("active");
+        const logout2Btn = document.getElementById('logout2Btn');
+        if (logout2Btn) {
+            logout2Btn.addEventListener('click', handleLogout);
+        } else {
+            console.error("Logout button could not be found after UI update.");
         }
-    });
-});
+    } else {
+        // Update the main toggle button back to default if you changed it
+        authToggle.innerHTML = '<div id="openModal">👤<div>'; // Or your default icon/text
 
+        // Construct the logged-out state HTML
+        authDropdown.innerHTML = `
+            <button id="openRegisterBtn">ĐĂNG KÝ</button> |
+            <button id="openLoginBtn">ĐĂNG NHẬP</button>
+        `;
 
-document.addEventListener("DOMContentLoaded", function () {
-    const selectRound = document.querySelector(".round-statistical");
-    const matchDivs = document.querySelectorAll(".content-static-round");
-
-    selectRound.addEventListener("change", function () {
-        let selectedRound = selectRound.value; // Lấy vòng được chọn
-
-        // Ẩn tất cả các div trận đấu
-        matchDivs.forEach(div => div.classList.remove("active"));
-
-        // Hiện div trận đấu tương ứng với vòng được chọn
-        let targetDiv = document.querySelector(`.tbl-statistic-${selectedRound}`).closest(".content-static-round");
-        if (targetDiv) {
-            targetDiv.classList.add("active");
-        }
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    const selectRound = document.querySelector(".get-bxh");
-    const matchDivs = document.querySelectorAll(".item-center-rank");
-
-    selectRound.addEventListener("change", function () {
-        let selectedRound = selectRound.value; // Lấy vòng được chọn
-
-        // Ẩn tất cả các div trận đấu
-        matchDivs.forEach(div => div.classList.remove("active"));
-
-        // Hiện div trận đấu tương ứng với vòng được chọn
-        let targetDiv = document.querySelector(`.result-get-bxh-${selectedRound}`).closest(".item-center-rank");
-        if (targetDiv) {
-            targetDiv.classList.add("active");
-        }
-    });
-});
-
-
-
-
-function goBack() {
-    window.history.back(); // Quay lại trang trước đó
-}
-// Giả lập dữ liệu đội bóng (sau này có thể lấy từ API hoặc localStorage)
-document.addEventListener("DOMContentLoaded", function () {
-    const teamInfo = JSON.parse(localStorage.getItem("selectedTeam")) || {
-        name: "IT65A",
-        coach: "Ngô Hữu Nghĩa",
-        members: 13,
-        matches: [
-            { date: "14-03-2025", time: "08:00", match: "IT65A 4 - 0 CS65", field: "Sân A" },
-            { date: "16-03-2025", time: "08:30", match: "IT65B 2 - 4 IT65A", field: "Định Công 2" },
-            { date: "14-03-2025", time: "08:00", match: "IT65A 11 - 1 IT66A", field: "Sân B" }
-        ]
-    };
-
-    document.getElementById("team-name").textContent = teamInfo.name;
-    document.getElementById("coach-name").textContent = teamInfo.coach;
-    document.getElementById("members-count").textContent = teamInfo.members;
-
-    let matchTable = document.getElementById("match-data");
-    matchTable.innerHTML = "";
-    teamInfo.matches.forEach(match => {
-        let row = `<tr>
-            <td>${match.date}</td>
-            <td>${match.time}</td>
-            <td>${match.match}</td>
-            <td>${match.field}</td>
-        </tr>`;
-        matchTable.innerHTML += row;
-    });
-});
-
-
-
-// 
-function saveTeamData(name, coach, members) {
-    let teamData = {
-        name: name,
-        coach: coach,
-        members: members,
-        matches: [
-            { date: "14-03-2025", time: "08:00", match: name + " 4 - 0 CS65", field: "Sân A" },
-            { date: "16-03-2025", time: "08:30", match: "IT65B 2 - 4 " + name, field: "Định Công 2" },
-            { date: "14-03-2025", time: "08:00", match: name + " 11 - 1 IT66A", field: "Sân B" }
-        ]
-    };
-    localStorage.setItem("selectedTeam", JSON.stringify(teamData));
+        // Re-attach listeners for modal trigger buttons
+        // Ensures they work after being removed and re-added by innerHTML
+        attachModalTriggers();
+    }
 }
 
+function handleLogout() {
+    clearUserProfile();
+    console.log('User logged out.');
+    try { 
+        location.reload();
+    } catch (e) {
+        console.error("Error during location.reload:", e);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- localStorage Helper Functions ---
+
+    // Get users array from localStorage
+    function getUsers() {
+        const usersJson = localStorage.getItem('users');
+        try {
+            return usersJson ? JSON.parse(usersJson) : [];
+        } catch (e) {
+            console.error("Error parsing users JSON from localStorage", e);
+            return []; // Return empty array on error
+        }
+    }
+
+    // Save users array to localStorage
+    function saveUsers(usersArray) {
+        localStorage.setItem('users', JSON.stringify(usersArray));
+    }
+
+    // Find user by email
+    function findUserByEmail(email, usersArray) {
+        return usersArray.find(user => user.email.toLowerCase() === email.toLowerCase());
+    }
+
+    // Get the next available user ID
+    function getNextUserId(usersArray) {
+        if (!usersArray || usersArray.length === 0) {
+            return 1;
+        }
+        // Find the highest existing ID and add 1
+        const maxId = usersArray.reduce((max, user) => (user.id > max ? user.id : max), 0);
+        return maxId + 1;
+    }
+
+    // Store logged-in user's profile info
+    function updateUserProfile(user) {
+        if (!user) return;
+        localStorage.setItem('userProfile_id', user.id);
+        localStorage.setItem('userProfile_username', user.username);
+        localStorage.setItem('userProfile_email', user.email);
+        localStorage.setItem('userProfile_firstname', user.firstname || ''); // Handle potential null
+        localStorage.setItem('userProfile_lastname', user.lastname || '');   // Handle potential null
+        localStorage.setItem('userProfile_address', user.address || '');     // Handle potential null
+        // WARNING: Storing password in localStorage is insecure! Only for demo purposes.
+        localStorage.setItem('userProfile_password', user.password);
+        localStorage.setItem('userProfile_avatar', user.avatar || '');       // Handle potential null
+        // Add phone if available, otherwise empty string
+        localStorage.setItem('userProfile_phone', user.phone || '');
+    }
+
+    // Clear logged-in user's profile info (on logout)
+
+
+    // Check if a user is currently logged in
+
+    // --- UI Update Functions ---
+
+     // Helper to display messages within forms
+     function displayMessage(formId, message, isError = false) {
+        const messageElement = document.getElementById(`${formId}-message`);
+        if (messageElement) {
+            messageElement.textContent = message;
+            messageElement.className = `form-message ${isError ? 'error' : 'success'}`;
+             // Clear message after a few seconds
+             setTimeout(() => {
+                 messageElement.textContent = '';
+                 messageElement.className = 'form-message';
+             }, 5000); // Clear after 5 seconds
+        }
+    }
+
+
+    // --- Event Handlers ---
+
+    // Handle user registration
+    function handleRegistration(event) {
+        event.preventDefault(); // Prevent default form submission
+        const nameInput = document.getElementById('signup-name');
+        const emailInput = document.getElementById('signup-email');
+        const passwordInput = document.getElementById('signup-password');
+        const loginModal = document.getElementById('loginout'); // Get modal element
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value; // Get password as is
+
+        // Basic validation
+        if (!name || !email || !password) {
+            displayMessage('signup', 'Vui lòng điền đầy đủ thông tin.', true);
+            return;
+        }
+        // Very basic email format check (consider a more robust regex)
+        if (!/\S+@\S+\.\S+/.test(email)) {
+             displayMessage('signup', 'Định dạng email không hợp lệ.', true);
+             return;
+        }
+
+        const users = getUsers();
+        const existingUser = findUserByEmail(email, users);
+
+        if (existingUser) {
+            displayMessage('signup', 'Email này đã được đăng ký.', true);
+        } else {
+            const nextId = getNextUserId(users);
+            const newUser = {
+                id: nextId,
+                username: name, // Using the 'Name' field as username
+                email: email,
+                firstname: '', // Set empty initially
+                lastname: '',  // Set empty initially
+                address: '',   // Set empty initially
+                // !!! SECURITY WARNING: Storing plain text passwords is highly insecure!
+                // In a real application, ALWAYS hash passwords securely on the server-side.
+                password: password,
+                avatar: null, // Set to null or a default placeholder base64 string
+                phone: ''      // Add phone field, empty initially
+            };
+
+            users.push(newUser);
+            saveUsers(users);
+            console.log('User registered:', newUser);
+            displayMessage('signup', 'Đăng ký thành công! Đang đăng nhập...', false);
+
+            // Automatically log in the user
+            updateUserProfile(newUser);
+            updateHeaderUI();
+
+            // Close modal after a short delay
+            setTimeout(() => {
+                if (loginModal) loginModal.style.display = 'none';
+                 // Clear form fields after successful registration
+                 nameInput.value = '';
+                 emailInput.value = '';
+                 passwordInput.value = '';
+                 displayMessage('signup', ''); // Clear message area
+            }, 1500); // Wait 1.5 seconds
+            location.reload();
+        }
+    }
+
+    // Handle user login
+    function handleLogin(event) {
+        event.preventDefault();
+        const emailInput = document.getElementById('signin-email');
+        const passwordInput = document.getElementById('signin-password');
+        const loginModal = document.getElementById('loginout');
+
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+
+        if (!email || !password) {
+             displayMessage('signin', 'Vui lòng nhập email và mật khẩu.', true);
+            return;
+        }
+
+        const users = getUsers();
+        const user = findUserByEmail(email, users);
+
+        // !!! SECURITY WARNING: Comparing plain text passwords. See registration warning.
+        if (user && user.password === password) {
+            displayMessage('signin', 'Đăng nhập thành công!', false);
+            updateUserProfile(user);
+            updateHeaderUI();
+
+             // Close modal after a short delay
+            setTimeout(() => {
+                 if (loginModal) loginModal.style.display = 'none';
+                 // Clear form fields
+                 emailInput.value = '';
+                 passwordInput.value = '';
+                 displayMessage('signin', ''); // Clear message area
+            }, 1000); // Wait 1 second
+            location.reload();
+        } else {
+            displayMessage('signin', 'Email hoặc mật khẩu không đúng.', true);
+             // Optionally clear profile in case of failed login attempt after previous success?
+             // clearUserProfile(); // Uncomment if strict logout on failure is desired
+             // updateHeaderUI();   // Uncomment if strict logout on failure is desired
+        }
+    }
+
+    // Handle user logout
 
 
 
-// 
-document.addEventListener("DOMContentLoaded", function () {
-    const img = document.querySelector(".pull-right img");
-    const modal = document.getElementById("modal-nockout");
-    const closeButton = document.querySelector(".close");
-    const body = document.body;
+    // --- Modal Loading and Initialization ---
 
-    if (img && modal) {
-        img.addEventListener("click", function () {
-            modal.style.display = "block";
-            modal.classList.add("show");
-            modal.setAttribute("aria-hidden", "false");
-            body.classList.add("modal-open"); // Làm mờ nền
-            body.style.overflow = "hidden"; // Chặn cuộn trang
+    // Function to attach listeners to modal trigger buttons (Login/Register)
+    // This needs to be callable after the header UI is updated (e.g., on logout)
+    function attachModalTriggers() {
+         const openLoginBtn = document.getElementById("openLoginBtn");
+         const openRegisterBtn = document.getElementById("openRegisterBtn");
+         const loginModal = document.getElementById("loginout");
+         const container = document.getElementById('container'); // Needed to set panel
+         const openModal = document.getElementById('openModal');
+
+         if (openLoginBtn && loginModal && container) {
+            openLoginBtn.addEventListener("click", () => {
+                loginModal.style.display = "flex";
+                if(container) container.classList.remove("active"); // Show sign-in panel
+                 displayMessage('signin', ''); // Clear any previous messages
+                 displayMessage('signup', '');
+            });
+         }
+         if (openRegisterBtn && loginModal && container) {
+             openRegisterBtn.addEventListener("click", () => {
+                 loginModal.style.display = "flex";
+                 if(container) container.classList.add("active"); // Show sign-up panel
+                 displayMessage('signin', ''); // Clear any previous messages
+                 displayMessage('signup', '');
+             });
+         }
+         if (openModal && loginModal && container) {
+             openModal.addEventListener("click", () => {
+                 loginModal.style.display = "flex";
+                 if(container) container.classList.remove("active"); // Show sign-in panel
+                 displayMessage('signin', ''); // Clear any previous messages
+                 displayMessage('signup', '');
+             });
+         }
+    }
+
+
+    async function loadLoginModal() {
+        try {
+            // Ensure the placeholder exists before fetching
+            const placeholder = document.getElementById('modal-placeholder');
+             if (!placeholder) {
+                console.error("Modal placeholder div not found in index.html!");
+                return; // Stop if placeholder is missing
+             }
+
+            const response = await fetch('login_modal.html'); // Adjust path if needed
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const html = await response.text();
+
+            placeholder.innerHTML = html; // Inject the modal HTML
+            console.log("Login modal HTML loaded.");
+            initializeLoginModalLogic(); // Initialize listeners AFTER loading
+        } catch (error) {
+            console.error('Error loading login modal:', error);
+        }
+    }
+
+    function initializeLoginModalLogic() {
+        const container = document.getElementById('container');
+        const registerBtn = document.getElementById('register'); // Toggle button inside modal
+        const loginBtn = document.getElementById('login');       // Toggle button inside modal
+        const loginModal = document.getElementById("loginout");
+        const closeBtn = loginModal ? loginModal.querySelector(".close-btn") : null;
+        const signUpForm = document.getElementById('signUpForm');
+        const signInForm = document.getElementById('signInForm');
+
+
+        if (!container || !registerBtn || !loginBtn || !loginModal || !closeBtn || !signUpForm || !signInForm) {
+            console.error("One or more elements needed for login modal core functionality were not found. Check IDs in login_modal.html.");
+            return;
+        }
+        console.log("Initializing login modal event listeners...");
+
+        // Toggle between Sign In / Sign Up panels
+        registerBtn.addEventListener('click', () => container.classList.add('active'));
+        loginBtn.addEventListener('click', () => container.classList.remove('active'));
+
+        // Attach form submission handlers
+        signUpForm.addEventListener('submit', handleRegistration);
+        signInForm.addEventListener('submit', handleLogin);
+
+        // Close modal using the 'X' button
+        closeBtn.addEventListener("click", () => {
+            loginModal.style.display = "none";
+             // Clear messages when closing manually
+             displayMessage('signin', '');
+             displayMessage('signup', '');
         });
-    }
 
-    if (closeButton) {
-        closeButton.addEventListener("click", function () {
-            closeModal();
-        });
-    }
-
-    // Đóng modal khi nhấp ra ngoài hoặc nhấn phím ESC
-    window.addEventListener("click", function (event) {
-        if (event.target === modal) {
-            closeModal();
-        }
-    });
-
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-            closeModal();
-        }
-    });
-
-    function closeModal() {
-        modal.style.display = "none";
-        modal.classList.remove("show");
-        modal.setAttribute("aria-hidden", "true");
-        body.classList.remove("modal-open"); // Gỡ bỏ hiệu ứng mờ nền
-        body.style.overflow = ""; // Khôi phục cuộn trang
-    }
-
-    // Thêm CSS để làm mờ nền khi modal mở
-    const style = document.createElement("style");
-    style.innerHTML = `
-        .modal-open::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1040;
-        }
-    `;
-    document.head.appendChild(style);
-});
-
-
-// 
-document.addEventListener("DOMContentLoaded", function () {
-    const backToTop = document.querySelector(".back-top");
-
-    if (backToTop) {
-        // Ẩn nút khi chưa cuộn xuống
-        backToTop.style.display = "none";
-
-        // Hiển thị nút khi cuộn xuống
-        window.addEventListener("scroll", function () {
-            if (window.scrollY > 300) {
-                backToTop.style.display = "block";
-            } else {
-                backToTop.style.display = "none";
+        // Close modal by clicking outside
+        window.addEventListener("click", (event) => {
+            if (event.target === loginModal) {
+                loginModal.style.display = "none";
+                 // Clear messages when closing manually
+                 displayMessage('signin', '');
+                 displayMessage('signup', '');
             }
         });
 
-        // Cuộn lên đầu khi nhấn vào nút
-        backToTop.addEventListener("click", function () {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-    }
-});
-
-// 
-document.addEventListener("DOMContentLoaded", function () {
-    const citySelect = document.getElementById("city");
-    const districtSelect = document.getElementById("district");
-    const resetButton = document.getElementById("resetFilter");
-
-    // Danh sách quận/huyện theo từng thành phố
-    const districtsData = {
-        hanoi: [
-            { value: "ba_dinh", text: "Quận Ba Đình" },
-            { value: "hoan_kiem", text: "Quận Hoàn Kiếm" },
-            { value: "tay_ho", text: "Quận Tây Hồ" },
-            { value: "long_bien", text: "Quận Long Biên" },
-            { value: "cau_giay", text: "Quận Cầu Giấy" }
-        ],
-        hcm: [
-            { value: "quan_1", text: "Quận 1" },
-            { value: "quan_3", text: "Quận 3" },
-            { value: "quan_5", text: "Quận 5" },
-            { value: "quan_7", text: "Quận 7" },
-            { value: "thu_duc", text: "Thành phố Thủ Đức" }
-        ]
-    };
-
-    // Khi chọn một thành phố
-    citySelect.addEventListener("change", function () {
-        const selectedCity = citySelect.value;
-        districtSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>'; // Reset danh sách
-
-        if (selectedCity && districtsData[selectedCity]) {
-            districtsData[selectedCity].forEach(district => {
-                const option = document.createElement("option");
-                option.value = district.value;
-                option.textContent = district.text;
-                districtSelect.appendChild(option);
-            });
-
-            resetButton.style.display = "block"; // Hiện nút "Bỏ Lọc"
-        } else {
-            resetButton.style.display = "none"; // Ẩn nút nếu không chọn gì
+        // --- ADDED LOGIC: Auto-open modal if not logged in ---
+        if (!isLoggedIn()) {
+            console.log("User not logged in, automatically opening login modal.");
+            loginModal.style.display = "flex"; // Or "block", depending on your CSS for showing it
+            // Optional: Ensure the sign-in panel is active by default
+            if (container) {
+                 container.classList.remove("active");
+            }
+            // Optional: Clear any stray messages
+            displayMessage('signin', '');
+            displayMessage('signup', '');
         }
-    });
+        // --- END ADDED LOGIC ---
 
-    // Khi nhấn nút "Bỏ Lọc"
-    resetButton.addEventListener("click", function () {
-        citySelect.value = "";
-        districtSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>';
-        resetButton.style.display = "none";
-    });
+        // Attach triggers now that modal exists (important for header buttons)
+         attachModalTriggers();
+
+    }
+
+    // --- Initialize Page ---
+
+    loadLoginModal(); // Load the modal HTML first
+    updateHeaderUI(); // Set initial header state (logged in or out)
+
+    // --- Other existing page functionalities ---
+    // (Your existing code for menus, sliders, etc.)
+    // ...
+
 });
-
