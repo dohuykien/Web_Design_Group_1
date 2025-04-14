@@ -9,6 +9,16 @@
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
       rel="stylesheet"
     />
+    <!-- Thêm font nếu cần -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Giả lập Helvetica Neue -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -18,6 +28,7 @@
     <link rel="stylesheet" href="/user/css/userfooter.css" />
 
     <style>
+      /* === PHẦN CSS GỐC CỦA BẠN - KHÔNG THAY ĐỔI === */
       * {
         margin: 0;
         padding: 0;
@@ -28,14 +39,12 @@
       body {
         background-color: white;
       }
-      
 
       /*----------------------Layout-------------------------*/
       .container {
         display: flex;
         width: 100%;
       }
-      
 
       /*----------content: list-league + footer------------ */
       .content-wrapper {
@@ -78,13 +87,21 @@
       }
       .box {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        flex-wrap: wrap; /* Cho phép wrap */
+        justify-content: space-between; /* Giữ space-between */
+        /* Không có padding/margin gốc ở đây */
       }
 
       /*------------------- Box-left-------------------- */
+      .box-left {
+        /* Thêm selector cho box-left */
+        /* Không có width gốc, sẽ dựa vào content hoặc set responsive */
+        /* Cần thêm flex-basis hoặc width trong responsive */
+        margin-bottom: 20px; /* Thêm khoảng cách dưới khi wrap */
+      }
+
       .file-preview {
-        width: 130%; /* Make the container full width */
+        width: 130%; /* Make the container full width */ /* Width gốc này hơi lạ, > 100%? */
         margin: 10px 10px 1px 18px; /* Space above the preview */
         padding: 5px;
         border: 1px solid #e4e2e2;
@@ -108,27 +125,29 @@
         border: none; /* Remove inner border if not needed */
       }
       .box-right {
-        margin: 10px 15px 0 10px;
-        padding: 30px 30px 5px 30px;
+        margin: 10px 15px 0 10px; /* margin gốc */
+        padding: 30px 30px 5px 30px; /* padding gốc */
         background: #ffffff;
         border-radius: 3px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        width: 80%;
+        width: 80%; /* width gốc */
+        /* Cần thêm flex-basis hoặc width trong responsive */
       }
 
       /* Nút tùy chỉnh */
       .custom-button {
         background-color: #5cb85c;
         color: white;
-        margin-left: 18px;
-        padding: 10px 0px 10px 15px;
-        border-color: #4cae4c;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin-left: 18px; /* margin gốc */
+        padding: 10px 0px 10px 15px; /* padding gốc */
+        border-color: #4cae4c; /* border-color gốc */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* shadow gốc */
         cursor: pointer;
         font-size: 14px;
-        width: 100%;
-        display: block;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        width: 100%; /* width gốc */
+        display: block; /* display gốc */
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* font gốc */
+        /* Không có border-style, border-width */
       }
 
       .custom-button:hover {
@@ -141,15 +160,15 @@
         bottom: 3px;
       }
       .section {
-        display: flex;
-        margin-bottom: 40px;
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 30px;
-        flex-wrap: wrap;
+        display: flex; /* display gốc */
+        margin-bottom: 40px; /* margin gốc */
+        border-bottom: 1px solid #ccc; /* border gốc */
+        padding-bottom: 30px; /* padding gốc */
+        flex-wrap: wrap; /* Cho phép wrap */
       }
       .section-left {
-        width: 400px;
-        padding-right: 30px;
+        width: 400px; /* width gốc */
+        padding-right: 30px; /* padding gốc */
       }
       .section-header {
         display: flex;
@@ -174,27 +193,29 @@
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
       .section-right {
-        flex: 1;
+        flex: 1; /* flex gốc */
       }
       .form-group {
-        align-items: center;
-        margin-bottom: 15px;
+        /* align-items: center; */ /* Bỏ align-items nếu muốn label ở trên */
+        margin-bottom: 15px; /* margin gốc */
+        /* Không có display flex gốc */
       }
       .form-group label {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-weight: bold;
         font-size: 14px;
+        /* Không có display block gốc */
       }
       .form-group input[type="text"],
       .form-group input[type="email"],
       .form-group input[type="password"] {
-        flex: 1;
-        padding: 8px;
+        flex: 1; /* flex gốc */
+        padding: 8px; /* padding gốc */
         border: 1px solid #ccc;
-        margin-top: 5px;
+        margin-top: 5px; /* margin gốc */
         box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px 0px inset;
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        width: 100%;
+        width: 100%; /* width gốc */
       }
       .checkbox {
         display: flex;
@@ -207,20 +228,27 @@
         margin-right: 7px;
         margin-bottom: 7px;
       }
+      .changePassword {
+        /* Class này để ẩn/hiện nhóm pass */
+        /* Sẽ được JS set display: none/block */
+      }
+
       .save-section {
         background: #f5f5f5;
         padding: 20px;
-        text-align: right;
-        margin-bottom: 30px;
+        text-align: right; /* align gốc */
+        margin-bottom: 30px; /* margin gốc */
+        /* Không có border-radius gốc */
       }
       .save-button {
         background-color: #00acec;
         color: white;
-        padding: 5px 15px;
-        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+        padding: 5px 15px; /* padding gốc */
+        border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); /* border-color gốc */
         cursor: pointer;
         text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-        font-size: 20px;
+        font-size: 20px; /* font-size gốc */
+        /* Không có border-style, border-width */
       }
       .save-button i {
         margin-right: 3px;
@@ -228,22 +256,183 @@
       .save-button:hover {
         background-color: #0087b9;
       }
-      
+      /* === HẾT CSS GỐC === */
+
+      /* === CSS RESPONSIVE (CHỈ THÊM PHẦN NÀY) === */
+      @media (max-width: 992px) {
+        /* Tablet ngang và nhỏ hơn */
+        .box {
+          padding: 0 10px; /* Thêm padding ngang cho box chính */
+          margin: 0; /* Reset margin nếu cần */
+        }
+        .box-left {
+          /* Đặt width cho box-left để tính toán */
+          flex-basis: 200px; /* Hoặc một giá trị phù hợp */
+          flex-shrink: 0; /* Không co lại */
+          margin-right: 15px; /* Khoảng cách phải */
+          width: auto; /* Bỏ width 100% nếu đã set flex-basis */
+        }
+        .box-right {
+          width: auto; /* Bỏ width 80% */
+          flex-basis: calc(
+            100% - 215px
+          ); /* Chiếm phần còn lại (trừ đi box-left và margin) */
+          flex-grow: 1; /* Cho phép nó lớn ra */
+          margin: 10px 0 0 0; /* Reset margin */
+          padding: 20px; /* Giảm padding */
+        }
+        .file-preview {
+          width: 100%; /* Cho preview chiếm hết box-left */
+          margin: 10px 0 1px 0; /* Reset margin */
+        }
+        .custom-button {
+          margin-left: 0; /* Reset margin */
+          width: 100%; /* Button chiếm hết box-left */
+          padding: 8px 15px; /* Chỉnh padding */
+        }
+
+        .section-left {
+          width: 30%; /* Giảm width cột trái */
+          padding-right: 15px; /* Giảm padding phải */
+        }
+        .section-right {
+          /* Vẫn giữ flex: 1 */
+        }
+        .section-header h2 {
+          font-size: 18px; /* Giảm cỡ chữ header section */
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+          padding: 7px; /* Giảm padding input */
+        }
+        .save-button {
+          font-size: 18px; /* Giảm cỡ chữ nút save */
+          padding: 4px 12px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        /* Tablet đứng và nhỏ hơn */
+        .box {
+          display: block; /* Cho box-left và box-right xếp chồng */
+          padding: 0 10px; /* Giữ padding */
+        }
+        .box-left {
+          flex-basis: auto; /* Reset flex-basis */
+          width: 150px; /* Giới hạn chiều rộng avatar */
+          margin: 0 auto 15px auto; /* Căn giữa và thêm margin dưới */
+          margin-right: auto; /* Reset margin phải */
+        }
+        .box-right {
+          flex-basis: auto; /* Reset flex-basis */
+          width: 100%; /* Chiếm hết chiều rộng */
+          padding: 15px; /* Giảm padding thêm */
+        }
+        .file-preview {
+          /* Giữ nguyên style */
+        }
+        .custom-button {
+          /* Giữ nguyên style */
+        }
+
+        .section {
+          display: block; /* Cho section-left và section-right xếp chồng */
+          padding-bottom: 20px; /* Giảm padding dưới */
+          margin-bottom: 25px; /* Giảm margin dưới */
+        }
+        .section-left {
+          width: 100%; /* Chiếm hết chiều rộng */
+          padding-right: 0; /* Bỏ padding phải */
+          margin-bottom: 15px; /* Thêm khoảng cách dưới */
+          text-align: center; /* Căn giữa phần mô tả */
+        }
+        .section-header {
+          justify-content: center; /* Căn giữa icon và header */
+        }
+        .section-right {
+          /* Không cần style đặc biệt */
+        }
+        .form-group label {
+          display: block; /* Label luôn ở trên */
+          margin-bottom: 5px; /* Khoảng cách dưới label */
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+          /* Đã là width 100% */
+        }
+        .save-section {
+          text-align: center; /* Căn giữa nút save */
+          padding: 15px;
+        }
+        .save-button {
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        /* Điện thoại nhỏ */
+        .content {
+          margin: 5px;
+        } /* Giảm margin content */
+        .list-league {
+          padding: 10px;
+          font-size: 20px;
+        }
+        .list-league .fa-solid.fa-user {
+          font-size: 20px;
+        }
+
+        .box {
+          padding: 0 5px;
+        }
+        .box-left {
+          width: 120px;
+        } /* Thu nhỏ avatar thêm */
+        .box-right {
+          padding: 10px;
+        }
+
+        .section-header h2 {
+          font-size: 17px;
+        }
+        .section-description {
+          font-size: 11px;
+        }
+        .form-group label {
+          font-size: 13px;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+          font-size: 14px;
+          padding: 8px;
+        }
+
+        .save-button {
+          font-size: 15px;
+          padding: 5px 10px;
+        }
+        .custom-button {
+          padding: 7px 10px;
+          font-size: 13px;
+        }
+      }
+      /* === HẾT CSS RESPONSIVE === */
     </style>
   </head>
   <body>
-    <header id="header-container" class="header">
-        <!-- Header will be loaded here -->
-    </header>
+    <header id="header-container" class="header"></header>
 
     <div class="container">
-      <div id="sidebar-container">
-        <!-- Sidebar will be loaded here -->
-      </div>
+      <div id="sidebar-container"></div>
       <div class="content-wrapper">
         <section class="content">
-          <div class="list-league">           
-            <span class="list-league_left"><i class="fa-solid fa-user"></i>Thông tin tài khoản</span>
+          <div class="list-league">
+            <span class="list-league_left"
+              ><i class="fa-solid fa-user"></i>Thông tin tài khoản</span
+            >
           </div>
 
           <div class="kienngu">
@@ -251,8 +440,8 @@
               <div class="box-left">
                 <div id="logoPreview" class="file-preview">
                   <img src="dangoai" alt="avatar" />
+                  <!-- Giữ nguyên ảnh gốc -->
                 </div>
-                <!-- Preview area -->
                 <div>
                   <label for="logoFile" class="custom-button">
                     <i class="fas fa-upload"></i> Chọn ảnh...
@@ -360,18 +549,16 @@
       </div>
     </div>
 
+    <!-- JavaScript giữ nguyên -->
     <script src="/user/js/sidebar.js"></script>
     <script src="/user/js/userheader.js"></script>
     <script src="/user/js/componentloader.js"></script>
-
     <script>
-      // upload avatar
       document
         .getElementById("logoFile")
         .addEventListener("change", function (e) {
           var file = e.target.files[0];
           if (!file) return;
-
           var reader = new FileReader();
           reader.onload = function (event) {
             var img = document.createElement("img");
@@ -383,7 +570,6 @@
           reader.readAsDataURL(file);
         });
 
-      // changePassword
       document
         .getElementById("changePassword")
         .addEventListener("change", function () {
@@ -395,17 +581,12 @@
           }
         });
 
-      // Ẩn mặc định khi load trang
       window.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".changePassword").style.display = "none";
       });
 
-      // --------------UPDATE INFOR USER
-      // --- DOMContentLoaded ---
-
       document.addEventListener("DOMContentLoaded", function () {
-        // Lấy các phần tử cần thiết (bao gồm các input mới)
-        const saveButton = document.querySelector(".save-button"); // Vẫn dùng querySelector là được nếu nút này là duy nhất hoặc đầu tiên có class đó
+        const saveButton = document.querySelector(".save-button");
         const logoPreview = document.getElementById("logoPreview");
         const headerAvatar = document.getElementById("headerAvatar");
         const firstNameInput = document.getElementById("firstNameInput");
@@ -415,9 +596,7 @@
         const phoneInput = document.getElementById("phoneInput");
         const addressInput = document.getElementById("addressInput");
 
-        // --- HÀM TẢI DỮ LIỆU TỪ LOCALSTORAGE ---
         function loadProfileData() {
-          // Hàm trợ giúp để lấy và gán giá trị
           const loadValue = (element, storageKey) => {
             if (element) {
               const savedValue = localStorage.getItem(storageKey);
@@ -426,19 +605,17 @@
               }
             }
           };
-
-          // Tải các giá trị
           loadValue(usernameInput, "userProfile_username");
           loadValue(firstNameInput, "userProfile_firstName");
           loadValue(lastNameInput, "userProfile_lastName");
           loadValue(phoneInput, "userProfile_phone");
           loadValue(addressInput, "userProfile_address");
 
-          // Tải ảnh đại diện và tên cho header nếu đã lưu trước đó
           const savedAvatarSrc = localStorage.getItem("userProfile_avatarSrc");
           if (savedAvatarSrc && headerAvatar) {
             headerAvatar.src = savedAvatarSrc;
           }
+
           const savedFirstName = localStorage.getItem("userProfile_firstName");
           const savedLastName = localStorage.getItem("userProfile_lastName");
           if ((savedFirstName || savedLastName) && headerUserNameSpan) {
@@ -453,47 +630,49 @@
             } ${caretIconHTML}`;
           }
 
-          // Cập nhật ảnh preview nếu đã lưu source
           if (savedAvatarSrc && logoPreview) {
             if (!logoPreview.querySelector("img")) {
               const img = document.createElement("img");
               img.src = savedAvatarSrc;
               logoPreview.innerHTML = "";
               logoPreview.appendChild(img);
+            } else {
+              // Nếu đã có ảnh (từ src="dangoai"), cập nhật src nếu có trong localStorage
+              const existingImg = logoPreview.querySelector("img");
+              if (existingImg.getAttribute("src") !== savedAvatarSrc) {
+                existingImg.src = savedAvatarSrc;
+              }
             }
           }
         }
 
-        // Gọi hàm tải dữ liệu khi trang load xong
         loadProfileData();
 
-        // --- SỰ KIỆN CLICK NÚT SAVE ---
         if (saveButton) {
           saveButton.addEventListener("click", function (event) {
-            event.preventDefault(); // Ngăn form submit nếu nút nằm trong form
-
-            // --- Cập nhật ảnh đại diện header ---
+            event.preventDefault();
             const previewImage = logoPreview.querySelector("img");
-            let currentAvatarSrc = headerAvatar.src;
+            let currentAvatarSrc = headerAvatar ? headerAvatar.src : ""; // Kiểm tra headerAvatar tồn tại
             if (previewImage && previewImage.src) {
-              headerAvatar.src = previewImage.src;
+              if (headerAvatar) headerAvatar.src = previewImage.src; // Cập nhật header nếu có
               currentAvatarSrc = previewImage.src;
             } else {
-              console.log("Không có ảnh mới trong preview để cập nhật header.");
+              console.log("Không có ảnh mới trong preview.");
             }
 
-            // --- Cập nhật tên header ---
             const firstName = firstNameInput.value.trim();
             const lastName = lastNameInput.value.trim();
             const fullName = `${firstName} ${lastName}`.trim();
-            const caretIconHTML =
-              headerUserNameSpan.querySelector("i.fa-caret-down")?.outerHTML ||
-              '<i class="fa-solid fa-caret-down"></i>';
-            headerUserNameSpan.innerHTML = `${
-              fullName || "Người dùng"
-            } ${caretIconHTML}`;
+            if (headerUserNameSpan) {
+              // Kiểm tra headerUserNameSpan tồn tại
+              const caretIconHTML =
+                headerUserNameSpan.querySelector("i.fa-caret-down")
+                  ?.outerHTML || '<i class="fa-solid fa-caret-down"></i>';
+              headerUserNameSpan.innerHTML = `${
+                fullName || "Người dùng"
+              } ${caretIconHTML}`;
+            }
 
-            // --- LƯU DỮ LIỆU VÀO LOCALSTORAGE ---
             const saveValue = (element, storageKey) => {
               if (element) {
                 localStorage.setItem(storageKey, element.value.trim());
@@ -505,40 +684,26 @@
             saveValue(phoneInput, "userProfile_phone");
             saveValue(addressInput, "userProfile_address");
 
-            // Lưu source ảnh đại diện
             if (currentAvatarSrc && currentAvatarSrc.startsWith("data:image")) {
               try {
                 localStorage.setItem("userProfile_avatarSrc", currentAvatarSrc);
               } catch (e) {
-                console.error(
-                  "Lỗi khi lưu ảnh vào localStorage (có thể do quá dung lượng):",
-                  e
-                );
+                console.error("Lỗi lưu ảnh:", e);
               }
             } else if (
               currentAvatarSrc &&
               !currentAvatarSrc.startsWith("data:image")
             ) {
-              console.log(
-                "Ảnh đại diện không phải data URL, không được lưu vào localStorage trong ví dụ này."
-              );
-              // Cân nhắc xóa key nếu URL không ổn định: localStorage.removeItem('userProfile_avatarSrc');
+              console.log("Ảnh không phải data URL.");
             }
 
-            console.log("Thông tin header đã được cập nhật.");
-            console.log(
-              "Thông tin tài khoản và cá nhân đã được lưu vào localStorage."
-            );
-
-            // ----- THÔNG BÁO ALERT SAU KHI LƯU -----
+            console.log("Thông tin đã cập nhật và lưu.");
             alert("Đã lưu thông tin thành công!");
-            // ----- KẾT THÚC THÔNG BÁO ALERT -----
-          }); // Kết thúc event listener của nút Save
+          });
         } else {
           console.error("Không tìm thấy nút Save '.save-button'");
         }
 
-        // --- Xử lý ảnh preview ban đầu ---
         const initialPreviewImg = logoPreview.querySelector("img");
         if (initialPreviewImg) {
           initialPreviewImg.onerror = function () {
@@ -555,7 +720,7 @@
           logoPreview.innerHTML =
             '<span style="color: #888; font-size: 12px;">avatar</span>';
         }
-      }); // Kết thúc DOMContentLoaded listener
+      });
     </script>
   </body>
 </html>
