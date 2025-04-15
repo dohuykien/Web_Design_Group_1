@@ -15,6 +15,7 @@ body {
 a {
     color: #333;
     text-decoration: none;
+    transition: color 0.3s ease; /* Added transition */
 }
 
 a:hover {
@@ -24,6 +25,7 @@ a:hover {
 img {
     max-width: 100%;
     height: auto;
+    display: block; /* Prevent bottom space */
 }
 
 ul {
@@ -34,6 +36,7 @@ ul {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
+    width: 100%; /* Ensure container takes width */
 }
 
 /* Header */
@@ -48,66 +51,68 @@ header {
     padding: 5px 0;
     font-size: 12px;
     text-align: center;
-    
 }
 
+/* --- Main Header Structure --- */
 .main-header {
-    padding: 15px 0;
-    display: flex;
+    padding: 15px 0; /* Spacing around logo/banner area */
 }
 
 .main-header .container {
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping if needed */
     justify-content: space-between;
     align-items: center;
+    position: relative; /* Needed for absolute positioning of .name */
+}
+
+.logo {
+    position: relative; /* Context for potential absolute elements if needed */
+    flex-shrink: 0; /* Prevent logo from shrinking */
+}
+
+.logo a {
+    display: inline-block; /* Allows img margin/padding */
 }
 
 .logo img {
-    max-height: 50px;
+    max-height: 50px; /* Control logo size */
     width: auto;
-    padding-top : -10px;
-    margin-top:-30px;
-    margin-right:900px;
+}
+
+/* Banner takes full width */
+.banner {
+    width: 100vw; /* Full viewport width */
+    margin-left: 50%; /* Center the start */
+    transform: translateX(-50%); /* Pull back by half its own width */
+    text-align: center; /* Center the image within */
+    margin-top: 10px; /* Add some space below logo */
+    position: relative; /* Context for the .name */
+    line-height: 0; /* Prevent extra space below image */
 }
 
 .banner img {
-    width: 100vw; 
-    height: auto; 
-    display: block; 
-    padding-top:-10px;
-    margin-top:-10px;
-}
-.main-header .banner {
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    width: 100vw;
-    text-align:center;
-}
-.banner {
-    position: relative;
-    width: 100vw;
-    text-align: left; /* Đảm bảo chữ không bị căn giữa */
+    width: 100%; /* Image fills the banner container */
+    height: auto;
+    display: block;
 }
 
-.banner h0 {
-    position: relative;
-    margin-left: 50px; /* Dịch chữ sang phải */
-    font-size: 35px;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
+
+/* Name overlay */
 .name {
-    position: absolute;  
-    transform: translate(64%, -50%);
+    position: absolute;
+    top: 50%; /* Position relative to banner height */
+    left: 50%; /* Position relative to banner width */
+    transform: translate(-60%, -50%); /* Center precisely */
     font-size: 30px;
     font-weight: bold;
-    color :#FFA500;
+    color: #FFA500;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.825);
+    width: 90%; /* Prevent text overflowing tiny screens */
+    text-align: center; /* Center text */
+    z-index: 1; /* Ensure it's above the banner image */
 }
+
 /* Navigation */
 .main-nav {
     background-color: #ebac2b;
@@ -115,7 +120,8 @@ header {
 
 .main-nav ul {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: flex-start; /* Align items to the start */
 }
 
 .main-nav li {
@@ -128,7 +134,7 @@ header {
     padding: 12px 15px;
     font-weight: bold;
     font-size: 14px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .main-nav a:hover {
@@ -141,41 +147,40 @@ header {
     padding: 15px 0;
     font-size: 14px;
     color: #666;
+    word-break: break-word; /* Prevent long paths breaking layout */
 }
+.breadcrumbs a {
+    color: #333; /* Make links clearer */
+}
+.breadcrumbs a:hover {
+    color: #ebac2b;
+}
+
 
 /* Content Layout */
 .content-wrapper {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Default wrapping behavior */
     gap: 30px;
     margin: 20px 0;
 }
 
 .main-content {
-    flex: 1;
-    min-width: 0;
+    flex: 1; /* Takes remaining space */
+    min-width: 0; /* Prevents content overflow issues in flex */
     background-color: #fff;
     padding: 20px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar {
-    width: 300px;
+    width: 300px; /* Default sidebar width */
+    flex-shrink: 0; /* Prevent sidebar shrinking */
     background-color: #fff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 768px) {
-    .content-wrapper {
-        flex-direction: column;
-    }
-    
-    .sidebar {
-        width: 100%;
-    }
-}
-
-/* Main Content */
+/* Main Content Specific Styles */
 .main-content h1 {
     font-size: 24px;
     color: #292e2f;
@@ -185,6 +190,7 @@ header {
 
 .post-meta {
     display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
     gap: 15px;
     font-size: 13px;
     color: #666;
@@ -198,20 +204,37 @@ header {
     padding: 15px;
     margin-bottom: 20px;
     font-size: 15px;
+    border-left: 3px solid #ebac2b; /* Add a little highlight */
 }
 
-.related-posts {
+.related-posts { /* Refers to the UL inside the main content */
     margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9; /* Differentiate this section slightly */
+    border-radius: 4px;
+}
+
+.related-posts p strong {
+    color: #292e2f;
 }
 
 .related-posts ul {
     padding-left: 20px;
     list-style: disc;
+    margin-top: 10px; /* Space between title and list */
 }
 
 .related-posts li {
     margin-bottom: 8px;
 }
+.related-posts li a {
+    color: #007bff; /* Make links stand out */
+}
+.related-posts li a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
 
 .post-content p {
     margin-bottom: 15px;
@@ -227,25 +250,30 @@ header {
 }
 
 .tutorial-image {
-    margin: 20px 0;
+    margin: 25px 0; /* Increased margin */
     text-align: center;
 }
 
 .tutorial-image img {
     max-width: 100%;
     border: 1px solid #ddd;
-    margin-bottom: 5px;
+    margin-bottom: 10px; /* Increased space to caption */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow */
 }
 
 .tutorial-image p {
-    font-size: 13px;
-    color: #666;
+    font-size: 14px; /* Slightly larger caption */
+    color: #555; /* Darker gray */
+    font-style: italic;
 }
 
 /* Sidebar */
 .sidebar-section {
-    padding: 15px;
+    padding: 20px 15px; /* Consistent padding */
     border-bottom: 1px solid #eee;
+}
+.sidebar-section:last-child {
+    border-bottom: none; /* Remove border from last section */
 }
 
 .sidebar-section h3 {
@@ -279,33 +307,43 @@ header {
 }
 
 .sidebar-post a {
-    display: flex;
+    display: flex; /* Keep the flex layout for image + text */
     gap: 10px;
+    align-items: flex-start; /* Align text to top */
 }
 
 .sidebar-post img {
     width: 80px;
     height: 60px;
     object-fit: cover;
+    flex-shrink: 0; /* Prevent image shrinking */
 }
 
 .sidebar-post h4 {
-    font-size: 16px;
+    font-size: 15px; /* Slightly smaller */
     margin-bottom: 5px;
     line-height: 1.4;
+    color: #333; /* Ensure link color is overridden if needed */
+}
+.sidebar-post a:hover h4 {
+    color: #ebac2b; /* Change text color on hover */
 }
 
 .post-date {
     font-size: 12px;
     color: #666;
+    margin-top: 5px; /* Add space above date */
+    display: block; /* Ensure it takes its own line if needed */
 }
 
+/* Featured post in sidebar */
 .sidebar-post.featured {
-    display: block;
+    display: block; /* Override flex display from general rule */
 }
 
 .sidebar-post.featured a {
-    display: block;
+    display: block; /* Link covers the whole block */
+    gap: 0; /* Reset gap */
 }
 
 .sidebar-post.featured img {
@@ -315,19 +353,27 @@ header {
 }
 
 .sidebar-post.featured h4 {
-    font-size: 16px;
+    font-size: 16px; /* Restore size */
 }
 
 .sidebar-post.featured p {
     font-size: 13px;
     color: #666;
-    margin-bottom: 5px;
+    margin: 5px 0 10px 0; /* Adjust spacing */
+}
+.sidebar-post.featured .post-meta {
+    font-size: 12px;
+    color: #666;
+    border: none;
+    padding: 0;
+    margin: 0;
 }
 
-/* Related Posts Section */
+/* Related Posts Section (Bottom of page) */
 .related-posts-section {
     background-color: #f0f0f0;
     padding: 30px 0;
+    margin-top: 30px; /* Space above this section */
 }
 
 .related-posts-section h2 {
@@ -350,6 +396,7 @@ header {
 
 .related-posts-grid {
     display: grid;
+    /* This is already responsive */
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
 }
@@ -358,12 +405,27 @@ header {
     background-color: #fff;
     padding: 15px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+}
+.related-post a {
+    display: block; /* Make link area clickable */
+    flex-grow: 1; /* Allow link area to grow */
+}
+
+.related-post img {
+    margin-bottom: 10px; /* Space below image */
 }
 
 .related-post h3 {
     font-size: 16px;
     margin-bottom: 10px;
     line-height: 1.4;
+    flex-grow: 1; /* Allow title to push meta down */
+    color: #333;
+}
+.related-post a:hover h3 {
+    color: #ebac2b;
 }
 
 .related-post .post-meta {
@@ -372,13 +434,15 @@ header {
     border-bottom: none;
     padding-bottom: 0;
     margin-bottom: 0;
+    margin-top: 10px; /* Space above meta */
 }
 
 /* Footer */
 footer {
     background-color: #292e2f;
-    color: #fff;
-    padding: 30px 0;
+    color: #ccc; /* Lighter text for better contrast */
+    padding: 40px 0 20px 0; /* Adjust padding */
+    margin-top: 30px; /* Space above footer */
 }
 
 .footer-widgets {
@@ -389,12 +453,13 @@ footer {
 }
 
 .footer-widget {
-    flex: 1;
-    min-width: 200px;
+    flex: 1; /* Allow widgets to grow */
+    min-width: 200px; /* Minimum width before wrapping */
 }
 
 .footer-widget h3 {
     font-size: 16px;
+    color: #fff; /* White heading */
     margin-bottom: 15px;
     position: relative;
     padding-bottom: 10px;
@@ -411,7 +476,7 @@ footer {
 }
 
 .footer-widget ul li {
-    margin-bottom: 8px;
+    margin-bottom: 10px; /* Slightly more space */
 }
 
 .footer-widget ul li a {
@@ -421,6 +486,7 @@ footer {
 
 .footer-widget ul li a:hover {
     color: #ebac2b;
+    text-decoration: underline; /* Add underline on hover */
 }
 
 .footer-social {
@@ -433,50 +499,247 @@ footer {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px; /* More space below icons */
 }
 
 .footer-social ul li a {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 40px; /* Slightly larger icons */
+    height: 40px;
     background-color: #3a3f40;
     border-radius: 50%;
     color: #fff;
-    transition: background-color 0.3s;
+    font-size: 18px; /* Larger icon font */
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .footer-social ul li a:hover {
     background-color: #ebac2b;
+    color: #292e2f; /* Darker icon color on hover */
 }
 
 .footer-social p {
-    font-size: 12px;
-    color: #ccc;
+    font-size: 13px; /* Slightly larger copyright */
+    color: #aaa; /* Slightly lighter gray */
 }
 
-/* Responsive tweaks */
+
+/* ========================================= */
+/* === Responsive Adjustments Start Here === */
+/* ========================================= */
+
+/* --- Medium screens (Tablets / Small Laptops) --- */
 @media (max-width: 992px) {
+    .container {
+        padding: 0 20px; /* Slightly more horizontal padding */
+    }
+
     .main-header .container {
+         /* Center logo/banner area if space allows */
+         justify-content: center;
+         text-align: center;
+         /* If logo/banner stack vertically, uncomment below */
+         /* flex-direction: column; */
+         /* align-items: center; */
+    }
+
+    .logo {
+        /* Add space below logo if it stacks above banner */
+        /* margin-bottom: 15px;  */
+    }
+
+     .name {
+        font-size: 26px; /* Slightly smaller text */
+        /* May need transform adjustment if alignment changes */
+        /* transform: translate(-50%, -50%); */
+        /* width: 80%; */
+    }
+
+    .main-nav ul {
+        justify-content: center; /* Center nav items as they might wrap */
+    }
+
+    /* Reduce gap between content and sidebar */
+    .content-wrapper {
+        gap: 20px;
+    }
+     /* Slightly narrower sidebar */
+     .sidebar {
+        width: 250px;
+    }
+}
+
+/* --- Small screens (Tablets / Large Phones) --- */
+@media (max-width: 768px) {
+     /* Stack logo and banner */
+     .main-header .container {
         flex-direction: column;
         align-items: center;
+    }
+     .logo {
+        margin-bottom: 15px; /* Space between logo and banner */
+    }
+     .banner {
+        margin-top: 0; /* Reset margin as it's below logo now */
+        /* Banner might not need full viewport width anymore */
+        /* width: 100%; */
+        /* margin-left: 0; */
+        /* transform: none; */
+    }
+     /* Adjust name positioning - make it relative below banner? */
+     .name {
+        font-size: 22px; /* Smaller text */
+        width: 90%;
+        position: relative; /* Change from absolute */
+        transform: none; /* Remove centering transform */
+        left: auto; /* Reset positioning */
+        top: auto;
+        margin-top: 10px; /* Space below banner */
+        color: #333; /* Change color if no longer overlaying */
+        text-shadow: none; /* Remove shadow if not overlaying */
+    }
+
+    .main-nav a {
+        padding: 10px 12px; /* Slightly smaller padding */
+        font-size: 13px;
+    }
+
+    /* Stack Main Content and Sidebar */
+    .content-wrapper {
+        flex-direction: column;
+        gap: 25px; /* Adjust gap for vertical stacking */
+    }
+
+    .sidebar {
+        width: 100%; /* Sidebar takes full width */
+    }
+
+    .main-content h1 {
+        font-size: 22px; /* Smaller heading */
+    }
+
+    /* Stack Footer Widgets */
+    .footer-widgets {
+        flex-direction: column;
+        align-items: center; /* Center widgets */
         text-align: center;
     }
-      
-    .main-nav ul {
-        justify-content: center;
+     .footer-widget {
+        min-width: 100%; /* Allow widgets full width */
+        width: 100%; /* Ensure it takes full width */
+    }
+     /* Center the widget heading underline */
+     .footer-widget h3:after {
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
 
+/* --- Extra Small screens (Phones) --- */
 @media (max-width: 576px) {
+    .container {
+        padding: 0 15px; /* Standard mobile padding */
+    }
+    .top-header {
+        font-size: 11px; /* Smaller text */
+    }
+    .logo img {
+        max-height: 40px; /* Smaller logo */
+    }
+    .name {
+        font-size: 18px; /* Even smaller */
+    }
+
+    .main-nav ul {
+        /* Adjust justification if needed, space-around might fit better */
+        /* justify-content: space-around; */
+    }
+    .main-nav a {
+        padding: 10px 8px; /* Reduce padding more */
+        font-size: 12px;
+    }
+
+    .main-content {
+        padding: 15px; /* Less padding inside content */
+    }
+    .main-content h1 {
+        font-size: 20px;
+    }
+    /* Stack post meta items vertically */
     .post-meta {
         flex-direction: column;
         gap: 5px;
+        align-items: flex-start; /* Align start */
+        padding-bottom: 15px; /* Add space below */
     }
-    
+    .post-intro {
+        font-size: 14px;
+        padding: 10px;
+    }
+    .related-posts { /* Inside main content */
+        padding: 10px;
+    }
+    .related-posts ul {
+        padding-left: 15px; /* Reduce indent */
+    }
+    .related-posts li {
+        margin-bottom: 5px;
+    }
+
+    .sidebar-section {
+        padding: 15px;
+    }
+    .sidebar-post h4 {
+        font-size: 14px;
+    }
+    /* Reduce sidebar post image size */
+    .sidebar-post img {
+        width: 60px;
+        height: 45px;
+    }
+    .sidebar-post.featured p {
+        font-size: 12px; /* Smaller text in featured post */
+    }
+
+    .related-posts-section {
+        padding: 20px 0; /* Less padding */
+    }
+    .related-posts-section h2 {
+        font-size: 18px; /* Smaller section title */
+    }
+    /* Force related posts grid to single column */
+    .related-posts-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .related-post {
+        padding: 10px;
+    }
+
+    /* Footer Adjustments */
     .footer-widgets {
-        flex-direction: column;
+        gap: 20px; /* Less gap between widgets */
+        margin-bottom: 20px;
+    }
+    .footer-widget h3 {
+        font-size: 15px;
+    }
+    .footer-widget ul li a {
+        font-size: 13px;
+    }
+    .footer-social ul {
+         gap: 10px; /* Less gap between icons */
+         margin-bottom: 15px;
+    }
+    /* Slightly smaller social icons */
+    .footer-social ul li a {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    .footer-social p {
+        font-size: 12px;
     }
 }
