@@ -1,66 +1,61 @@
 .team-management-nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 .nav-button {
-    flex: 1; 
-    min-width: 120px; 
-    background-color: #5cb85c;
-    color: white;
-    text-align: center;
-    padding: 15px 10px;
-    border-radius: 4px;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: background-color 0.2s ease;
-    border: none; 
-    cursor: pointer;
+  flex: 1; 
+  min-width: 120px; 
+  background-color: #5cb85c;
+  color: white;
+  text-align: center;
+  padding: 15px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  border: none; 
+  cursor: pointer;
 }
 
 .nav-button i {
-    font-size: 28px; 
-    opacity: 0.9;
+  font-size: 28px; 
+  opacity: 0.9;
 }
 
 .nav-button:hover {
-    background-color: #4cae4c; 
+  background-color: #4cae4c; 
 }
 
 .nav-button.active {
-    background-color: #449d44; 
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
-     cursor: default;
+  background-color: #449d44; 
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+  cursor: default;
 }
 
 @media (max-width: 768px) {
-    /* --- REMOVED padding from content-wrapper --- */
-    /* .content-wrapper {
-        padding: 10px;
-    } */
 
-    /* Add overflow hidden as a safeguard if needed */
-    .team-management-nav {
-        margin-top: 76px;
-    }
-    .list-league {
-        margin-top: 0px; /* Maybe reduce gap slightly on mobile */
-    }
-    .nav-button {
-        min-width: 100px; /* Maybe reduce gap slightly on mobile */
-        padding: 10px 5px;
-        font-size: 12px;
-        gap: 5px;
-        height: 75px;
-    }
+  .team-management-nav {
+    margin-top: 76px;
+  }
+  .list-league {
+    margin-top: 0px; 
+  }
+  .nav-button {
+    min-width: 100px; 
+    padding: 10px 5px;
+    font-size: 12px;
+    gap: 5px;
+    height: 75px;
+  }
 }

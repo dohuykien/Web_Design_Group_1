@@ -1,0 +1,291 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Oswald, sans-serif;
+}
+
+body {
+  background-color: white;
+}
+
+/*----------------------Bố cục-------------------------*/
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.content-wrapper {
+  flex: 1;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  background-color: #ecf0f5;
+}
+
+.list-league {
+  color: rgb(34, 34, 34);
+  font-size: 24px;
+  font-weight: normal;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+
+.list-league_left {
+  font-family: "Source Sans Pro", sans-serif !important;
+}
+
+.fa-solid.fa-check {
+  color: #ff6f00;
+  margin-right: 5px;
+  font-size: 25px;
+}
+
+.list-league_left {
+  flex-grow: 1;
+}
+
+
+/*------------------- Kiểu dáng Bố cục Form --------------------*/
+.form-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px 15px;
+}
+
+.form-fields-area {
+  flex: 2;
+  min-width: 300px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.form-upload-area {
+  flex: 1;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  gap: 20px;
+}
+
+.form-grid {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.form-column {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-column:last-child {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.form-group label:not(.file-upload-label) {
+  display: block;
+  margin-bottom: 5px;
+  color: #240808;
+  font-size: 16px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d0d0d0;
+  font-size: 16px;
+  box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px 0px inset;
+}
+
+.form-control:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Nhãn Tải lên Tệp Chung */
+.file-upload-label {
+  display: inline-block;
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  transition: background-color 0.2s ease;
+}
+
+.file-upload-label i {
+  margin-right: 5px;
+}
+
+.file-upload-label:hover {
+  background-color: #0056b3;
+}
+
+/* Nhãn Tải lên Bộ Kit Cụ thể */
+.file-upload-label.kit-upload {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 5px;
+  background-color: rgb(76, 175, 80);
+}
+
+.file-upload-label.kit-upload:hover {
+  background-color: #4d9e51;
+}
+
+/* Nhãn Tải lên Logo và Ảnh bìa Cụ thể */
+.logo-upload, .cover-upload {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: rgb(76, 175, 80);
+}
+
+.logo-upload:hover, .cover-upload:hover {
+  background-color: #4d9e51;
+}
+
+/* Vùng Chứa Phần Tải lên */
+.upload-section {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Vùng Xem trước Hình ảnh Chung */
+.image-preview {
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.image-preview:empty {
+  min-height: 150px;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 150px;
+  display: block;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+/* Vùng Xem trước Bộ Kit Cụ thể */
+.kit-preview {
+  width: 100%;
+  margin-top: 10px;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+.kit-preview:empty {
+  min-height: 60px;
+}
+
+.kit-preview img {
+  max-width: 100%;
+  max-height: 150px;
+  display: block;
+  border-radius: 3px;
+  object-fit: contain;
+  border: none;
+}
+
+/* Kiểu dáng Nút trong Thanh Tiêu đề */
+.retry {
+  color: rgb(255, 255, 255);
+  padding: 7px 12px 6px 12px;
+  background-color: rgb(0, 172, 236);
+  border-color: rgba(0, 0, 0, 0.25);
+  border-style: solid;
+  border-width: 0.8px;
+  cursor: pointer;
+  text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.retry:hover {
+  background-color: #428bca;
+}
+
+.save {
+  color: rgb(255, 255, 255);
+  padding: 7px 12px 6px 12px;
+  background-color: rgb(76, 175, 80);
+  border-color: rgba(0, 0, 0, 0.25);
+  border-style: solid;
+  border-width: 0.8px;
+  cursor: pointer;
+  text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.save:hover {
+  background-color: #4d9e51;
+}
+
+.return {
+  color: rgb(255, 255, 255);
+  padding: 7px 12px 6px 12px;
+  background-color: #f34541;
+  border-color: rgba(0, 0, 0, 0.25);
+  border-style: solid;
+  border-width: 0.8px;
+  cursor: pointer;
+  text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.return:hover {
+  background-color: #dd1b18;
+}
+
+.list-league i {
+  margin-right: 5px;
+}

@@ -1,576 +1,141 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thêm Đội Bóng</title>
-    <link rel="icon" type="logo.png" href="images/logo.png" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-    <link rel="stylesheet" href="/user/css/sidebar.css" />
-    <link rel="stylesheet" href="/user/css/userheader.css" />
-    <link rel="stylesheet" href="/user/css/userfooter.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thêm Đội Bóng</title>
+  <link rel="icon" type="logo.png" href="images/logo.png" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  />
+  <link rel="stylesheet" href="/user/css/sidebar.css" />
+  <link rel="stylesheet" href="/user/css/userheader.css" />
+  <link rel="stylesheet" href="/user/css/userfooter.css" />
 
-    <style>
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-          font-family: Oswald, sans-serif; /* Default font */
-        }
-        body {
-          background-color: white;
-        }
-        
-
-        /*----------------------Layout-------------------------*/
-        .container {
-          display: flex;
-          width: 100%;
-        }
-        
-      /*content: list-league + footer */
-      .content-wrapper {
-        flex: 1;
-        display: block;
-        margin: 0;
-        padding: 0;
-      }
-      .content {
-        background-color: #ecf0f5;
-      }
-        /* list-league */
-        .list-league {
-        color: rgb(34, 34, 34);
-        font-size: 24px;
-        font-weight: normal;
-        padding: 12px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: white;
-        }
-        .list-league_left {
-            font-family: "Source Sans Pro", sans-serif !important;
-        }
-        .fa-solid.fa-check {
-          color: #ff6f00;
-          margin-right: 5px;
-          font-size: 25px;
-        }
-        .list-league_left {
-          flex-grow: 1;
-        }
-        /* Buttons styling moved to form layout section for consistency */
-
-        
-      /*------------------- New Form Layout Styles --------------------*/
-
-        .form-layout {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 20px 15px; /* Add vertical padding */
-        }
-
-        .form-fields-area {
-            flex: 2;
-            min-width: 300px;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 20px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-        }
-
-        .form-upload-area {
-            flex: 1;
-            min-width: 250px;
-            display: flex;
-            flex-direction: column;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 20px;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-            gap: 20px; /* Increased gap */
-        }
-
-        .form-grid {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: 10px; /* Allow columns to wrap on smaller screens */
-        }
-
-        .form-column {
-            flex: 1; /* Each column takes equal space */
-            min-width: 200px; /* Minimum width before column wraps */
-            display: flex;
-            flex-direction: column;
-            gap: 15px; /* Space between form groups within a column */
-        }
-         /* Remove specific styling previously added to the right form column */
-        .form-column:last-child {
-             border: none;
-             padding: 0;
-             background-color: transparent;
-        }
-
-        .form-group {
-            margin-bottom: 0; /* Remove bottom margin, use gap in parent flex/grid */
-        }
-        .form-group label:not(.file-upload-label) {
-            display: block;
-            margin-bottom: 5px;
-            color: #240808;
-            font-size: 16px; /* Consistent font size */
-        }
-        .form-control {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #d0d0d0;
-            font-size: 16px;
-            box-shadow: rgba(0, 0, 0, 0.075) 0px 1px 1px 0px inset;
-        }
-        .form-control:focus {
-            border-color: #80bdff;
-            outline: 0;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
-
-        /* General File Upload Label */
-        .file-upload-label {
-            display: inline-block; /* Default */
-            padding: 8px 15px;
-            background-color: #007bff; /* Updated color */
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            text-align: center;
-            transition: background-color 0.2s ease;
-        }
-        .file-upload-label i {
-            margin-right: 5px;
-        }
-        .file-upload-label:hover {
-            background-color: #0056b3; /* Darker hover */
-        }
-
-        /* Specific Kit Upload Label - NOW FULL WIDTH */
-        .file-upload-label.kit-upload {
-            display: block;      /* Make it block level */
-            width: 100%;        /* Make it full width */
-            box-sizing: border-box; /* Include padding in width */
-            margin-top: 5px;    /* Add space below the main label */
-            background-color: rgb(76, 175, 80); /* Info color */
-        }
-        .file-upload-label.kit-upload:hover {
-            background-color: #4d9e51;
-        }
-
-        /* Logo and Cover Specific Upload Labels */
-        .logo-upload, .cover-upload {
-            display: block;
-            width: 100%;
-            box-sizing: border-box;
-             background-color: rgb(76, 175, 80); /* Success color */
-        }
-        .logo-upload:hover, .cover-upload:hover {
-             background-color: #4d9e51;
-        }
-
-        /* Upload Section Container */
-        .upload-section {
-             margin: 0;
-             display: flex;
-             flex-direction: column;
-        }
-
-        /* General Image Preview Area */
-        .image-preview {
-            margin-top: 10px;
-            padding: 10px;
-            border: 1px dashed #ccc;
-            border-radius: 4px;
-            min-height: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #fff;
-            width: 100%; /* Ensure preview area takes full width */
-            box-sizing: border-box;
-        }
-        .image-preview:empty {
-            min-height: 150px; /* Keep minimum height for empty logo/cover */
-        }
-        .image-preview img {
-             max-width: 100%;
-             max-height: 150px; /* Max height for logo/cover */
-             display: block;
-             border-radius: 4px;
-             object-fit: contain; /* Maintain aspect ratio */
-         }
-
-         /* Specific Kit Preview Area - NOW FULL WIDTH */
-         .kit-preview {
-             width: 100%;           /* Make the container full width */
-             margin-top: 10px;      /* Space above the preview */
-             border: 1px dashed #ccc;
-             border-radius: 4px;
-             min-height: 60px;      /* Minimum height */
-             display: flex;
-             justify-content: center;
-             align-items: center;
-             padding: 5px;
-             box-sizing: border-box;
-             background-color: #fff;
-         }
-         .kit-preview:empty {
-             min-height: 60px; /* Explicitly set for empty kit preview */
-         }
-         .kit-preview img {
-             max-width: 100%;     /* Image fits container width */
-             max-height: 150px;    /* Limit image height */
-             display: block;
-             border-radius: 3px;
-             object-fit: contain; /* Maintain aspect ratio */
-             border: none; /* Remove inner border if not needed */
-         }
-
-        /* Button styles in the header bar */
-        .retry {
-        color: rgb(255, 255, 255);
-        padding: 7px 12px 6px 12px;
-        background-color: rgb(0, 172, 236);
-        border-color: rgba(0, 0, 0, 0.25);
-        border-style: solid;
-        border-width: 0.8px;
-        cursor: pointer;
-        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
-      }
-      .retry:hover {
-        background-color: #428bca;
-      }
-      .save {
-        color: rgb(255, 255, 255);
-        padding: 7px 12px 6px 12px;
-        background-color: rgb(76, 175, 80);
-        border-color: rgba(0, 0, 0, 0.25);
-        border-style: solid;
-        border-width: 0.8px;
-        cursor: pointer;
-        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
-      }
-      .save:hover {
-        background-color: #4d9e51;
-      }
-      .return {
-        color: rgb(255, 255, 255);
-        padding: 7px 12px 6px 12px;
-        background-color: #f34541;
-        border-color: rgba(0, 0, 0, 0.25);
-        border-style: solid;
-        border-width: 0.8px;
-        cursor: pointer;
-        text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
-        box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
-      }
-      .return:hover {
-        background-color: #dd1b18;
-      }
-
-        .list-league i {
-            margin-right: 5px;
-        }
-    </style>
+  <link rel="stylesheet" href="./css/addteam.css" />
 </head>
 <body>
-    <header id="header-container" class="header">
-        <!-- Header will be loaded here -->
-    </header>
+  <header id="header-container" class="header">
+    <!-- Header sẽ được chèn ở đây -->
+  </header>
 
-
-    <div class="container">
-        <div id="sidebar-container">
-             <!-- Sidebar will be loaded here -->
+  <div class="container">
+    <div id="sidebar-container">
+      <!-- Sidebar sẽ được chèn ở đây -->
+    </div>
+    <div class="content-wrapper">
+      <section class="content">
+        <!-- Tiêu đề và nút bấm -->
+        <div class="list-league">
+          <span class="list-league_left"><i class="fa-solid fa-check"></i>Thêm đội bóng</span>
+          <div>
+            <button id="saveButton" type="button" class="save"><i class="fas fa-save"></i> Lưu</button>
+            <button type="button" class="retry"><i class="fas fa-sync-alt"></i> Nhập lại</button>
+            <a href ="teamuser.html" style="text-decoration: none;">
+              <button type="button" class="return"><i class="fas fa-arrow-left"></i> Danh sách đội bóng</button>
+            </a>
+          </div>
         </div>
-        <div class="content-wrapper">
-            <section class="content">
-                <!-- Title and Action Buttons -->
-                <div class="list-league">
-                    <span class="list-league_left"><i class="fa-solid fa-check"></i>Thêm đội bóng</span>
-                    <div>
-                        <!-- Links around buttons are optional depending on how you handle actions -->
-                        <!-- Using button type="button" is generally safer if not submitting a form -->
-                        <button id="saveButton" type="button" class="save"><i class="fas fa-save"></i> Lưu</button>
-                        
-                        <button type="button" class="retry"><i class="fas fa-sync-alt"></i> Nhập lại</button>
-                        <a href ="teamuser.html" style="text-decoration: none;">
-                           <button type="button" class="return"><i class="fas fa-arrow-left"></i> Danh sách đội bóng</button> <!-- Changed text -->
-                        </a>
-                    </div>
+
+        <!-- Khu vực Form Chính -->
+        <form>
+          <div class="form-layout">
+
+            <!-- Phần Trái: Khu vực Trường Form -->
+            <div class="form-fields-area">
+
+              <!-- Tên đội trên hàng riêng -->
+              <div class="form-group">
+                <label for="teamName">Tên đội bóng</label>
+                <input type="text" id="teamName" name="teamName" class="form-control" placeholder="Nhập tên đội bóng (Bắt buộc)" required>
+              </div>
+
+              <!-- Lưới cho các trường còn lại -->
+              <div class="form-grid">
+                <!-- Cột Trái -->
+                <div class="form-column">
+                  <div class="form-group">
+                    <label for="managerName">Người quản lý</label>
+                    <input type="text" id="managerName" name="managerName" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="you@example.com">
+                  </div>
+                  <div class="form-group">
+                    <label>Trang phục sân nhà</label>
+                    <label for="homeKitFile" class="file-upload-label kit-upload">
+                      <i class="fas fa-upload"></i> Chọn ảnh...
+                    </label>
+                    <input type="file" id="homeKitFile" name="homeKitFile" accept="image/*" style="display: none;">
+                    <div id="homeKitPreview" class="kit-preview"></div>
+                  </div>
                 </div>
 
-                <!-- Main Form Area -->
-                <form> <!-- Added form tag for better structure -->
-                    <div class="form-layout">
+                <!-- Cột Phải -->
+                <div class="form-column">
+                  <div class="form-group">
+                    <label for="phone">Điện thoại</label>
+                    <input type="tel" id="phone" name="phone" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="facebook">Facebook</label>
+                    <input type="url" id="facebook" name="facebook" class="form-control" placeholder="https://facebook.com/yourpage">
+                  </div>
+                  <div class="form-group">
+                    <label>Trang phục sân khách</label>
+                    <label for="awayKitFile" class="file-upload-label kit-upload">
+                      <i class="fas fa-upload"></i> Chọn ảnh...
+                    </label>
+                    <input type="file" id="awayKitFile" name="awayKitFile" accept="image/*" style="display: none;">
+                    <div id="awayKitPreview" class="kit-preview"></div>
+                  </div>
+                </div>
+              </div>
 
-                       <!-- Left Part: Form Fields Area -->
-                        <div class="form-fields-area">
+            </div>
 
-                            <!-- Team Name on its own row -->
-                            <div class="form-group">
-                                <label for="teamName">Tên đội bóng</label>
-                                <input type="text" id="teamName" name="teamName" class="form-control" placeholder="Nhập tên đội bóng (Bắt buộc)" required> <!-- Added required -->
-                            </div>
+            <!-- Phần Phải: Khu vực Tải lên -->
+            <div class="form-upload-area">
+              <div class="upload-section">
+                <label for="logoFile" class="file-upload-label logo-upload">
+                  <i class="fas fa-upload"></i> Upload ảnh Logo...
+                </label>
+                <input type="file" id="logoFile" name="logoFile" accept="image/*" style="display: none;">
+                <div class="image-preview" id="logoPreview">
+                  <img src="images/logo.png" alt="Default Logo Preview" style="max-width: 150px; max-height: 150px; border-radius: 5px;"/>
+                </div>
+              </div>
+              <div class="upload-section">
+                <label for="coverFile" class="file-upload-label cover-upload">
+                  <i class="fas fa-upload"></i> Upload ảnh bìa...
+                </label>
+                <input type="file" id="coverFile" name="coverFile" accept="image/*" style="display: none;">
+                <div class="image-preview" id="coverPreview">
+                </div>
+              </div>
+            </div>
 
-                            <!-- Grid for the rest of the fields -->
-                            <div class="form-grid">
-                                <!-- Left Column -->
-                                <div class="form-column">
-                                    <div class="form-group">
-                                        <label for="managerName">Người quản lý</label>
-                                        <input type="text" id="managerName" name="managerName" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" id="email" name="email" class="form-control" placeholder="you@example.com">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Trang phục sân nhà</label>
-                                        <label for="homeKitFile" class="file-upload-label kit-upload">
-                                            <i class="fas fa-upload"></i> Chọn ảnh...
-                                        </label>
-                                        <input type="file" id="homeKitFile" name="homeKitFile" accept="image/*" style="display: none;">
-                                        <div id="homeKitPreview" class="kit-preview"></div> <!-- Preview area -->
-                                    </div>
-                                </div>
+          </div>
+        </form>
 
-                                <!-- Right Column -->
-                                <div class="form-column">
-                                    <div class="form-group">
-                                        <label for="phone">Điện thoại</label>
-                                        <input type="tel" id="phone" name="phone" class="form-control"> <!-- Changed type to tel -->
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="facebook">Facebook</label>
-                                        <input type="url" id="facebook" name="facebook" class="form-control" placeholder="https://facebook.com/yourpage"> <!-- Changed type to url -->
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Trang phục sân khách</label>
-                                        <label for="awayKitFile" class="file-upload-label kit-upload">
-                                            <i class="fas fa-upload"></i> Chọn ảnh...
-                                        </label>
-                                        <input type="file" id="awayKitFile" name="awayKitFile" accept="image/*" style="display: none;">
-                                        <div id="awayKitPreview" class="kit-preview"></div> <!-- Preview area -->
-                                    </div>
-                                </div>
-                            </div><!-- End Form Grid -->
+      </section>
 
-                        </div><!-- End Form Fields Area -->
+      <footer id="footer" class="footer">
+        <!-- Footer sẽ được chèn ở đây -->
+      </footer>
 
-                        <!-- Right Part: Upload Area -->
-                        <div class="form-upload-area">
-                            <div class="upload-section">
-                                <label for="logoFile" class="file-upload-label logo-upload">
-                                    <i class="fas fa-upload"></i> Upload ảnh Logo...
-                                </label>
-                                <input type="file" id="logoFile" name="logoFile" accept="image/*" style="display: none;">
-                                <div class="image-preview" id="logoPreview">
-                                    <!-- Default/Preview will appear here -->
-                                    <img src="images/logo.png" alt="Default Logo Preview" style="max-width: 150px; max-height: 150px; border-radius: 5px;"/>
-                                </div>
-                            </div>
-                            <div class="upload-section">
-                                <label for="coverFile" class="file-upload-label cover-upload">
-                                    <i class="fas fa-upload"></i> Upload ảnh bìa...
-                                </label>
-                                <input type="file" id="coverFile" name="coverFile" accept="image/*" style="display: none;">
-                                <div class="image-preview" id="coverPreview">
-                                    <!-- Preview will appear here -->
-                                </div>
-                            </div>
-                        </div> <!-- End Upload Area -->
-
-                    </div> <!-- End Form Layout -->
-                </form> <!-- End Form -->
-
-            </section>
-
-            <footer id="footer" class="footer">
-
-            </footer>
-  
-        </div>
     </div>
+  </div>
 
-    <script src="/user/js/sidebar.js"></script>
-    <script src="/user/js/userheader.js"></script>
-    <script src="/user/js/componentloader.js"></script>
-
-    <script>
-        // Image Preview Functionality
-        function previewImage(input, previewElementId) {
-            const preview = document.getElementById(previewElementId);
-            const file = input.files[0];
-
-            if (!preview) {
-                console.error("Preview element not found:", previewElementId);
-                return;
-            }
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    // For kit previews, use specific max-height from CSS
-                    // For logo/cover, use different max-height
-                    let imgStyle = `max-width: 100%; display: block; border-radius: 3px; object-fit: contain;`;
-                    if (previewElementId === 'homeKitPreview' || previewElementId === 'awayKitPreview') {
-                        imgStyle += ` max-height: 150px;`; // Match CSS .kit-preview img max-height
-                    } else {
-                         imgStyle += ` max-height: 150px;`; // Match CSS .image-preview img max-height
-                    }
-
-                    preview.innerHTML = `<img src="${e.target.result}" alt="Preview Image" style="${imgStyle}"/>`;
-                };
-                reader.readAsDataURL(file);
-            } else {
-                // Clear preview if no file selected, but maybe show default for logo?
-                if (previewElementId === 'logoPreview') {
-                     preview.innerHTML = `<img src="images/logo.png" alt="Default Logo Preview" style="max-width: 150px; max-height: 150px; border-radius: 5px;"/>`;
-                } else {
-                     preview.innerHTML = "";
-                }
-            }
-        }
-
-        // Attach event listeners after DOM is loaded
-        document.addEventListener("DOMContentLoaded", function () {
-            const homeKitInput = document.getElementById("homeKitFile");
-            const awayKitInput = document.getElementById("awayKitFile");
-            const logoInput = document.getElementById("logoFile");
-            const coverInput = document.getElementById("coverFile");
-
-            if(homeKitInput) homeKitInput.addEventListener("change", function () { previewImage(this, "homeKitPreview"); });
-            if(awayKitInput) awayKitInput.addEventListener("change", function () { previewImage(this, "awayKitPreview"); });
-            if(logoInput) logoInput.addEventListener("change", function () { previewImage(this, "logoPreview"); });
-            if(coverInput) coverInput.addEventListener("change", function () { previewImage(this, "coverPreview"); });
-
-            // Reset button functionality
-             const retryButton = document.querySelector(".retry");
-             const form = document.querySelector('form'); // Get the form element
-             if(retryButton && form) {
-                 retryButton.addEventListener('click', () => {
-                     form.reset(); // Reset all form fields
-                     // Manually clear image previews
-                     document.getElementById('homeKitPreview').innerHTML = '';
-                     document.getElementById('awayKitPreview').innerHTML = '';
-                     document.getElementById('coverPreview').innerHTML = '';
-                     // Reset logo to default if needed
-                     document.getElementById('logoPreview').innerHTML = `<img src="images/logo.png" alt="Default Logo Preview" style="max-width: 150px; max-height: 150px; border-radius: 5px;"/>`;
-                 });
-             }
-
-        });
-
-
-
-        document.getElementById("saveButton").addEventListener("click", async function () {
-    let teams = JSON.parse(localStorage.getItem("teams")) || [];
-    const currentUser = {
-            id: 1,
-            name: "Nguyen Hai Dang",};
-    let teamNameInput = document.getElementById("teamName");
-    if (teamNameInput.value.trim() === "") {
-        alert("Vui lòng nhập tên đội bóng!"); // Show alert
-        teamNameInput.focus(); // Focus on the input field
-        return; // Stop the function from proceeding
-    }
-
-    // Collect form data
-    const teamData = {
-        id: `team-${teams.length + 1}`,
-        userId: currentUser.id,
-        teamName: document.getElementById("teamName").value,
-        managerName: document.getElementById("managerName").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        facebook: document.getElementById("facebook").value,
-        logo: await getImageData("logoFile"),
-        cover: await getImageData("coverFile"),
-        homeKit: await getImageData("homeKitFile"),
-        awayKit: await getImageData("awayKitFile")
-    };
-
-    // Add new team to array
-    teams.push(teamData);
-
-    // Store updated data in localStorage
-    localStorage.setItem("teams", JSON.stringify(teams));
-
-    // Alert success and clear form
-    alert("Đội bóng đã được lưu!");
-    resetForm();
-});
-
-// Convert image to Base64
-function getImageData(inputId) {
-    return new Promise((resolve) => {
-        const fileInput = document.getElementById(inputId);
-        if (fileInput.files.length > 0) {
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-            reader.onloadend = () => resolve(reader.result);
-            reader.readAsDataURL(file);
-        } else if (inputId === "logoFile") {
-            fetch("images/logo.png")
-                .then(response => response.blob())  // Convert response to Blob
-                .then(blob => {
-                    const reader = new FileReader();
-                    reader.onloadend = () => resolve(reader.result);
-                    reader.readAsDataURL(blob);
-                });
-        } else 
-        {
-            resolve(null);
-        }
-    });
-}
-
-// Function to clear form after saving
-function resetForm() {
-    document.querySelector('form').reset(); // Reset form fields
-    ["logoPreview", "coverPreview", "homeKitPreview", "awayKitPreview"].forEach(id => {
-        document.getElementById(id).innerHTML = ""; // Clear image previews
-    });
-    document.getElementById('logoPreview').innerHTML = `<img src="images/logo.png" alt="Default Logo Preview" style="max-width: 150px; max-height: 150px; border-radius: 5px;"/>`;
-
-}
-
-
-
-
-
-// Function to display images from Base64
-function displayImage(previewElementId, imageData) {
-    if (imageData) {
-        document.getElementById(previewElementId).innerHTML = `<img src="${imageData}" style="max-width: 150px; max-height: 150px; border-radius: 5px;"/>`;
-    }
-}
-
-
-    </script>
-
-
+  <script src="/user/js/sidebar.js"></script>
+  <script src="/user/js/userheader.js"></script>
+  <script src="/user/js/componentloader.js"></script>
+  <script src="/user/team/js/addteam.js"></script>
 </body>
 </html>

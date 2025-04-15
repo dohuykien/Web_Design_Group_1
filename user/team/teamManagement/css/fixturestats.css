@@ -1,0 +1,459 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Oswald, sans-serif;
+}
+
+body {
+  background-color: #ecf0f5;
+}
+
+/*----------------------Bố cục-------------------------*/
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.content-wrapper {
+  flex: 1;
+  display: block;
+  margin: 0; padding: 0;
+  background-color: #ecf0f5;
+}
+
+.content {
+  background-color: #ecf0f5;
+  padding-bottom: 20px;
+}
+
+.list-league {
+  color: rgb(34, 34, 34);
+  font-size: 24px;
+  font-weight: normal;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  min-height: 70px;
+}
+
+.list-league_left {
+  font-family: "Source Sans Pro", sans-serif !important;
+}
+
+.fa-solid.fa-list {
+  color: #ff6f00;
+  margin-right: 5px;
+  font-size: 25px;
+}
+
+.list-league_left {
+  flex-grow: 1;
+}
+
+.list-league i {
+  margin-right: 5px;
+}
+
+/* Nút Quay lại */
+.fixture-back {
+  color: rgb(255, 255, 255);
+  padding: 6px 12px;
+  background-color: #dd4b39;
+  border-color: #d73925;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 1.5;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.fixture-back:hover {
+  background-color: #d73925;
+}
+
+.fixture-back i { margin-right: 0; }
+
+/* Kiểu dáng cho hộp nội dung */
+.content-box {
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-top: 3px solid #00c0ef;
+}
+
+.content-box, .content-box label, .content-box input, .content-box select, .content-box button, .content-box option, .content-box div {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+/* Tiêu đề Điểm số */
+.score-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
+  text-align: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.score-team {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.score-vs {
+  position: relative;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.score-header .team-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 45%;
+}
+
+.score-header .team-info.team-a {
+  justify-content: right;
+}
+
+.score-header .team-info img.team-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+.score-header .team-name {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.score-header input.score-input {
+  width: 55px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.score-header input.score-input::-webkit-outer-spin-button,
+.score-header input.score-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.score-header .penalty-info {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.score-header .penalty-info .penalty-label {
+  font-weight: bold;
+  color: #c82333;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.score-header .penalty-info input.penalty-score {
+  width: 40px;
+  height: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.score-header .penalty-info input.penalty-score::-webkit-outer-spin-button,
+.score-header .penalty-info input.penalty-score::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Khu vực Nhập Thống kê */
+.stats-input-area {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.team-stats-column {
+  flex: 1;
+  min-width: 300px;
+  padding: 15px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.team-stats-column h4 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}
+
+.stat-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.stat-row select[name="scorer"],
+.stat-row select[name="assist"] {
+  flex: 3;
+}
+
+.stat-row input[name="time"] {
+  flex: 1;
+  min-width: 50px;
+}
+
+.stat-row select[name="goalType"] {
+  flex: 2;
+}
+
+.stat-row input, .stat-row select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+.stat-row button.action-btn {
+  padding: 5px 8px;
+  font-size: 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  color: white;
+  flex-shrink: 0;
+}
+
+.stat-row button.remove-row-btn {
+  background-color: #dc3545;
+  border-color: #c82333;
+}
+
+.stat-row button.remove-row-btn:hover {
+  background-color: #c82333;
+}
+
+.add-row-container {
+  text-align: right;
+  margin-top: 10px;
+}
+
+button.add-row-btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  color: white;
+  background-color: #28a745;
+  border-color: #218838;
+}
+
+button.add-row-btn:hover {
+  background-color: #218838;
+}
+
+button.add-row-btn i, .stat-row button.action-btn i {
+  margin-right: 3px;
+}
+
+/* Khu vực Nút Lưu */
+.save-button-container {
+  margin-top: 30px;
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.save-button-container .btn-save {
+  padding: 10px 25px;
+  font-size: 16px;
+  background-color: #3c8dbc;
+  border-color: #367fa9;
+  color: white;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.save-button-container .btn-save:hover {
+  background-color: #367fa9;
+}
+
+.save-button-container .btn-save i {
+  margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+  /* --- Điều chỉnh Padding Hộp Nội dung --- */
+  .content-box {
+    padding: 15px;
+    margin: 10px;
+  }
+
+  /* --- Điều chỉnh Tiêu đề Điểm số --- */
+  .score-header {
+    gap: 10px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .score-team {
+    width: 100%;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+    gap: 5px;
+    align-items: flex-start;
+  }
+
+  .score-header .team-info {
+    width: auto;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .score-header .team-info.team-a {
+    justify-content: center;
+  }
+
+  .score-header .team-name {
+    font-size: 15px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    text-align: center;
+    line-height: 1.3;
+    min-height: 2.6em;
+  }
+
+  .score-header .team-info img.team-logo {
+    width: 45px;
+    height: 45px;
+  }
+
+  .score-header input.score-input {
+    width: 50px;
+    height: 35px;
+    font-size: 20px;
+  }
+
+  .score-vs {
+    width: auto;
+    padding: 0 5px;
+    align-self: center;
+  }
+
+  .score-header .penalty-info {
+    margin-top: 15px;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .score-header .penalty-info input.penalty-score {
+    width: 35px;
+    height: 28px;
+    font-size: 15px;
+  }
+
+  /* --- Điều chỉnh Khu vực Nhập Thống kê --- */
+  .stats-input-area {
+    flex-direction: column;
+    gap: 25px;
+  }
+
+  .team-stats-column {
+    min-width: unset;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .stat-row {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .stat-row select, .stat-row input {
+    flex-grow: 1;
+    min-width: 70px;
+    font-size: 12px;
+  }
+
+  .stat-row select[name="scorer"],
+  .stat-row select[name="assist"] {
+    flex-basis: 120px;
+  }
+
+  .stat-row select[name="goalType"] {
+    flex-basis: 80px;
+  }
+
+  .stat-row input[name="time"] {
+    flex-basis: 50px;
+  }
+
+  .stat-row button.action-btn {
+    padding: 4px 6px;
+    font-size: 11px;
+    margin-left: auto;
+  }
+
+  .add-row-container {
+    text-align: center;
+  }
+
+  /* --- Nút Lưu --- */
+  .save-button-container .btn-save {
+    padding: 8px 20px;
+    font-size: 15px;
+  }
+}

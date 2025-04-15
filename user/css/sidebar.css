@@ -1,4 +1,4 @@
-/*-------------------Sidebar--------------------- */
+/*-------------------Thanh bên--------------------- */
 .sidebar {
   width: 230px;
   background: #333333;
@@ -88,11 +88,10 @@
   font-size: 12px;
   margin-left: auto;
 }
-/* -------------------sidebar-end------------------- */
+/* -------------------Kết thúc thanh bên------------------- */
 
-/* --- NEW Responsive Styles --- */
 
-/* Style for the toggle button (Hamburger Icon) */
+/* Định dạng cho nút bật/tắt (Biểu tượng Hamburger) */
 #sidebar-toggle-btn {
   display: none;
   position: fixed;
@@ -111,9 +110,9 @@
   background: #555;
 }
 
-/* Style for the overlay */
+/* Định dạng cho lớp phủ */
 #sidebar-overlay {
-  display: none; /* Hidden by default */
+  display: none; /* Mặc định ẩn */
   position: fixed;
   top: 0;
   left: 0;
@@ -123,7 +122,7 @@
   z-index: 999;
 }
 
-/* --- Media Query for Small Screens (e.g., Phones) --- */
+/* --- Truy vấn phương tiện cho màn hình nhỏ (ví dụ: Điện thoại) --- */
 @media (max-width: 768px) {
   #sidebar-toggle-btn {
     display: block;

@@ -1,15 +1,15 @@
-// Function to initialize the submenu toggle logic
+// Hàm khởi tạo logic bật/tắt submenu
 function initializeSidebarSubmenus() {
-  console.log("Attempting to initialize sidebar submenus..."); // Debug log
+  console.log("Attempting to initialize sidebar submenus..."); // Ghi log gỡ lỗi
   let menuItems = document.querySelectorAll(".sidebar .menu-item");
-  console.log(`Found ${menuItems.length} menu items.`); // Debug log
+  console.log(`Found ${menuItems.length} menu items.`); // Ghi log gỡ lỗi
 
   menuItems.forEach((item) => {
     item.addEventListener("click", function (event) {
       let submenu = this.nextElementSibling;
       if (submenu && submenu.classList.contains("submenu")) {
         const isActive = this.classList.contains("active");
-        // Optional: Close other open submenus
+        // Tùy chọn: Đóng các submenu khác đang mở
         // closeAllSubmenus(this);
 
         if (isActive) {
@@ -22,17 +22,17 @@ function initializeSidebarSubmenus() {
       }
     });
   });
-  if (menuItems.length > 0) console.log("Submenu listeners attached."); // Debug log
+  if (menuItems.length > 0) console.log("Submenu listeners attached."); // Ghi log gỡ lỗi
 }
 
-// --- Function to initialize the mobile sidebar toggle ---
+// --- Hàm khởi tạo bật/tắt sidebar trên di động ---
 function initializeMobileSidebarToggle() {
-  console.log("Attempting to initialize mobile sidebar toggle..."); // Debug log
+  console.log("Attempting to initialize mobile sidebar toggle..."); // Ghi log gỡ lỗi
   const toggleBtn = document.getElementById("sidebar-toggle-btn");
-  const sidebar = document.querySelector(".sidebar"); // Use querySelector for flexibility
+  const sidebar = document.querySelector(".sidebar"); // Sử dụng querySelector để linh hoạt hơn
   const overlay = document.getElementById("sidebar-overlay");
 
-  // Important: Check if the necessary elements *exist* before adding listeners
+  // Quan trọng: Kiểm tra xem các phần tử cần thiết có *tồn tại* trước khi thêm bộ lắng nghe không
   if (!toggleBtn) {
     console.warn("Mobile toggle button ('#sidebar-toggle-btn') not found.");
   }
@@ -40,33 +40,33 @@ function initializeMobileSidebarToggle() {
     console.error(
       "Sidebar element ('.sidebar') not found! Cannot initialize mobile toggle."
     );
-    return; // Stop if sidebar isn't there
+    return; // Dừng lại nếu không có sidebar
   }
-  // Overlay is optional
+  // Lớp phủ là tùy chọn
   if (!overlay) {
     console.warn("Sidebar overlay ('#sidebar-overlay') not found.");
   }
 
-  // Only add listener to toggleBtn if it exists
+  // Chỉ thêm bộ lắng nghe vào toggleBtn nếu nó tồn tại
   if (toggleBtn) {
     toggleBtn.addEventListener("click", function (event) {
       event.stopPropagation();
-      // Make sure sidebar exists before toggling class
+      // Đảm bảo sidebar tồn tại trước khi bật/tắt class
       if (sidebar) sidebar.classList.toggle("open");
       if (overlay) overlay.classList.toggle("active");
-      console.log("Sidebar toggled via button."); // Debug log
+      console.log("Sidebar toggled via button."); // Ghi log gỡ lỗi
     });
-    console.log("Mobile toggle button listener attached."); // Debug log
+    console.log("Mobile toggle button listener attached."); // Ghi log gỡ lỗi
   }
 
-  // Only add listener to overlay if it exists
+  // Chỉ thêm bộ lắng nghe vào overlay nếu nó tồn tại
   if (overlay) {
     overlay.addEventListener("click", function () {
-      // Make sure sidebar exists before removing class
+      // Đảm bảo sidebar tồn tại trước khi xóa class
       if (sidebar) sidebar.classList.remove("open");
-      overlay.classList.remove("active"); // Overlay definitely exists if we're here
-      console.log("Sidebar closed via overlay."); // Debug log
+      overlay.classList.remove("active"); // Lớp phủ chắc chắn tồn tại nếu ở đây
+      console.log("Sidebar closed via overlay."); 
     });
-    console.log("Overlay click listener attached."); // Debug log
+    console.log("Overlay click listener attached."); 
   }
 }

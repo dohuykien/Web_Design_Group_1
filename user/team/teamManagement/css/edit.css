@@ -1,0 +1,341 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Oswald, sans-serif; /* Phông chữ mặc định */
+}
+
+body {
+  background-color: white;
+}
+
+/*----------------------Bố cục-------------------------*/
+.container {
+  display: flex;
+  width: 100%;
+}
+
+/*content: list-league + footer */
+.content-wrapper {
+  flex: 1;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background-color: #ecf0f5;
+}
+
+.content {
+  background-color: #ecf0f5;
+}
+
+.list-league {
+  color: rgb(34, 34, 34);
+  font-size: 24px;
+  font-weight: normal;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  min-height: 70px;
+}
+
+.list-league_left {
+  font-family: "Source Sans Pro", sans-serif !important;
+}
+
+.fa-solid.fa-check {
+  color: #ff6f00;
+  margin-right: 5px;
+  font-size: 25px;
+}
+
+.list-league_left {
+  flex-grow: 1;
+}
+/* Kiểu dáng nút được chuyển vào phần bố cục form cho nhất quán */
+
+/* Kiểu dáng nút trong thanh tiêu đề */
+.retry {
+  color: rgb(255, 255, 255);
+  padding: 7px 12px 6px 12px;
+  background-color: rgb(0, 172, 236);
+  border-color: rgba(0, 0, 0, 0.25);
+  border-style: solid;
+  border-width: 0.8px;
+  cursor: pointer;
+  text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.retry:hover {
+  background-color: #428bca;
+}
+
+.save {
+  color: rgb(255, 255, 255);
+  padding: 7px 12px 6px 12px;
+  background-color: rgb(76, 175, 80);
+  border-color: rgba(0, 0, 0, 0.25);
+  border-style: solid;
+  border-width: 0.8px;
+  cursor: pointer;
+  text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.save:hover {
+  background-color: #4d9e51;
+}
+
+.return {
+  color: rgb(255, 255, 255);
+  padding: 7px 12px 6px 12px;
+  background-color: #f34541;
+  border-color: rgba(0, 0, 0, 0.25);
+  border-style: solid;
+  border-width: 0.8px;
+  cursor: pointer;
+  text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.return:hover {
+  background-color: #dd1b18;
+}
+
+.list-league i {
+  margin-right: 5px;
+}
+
+/* --- Giao diện Tab --- */
+.edit-content-box {
+  background-color: #ffffff;
+  border-radius: 5px; /* Góc dưới bo tròn */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin: 15px;
+  /* Không cần viền trên vì nó nối với thanh tiêu đề */
+}
+
+.nav-tabs {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  background-color: #f8f8f8; /* Nền sáng cho thanh tab */
+  padding-left: 15px; /* Căn lề với nội dung */
+  list-style: none; /* Xóa dấu đầu dòng */
+  margin: 0; /* Đặt lại margin */
+}
+
+.nav-tabs .nav-item {
+  margin-bottom: -1px; /* Chồng viền */
+}
+
+.nav-tabs .nav-link {
+  border: 1px solid transparent;
+  padding: 10px 15px;
+  font-size: 15px;
+  font-family: "Source Sans Pro", sans-serif !important;
+  color: #0275d8; /* Màu xanh cho tab không hoạt động */
+  background-color: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  display: block;
+}
+
+.nav-tabs .nav-link:hover {
+  border-color: #eee ;
+  background-color: #eee; /* Hiệu ứng hover nhẹ */
+}
+
+.nav-tabs .nav-link.active {
+  color: #464a4e; /* Chữ tối hơn cho tab hoạt động */
+  background-color: #fff; /* Nền trắng cho tab hoạt động */
+  border-color: #ddd; /* Viền kết nối */
+}
+
+/* --- Nội dung Tab --- */
+.tab-content {
+  padding: 20px;
+}
+
+.tab-pane {
+  display: none; /* Ẩn các pane không hoạt động */
+}
+
+.tab-pane.active {
+  display: block; /* Hiển thị pane hoạt động */
+}
+
+/* --- Chi tiết Bố cục Form cho Trang Chỉnh sửa --- */
+.form-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-fields-area {
+  flex: 2; /* Chiếm nhiều không gian hơn */
+  min-width: 400px;
+}
+
+.form-upload-area {
+  flex: 1; /* Chiếm ít không gian hơn */
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: auto 1fr; /* Nhãn chiếm độ rộng tự động, input chiếm phần còn lại */
+  gap: 15px 10px; /* Khoảng cách hàng, Khoảng cách cột */
+  align-items: center; /* Căn giữa các mục theo chiều dọc trong mỗi hàng */
+}
+
+.form-grid label {
+  text-align: right; /* Căn phải nhãn */
+  font-weight: 500;
+  font-family: "Source Sans Pro", sans-serif !important;
+  color: #333;
+  padding-right: 5px; /* Khoảng cách giữa nhãn và input */
+  font-size: 15px;
+}
+
+.form-grid input[type="text"],
+.form-grid input[type="email"],
+.form-grid input[type="tel"],
+.form-grid input[type="url"] {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+  font-family: "Source Sans Pro", sans-serif !important;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+.form-grid input:focus {
+  border-color: #66afe9;
+  outline: 0;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+}
+
+/* --- Chi tiết Khu vực Tải lên --- */
+.upload-section {
+  background-color: #fdfdfd; /* Nền hơi khác */
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 0; /* Xóa padding, header/body đã có */
+}
+
+.upload-header {
+  background-color: rgb(76, 175, 80); /* Header màu xanh lá */
+  color: white;
+  padding: 8px 15px;
+  font-size: 15px;
+  font-family: "Source Sans Pro", sans-serif !important;
+  font-weight: 500;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.upload-header:hover {
+  background-color: #4d9e51;
+}
+
+.upload-body {
+  padding: 15px;
+}
+
+.image-preview {
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  min-height: 180px; /* Điều chỉnh khi cần */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff; /* Nền trắng cho xem trước */
+  overflow: hidden;
+  position: relative;
+}
+/* Xóa văn bản giữ chỗ nếu hình ảnh tồn tại */
+.image-preview:not(:empty)::before {
+  display: none;
+}
+.image-preview::before {
+  content: "Chưa có ảnh";
+  color: #aaa;
+  font-size: 13px;
+  position: absolute;
+}
+
+.image-preview img {
+  max-width: 100%;
+  max-height: 200px; /* Chiều cao tối đa cho xem trước */
+  display: block;
+  object-fit: contain;
+  position: relative;
+  z-index: 1;
+}
+/* Kiểu dáng cụ thể cho xem trước logo tròn */
+#logoPreview img {
+  border-radius: 50%;
+  width: 150px; /* Gần đúng kích thước logo FAG */
+  height: 150px;
+  object-fit: cover;
+  border: 1px solid #eee;
+}
+/* Input file ẩn */
+.file-input { display: none; }
+
+/* Header có thể nhấp để kích hoạt input file */
+.upload-header { cursor: pointer; }
+
+@media (max-width: 768px) {
+  /* Xếp chồng các phần bố cục form chính */
+  .form-layout {
+    flex-direction: column; /* Buộc xếp chồng */
+    gap: 25px; /* Điều chỉnh khoảng cách dọc */
+  }
+
+  .form-fields-area,
+  .form-upload-area {
+    flex: none; /* Xóa hành vi flex grow/shrink */
+    width: 100%; /* Làm cho mỗi phần chiếm toàn bộ chiều rộng */
+    min-width: unset; /* Xóa ràng buộc min-width */
+  }
+
+  /* Điều chỉnh lưới form cho bố cục một cột */
+  .form-grid {
+    grid-template-columns: 1fr; /* Thay đổi thành một cột */
+    gap: 8px 0; /* Điều chỉnh khoảng cách hàng, không có khoảng cách cột */
+  }
+
+  .form-grid label {
+    text-align: left; /* Căn trái nhãn */
+    padding-right: 0; /* Xóa padding phải */
+    margin-bottom: 2px; /* Thêm khoảng trắng nhỏ dưới nhãn */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Tinh chỉnh thêm cho màn hình rất nhỏ */
+  .list-league button, .list-league a button {
+    font-size: 13px; /* Chữ nút nhỏ hơn */
+    padding: 6px 8px;
+  }
+  .form-grid label,
+  .form-grid input[type="text"],
+  .form-grid input[type="email"],
+  .form-grid input[type="tel"],
+  .form-grid input[type="url"] {
+    font-size: 13px; /* Chữ form nhỏ hơn */
+  }
+  .upload-header {
+    font-size: 14px;
+  }
+}
