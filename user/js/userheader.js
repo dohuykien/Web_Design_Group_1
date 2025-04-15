@@ -2,7 +2,7 @@
 function toggleDropdown() {
   var menu = document.getElementById("dropdownMenu");
   if (menu) {
-    // Check if the element exists
+    // Kiểm tra xem phần tử có tồn tại không
     menu.style.display = menu.style.display === "block" ? "none" : "block";
   } else {
     console.warn("Element with ID 'dropdownMenu' not found for toggle.");
@@ -14,7 +14,7 @@ window.addEventListener("click", function (e) {
   var menu = document.getElementById("dropdownMenu");
   var userInfo = document.querySelector(".user-info"); // Selector cho div bao quanh avatar và tên
 
-  // Check if both elements exist before proceeding
+  // Kiểm tra xem cả hai phần tử có tồn tại trước khi tiếp tục không
   if (menu && userInfo) {
     // Chỉ ẩn nếu click ra ngoài CẢ userInfo VÀ menu
     if (!userInfo.contains(e.target) && !menu.contains(e.target)) {
@@ -52,7 +52,7 @@ function updateHeaderDisplay(data) {
         "Header Script: Đang cập nhật header avatar src thành:",
         newSrc
       );
-      headerImage.src = newSrc; // Set src mới
+      headerImage.src = newSrc; // Đặt src mới
     }
 
     // Luôn gắn onerror để xử lý nếu ảnh (kể cả ảnh mới hoặc ảnh từ LS) bị lỗi
@@ -66,8 +66,9 @@ function updateHeaderDisplay(data) {
       }
       this.onerror = null; // Quan trọng: Xóa handler sau khi đã xử lý để tránh gọi lại nếu default cũng lỗi
     };
-    // Trigger check lỗi cho ảnh hiện tại nếu nó chưa load xong (trường hợp ảnh từ LS bị lỗi ngay từ đầu)
+    // Trigger kiểm tra lỗi cho ảnh hiện tại nếu nó chưa load xong (trường hợp ảnh từ LS bị lỗi ngay từ đầu)
     if (!headerImage.complete || headerImage.naturalWidth === 0) {
+      // Không cần làm gì ở đây, onerror sẽ xử lý
     }
   } else {
     console.warn(
@@ -108,4 +109,3 @@ function updateHeaderDisplay(data) {
     );
   }
 }
-

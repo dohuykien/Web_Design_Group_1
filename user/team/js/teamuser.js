@@ -68,9 +68,11 @@ function removeMembersForTeam(teamIdToDelete) {
 }
 
 // ----- User and Global Data -----
-const currentUser = { // Keep your currentUser object
-    id: 1,
-    name: "Nguyen Hai Dang",
+let userIdString = localStorage.getItem("userProfile_id");
+let userIdInt = Number(userIdString);
+const currentUser = {
+  id: userIdInt,
+  name: localStorage.getItem("userProfile_username"),
 };
 let teams = []; // Teams managed by the current user
 let memberCountsByTeamId = {}; // Object to store member counts { teamId: count }

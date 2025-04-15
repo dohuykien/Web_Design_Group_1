@@ -32,64 +32,62 @@
 }
 
 .footer-right p i.fa {
-  margin-top: 4px; /* Small adjustment for icon vertical alignment */
-  width: 16px; /* Give icon a fixed width for alignment consistency */
-  text-align: center; /* Center icon within its space */
-  flex-shrink: 0; /* Prevent icon from shrinking */
+  margin-top: 4px;
+  width: 16px;
+  text-align: center;
+  flex-shrink: 0;
 }
 
 .footer-apps {
   display: flex;
-  flex-wrap: wrap; /* Allow app icons to wrap if needed */
+  flex-wrap: wrap;
   gap: 12px;
-  margin-top: 15px; /* Space above app icons */
-  align-items: center; /* Vertically align icons */
+  margin-top: 15px;
+  align-items: center;
 }
 
 .footer-apps img {
   height: 30px;
-  width: auto; /* Maintain aspect ratio */
+  width: auto;
 }
 
-/* --- Responsive adjustments for Mobile --- */
 @media (max-width: 768px) {
   .footer {
-    flex-direction: column; /* Stack left and right sections vertically */
-    align-items: center; /* Center sections horizontally */
-    text-align: center; /* Center text within sections */
-    padding: 20px 15px; /* Slightly reduce padding */
-    gap: 25px; /* Adjust gap between stacked sections */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 15px;
+    gap: 25px;
   }
 
   .footer-left,
   .footer-right {
-    min-width: unset; /* Remove min-width on mobile */
-    width: 100%; /* Ensure each section takes full width */
-    max-width: 450px; /* Optional: Limit max width for better readability */
-    text-align: center; /* Ensure text inside is centered */
+    min-width: unset;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
   }
 
   .footer-right p {
-    justify-content: center; /* Center icon + text container */
-    padding: 0 10px; /* Add slight horizontal padding if text gets too close to edge */
+    justify-content: center;
+    padding: 0 10px;
   }
 
   .footer-apps {
-    justify-content: center; /* Center the app icons */
+    justify-content: center;
     margin-top: 12px;
   }
 }
 
-/* Optional: Fine-tuning for very small screens */
 @media (max-width: 400px) {
   .footer-left p,
   .footer-right p {
-    font-size: 13px; /* Slightly smaller font */
+    font-size: 13px;
   }
   .footer-apps {
     gap: 8px;
   }
   .footer-apps img {
-    height: 28px; /* Slightly smaller icons */
+    height: 28px;
   }
 }

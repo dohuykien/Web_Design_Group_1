@@ -1,0 +1,166 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Oswald, sans-serif;
+}
+body {
+  background-color: white;
+}
+/*------------Bố cục------------*/
+.container {
+  display: flex;
+  width: 100%;
+}
+
+/*content: list-league + footer */
+.content-wrapper {
+  flex: 1;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.content {
+  background-color: white;
+  border-radius: 5px;
+}
+/* list-league */
+.list-league {
+  color: rgb(34, 34, 34);
+  font-size: 24px;
+  font-weight: normal;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list-league_left {
+  font-family: "Source Sans Pro", sans-serif !important;
+}
+.fa-solid.fa-list {
+  color: #ff6f00;
+  margin-right: 5px;
+  font-size: 25px;
+}
+.list-league_left {
+  flex-grow: 1;
+}
+.add {
+  color: rgb(255, 255, 255);
+  padding: 7px 12px 6px 12px;
+  background-color: rgb(0, 172, 236);
+  border-color: rgba(0, 0, 0, 0.25);
+  border-style: solid;
+  border-width: 0.8px;
+  cursor: pointer;
+  text-shadow: rgba(0, 0, 0, 0.25) 0px -1px 0px;
+  box-shadow: 0px -1px 5px rgba(0, 0, 0, 0.1);
+}
+.add:hover {
+  background-color: #428bca;
+}
+
+/* ------------- Kiểu dáng Thẻ Đội ------------- */
+#team-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px; 
+  gap: 15px; 
+  background-color: #ecf0f5; 
+  flex-grow: 1; 
+}
+
+.team-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: calc(25% - 12px); /* Điều chỉnh chiều rộng cho 4 thẻ trên một hàng, có tính đến khoảng cách */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.team-logo {
+  width: 150px; 
+  height: 150px;
+  border-radius: 50%; 
+  object-fit: cover; 
+  margin-bottom: 15px;
+  border: 1px solid #eee; 
+}
+
+.team-name {
+  font-size: 16px;
+  font-weight: 600; 
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.team-members {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+ .team-members i.fa-users {
+    font-size: 12px; 
+ }
+
+.card-actions {
+  display: flex;
+  width: 100%;
+  margin-top: auto; 
+  border-top: 1px solid #eee; 
+}
+
+.action-btn {
+  flex: 1; 
+  padding: 8px 0;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.edit-btn {
+  background-color: rgb(76, 175, 80); 
+  border-bottom-left-radius: 5px; 
+}
+.edit-btn:hover {
+  background-color: #4d9e51; 
+}
+
+.delete-btn {
+  background-color: #f34541; 
+  border-bottom-right-radius: 5px; 
+}
+ .delete-btn:hover {
+    background-color: #dd1b18; 
+ }
+
+.action-btn i {
+  pointer-events: none; 
+}
+
+/* Điều chỉnh responsive cho thẻ */
+@media (max-width: 1200px) {
+  .team-card {
+    width: calc(33.333% - 10px); 
+  }
+}
+@media (max-width: 768px) {
+  #team-list-container {
+    padding: 10px; 
+    gap: 10px; 
+  }
+  .team-card {
+    width: 100%; 
+  }
+}

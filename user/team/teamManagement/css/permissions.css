@@ -1,0 +1,232 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Oswald, sans-serif; /* Phông chữ mặc định */
+}
+
+body {
+  background-color: white;
+}
+
+/*----------------------Bố cục-------------------------*/
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.content-wrapper {
+  flex: 1;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background-color: #ecf0f5;
+}
+
+.content {
+}
+
+.list-league {
+  color: rgb(34, 34, 34);
+  font-size: 24px;
+  font-weight: normal;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  min-height: 70px;
+}
+
+.list-league_left {
+  font-family: "Source Sans Pro", sans-serif !important;
+}
+
+.fa-solid.fa-list {
+  color: #ff6f00;
+  margin-right: 5px;
+  font-size: 25px;
+}
+
+.list-league_left {
+  flex-grow: 1;
+}
+
+.list-league i {
+  margin-right: 5px;
+}
+
+/* Kiểu dáng cho hộp nội dung và bảng */
+.content-box {
+  background-color: #ffffff; /* Nền trắng cho hộp */
+  padding: 20px;
+  margin: 15px; /* Thêm một chút khoảng cách xung quanh hộp */
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-top: 3px solid #d2d6de; /* Viền trên tinh tế như AdminLTE */
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.management-container {
+}
+
+/* Kiểu dáng cho ô tìm kiếm và dropdown */
+.add-manager-section {
+  display: flex;
+  gap: 10px;
+  align-items: center; /* Căn chỉnh các mục lên trên */
+  margin-bottom: 20px;
+}
+
+.search-container {
+  position: relative; /* Quan trọng cho định vị tuyệt đối của dropdown */
+  flex-grow: 1; /* Cho phép container chiếm không gian có sẵn */
+}
+
+#addManagerInput {
+  /* Input chiếm toàn bộ chiều rộng của container */
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: 14px;
+  font-family: "Source Sans Pro", sans-serif !important;
+}
+
+.user-dropdown {
+  display: none; /* Ẩn theo mặc định */
+  position: absolute;
+  top: 100%; /* Định vị ngay dưới input */
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-top: none; /* Tùy chọn: tránh viền kép */
+  border-radius: 0 0 4px 4px;
+  max-height: 250px; /* Giới hạn chiều cao và cho phép cuộn */
+  overflow-y: auto;
+  z-index: 1000; /* Đảm bảo nó ở trên các phần tử khác */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-dropdown-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee; /* Đường phân cách */
+  font-size: 14px;
+  font-family: "Source Sans Pro", sans-serif !important;
+  white-space: nowrap; /* Ngăn không cho xuống dòng */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Thêm ... nếu văn bản quá dài */
+}
+
+.user-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.user-dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.user-dropdown .no-results { /* Kiểu dáng cho thông báo không có kết quả */
+  padding: 8px 12px;
+  color: #888;
+  font-style: italic;
+  font-family: "Source Sans Pro", sans-serif !important;
+}
+
+/* Kiểu dáng cho nút Thêm */
+.add-btn {
+  padding: 8px 12px;
+  background-color: #007bff; /* Màu xanh dương */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.add-btn:hover {
+  background-color: #0056b3; /* Màu xanh dương đậm hơn khi di chuột */
+}
+
+.table-responsive {
+  overflow-x: auto; /* Cho phép cuộn ngang trên màn hình nhỏ */
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid #f4f4f4; /* Viền nhạt hơn */
+  padding: 10px 12px; /* Thêm padding */
+  text-align: left;
+  vertical-align: middle; /* Căn giữa nội dung theo chiều dọc */
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.data-table thead th {
+  background-color: #f8f9fa; /* Nền header nhạt hơn */
+  font-weight: 600; /* Đậm hơn một chút */
+  color: #495057;
+  border-bottom: 2px solid #dee2e6; /* Viền dưới header đậm hơn */
+}
+
+/* Kiểu dáng các cột cụ thể */
+.data-table td:nth-child(1) { /* Cột STT */
+  width: 50px; /* Chiều rộng cố định cho STT */
+  text-align: center;
+}
+
+.data-table td:nth-child(3) { /* Cột Vai trò */
+  color: red;
+  font-weight: 500; /* Chữ vai trò đậm hơn một chút */
+}
+
+.data-table td:nth-child(4) { /* Cột Hành động */
+  width: 80px; /* Chiều rộng cố định */
+  text-align: center;
+}
+
+.delete-btn {
+  background-color: #dc3545; /* Màu đỏ nguy hiểm của Bootstrap */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px; /* Điều chỉnh kích thước biểu tượng qua font-size */
+  line-height: 1; /* Đảm bảo chiều cao nút vừa với biểu tượng */
+  transition: background-color 0.2s ease;
+}
+
+.delete-btn:hover {
+  background-color: #c82333; /* Màu đỏ đậm hơn khi di chuột */
+}
+
+.delete-btn i {
+  pointer-events: none; /* Ngăn biểu tượng can thiệp vào sự kiện click */
+}
+
+/* Tùy chọn: Thêm màu nền xen kẽ cho các hàng */
+.data-table tbody tr:nth-of-type(odd) {
+  background-color: #fdfdfd;
+}
+
+.data-table tbody tr:hover {
+  background-color: #f1f1f1; /* Tô sáng khi di chuột */
+}
+
+/* Thêm chỉ báo cuộn nếu muốn (sử dụng pseudo-elements - ví dụ cơ bản) */
+.table-responsive {
+  position: relative;
+}

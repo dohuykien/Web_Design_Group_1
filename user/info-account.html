@@ -881,6 +881,7 @@
                       changePasswordCheckbox.checked = false;
                       if(changePasswordBox) changePasswordBox.style.display = "none";
                   }
+                  location.reload();
               } else {
                   // Alert was already shown by saveUsersToStorage on failure
                   console.error("Saving the main users array failed.");
