@@ -321,11 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return; // Stop if placeholder is missing
              }
 
-<<<<<<< HEAD
             const response = await fetch('/login_modal.html'); // Adjust path if needed
-=======
-            const response = await fetch('login_modal.html'); // Adjust path if needed
->>>>>>> 3601f88618b0eff63b4eda02896a561afaa1f7e2
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -409,9 +405,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // (Your existing code for menus, sliders, etc.)
     // ...
 
-<<<<<<< HEAD
-});
-=======
 });
 
 
@@ -434,4 +427,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
->>>>>>> 3601f88618b0eff63b4eda02896a561afaa1f7e2
