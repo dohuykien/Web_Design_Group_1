@@ -1,4 +1,10 @@
 
+.navbar-nav li a { 
+    left: 130px !important;
+}
+.navbar-top {
+  height: 90px !important;
+ }
 /* -----------------------------Main-------------------------- */
 /* General Reset */
 * {
@@ -10,11 +16,8 @@
 /* Container */
 .container-fluid {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  padding-top: 20px;
 }
 
 /* Row */
