@@ -310,18 +310,33 @@
     margin: 20px 0;
 }
 .time-box {
-    background: rgba(255, 255, 255, 0.2);
+    background: radial-gradient(circle, rgba(170,122,198,1) 0%, rgba(108,69,143,1) 100%);
+    color: white;
     padding: 10px;
+    text-align: center;
     margin: 5px;
     border-radius: 5px;
     font-size: 18px;
     font-weight: bold;
     width: 60px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 5px solid #FF0000;
+    box-sizing: border-box;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 .time-box span {
     display: block;
     font-size: 24px;
-    color: #ff0066;
+    font-weight: bold;
+    /* color: #ff0066; */
+    margin-bottom: 10px;
+    text-shadow:
+                0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 30px #fff,
+                0 0 40px rgba(255, 200, 255, 0.8);
 }
 
 .match-info {
