@@ -19,7 +19,10 @@
     <link rel="stylesheet" href="/user/css/userheader.css" />
     <link rel="stylesheet" href="/user/css/userfooter.css" />
 
-    <link rel="stylesheet" href="/user/seasonManagement/css/management-actions.css"/>
+    <link
+      rel="stylesheet"
+      href="/user/seasonManagement/css/management-actions.css"
+    />
     <style>
       * {
         margin: 0;
@@ -31,14 +34,12 @@
       body {
         background-color: white;
       }
-      
 
       /*----------------------Layout-------------------------*/
       .container {
         display: flex;
         width: 100%;
       }
-      
 
       /*----------content: management + list-league + footer------------ */
       .content-wrapper {
@@ -102,10 +103,9 @@
         background-color: #732d91; /* Màu tím đậm hơn khi hover */
       }
       .btn-select-stats i.fa-solid.fa-caret-down {
-        /* Style gốc của bạn cho caret */
         font-size: 12px;
         position: relative;
-        top: 0px; /* Bỏ top -4px */
+        top: -4px;
         color: #ffffff !important;
       }
 
@@ -158,7 +158,7 @@
       } /* Lớp để hiện menu */
       /* --- HẾT CSS MỚI CHO DROPDOWN --- */
 
-      /* === PHẦN BẢNG THỐNG KÊ (GIỮ NGUYÊN STYLE CỦA BẠN) === */
+      /* === PHẦN BẢNG THỐNG KÊ === */
       .statistics-section {
         background-color: #ecf0f5 !important;
         border-top: 1px solid #dee2e6;
@@ -261,15 +261,12 @@
         padding: 0;
       }
       /* === HẾT PHẦN BẢNG THỐNG KÊ === */
-
-
     </style>
   </head>
   <body>
     <header id="header-container" class="header">
-        <!-- Header will be loaded here -->
+      <!-- Header will be loaded here -->
     </header>
-
 
     <div class="container">
       <div id="sidebar-container">
@@ -309,8 +306,9 @@
 
         <section class="content">
           <div class="list-league">
-            
-            <span class="list-league_left"><i class="fa-solid fa-list"></i>Thống Kê</span>
+            <span class="list-league_left"
+              ><i class="fa-solid fa-list"></i>Thống Kê</span
+            >
 
             <div class="statistics-actions-header">
               <!-- THÊM WRAPPER CHO DROPDOWN -->
@@ -420,11 +418,7 @@
             </div>
           </div>
 
-          
-          <footer id="footer" class="footer">
-
-          </footer>
-
+          <footer id="footer" class="footer"></footer>
         </section>
         <!-- End .content -->
       </div>
@@ -437,7 +431,6 @@
     <script src="/user/js/componentloader.js"></script>
 
     <script>
-
       // --- Statistics Dropdown Script (SCRIPT MỚI THÊM) ---
       document.addEventListener("DOMContentLoaded", function () {
         const btnSelectStats = document.getElementById("btnSelectStats");
