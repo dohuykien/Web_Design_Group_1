@@ -40,11 +40,11 @@
                     <li class="nav-item"><a href="index.html" class="nav-link">TRANG CHỦ</a></li>
                     <li class="nav-item"><a href="tournament_progress.html" class="nav-link">GIẢI ĐANG DIỄN RA</a></li>
                     <li class="nav-item"><a href="tournament_monitor.html" class="nav-link">GIẢI ĐANG THEO DÕI</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">ĐỘI BÓNG</a></li>
+                    <li class="nav-item"><a href="page_nguyen/html/doibong.html" class="nav-link">ĐỘI BÓNG</a></li>
                     <li class="nav-item"><a href="catch_team.html" class="nav-link">BẮT ĐỐI</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">HƯỚNG DẪN</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">CUỘC THI</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">TIN TỨC</a></li>
+                    <li class="nav-item"><a href="page_nguyen/html/huongdantao.html" class="nav-link">HƯỚNG DẪN</a></li>
+                    <li class="nav-item"><a href="phan cuoc thi/competition.html" class="nav-link">CUỘC THI</a></li>
+                    <li class="nav-item"><a href="https://www.24h.com.vn/the-thao-c101.html" class="nav-link">TIN TỨC</a></li>
                   </ul>
                 </div>
               </div>
@@ -622,10 +622,15 @@
         <div class="footer-container">
             <div class="footer-left">
                 <p><i class="fa-solid fa-copyright"></i> Bản quyền thuộc Eternal Phoenix</p>
-                <p>Ngo Huu Nghia</p>
+                <p><i class="fas fa-futbol"></i>
+                    <span>SINH RA ĐỂ CHƠI,</span>
+                    <i class="fas fa-dumbbell"></i>
+                    <span>TẬP LUYỆN ĐỂ CHIẾN THẮNG</span>
+                    <i class="fas fa-trophy"></i>
+                </p>
                 <p><i class="fa-solid fa-file-export"></i>Chỉ được phát hành lại nội dung khi có sự đồng ý của Eternal Phoenix</p>
                 <div class="footer-apps">
-                    <a href=""><img src="images/logo.png" alt="IT League"></a>
+                    <a href="index.html"><img src="images/logo.png" alt="IT League"></a>
                     <a href=""><img src="images/googleplay.png" alt="Google Play"></a>
                     <a href=""><img src="images/appstore.png" alt="App Store"></a>
                 </div>
@@ -674,7 +679,192 @@
     });
 </script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mainMenu = document.getElementById('main-menu');
+            const closeMenu = document.getElementById('close-menu');
+            const authToggle = document.getElementById('auth-toggle');
+            const authDropdown = document.getElementById('auth-dropdown');
+          
+            // 👉 Toggle menu trái
+            menuToggle.addEventListener('click', () => {
+              mainMenu.classList.add('active');
+              document.body.classList.add('menu-overlay-active');
+            });
+          
+            closeMenu.addEventListener('click', () => {
+              mainMenu.classList.remove('active');
+              document.body.classList.remove('menu-overlay-active');
+            });
+          
+            // 👉 Bấm ra ngoài để đóng menu trái
+            document.addEventListener('click', function (e) {
+              if (
+                mainMenu.classList.contains('active') &&
+                !mainMenu.contains(e.target) &&
+                !menuToggle.contains(e.target)
+              ) {
+                mainMenu.classList.remove('active');
+                document.body.classList.remove('menu-overlay-active');
+              }
+            });
+          
+            // 👉 Toggle auth dropdown bên phải
+            authToggle.addEventListener('click', () => {
+              authDropdown.classList.toggle('active');
+            });
+          
+            // 👉 Bấm ra ngoài để đóng auth menu
+            document.addEventListener('click', (e) => {
+              if (
+                !authToggle.contains(e.target) &&
+                !authDropdown.contains(e.target)
+              ) {
+                authDropdown.classList.remove('active');
+              }
+            });
+          });
+          
+    </script>
+    <script>
+        // 
+document.addEventListener("DOMContentLoaded", function () {
+    const img = document.querySelector(".pull-right img");
+    const modal = document.getElementById("modal-nockout");
+    const closeButton = document.querySelector(".close");
+    const body = document.body;
 
+    if (img && modal) {
+        img.addEventListener("click", function () {
+            modal.style.display = "block";
+            modal.classList.add("show");
+            modal.setAttribute("aria-hidden", "false");
+            body.classList.add("modal-open"); // Làm mờ nền
+            body.style.overflow = "hidden"; // Chặn cuộn trang
+        });
+    }
+
+    if (closeButton) {
+        closeButton.addEventListener("click", function () {
+            closeModal();
+        });
+    }
+
+    // Đóng modal khi nhấp ra ngoài hoặc nhấn phím ESC
+    window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closeModal();
+        }
+    });
+
+    function closeModal() {
+        modal.style.display = "none";
+        modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
+        body.classList.remove("modal-open"); // Gỡ bỏ hiệu ứng mờ nền
+        body.style.overflow = ""; // Khôi phục cuộn trang
+    }
+
+    // Thêm CSS để làm mờ nền khi modal mở
+    const style = document.createElement("style");
+    style.innerHTML = `
+        .modal-open::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1040;
+        }
+    `;
+    document.head.appendChild(style);
+});
+
+
+// 
+document.addEventListener("DOMContentLoaded", function () {
+    const backToTop = document.querySelector(".back-top");
+
+    if (backToTop) {
+        // Ẩn nút khi chưa cuộn xuống
+        backToTop.style.display = "none";
+
+        // Hiển thị nút khi cuộn xuống
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 300) {
+                backToTop.style.display = "block";
+            } else {
+                backToTop.style.display = "none";
+            }
+        });
+
+        // Cuộn lên đầu khi nhấn vào nút
+        backToTop.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+});
+
+// 
+document.addEventListener("DOMContentLoaded", function () {
+    const citySelect = document.getElementById("city");
+    const districtSelect = document.getElementById("district");
+    const resetButton = document.getElementById("resetFilter");
+
+    // Danh sách quận/huyện theo từng thành phố
+    const districtsData = {
+        hanoi: [
+            { value: "ba_dinh", text: "Quận Ba Đình" },
+            { value: "hoan_kiem", text: "Quận Hoàn Kiếm" },
+            { value: "tay_ho", text: "Quận Tây Hồ" },
+            { value: "long_bien", text: "Quận Long Biên" },
+            { value: "cau_giay", text: "Quận Cầu Giấy" }
+        ],
+        hcm: [
+            { value: "quan_1", text: "Quận 1" },
+            { value: "quan_3", text: "Quận 3" },
+            { value: "quan_5", text: "Quận 5" },
+            { value: "quan_7", text: "Quận 7" },
+            { value: "thu_duc", text: "Thành phố Thủ Đức" }
+        ]
+    };
+
+    // Khi chọn một thành phố
+    citySelect.addEventListener("change", function () {
+        const selectedCity = citySelect.value;
+        districtSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>'; // Reset danh sách
+
+        if (selectedCity && districtsData[selectedCity]) {
+            districtsData[selectedCity].forEach(district => {
+                const option = document.createElement("option");
+                option.value = district.value;
+                option.textContent = district.text;
+                districtSelect.appendChild(option);
+            });
+
+            resetButton.style.display = "block"; // Hiện nút "Bỏ Lọc"
+        } else {
+            resetButton.style.display = "none"; // Ẩn nút nếu không chọn gì
+        }
+    });
+
+    // Khi nhấn nút "Bỏ Lọc"
+    resetButton.addEventListener("click", function () {
+        citySelect.value = "";
+        districtSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>';
+        resetButton.style.display = "none";
+    });
+});
+    </script>
 
     <script src="js/script.js"></script>
 </body>

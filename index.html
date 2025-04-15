@@ -41,9 +41,9 @@
                         <li class="nav-item"><a href="tournament_monitor.html" class="nav-link">GIẢI ĐANG THEO DÕI</a></li>
                         <li class="nav-item"><a href="page_nguyen/html/doibong.html" class="nav-link">ĐỘI BÓNG</a></li>
                         <li class="nav-item"><a href="catch_team.html" class="nav-link">BẮT ĐỐI</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">HƯỚNG DẪN</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">CUỘC THI</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link">TIN TỨC</a></li>
+                        <li class="nav-item"><a href="page_nguyen/html/huongdantao.html" class="nav-link">HƯỚNG DẪN</a></li>
+                        <li class="nav-item"><a href="phan cuoc thi/competition.html" class="nav-link">CUỘC THI</a></li>
+                        <li class="nav-item"><a href="https://www.24h.com.vn/the-thao-c101.html" class="nav-link">TIN TỨC</a></li>
                       </ul>
                     </div>
                   </div>
@@ -421,10 +421,15 @@
         <div class="footer-container">
             <div class="footer-left">
                 <p><i class="fa-solid fa-copyright"></i> Bản quyền thuộc Eternal Phoenix</p>
-                <p>Ngo Huu Nghia</p>
+                <p><i class="fas fa-futbol"></i>
+                    <span>SINH RA ĐỂ CHƠI,</span>
+                    <i class="fas fa-dumbbell"></i>
+                    <span>TẬP LUYỆN ĐỂ CHIẾN THẮNG</span>
+                    <i class="fas fa-trophy"></i>
+                </p>
                 <p><i class="fa-solid fa-file-export"></i>Chỉ được phát hành lại nội dung khi có sự đồng ý của Eternal Phoenix</p>
                 <div class="footer-apps">
-                    <a href=""><img src="images/logo.png" alt="IT League"></a>
+                    <a href="index.html"><img src="images/logo.png" alt="IT League"></a>
                     <a href=""><img src="images/googleplay.png" alt="Google Play"></a>
                     <a href=""><img src="images/appstore.png" alt="App Store"></a>
                 </div>
@@ -446,7 +451,7 @@
 <div class="back-top" style="display: block;">
     <i class="fa-solid fa-circle-up"></i>
 </div>
-<script src="js/script.js"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         console.log("DOM đã sẵn sàng, script bắt đầu chạy!");
@@ -472,7 +477,56 @@
         }
     });
 </script>
-
+<script src="js/script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('menu-toggle');
+        const mainMenu = document.getElementById('main-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const authToggle = document.getElementById('auth-toggle');
+        const authDropdown = document.getElementById('auth-dropdown');
+      
+        // 👉 Toggle menu trái
+        menuToggle.addEventListener('click', () => {
+          mainMenu.classList.add('active');
+          document.body.classList.add('menu-overlay-active');
+        });
+      
+        closeMenu.addEventListener('click', () => {
+          mainMenu.classList.remove('active');
+          document.body.classList.remove('menu-overlay-active');
+        });
+      
+        // 👉 Bấm ra ngoài để đóng menu trái
+        document.addEventListener('click', function (e) {
+          if (
+            mainMenu.classList.contains('active') &&
+            !mainMenu.contains(e.target) &&
+            !menuToggle.contains(e.target)
+          ) {
+            mainMenu.classList.remove('active');
+            document.body.classList.remove('menu-overlay-active');
+          }
+        });
+      
+        // 👉 Toggle auth dropdown bên phải
+        authToggle.addEventListener('click', () => {
+          authDropdown.classList.toggle('active');
+        });
+      
+        // 👉 Bấm ra ngoài để đóng auth menu
+        document.addEventListener('click', (e) => {
+          if (
+            !authToggle.contains(e.target) &&
+            !authDropdown.contains(e.target)
+          ) {
+            authDropdown.classList.remove('active');
+          }
+        });
+      });
+      
+    
+</script>
 
 
 
