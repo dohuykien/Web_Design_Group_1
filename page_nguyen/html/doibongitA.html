@@ -42,11 +42,11 @@
                         <div class="main-nav-container">
                             <nav class="main-nav">
                                 <ul>
-                                    <li class="nav-item"><a href="/clubs/fc-thieu-hoa-64465">Trang chủ</a></li>
-                                    <li class="nav-item"><a href="/clubs/fixtures/fc-thieu-hoa-64465">Lịch thi đấu</a></li>
-                                    <li class="nav-item"><a href="/clubs/results/fc-thieu-hoa-64465">Kết quả</a></li>
-                                    <li class="nav-item"><a href="/clubs/player/fc-thieu-hoa-64465">Thành viên</a></li>
-                                    <li class="nav-item buy-ticket"><a href="/acount/log-in.html">Gia nhập đội</a></li>
+                                    <li class="nav-item"><a href="/index.html">Trang chủ</a></li>
+                                    <li class="nav-item"><a href="/index.html">Lịch thi đấu</a></li>
+                                    <li class="nav-item"><a href="/index.html">Kết quả</a></li>
+                                    <li class="nav-item"><a href="/index.html">Thành viên</a></li>
+                                    <li class="nav-item buy-ticket"><a href="/index.html">Gia nhập đội</a></li>
                                 </ul>
                             </nav>
                             <button type="button" class="mobile-nav-toggle">
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <div class="join-team-btn">
-                        <a href="/acount/log-in.html" class="btn btn-primary">GIA NHẬP ĐỘI</a>
+                        <a class="btn btn-primary">GIA NHẬP ĐỘI</a>
                     </div>
                 </div>
             </section>
@@ -207,5 +207,16 @@
             <li class="list"><a href="/acount/log-in.html"><span class="text">Tài khoản</span></a></li>
         </ul>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const joinTeamButton = document.querySelector(".join-team-btn .btn-primary");
+    
+            if (joinTeamButton) {
+                joinTeamButton.addEventListener("click", function () {
+                    alert("Bạn đã gia nhập thành công đội bóng!");
+                });
+            }
+        });
+    </script>
 </body>
 </html>
