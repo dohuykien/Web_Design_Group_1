@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return; // Stop if placeholder is missing
              }
 
-            const response = await fetch('login_modal.html'); // Adjust path if needed
+            const response = await fetch('/login_modal.html'); // Adjust path if needed
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
