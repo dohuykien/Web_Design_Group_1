@@ -1,142 +1,191 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thông số trận đấu</title>
-  <link rel="icon" type="logo.png" href="../images/logo.png" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
-    rel="stylesheet"
-  />
-  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-  />
-  <link rel="stylesheet" href="/user/css/sidebar.css" />
-  <link rel="stylesheet" href="/user/css/userheader.css" />
-  <link rel="stylesheet" href="/user/css/userfooter.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông số trận đấu</title>
+    <link rel="icon" type="logo.png" href="../images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/userheader.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/userfooter.css" />
 
-  <link rel="stylesheet" href="/user/team/teamManagement/css/managementNav.css" />
+    <link
+      rel="stylesheet"
+      href="/Web_Design_Group_1/user/team/teamManagement/css/managementNav.css"
+    />
 
-  <link rel="stylesheet" href="./css/fixturestats.css">
-</head>
-<body>
-  <header id="header-container" class="header">
-    <!-- Header sẽ được tải ở đây -->
-  </header>
+    <link rel="stylesheet" href="./css/fixturestats.css" />
+  </head>
+  <body>
+    <header id="header-container" class="header">
+      <!-- Header sẽ được tải ở đây -->
+    </header>
 
-  <div class="container">
-    <div id="sidebar-container">
-       <!-- Sidebar sẽ được tải ở đây -->
-    </div>
-    <div class="content-wrapper">
-      <section class="content">
-        <!-- Tiêu đề và các nút hành động -->
-        <div id="management-nav-placeholder">
-          <!-- Nav sẽ được tải ở đây -->
-        </div>
-        <div class="list-league">
-          <span class="list-league_left"><i class="fa-solid fa-list"></i>Thông số trận đấu</span>
-          <a href="#" id="back-to-fixtures" class="fixture-back"><i class="fas fa-calendar-alt"></i> Lịch thi đấu</a>
-        </div>
+    <div class="container">
+      <div id="sidebar-container">
+        <!-- Sidebar sẽ được tải ở đây -->
+      </div>
+      <div class="content-wrapper">
+        <section class="content">
+          <!-- Tiêu đề và các nút hành động -->
+          <div id="management-nav-placeholder">
+            <!-- Nav sẽ được tải ở đây -->
+          </div>
+          <div class="list-league">
+            <span class="list-league_left"
+              ><i class="fa-solid fa-list"></i>Thông số trận đấu</span
+            >
+            <a href="#" id="back-to-fixtures" class="fixture-back"
+              ><i class="fas fa-calendar-alt"></i> Lịch thi đấu</a
+            >
+          </div>
 
-        <!-- Hộp nội dung cho Thông số -->
-        <div class="content-box">
-          <!-- Tiêu đề tỷ số -->
-          <div id="score-header" class="score-header">
-            <div class="score-team">
-              <div class="team-info team-a">
-                <span id="teamAName" class="team-name">Đội A</span>
-                <img id="teamALogo" src="https://via.placeholder.com/50/cccccc/FFFFFF?text=A" alt="Team A Logo" class="team-logo">
-                <input type="number" id="scoreA" class="score-input" min="0" value="0">
+          <!-- Hộp nội dung cho Thông số -->
+          <div class="content-box">
+            <!-- Tiêu đề tỷ số -->
+            <div id="score-header" class="score-header">
+              <div class="score-team">
+                <div class="team-info team-a">
+                  <span id="teamAName" class="team-name">Đội A</span>
+                  <img
+                    id="teamALogo"
+                    src="https://via.placeholder.com/50/cccccc/FFFFFF?text=A"
+                    alt="Team A Logo"
+                    class="team-logo"
+                  />
+                  <input
+                    type="number"
+                    id="scoreA"
+                    class="score-input"
+                    min="0"
+                    value="0"
+                  />
+                </div>
+
+                <div class="score-vs">
+                  <span style="font-size: 18px; color: #555">vs</span>
+                </div>
+
+                <div class="team-info team-b">
+                  <input
+                    type="number"
+                    id="scoreB"
+                    class="score-input"
+                    min="0"
+                    value="0"
+                  />
+                  <img
+                    id="teamBLogo"
+                    src="https://via.placeholder.com/50/cccccc/FFFFFF?text=B"
+                    alt="Team B Logo"
+                    class="team-logo"
+                  />
+                  <span id="teamBName" class="team-name">Đội B</span>
+                </div>
               </div>
 
-              <div class="score-vs"><span style="font-size: 18px; color: #555;">vs</span></div>
-
-              <div class="team-info team-b">
-                <input type="number" id="scoreB" class="score-input" min="0" value="0">
-                <img id="teamBLogo" src="https://via.placeholder.com/50/cccccc/FFFFFF?text=B" alt="Team B Logo" class="team-logo">
-                <span id="teamBName" class="team-name">Đội B</span>
+              <div class="penalty-info">
+                <input
+                  type="number"
+                  id="penaltyA"
+                  class="penalty-score"
+                  min="0"
+                />
+                <span class="penalty-label">Penalty</span>
+                <input
+                  type="number"
+                  id="penaltyB"
+                  class="penalty-score"
+                  min="0"
+                />
               </div>
             </div>
 
-            <div class="penalty-info">
-               <input type="number" id="penaltyA" class="penalty-score" min="0">
-               <span class="penalty-label">Penalty</span>
-               <input type="number" id="penaltyB" class="penalty-score" min="0">
+            <!-- Khu vực nhập thông số -->
+            <div id="stats-input-area" class="stats-input-area">
+              <!-- Cột Đội A -->
+              <div class="team-stats-column" id="teamAStatsColumn">
+                <h4 id="teamAStatsHeader">Thống kê Đội A</h4>
+                <div id="teamAScoresContainer">
+                  <!-- Các hàng tỷ số sẽ được thêm ở đây -->
+                </div>
+                <div class="add-row-container">
+                  <button class="add-row-btn" data-team="A">
+                    <i class="fas fa-plus"></i> Thêm
+                  </button>
+                </div>
+              </div>
+
+              <!-- Cột Đội B -->
+              <div class="team-stats-column" id="teamBStatsColumn">
+                <h4 id="teamBStatsHeader">Thống kê Đội B</h4>
+                <div id="teamBScoresContainer">
+                  <!-- Các hàng tỷ số sẽ được thêm ở đây -->
+                </div>
+                <div class="add-row-container">
+                  <button class="add-row-btn" data-team="B">
+                    <i class="fas fa-plus"></i> Thêm
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Nút lưu -->
+            <div class="save-button-container">
+              <button id="saveStatsBtn" class="btn-save">
+                <i class="fas fa-save"></i> Lưu thay đổi
+              </button>
             </div>
           </div>
 
-          <!-- Khu vực nhập thông số -->
-          <div id="stats-input-area" class="stats-input-area">
-            <!-- Cột Đội A -->
-            <div class="team-stats-column" id="teamAStatsColumn">
-              <h4 id="teamAStatsHeader">Thống kê Đội A</h4>
-              <div id="teamAScoresContainer">
-                <!-- Các hàng tỷ số sẽ được thêm ở đây -->
-              </div>
-              <div class="add-row-container">
-                <button class="add-row-btn" data-team="A"><i class="fas fa-plus"></i> Thêm</button>
-              </div>
-            </div>
-
-            <!-- Cột Đội B -->
-            <div class="team-stats-column" id="teamBStatsColumn">
-               <h4 id="teamBStatsHeader">Thống kê Đội B</h4>
-               <div id="teamBScoresContainer">
-                 <!-- Các hàng tỷ số sẽ được thêm ở đây -->
-              </div>
-               <div class="add-row-container">
-                 <button class="add-row-btn" data-team="B"><i class="fas fa-plus"></i> Thêm</button>
-               </div>
-            </div>
-          </div>
-
-          <!-- Nút lưu -->
-          <div class="save-button-container">
-            <button id="saveStatsBtn" class="btn-save"><i class="fas fa-save"></i> Lưu thay đổi</button>
-          </div>
-        </div>
-
-         <!-- Template cho Hàng Thống kê (Ẩn) -->
-         <template id="stat-row-template">
-           <div class="stat-row">
-             <select name="scorer" required>
-               <option value="" disabled selected>Ghi Bàn</option>
-               <!-- Tùy chọn cầu thủ được thêm bởi JS -->
-             </select>
-             <select name="assist">
-               <option value="" selected>Kiến Tạo</option>
+          <!-- Template cho Hàng Thống kê (Ẩn) -->
+          <template id="stat-row-template">
+            <div class="stat-row">
+              <select name="scorer" required>
+                <option value="" disabled selected>Ghi Bàn</option>
                 <!-- Tùy chọn cầu thủ được thêm bởi JS -->
-             </select>
-             <input type="text" name="time" placeholder="TG" size="4">
-             <select name="goalType" required>
-               <option value="Bàn thắng" selected>Loại bàn</option>
-               <option value="Penalty">Penalty</option>
-               <option value="Phản lưới">Phản lưới</option>
-               <!-- Thêm các loại khác nếu cần: Đá phạt, ... -->
-             </select>
-             <button class="remove-row-btn action-btn" title="Xóa dòng"><i class="fas fa-minus"></i></button>
-           </div>
-         </template>
+              </select>
+              <select name="assist">
+                <option value="" selected>Kiến Tạo</option>
+                <!-- Tùy chọn cầu thủ được thêm bởi JS -->
+              </select>
+              <input type="text" name="time" placeholder="TG" size="4" />
+              <select name="goalType" required>
+                <option value="Bàn thắng" selected>Loại bàn</option>
+                <option value="Penalty">Penalty</option>
+                <option value="Phản lưới">Phản lưới</option>
+                <!-- Thêm các loại khác nếu cần: Đá phạt, ... -->
+              </select>
+              <button class="remove-row-btn action-btn" title="Xóa dòng">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+          </template>
+        </section>
 
-
-      </section>
-
-      <footer id="footer" class="footer">
-        <!-- Footer sẽ được tải ở đây -->
-      </footer>
+        <footer id="footer" class="footer">
+          <!-- Footer sẽ được tải ở đây -->
+        </footer>
+      </div>
     </div>
-  </div>
 
-  <script src="/user/js/sidebar.js"></script>
-  <script src="/user/js/userheader.js"></script>
-  <script src="/user/js/componentloader.js"></script>
-  <script src="/user/team/teamManagement/js/managementNav.js"></script>
+    <script src="/Web_Design_Group_1/user/js/sidebar.js"></script>
+    <script src="/Web_Design_Group_1/user/js/userheader.js"></script>
+    <script src="/Web_Design_Group_1/user/js/componentloader.js"></script>
+    <script src="/Web_Design_Group_1/user/team/teamManagement/js/managementNav.js"></script>
 
-  <script src="js/fixturestats.js"></script>
-
-</body>
+    <script src="js/fixturestats.js"></script>
+  </body>
 </html>

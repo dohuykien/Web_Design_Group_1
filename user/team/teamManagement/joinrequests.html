@@ -1,170 +1,241 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yêu cầu tham gia đội</title>
-  <link rel="icon" type="logo.png" href="../images/logo.png" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-  />
-  <link rel="stylesheet" href="/user/css/sidebar.css" />
-  <link rel="stylesheet" href="/user/css/userheader.css" />
-  <link rel="stylesheet" href="/user/css/userfooter.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yêu cầu tham gia đội</title>
+    <link rel="icon" type="logo.png" href="../images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/userheader.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/userfooter.css" />
 
-  <link rel="stylesheet" href="/user/team/teamManagement/css/managementNav.css" />
+    <link
+      rel="stylesheet"
+      href="/Web_Design_Group_1/user/team/teamManagement/css/managementNav.css"
+    />
 
-  <link rel="stylesheet" href="./css/joinrequests.css" />
-</head>
-<body>
-  <header id="header-container" class="header">
-    <!-- Header sẽ được tải ở đây -->
-  </header>
+    <link rel="stylesheet" href="./css/joinrequests.css" />
+  </head>
+  <body>
+    <header id="header-container" class="header">
+      <!-- Header sẽ được tải ở đây -->
+    </header>
 
-
-  <div class="container">
-    <div id="sidebar-container">
-       <!-- Sidebar sẽ được tải ở đây -->
-    </div>
-    <div class="content-wrapper">
-      <section class="content">
-        <!-- Tiêu đề và các nút hành động -->
-        <div id="management-nav-placeholder">
-          <!-- Nav sẽ được tải ở đây -->
-        </div>
-        <div class="list-league">
-          <span class="list-league_left"><i class="fa-solid fa-list"></i>Yêu cầu tham gia đội</span>
-        </div>
-
-
-        <div class="content-box"> <!-- Vùng chứa hiện có -->
-          <div class="table-responsive">
-            <table id="joinRequestTable" class="data-table">
-              <thead>
-                <tr>
-                  <th>STT</th>
-                  <th>Người gửi</th>
-                  <th>Ngày gửi</th>
-                  <th>Trạng thái</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody id="joinRequestTableBody">
-                <!-- Các hàng người dùng sẽ được chèn vào đây bởi JavaScript -->
-              </tbody>
-            </table>
+    <div class="container">
+      <div id="sidebar-container">
+        <!-- Sidebar sẽ được tải ở đây -->
+      </div>
+      <div class="content-wrapper">
+        <section class="content">
+          <!-- Tiêu đề và các nút hành động -->
+          <div id="management-nav-placeholder">
+            <!-- Nav sẽ được tải ở đây -->
           </div>
-        </div>
+          <div class="list-league">
+            <span class="list-league_left"
+              ><i class="fa-solid fa-list"></i>Yêu cầu tham gia đội</span
+            >
+          </div>
 
-      </section>
-
-      <footer id="footer" class="footer">
-
-      </footer>
-
-    </div>
-  </div>
-  <!-- Modal Chi tiết Thành viên -->
-  <div id="memberDetailsModal" class="modal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Thông tin thành viên</h5>
-          <button type="button" class="close-button" aria-label="Close" onclick="closeModal()">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form id="memberDetailsForm">
-             <input type="hidden" id="modal-request-id"> <!-- Lưu trữ ID yêu cầu -->
-             <input type="hidden" id="modal-user-id">   <!-- Lưu trữ ID người dùng -->
-             <input type="hidden" id="modal-team-id">   <!-- Lưu trữ ID đội -->
-
-            <div class="form-grid">
-              <div class="form-group">
-                <label for="modal-name">Tên thành viên</label>
-                <input type="text" class="form-control" id="modal-name" readonly>
-              </div>
-               <div class="form-group">
-                <label for="modal-jerseyNumber">Số áo</label>
-                <input type="number" class="form-control" id="modal-jerseyNumber" readonly>
-                 <!-- Lưu ý: Số áo có thể không có trong yêu cầu ban đầu -->
-              </div>
-               <div class="form-group">
-                <label for="modal-role">Chức vụ</label>
-                <select class="form-select" id="modal-role" disabled>
-                  <option value="">Chọn chức vụ</option>
-                  <option value="Cầu thủ">Cầu thủ</option>
-                  <option value="Huấn luyện viên">Huấn luyện viên</option>
-                  <option value="Quản lý">Quản lý</option>
-                  <!-- Thêm các vai trò khác nếu cần -->
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="modal-positionField">Vị trí</label>
-                <select class="form-select" id="modal-positionField" disabled>
-                   <option value="">Chọn vị trí</option>
-                   <option value="Thủ môn">Thủ môn (GK)</option>
-                   <option value="Hậu vệ">Hậu vệ (DF)</option>
-                   <option value="Tiền vệ">Tiền vệ (MF)</option>
-                   <option value="Tiền đạo">Tiền đạo (FW)</option>
-                   <!-- Thêm các vị trí khác nếu cần -->
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="modal-dob">Ngày sinh</label>
-                <input type="text" class="form-control" id="modal-dob" readonly>
-              </div>
-              <div class="form-group">
-                <label for="modal-phone">Điện thoại</label>
-                <input type="tel" class="form-control" id="modal-phone" readonly>
-              </div>
-               <div class="form-group">
-                <label for="modal-address">Địa chỉ</label>
-                <input type="text" class="form-control" id="modal-address" readonly>
-              </div>
-               <div class="form-group">
-                <label for="modal-facebook">Facebook</label>
-                <input type="text" class="form-control" id="modal-facebook" readonly>
-              </div>
-              <div class="form-group" style="grid-column: 1 / -1;"> <!-- Bao gồm cả hai cột -->
-                <label for="modal-email">Email</label>
-                <input type="email" class="form-control" id="modal-email" readonly>
-              </div>
-
-              <!-- Hiển thị Ảnh đại diện -->
-               <div class="form-group avatar-upload-group">
-                <label>Ảnh</label>
-                <img id="modal-avatar-img" src="images/placeholder-avatar.png" alt="Avatar" class="avatar-preview">
-              </div>
+          <div class="content-box">
+            <!-- Vùng chứa hiện có -->
+            <div class="table-responsive">
+              <table id="joinRequestTable" class="data-table">
+                <thead>
+                  <tr>
+                    <th>STT</th>
+                    <th>Người gửi</th>
+                    <th>Ngày gửi</th>
+                    <th>Trạng thái</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="joinRequestTableBody">
+                  <!-- Các hàng người dùng sẽ được chèn vào đây bởi JavaScript -->
+                </tbody>
+              </table>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="modalCloseButton" onclick="closeModal()">Đóng</button>
-          <!-- Thêm Nút Từ chối -->
-          <div>
-            <button type="button" class="btn btn-danger" id="modalRejectButton" onclick="rejectMember()" style="display: none;">Từ chối</button>
-            <button type="button" class="btn btn-success" id="modalAcceptButton" onclick="acceptMember()" style="display: none;">Lưu</button> <!-- Giữ 'Lưu' hoặc đổi thành 'Duyệt' -->
+          </div>
+        </section>
+
+        <footer id="footer" class="footer"></footer>
+      </div>
+    </div>
+    <!-- Modal Chi tiết Thành viên -->
+    <div id="memberDetailsModal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Thông tin thành viên</h5>
+            <button
+              type="button"
+              class="close-button"
+              aria-label="Close"
+              onclick="closeModal()"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="memberDetailsForm">
+              <input type="hidden" id="modal-request-id" />
+              <!-- Lưu trữ ID yêu cầu -->
+              <input type="hidden" id="modal-user-id" />
+              <!-- Lưu trữ ID người dùng -->
+              <input type="hidden" id="modal-team-id" />
+              <!-- Lưu trữ ID đội -->
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="modal-name">Tên thành viên</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="modal-name"
+                    readonly
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="modal-jerseyNumber">Số áo</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="modal-jerseyNumber"
+                    readonly
+                  />
+                  <!-- Lưu ý: Số áo có thể không có trong yêu cầu ban đầu -->
+                </div>
+                <div class="form-group">
+                  <label for="modal-role">Chức vụ</label>
+                  <select class="form-select" id="modal-role" disabled>
+                    <option value="">Chọn chức vụ</option>
+                    <option value="Cầu thủ">Cầu thủ</option>
+                    <option value="Huấn luyện viên">Huấn luyện viên</option>
+                    <option value="Quản lý">Quản lý</option>
+                    <!-- Thêm các vai trò khác nếu cần -->
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="modal-positionField">Vị trí</label>
+                  <select class="form-select" id="modal-positionField" disabled>
+                    <option value="">Chọn vị trí</option>
+                    <option value="Thủ môn">Thủ môn (GK)</option>
+                    <option value="Hậu vệ">Hậu vệ (DF)</option>
+                    <option value="Tiền vệ">Tiền vệ (MF)</option>
+                    <option value="Tiền đạo">Tiền đạo (FW)</option>
+                    <!-- Thêm các vị trí khác nếu cần -->
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="modal-dob">Ngày sinh</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="modal-dob"
+                    readonly
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="modal-phone">Điện thoại</label>
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="modal-phone"
+                    readonly
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="modal-address">Địa chỉ</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="modal-address"
+                    readonly
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="modal-facebook">Facebook</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="modal-facebook"
+                    readonly
+                  />
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1">
+                  <!-- Bao gồm cả hai cột -->
+                  <label for="modal-email">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="modal-email"
+                    readonly
+                  />
+                </div>
+
+                <!-- Hiển thị Ảnh đại diện -->
+                <div class="form-group avatar-upload-group">
+                  <label>Ảnh</label>
+                  <img
+                    id="modal-avatar-img"
+                    src="images/placeholder-avatar.png"
+                    alt="Avatar"
+                    class="avatar-preview"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              id="modalCloseButton"
+              onclick="closeModal()"
+            >
+              Đóng
+            </button>
+            <!-- Thêm Nút Từ chối -->
+            <div>
+              <button
+                type="button"
+                class="btn btn-danger"
+                id="modalRejectButton"
+                onclick="rejectMember()"
+                style="display: none"
+              >
+                Từ chối
+              </button>
+              <button
+                type="button"
+                class="btn btn-success"
+                id="modalAcceptButton"
+                onclick="acceptMember()"
+                style="display: none"
+              >
+                Lưu
+              </button>
+              <!-- Giữ 'Lưu' hoặc đổi thành 'Duyệt' -->
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="/user/js/sidebar.js"></script>
-  <script src="/user/js/userheader.js"></script>
-  <script src="/user/js/componentloader.js"></script>
+    <script src="/Web_Design_Group_1/user/js/sidebar.js"></script>
+    <script src="/Web_Design_Group_1/user/js/userheader.js"></script>
+    <script src="/Web_Design_Group_1/user/js/componentloader.js"></script>
 
-  <script src="js/managementNav.js"></script> 
+    <script src="js/managementNav.js"></script>
 
-  <script src="js/joinrequests.js"></script>
-
-
-</body>
+    <script src="js/joinrequests.js"></script>
+  </body>
 </html>

@@ -1,199 +1,260 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Danh sách thành viên</title>
-  <link rel="icon" type="logo.png" href="../images/logo.png" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-  />
-  <link rel="stylesheet" href="/user/css/sidebar.css" />
-  <link rel="stylesheet" href="/user/css/userheader.css" />
-  <link rel="stylesheet" href="/user/css/userfooter.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh sách thành viên</title>
+    <link rel="icon" type="logo.png" href="../images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/userheader.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/userfooter.css" />
 
-  <link rel="stylesheet" href="/user/team/teamManagement/css/managementNav.css" />
+    <link
+      rel="stylesheet"
+      href="/Web_Design_Group_1/user/team/teamManagement/css/managementNav.css"
+    />
 
-  <link rel="stylesheet" href="./css/members.css" />
-</head>
-<body>
-  <header id="header-container" class="header">
-    <!-- Header sẽ được tải ở đây -->
-  </header>
+    <link rel="stylesheet" href="./css/members.css" />
+  </head>
+  <body>
+    <header id="header-container" class="header">
+      <!-- Header sẽ được tải ở đây -->
+    </header>
 
-
-  <div class="container">
-    <div id="sidebar-container">
-       <!-- Sidebar sẽ được tải ở đây -->
-    </div>
-    <div class="content-wrapper">
-      <section class="content">
-        <!-- Tiêu đề và các nút hành động -->
-        <div id="management-nav-placeholder">
-          <!-- Nav sẽ được tải ở đây -->
-        </div>
-        <div class="list-league">
-          <span class="list-league_left"><i class="fa-solid fa-list"></i>Danh sách thành viên </span>
-        </div>
-        <div class = "content-box">
-          <div class="add-member-card" id="addMemberCardTrigger">
-            <div class="placeholder-icon">
-              <i class="fas fa-user-plus"></i>
-            </div>
-            <button id="addMemberButton">
-               <i class="fas fa-plus"></i> Thêm thành viên
-            </button>
+    <div class="container">
+      <div id="sidebar-container">
+        <!-- Sidebar sẽ được tải ở đây -->
+      </div>
+      <div class="content-wrapper">
+        <section class="content">
+          <!-- Tiêu đề và các nút hành động -->
+          <div id="management-nav-placeholder">
+            <!-- Nav sẽ được tải ở đây -->
           </div>
-          <!-- Các thẻ thành viên sẽ được thêm động vào đây -->
-
-          <!-- Modal -->
-          <div id="addMemberModal" class="modal">
-            <!-- Nội dung modal -->
-            <div class="modal-content">
-              <div class="modal-header">
-                <h2 id="modalTitle">Thông tin thành viên</h2>
-                <span class="close-button" id="closeModalButton">×</span>
+          <div class="list-league">
+            <span class="list-league_left"
+              ><i class="fa-solid fa-list"></i>Danh sách thành viên
+            </span>
+          </div>
+          <div class="content-box">
+            <div class="add-member-card" id="addMemberCardTrigger">
+              <div class="placeholder-icon">
+                <i class="fas fa-user-plus"></i>
               </div>
-              <div class="modal-body">
-                <form id="addMemberForm">
-                <!-- Input ẩn để chỉnh sửa -->
-                <input type="hidden" id="memberId" name="memberId">
+              <button id="addMemberButton">
+                <i class="fas fa-plus"></i> Thêm thành viên
+              </button>
+            </div>
+            <!-- Các thẻ thành viên sẽ được thêm động vào đây -->
 
-                <h3>THÔNG TIN CÁ NHÂN</h3>
-                <div class="form-grid">
-                  <div class="form-group" style="position: relative;">
-                    <label for="tenCauThu">Tên cầu thủ <span style="color:red">*</span></label>
-                    <input type="text" id="tenCauThu" name="name" required autocomplete="off">
-                    <!-- Input ẩn để lưu ID của người dùng đã chọn -->
-                    <input type="hidden" id="selectedUserId" name="selectedUserId">
-                    <!-- Vùng chứa kết quả tìm kiếm -->
-                    <div id="searchResultsContainer" class="search-results"></div>
-                  </div>
-                  <!-- Kết thúc nhóm form Tên cầu thủ đã sửa đổi -->
+            <!-- Modal -->
+            <div id="addMemberModal" class="modal">
+              <!-- Nội dung modal -->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h2 id="modalTitle">Thông tin thành viên</h2>
+                  <span class="close-button" id="closeModalButton">×</span>
+                </div>
+                <div class="modal-body">
+                  <form id="addMemberForm">
+                    <!-- Input ẩn để chỉnh sửa -->
+                    <input type="hidden" id="memberId" name="memberId" />
 
-                  <div class="form-group">
-                    <label for="chieuCao">Chiều cao</label>
-                    <div class="input-group">
-                      <input type="number" id="chieuCao" name="height" min="0" step="0.1">
-                      <div class="input-group-append">
-                        <span class="input-group-text">cm</span>
+                    <h3>THÔNG TIN CÁ NHÂN</h3>
+                    <div class="form-grid">
+                      <div class="form-group" style="position: relative">
+                        <label for="tenCauThu"
+                          >Tên cầu thủ <span style="color: red">*</span></label
+                        >
+                        <input
+                          type="text"
+                          id="tenCauThu"
+                          name="name"
+                          required
+                          autocomplete="off"
+                        />
+                        <!-- Input ẩn để lưu ID của người dùng đã chọn -->
+                        <input
+                          type="hidden"
+                          id="selectedUserId"
+                          name="selectedUserId"
+                        />
+                        <!-- Vùng chứa kết quả tìm kiếm -->
+                        <div
+                          id="searchResultsContainer"
+                          class="search-results"
+                        ></div>
+                      </div>
+                      <!-- Kết thúc nhóm form Tên cầu thủ đã sửa đổi -->
+
+                      <div class="form-group">
+                        <label for="chieuCao">Chiều cao</label>
+                        <div class="input-group">
+                          <input
+                            type="number"
+                            id="chieuCao"
+                            name="height"
+                            min="0"
+                            step="0.1"
+                          />
+                          <div class="input-group-append">
+                            <span class="input-group-text">cm</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="sizeAo">Size Áo</label>
+                        <input type="text" id="sizeAo" name="shirtSize" />
+                      </div>
+                      <div class="form-group">
+                        <label for="soAo">Số áo</label>
+                        <input
+                          type="number"
+                          id="soAo"
+                          name="jerseyNumber"
+                          min="0"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="chucVu">Chức vụ</label>
+                        <select id="chucVu" name="positionRole">
+                          <option value="Cầu thủ">Cầu thủ</option>
+                          <option value="Huấn luyện viên">
+                            Huấn luyện viên
+                          </option>
+                          <option value="Quản lý">Quản lý</option>
+                          <option value="Trợ lý">Trợ lý</option>
+                          <option value="Khác">Khác</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="canNang">Cân nặng</label>
+                        <div class="input-group">
+                          <input
+                            type="number"
+                            id="canNang"
+                            name="weight"
+                            min="0"
+                            step="0.1"
+                          />
+                          <div class="input-group-append">
+                            <span class="input-group-text">kg</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="viTri">Vị trí</label>
+                        <select id="viTri" name="positionField">
+                          <option value="">Chọn vị trí</option>
+                          <option value="Thủ môn">Thủ môn (GK)</option>
+                          <option value="Hậu vệ">Hậu vệ (DF)</option>
+                          <option value="Tiền vệ">Tiền vệ (MF)</option>
+                          <option value="Tiền đạo">Tiền đạo (ST/FW)</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="ngaySinh">Ngày sinh</label>
+                        <div class="date-input-group">
+                          <input type="date" id="ngaySinh" name="dob" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="ngoaiBinh">Ngoại binh</label>
+                        <button
+                          type="button"
+                          id="ngoaiBinhToggle"
+                          class="ngoai-binh-no"
+                        >
+                          Không
+                        </button>
+                        <input
+                          type="hidden"
+                          id="ngoaiBinh"
+                          name="isForeigner"
+                          value="false"
+                        />
+                        <!-- Input ẩn để lưu giá trị -->
+                      </div>
+
+                      <div class="form-group">
+                        <label for="anhDaiDien">Ảnh </label>
+                        <div class="file-input-group">
+                          <label for="anhDaiDienInput"
+                            ><i class="fas fa-upload"></i> Chọn ảnh...</label
+                          >
+                          <input
+                            type="file"
+                            id="anhDaiDienInput"
+                            name="avatarFile"
+                            accept="image/*"
+                          />
+                        </div>
+                        <img id="avatarPreview" src="#" alt="Xem trước" />
+                        <!-- Trường ẩn để lưu trữ URL dữ liệu Base64 -->
+                        <input type="hidden" id="avatarDataUrl" name="avatar" />
                       </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="sizeAo">Size Áo</label>
-                    <input type="text" id="sizeAo" name="shirtSize">
-                  </div>
-                  <div class="form-group">
-                    <label for="soAo">Số áo</label>
-                    <input type="number" id="soAo" name="jerseyNumber" min="0">
-                  </div>
-                  <div class="form-group">
-                    <label for="chucVu">Chức vụ</label>
-                    <select id="chucVu" name="positionRole">
-                      <option value="Cầu thủ">Cầu thủ</option>
-                      <option value="Huấn luyện viên">Huấn luyện viên</option>
-                      <option value="Quản lý">Quản lý</option>
-                      <option value="Trợ lý">Trợ lý</option>
-                      <option value="Khác">Khác</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="canNang">Cân nặng</label>
-                    <div class="input-group">
-                      <input type="number" id="canNang" name="weight" min="0" step="0.1">
-                      <div class="input-group-append">
-                        <span class="input-group-text">kg</span>
+
+                    <h3>THÔNG TIN LIÊN HỆ</h3>
+                    <div class="form-grid">
+                      <div class="form-group">
+                        <label for="diaChi">Địa chỉ</label>
+                        <input type="text" id="diaChi" name="address" />
+                      </div>
+                      <div class="form-group">
+                        <label for="dienThoai">Điện thoại</label>
+                        <input type="text" id="dienThoai" name="phone" />
+                      </div>
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" />
+                      </div>
+                      <div class="form-group">
+                        <label for="facebook">Facebook</label>
+                        <input type="text" id="facebook" name="facebook" />
                       </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="viTri">Vị trí</label>
-                    <select id="viTri" name="positionField">
-                      <option value="">Chọn vị trí</option>
-                      <option value="Thủ môn">Thủ môn (GK)</option>
-                      <option value="Hậu vệ">Hậu vệ (DF)</option>
-                      <option value="Tiền vệ">Tiền vệ (MF)</option>
-                      <option value="Tiền đạo">Tiền đạo (ST/FW)</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="ngaySinh">Ngày sinh</label>
-                    <div class="date-input-group">
-                      <input type="date" id="ngaySinh" name="dob" >
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="ngoaiBinh">Ngoại binh</label>
-                    <button type="button" id="ngoaiBinhToggle" class="ngoai-binh-no">Không</button>
-                    <input type="hidden" id="ngoaiBinh" name="isForeigner" value="false"> <!-- Input ẩn để lưu giá trị -->
-                  </div>
-
-                  <div class="form-group">
-                    <label for="anhDaiDien">Ảnh </label>
-                    <div class="file-input-group">
-                      <label for="anhDaiDienInput"><i class="fas fa-upload"></i> Chọn ảnh...</label>
-                      <input type="file" id="anhDaiDienInput" name="avatarFile" accept="image/*">
-                    </div>
-                    <img id="avatarPreview" src="#" alt="Xem trước">
-                    <!-- Trường ẩn để lưu trữ URL dữ liệu Base64 -->
-                    <input type="hidden" id="avatarDataUrl" name="avatar">
-                  </div>
+                  </form>
                 </div>
-
-                <h3>THÔNG TIN LIÊN HỆ</h3>
-                <div class="form-grid">
-                  <div class="form-group">
-                    <label for="diaChi">Địa chỉ</label>
-                    <input type="text" id="diaChi" name="address">
-                  </div>
-                  <div class="form-group">
-                    <label for="dienThoai">Điện thoại</label>
-                    <input type="text" id="dienThoai" name="phone">
-                  </div>
-                    <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email">
-                  </div>
-                    <div class="form-group">
-                    <label for="facebook">Facebook</label>
-                    <input type="text" id="facebook" name="facebook">
-                  </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn-cancel"
+                    id="cancelModalButton"
+                  >
+                    Hủy
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn-save"
+                    form="addMemberForm"
+                    id="saveMemberButton"
+                  >
+                    Lưu thành viên
+                  </button>
                 </div>
-
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn-cancel" id="cancelModalButton">Hủy</button>
-                <button type="submit" class="btn-save" form="addMemberForm" id="saveMemberButton">Lưu thành viên</button>
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-
-      </section>
-
-      <footer id="footer" class="footer">
-
-      </footer>
-
+        <footer id="footer" class="footer"></footer>
+      </div>
     </div>
-  </div>
-  <script src="/user/js/sidebar.js"></script>
-  <script src="/user/js/userheader.js"></script>
-  <script src="/user/js/componentloader.js"></script>
+    <script src="/Web_Design_Group_1/user/js/sidebar.js"></script>
+    <script src="/Web_Design_Group_1/user/js/userheader.js"></script>
+    <script src="/Web_Design_Group_1/user/js/componentloader.js"></script>
 
-  <script src="js/managementNav.js"></script>
+    <script src="js/managementNav.js"></script>
 
-  <script src="js/members.js"></script>
-
-
-
-</body>
+    <script src="js/members.js"></script>
+  </body>
 </html>

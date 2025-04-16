@@ -1,227 +1,232 @@
 // --- UI Update Functions ---
 function isLoggedIn() {
-    return !!localStorage.getItem('userProfile_id');
+  return !!localStorage.getItem("userProfile_id");
 }
-
 
 function clearUserProfile() {
-    localStorage.removeItem('userProfile_id');
-    localStorage.removeItem('userProfile_username');
-    localStorage.removeItem('userProfile_email');
-    localStorage.removeItem('userProfile_firstname');
-    localStorage.removeItem('userProfile_lastname');
-    localStorage.removeItem('userProfile_address');
-    localStorage.removeItem('userProfile_password');
-    localStorage.removeItem('userProfile_avatar');
-    localStorage.removeItem('userProfile_phone');
+  localStorage.removeItem("userProfile_id");
+  localStorage.removeItem("userProfile_username");
+  localStorage.removeItem("userProfile_email");
+  localStorage.removeItem("userProfile_firstname");
+  localStorage.removeItem("userProfile_lastname");
+  localStorage.removeItem("userProfile_address");
+  localStorage.removeItem("userProfile_password");
+  localStorage.removeItem("userProfile_avatar");
+  localStorage.removeItem("userProfile_phone");
 }
-
-
 
 // Update header based on login status
 function updateHeaderUI() {
-    const authDropdown = document.getElementById('auth-dropdown');
-    const authToggle = document.getElementById('auth-toggle'); // Get the main toggle button
-    if (!authDropdown || !authToggle) {
-        console.error("Auth dropdown or toggle button not found!");
-        return;
-    }
+  const authDropdown = document.getElementById("auth-dropdown");
+  const authToggle = document.getElementById("auth-toggle"); // Get the main toggle button
+  if (!authDropdown || !authToggle) {
+    console.error("Auth dropdown or toggle button not found!");
+    return;
+  }
 
-    const defaultAvatar = '/user/images/dhk.jpg'; // <<<--- PATH TO YOUR DEFAULT AVATAR
+  const defaultAvatar = "/Web_Design_Group_1/user/images/dhk.jpg"; // <<<--- PATH TO YOUR DEFAULT AVATAR
 
-    if (isLoggedIn()) {
-        const username = localStorage.getItem('userProfile_username') || 'User';
-        const userAvatar = localStorage.getItem('userProfile_avatar'); // Might be null or Base64 string
+  if (isLoggedIn()) {
+    const username = localStorage.getItem("userProfile_username") || "User";
+    const userAvatar = localStorage.getItem("userProfile_avatar"); // Might be null or Base64 string
 
-        // Determine avatar source: use stored Base64 or the default image path
-        const avatarSrc = (userAvatar && userAvatar.startsWith('data:image')) ? userAvatar : defaultAvatar;
+    // Determine avatar source: use stored Base64 or the default image path
+    const avatarSrc =
+      userAvatar && userAvatar.startsWith("data:image")
+        ? userAvatar
+        : defaultAvatar;
 
-        // Update the main toggle button text/icon if desired (optional)
-        // authToggle.innerHTML = '👤'; // Or potentially the first letter of username
+    // Update the main toggle button text/icon if desired (optional)
+    // authToggle.innerHTML = '👤'; // Or potentially the first letter of username
 
-        // Construct the logged-in state HTML
-        authDropdown.innerHTML = `
+    // Construct the logged-in state HTML
+    authDropdown.innerHTML = `
             <span class="user-info">
                 <img src="${avatarSrc}" alt="Avatar" class="user-avatar">
-                <a href="/user/Dashboard.html">${username}</a>
+                <a href="/Web_Design_Group_1/user/Dashboard.html">${username}</a>
             </span>
             <button id="logoutBtn">ĐĂNG XUẤT</button>
         `;
 
-        // Add event listener for the newly created logout button
-        const logoutBtn = document.getElementById('logoutBtn');
-        if (logoutBtn) {
-            logoutBtn.addEventListener('click', handleLogout);
-        } else {
-            console.error("Logout button could not be found after UI update.");
-        }
-
-        const logout2Btn = document.getElementById('logout2Btn');
-        if (logout2Btn) {
-            logout2Btn.addEventListener('click', handleLogout);
-        } else {
-            console.error("Logout button could not be found after UI update.");
-        }
+    // Add event listener for the newly created logout button
+    const logoutBtn = document.getElementById("logoutBtn");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", handleLogout);
     } else {
-        // Update the main toggle button back to default if you changed it
-        authToggle.innerHTML = '<div id="openModal">👤<div>'; // Or your default icon/text
+      console.error("Logout button could not be found after UI update.");
+    }
 
-        // Construct the logged-out state HTML
-        authDropdown.innerHTML = `
+    const logout2Btn = document.getElementById("logout2Btn");
+    if (logout2Btn) {
+      logout2Btn.addEventListener("click", handleLogout);
+    } else {
+      console.error("Logout button could not be found after UI update.");
+    }
+  } else {
+    // Update the main toggle button back to default if you changed it
+    authToggle.innerHTML = '<div id="openModal">👤<div>'; // Or your default icon/text
+
+    // Construct the logged-out state HTML
+    authDropdown.innerHTML = `
             <button id="openRegisterBtn">ĐĂNG KÝ</button> |
             <button id="openLoginBtn">ĐĂNG NHẬP</button>
         `;
 
-        // Re-attach listeners for modal trigger buttons
-        // Ensures they work after being removed and re-added by innerHTML
-        attachModalTriggers();
-    }
+    // Re-attach listeners for modal trigger buttons
+    // Ensures they work after being removed and re-added by innerHTML
+    attachModalTriggers();
+  }
 }
 
 function handleLogout() {
-    clearUserProfile();
-    console.log('User logged out.');
-    try { 
-        location.reload();
-    } catch (e) {
-        console.error("Error during location.reload:", e);
-    }
+  clearUserProfile();
+  console.log("User logged out.");
+  try {
+    location.reload();
+  } catch (e) {
+    console.error("Error during location.reload:", e);
+  }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
+  // --- localStorage Helper Functions ---
 
-    // --- localStorage Helper Functions ---
+  // Get users array from localStorage
+  function getUsers() {
+    const usersJson = localStorage.getItem("users");
+    try {
+      return usersJson ? JSON.parse(usersJson) : [];
+    } catch (e) {
+      console.error("Error parsing users JSON from localStorage", e);
+      return []; // Return empty array on error
+    }
+  }
 
-    // Get users array from localStorage
-    function getUsers() {
-        const usersJson = localStorage.getItem('users');
-        try {
-            return usersJson ? JSON.parse(usersJson) : [];
-        } catch (e) {
-            console.error("Error parsing users JSON from localStorage", e);
-            return []; // Return empty array on error
-        }
+  // Save users array to localStorage
+  function saveUsers(usersArray) {
+    localStorage.setItem("users", JSON.stringify(usersArray));
+  }
+
+  // Find user by email
+  function findUserByEmail(email, usersArray) {
+    return usersArray.find(
+      (user) => user.email.toLowerCase() === email.toLowerCase()
+    );
+  }
+
+  // Get the next available user ID
+  function getNextUserId(usersArray) {
+    if (!usersArray || usersArray.length === 0) {
+      return 1;
+    }
+    // Find the highest existing ID and add 1
+    const maxId = usersArray.reduce(
+      (max, user) => (user.id > max ? user.id : max),
+      0
+    );
+    return maxId + 1;
+  }
+
+  // Store logged-in user's profile info
+  function updateUserProfile(user) {
+    if (!user) return;
+    localStorage.setItem("userProfile_id", user.id);
+    localStorage.setItem("userProfile_username", user.username);
+    localStorage.setItem("userProfile_email", user.email);
+    localStorage.setItem("userProfile_firstname", user.firstname || ""); // Handle potential null
+    localStorage.setItem("userProfile_lastname", user.lastname || ""); // Handle potential null
+    localStorage.setItem("userProfile_address", user.address || ""); // Handle potential null
+    // WARNING: Storing password in localStorage is insecure! Only for demo purposes.
+    localStorage.setItem("userProfile_password", user.password);
+    localStorage.setItem("userProfile_avatar", user.avatar || ""); // Handle potential null
+    // Add phone if available, otherwise empty string
+    localStorage.setItem("userProfile_phone", user.phone || "");
+  }
+
+
+  // Helper to display messages within forms
+  function displayMessage(formId, message, isError = false) {
+    const messageElement = document.getElementById(`${formId}-message`);
+    if (messageElement) {
+      messageElement.textContent = message;
+      messageElement.className = `form-message ${
+        isError ? "error" : "success"
+      }`;
+      // Clear message after a few seconds
+      setTimeout(() => {
+        messageElement.textContent = "";
+        messageElement.className = "form-message";
+      }, 5000); // Clear after 5 seconds
+    }
+  }
+
+  // --- Event Handlers ---
+
+  // Handle user registration
+  function handleRegistration(event) {
+    event.preventDefault(); // Prevent default form submission
+    const nameInput = document.getElementById("signup-name");
+    const emailInput = document.getElementById("signup-email");
+    const passwordInput = document.getElementById("signup-password");
+    const loginModal = document.getElementById("loginout"); // Get modal element
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value; // Get password as is
+
+    // Basic validation
+    if (!name || !email || !password) {
+      displayMessage("signup", "Vui lòng điền đầy đủ thông tin.", true);
+      return;
+    }
+    // Very basic email format check (consider a more robust regex)
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      displayMessage("signup", "Định dạng email không hợp lệ.", true);
+      return;
     }
 
-    // Save users array to localStorage
-    function saveUsers(usersArray) {
-        localStorage.setItem('users', JSON.stringify(usersArray));
+    const users = getUsers();
+    const existingUser = findUserByEmail(email, users);
+
+    if (existingUser) {
+      displayMessage("signup", "Email này đã được đăng ký.", true);
+    } else {
+      const nextId = getNextUserId(users);
+      const newUser = {
+        id: nextId,
+        username: name, // Using the 'Name' field as username
+        email: email,
+        firstname: "", // Set empty initially
+        lastname: "", // Set empty initially
+        address: "", // Set empty initially
+        // !!! SECURITY WARNING: Storing plain text passwords is highly insecure!
+        // In a real application, ALWAYS hash passwords securely on the server-side.
+        password: password,
+        avatar: null, // Set to null or a default placeholder base64 string
+        phone: "", // Add phone field, empty initially
+      };
+
+      users.push(newUser);
+      saveUsers(users);
+      console.log("User registered:", newUser);
+      displayMessage("signup", "Đăng ký thành công! Đang đăng nhập...", false);
+
+      // Automatically log in the user
+      updateUserProfile(newUser);
+      updateHeaderUI();
+
+      // Close modal after a short delay
+      setTimeout(() => {
+        if (loginModal) loginModal.style.display = "none";
+        // Clear form fields after successful registration
+        nameInput.value = "";
+        emailInput.value = "";
+        passwordInput.value = "";
+        displayMessage("signup", ""); // Clear message area
+      }, 1500); // Wait 1.5 seconds
+      location.reload();
     }
-
-    // Find user by email
-    function findUserByEmail(email, usersArray) {
-        return usersArray.find(user => user.email.toLowerCase() === email.toLowerCase());
-    }
-
-    // Get the next available user ID
-    function getNextUserId(usersArray) {
-        if (!usersArray || usersArray.length === 0) {
-            return 1;
-        }
-        // Find the highest existing ID and add 1
-        const maxId = usersArray.reduce((max, user) => (user.id > max ? user.id : max), 0);
-        return maxId + 1;
-    }
-
-    // Store logged-in user's profile info
-    function updateUserProfile(user) {
-        if (!user) return;
-        localStorage.setItem('userProfile_id', user.id);
-        localStorage.setItem('userProfile_username', user.username);
-        localStorage.setItem('userProfile_email', user.email);
-        localStorage.setItem('userProfile_firstname', user.firstname || ''); // Handle potential null
-        localStorage.setItem('userProfile_lastname', user.lastname || '');   // Handle potential null
-        localStorage.setItem('userProfile_address', user.address || '');     // Handle potential null
-        // WARNING: Storing password in localStorage is insecure! Only for demo purposes.
-        localStorage.setItem('userProfile_password', user.password);
-        localStorage.setItem('userProfile_avatar', user.avatar || '');       // Handle potential null
-        // Add phone if available, otherwise empty string
-        localStorage.setItem('userProfile_phone', user.phone || '');
-    }
-
-
-     // Helper to display messages within forms
-     function displayMessage(formId, message, isError = false) {
-        const messageElement = document.getElementById(`${formId}-message`);
-        if (messageElement) {
-            messageElement.textContent = message;
-            messageElement.className = `form-message ${isError ? 'error' : 'success'}`;
-             // Clear message after a few seconds
-             setTimeout(() => {
-                 messageElement.textContent = '';
-                 messageElement.className = 'form-message';
-             }, 5000); // Clear after 5 seconds
-        }
-    }
-
-
-    // --- Event Handlers ---
-
-    // Handle user registration
-    function handleRegistration(event) {
-        event.preventDefault(); // Prevent default form submission
-        const nameInput = document.getElementById('signup-name');
-        const emailInput = document.getElementById('signup-email');
-        const passwordInput = document.getElementById('signup-password');
-        const loginModal = document.getElementById('loginout'); // Get modal element
-
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        const password = passwordInput.value; // Get password as is
-
-        // Basic validation
-        if (!name || !email || !password) {
-            displayMessage('signup', 'Vui lòng điền đầy đủ thông tin.', true);
-            return;
-        }
-        // Very basic email format check (consider a more robust regex)
-        if (!/\S+@\S+\.\S+/.test(email)) {
-             displayMessage('signup', 'Định dạng email không hợp lệ.', true);
-             return;
-        }
-
-        const users = getUsers();
-        const existingUser = findUserByEmail(email, users);
-
-        if (existingUser) {
-            displayMessage('signup', 'Email này đã được đăng ký.', true);
-        } else {
-            const nextId = getNextUserId(users);
-            const newUser = {
-                id: nextId,
-                username: name, // Using the 'Name' field as username
-                email: email,
-                firstname: '', // Set empty initially
-                lastname: '',  // Set empty initially
-                address: '',   // Set empty initially
-                // !!! SECURITY WARNING: Storing plain text passwords is highly insecure!
-                // In a real application, ALWAYS hash passwords securely on the server-side.
-                password: password,
-                avatar: null, // Set to null or a default placeholder base64 string
-                phone: ''      // Add phone field, empty initially
-            };
-
-            users.push(newUser);
-            saveUsers(users);
-            console.log('User registered:', newUser);
-            displayMessage('signup', 'Đăng ký thành công! Đang đăng nhập...', false);
-
-            // Automatically log in the user
-            updateUserProfile(newUser);
-            updateHeaderUI();
-
-            // Close modal after a short delay
-            setTimeout(() => {
-                if (loginModal) loginModal.style.display = 'none';
-                 // Clear form fields after successful registration
-                 nameInput.value = '';
-                 emailInput.value = '';
-                 passwordInput.value = '';
-                 displayMessage('signup', ''); // Clear message area
-            }, 1500); // Wait 1.5 seconds
-            location.reload();
-        }
-    }
+  }
 
     // Handle user login
     function handleLogin(event) {
@@ -230,8 +235,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const passwordInput = document.getElementById('signin-password');
         const loginModal = document.getElementById('loginout');
 
-        const email = emailInput.value.trim();
-        const password = passwordInput.value;
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
 
         if (!email || !password) {
              displayMessage('signin', 'Vui lòng nhập email và mật khẩu.', true);
@@ -379,25 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+  // --- Other existing page functionalities ---
+  // (Your existing code for menus, sliders, etc.)
+  // ...
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

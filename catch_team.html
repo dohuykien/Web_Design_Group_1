@@ -1,538 +1,745 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="logo.png" href="images/logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Raleway:wght@400;700&family=Lobster&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/style_catch_team.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="logo.png" href="images/logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Raleway:wght@400;700&family=Lobster&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style_catch_team.css" />
     <title>WEBSITE SOCCER</title>
-</head>
-<body>
-<!-- ------------------------------- HEADER ------------------------ -->
-<header class="header">
-    <div class="container-fluid">
+  </head>
+  <body>
+    <!-- ------------------------------- HEADER ------------------------ -->
+    <header class="header">
+      <div class="container-fluid">
         <div class="navbar">
-            <div class="navbar-top">
-                <button class="navbar-toggler" id="menu-toggle">☰</button>
-                <div class="logo">
-                    <a href="index.html"><img src="images/logo.png" alt="Logo"></a> 
-                </div>
-                <span class="developed-by">Hệ thống được phát triển bởi Eternal Phoenix</span>
-                <div class="auth-menu-wrapper">
-                    <div class="auth-toggler" id="auth-toggle">
-                        <a href="/user/Dashboard.html">👤</a>
-                        <button id="logout2Btn" style="background-color: transparent; border: none; font-size: 24px; margin-left: -20px;">🚪</button>
-                    </div>
-                    <div class="auth-dropdown" id="auth-dropdown">
-                      <button id="openRegisterBtn">ĐĂNG KÝ</button> | 
-                      <button id="openLoginBtn">ĐĂNG NHẬP</button>
-                    </div>
-                </div>
+          <div class="navbar-top">
+            <button class="navbar-toggler" id="menu-toggle">☰</button>
+            <div class="logo">
+              <a href="index.html"><img src="images/logo.png" alt="Logo" /></a>
             </div>
-            <div class="navbar-bottom" id="main-menu">
-                <button class="close-menu" id="close-menu">✖</button>
-                <div class="navbar-collapse">
-                  <ul class="navbar-nav">
-                    <li class="nav-item"><a href="index.html" class="nav-link">TRANG CHỦ</a></li>
-                    <li class="nav-item"><a href="tournament_progress.html" class="nav-link">GIẢI ĐANG DIỄN RA</a></li>
-                    <li class="nav-item"><a href="tournament_monitor.html" class="nav-link">GIẢI ĐANG THEO DÕI</a></li>
-                    <li class="nav-item"><a href="page_nguyen/html/trangdoibong.html" class="nav-link">ĐỘI BÓNG</a></li>
-                    <li class="nav-item"><a href="catch_team.html" class="nav-link">BẮT ĐỐI</a></li>
-                    <li class="nav-item"><a href="page_nguyen/html/huongdantao.html" class="nav-link">HƯỚNG DẪN</a></li>
-                    <li class="nav-item"><a href="phan cuoc thi/competition.html" class="nav-link">CUỘC THI</a></li>
-                    <li class="nav-item"><a href="https://www.24h.com.vn/the-thao-c101.html" class="nav-link">TIN TỨC</a></li>
-                  </ul>
-                </div>
+            <span class="developed-by"
+              >Hệ thống được phát triển bởi Eternal Phoenix</span
+            >
+            <div class="auth-menu-wrapper">
+              <div class="auth-toggler" id="auth-toggle">
+                <a href="/Web_Design_Group_1/user/Dashboard.html">👤</a>
+                <button
+                  id="logout2Btn"
+                  style="
+                    background-color: transparent;
+                    border: none;
+                    font-size: 24px;
+                    margin-left: -20px;
+                  "
+                >
+                  🚪
+                </button>
               </div>
-        </div>
-    </div>
-</header> 
-
-<!-- -------------------------------- BACKGROUND ----------------- -->
-    <section class="container-fluid">
-        <div class="banner">
-            <h1>Hệ Thống Quản Lý Giải Đấu Chuyên Nghiệp</h1>
-            <div class="search-bar">
-                <input type="text" placeholder="Tìm giải đấu của bạn">
-                <button><i class="fa fa-search"></i></button>
+              <div class="auth-dropdown" id="auth-dropdown">
+                <button id="openRegisterBtn">ĐĂNG KÝ</button> |
+                <button id="openLoginBtn">ĐĂNG NHẬP</button>
+              </div>
             </div>
+          </div>
+          <div class="navbar-bottom" id="main-menu">
+            <button class="close-menu" id="close-menu">✖</button>
+            <div class="navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a href="index.html" class="nav-link">TRANG CHỦ</a>
+                </li>
+                <li class="nav-item">
+                  <a href="tournament_progress.html" class="nav-link"
+                    >GIẢI ĐANG DIỄN RA</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="tournament_monitor.html" class="nav-link"
+                    >GIẢI ĐANG THEO DÕI</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="page_nguyen/html/doibong.html" class="nav-link"
+                    >ĐỘI BÓNG</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="catch_team.html" class="nav-link">BẮT ĐỐI</a>
+                </li>
+                <li class="nav-item">
+                  <a href="page_nguyen/html/huongdantao.html" class="nav-link"
+                    >HƯỚNG DẪN</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="phan cuoc thi/competition.html" class="nav-link"
+                    >CUỘC THI</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    href="https://www.24h.com.vn/the-thao-c101.html"
+                    class="nav-link"
+                    >TIN TỨC</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
+    </header>
+
+    <!-- -------------------------------- BACKGROUND ----------------- -->
+    <section class="container-fluid">
+      <div class="banner">
+        <h1>Hệ Thống Quản Lý Giải Đấu Chuyên Nghiệp</h1>
+        <div class="search-bar">
+          <input type="text" placeholder="Tìm giải đấu của bạn" />
+          <button><i class="fa fa-search"></i></button>
+        </div>
+      </div>
     </section>
 
-<!-- List Catch Match -->
-    <section class="container match-container" style="margin-top: 40px;">
-        <div class="row" style="margin-bottom: 20px;">
-            <div class="col-12">
-                <div class="form-inline row" style="margin: 10px 0;">
-                    <i style="font-size: 20px; margin-right: 15px; padding-top: 5px;" class="fa fa-filter" aria-hidden="true"></i>
-                    <span style="padding-top: 6px;padding-right: 20px;font-size: 16px;">Bộ lọc: </span>                  
-                    <div class="form-group" >
-                        <select style="width: 100%; height: 34px" data-param="province" class="select2 form-control province selectFillter" name="province" id="city">
-                            <option value=""> Tỉnh thành</option>
-                            <option value="hanoi">Thành phố Hà Nội</option>
-                            <option value="02">Tỉnh Hà Giang</option>
-                            <option value="04">Tỉnh Cao Bằng</option>
-                            <option value="06">Tỉnh Bắc Kạn</option>
-                            <option value="08">Tỉnh Tuyên Quang</option>
-                            <option value="10">Tỉnh Lào Cai</option>
-                            <option value="11">Tỉnh Điện Biên</option>
-                            <option value="12">Tỉnh Lai Châu</option>
-                            <option value="14">Tỉnh Sơn La</option>
-                            <option value="15">Tỉnh Yên Bái</option>
-                            <option value="17">Tỉnh Hoà Bình</option>
-                            <option value="19">Tỉnh Thái Nguyên</option>
-                            <option value="20">Tỉnh Lạng Sơn</option>
-                            <option value="22">Tỉnh Quảng Ninh</option>
-                            <option value="24">Tỉnh Bắc Giang</option>
-                            <option value="25">Tỉnh Phú Thọ</option>
-                            <option value="26">Tỉnh Vĩnh Phúc</option>
-                            <option value="27">Tỉnh Bắc Ninh</option>
-                            <option value="30">Tỉnh Hải Dương</option>
-                            <option value="31">Thành phố Hải Phòng</option>
-                            <option value="33">Tỉnh Hưng Yên</option>
-                            <option value="34">Tỉnh Thái Bình</option>
-                            <option value="35">Tỉnh Hà Nam</option>
-                            <option value="36">Tỉnh Nam Định</option>
-                            <option value="37">Tỉnh Ninh Bình</option>
-                            <option value="38">Tỉnh Thanh Hóa</option>
-                            <option value="40">Tỉnh Nghệ An</option>
-                            <option value="42">Tỉnh Hà Tĩnh</option>
-                            <option value="44">Tỉnh Quảng Bình</option>
-                            <option value="45">Tỉnh Quảng Trị</option>
-                            <option value="46">Tỉnh Thừa Thiên Huế</option>
-                            <option value="48">Thành phố Đà Nẵng</option>
-                            <option value="49">Tỉnh Quảng Nam</option>
-                            <option value="51">Tỉnh Quảng Ngãi</option>
-                            <option value="52">Tỉnh Bình Định</option>
-                            <option value="54">Tỉnh Phú Yên</option>
-                            <option value="56">Tỉnh Khánh Hòa</option>
-                            <option value="58">Tỉnh Ninh Thuận</option>
-                            <option value="60">Tỉnh Bình Thuận</option>
-                            <option value="62">Tỉnh Kon Tum</option>
-                            <option value="64">Tỉnh Gia Lai</option>
-                            <option value="66">Tỉnh Đắk Lắk</option>
-                            <option value="67">Tỉnh Đắk Nông</option>
-                            <option value="68">Tỉnh Lâm Đồng</option>
-                            <option value="70">Tỉnh Bình Phước</option>
-                            <option value="72">Tỉnh Tây Ninh</option>
-                            <option value="74">Tỉnh Bình Dương</option>
-                            <option value="75">Tỉnh Đồng Nai</option>
-                            <option value="77">Tỉnh Bà Rịa - Vũng Tàu</option>
-                            <option value="hcm">Thành phố Hồ Chí Minh</option>
-                            <option value="80">Tỉnh Long An</option>
-                            <option value="82">Tỉnh Tiền Giang</option>
-                            <option value="83">Tỉnh Bến Tre</option>
-                            <option value="84">Tỉnh Trà Vinh</option>
-                            <option value="86">Tỉnh Vĩnh Long</option>
-                            <option value="87">Tỉnh Đồng Tháp</option>
-                            <option value="89">Tỉnh An Giang</option>
-                            <option value="91">Tỉnh Kiên Giang</option>
-                            <option value="92">Thành phố Cần Thơ</option>
-                            <option value="93">Tỉnh Hậu Giang</option>
-                            <option value="94">Tỉnh Sóc Trăng</option>
-                            <option value="95">Tỉnh Bạc Liêu</option>
-                            <option value="96">Tỉnh Cà Mau</option>
-                        </select>   
-                    </div>                
-                    <div class="form-group">
-                        <select style="width: 100%; height: 34px" data-param="district" class="select2 form-control district selectFillter" name="district" id="district">
-                            <option value=""> Quận/Huyện</option>                       
-                        </select> 
-                    </div>
-                    <button class="btn" id="resetFilter" style="display: none;">&times; Bỏ Lọc
-                    </button> 
-                </div>
+    <!-- List Catch Match -->
+    <section class="container match-container" style="margin-top: 40px">
+      <div class="row" style="margin-bottom: 20px">
+        <div class="col-12">
+          <div class="form-inline row" style="margin: 10px 0">
+            <i
+              style="font-size: 20px; margin-right: 15px; padding-top: 5px"
+              class="fa fa-filter"
+              aria-hidden="true"
+            ></i>
+            <span style="padding-top: 6px; padding-right: 20px; font-size: 16px"
+              >Bộ lọc:
+            </span>
+            <div class="form-group">
+              <select
+                style="width: 100%; height: 34px"
+                data-param="province"
+                class="select2 form-control province selectFillter"
+                name="province"
+                id="city"
+              >
+                <option value="">Tỉnh thành</option>
+                <option value="hanoi">Thành phố Hà Nội</option>
+                <option value="02">Tỉnh Hà Giang</option>
+                <option value="04">Tỉnh Cao Bằng</option>
+                <option value="06">Tỉnh Bắc Kạn</option>
+                <option value="08">Tỉnh Tuyên Quang</option>
+                <option value="10">Tỉnh Lào Cai</option>
+                <option value="11">Tỉnh Điện Biên</option>
+                <option value="12">Tỉnh Lai Châu</option>
+                <option value="14">Tỉnh Sơn La</option>
+                <option value="15">Tỉnh Yên Bái</option>
+                <option value="17">Tỉnh Hoà Bình</option>
+                <option value="19">Tỉnh Thái Nguyên</option>
+                <option value="20">Tỉnh Lạng Sơn</option>
+                <option value="22">Tỉnh Quảng Ninh</option>
+                <option value="24">Tỉnh Bắc Giang</option>
+                <option value="25">Tỉnh Phú Thọ</option>
+                <option value="26">Tỉnh Vĩnh Phúc</option>
+                <option value="27">Tỉnh Bắc Ninh</option>
+                <option value="30">Tỉnh Hải Dương</option>
+                <option value="31">Thành phố Hải Phòng</option>
+                <option value="33">Tỉnh Hưng Yên</option>
+                <option value="34">Tỉnh Thái Bình</option>
+                <option value="35">Tỉnh Hà Nam</option>
+                <option value="36">Tỉnh Nam Định</option>
+                <option value="37">Tỉnh Ninh Bình</option>
+                <option value="38">Tỉnh Thanh Hóa</option>
+                <option value="40">Tỉnh Nghệ An</option>
+                <option value="42">Tỉnh Hà Tĩnh</option>
+                <option value="44">Tỉnh Quảng Bình</option>
+                <option value="45">Tỉnh Quảng Trị</option>
+                <option value="46">Tỉnh Thừa Thiên Huế</option>
+                <option value="48">Thành phố Đà Nẵng</option>
+                <option value="49">Tỉnh Quảng Nam</option>
+                <option value="51">Tỉnh Quảng Ngãi</option>
+                <option value="52">Tỉnh Bình Định</option>
+                <option value="54">Tỉnh Phú Yên</option>
+                <option value="56">Tỉnh Khánh Hòa</option>
+                <option value="58">Tỉnh Ninh Thuận</option>
+                <option value="60">Tỉnh Bình Thuận</option>
+                <option value="62">Tỉnh Kon Tum</option>
+                <option value="64">Tỉnh Gia Lai</option>
+                <option value="66">Tỉnh Đắk Lắk</option>
+                <option value="67">Tỉnh Đắk Nông</option>
+                <option value="68">Tỉnh Lâm Đồng</option>
+                <option value="70">Tỉnh Bình Phước</option>
+                <option value="72">Tỉnh Tây Ninh</option>
+                <option value="74">Tỉnh Bình Dương</option>
+                <option value="75">Tỉnh Đồng Nai</option>
+                <option value="77">Tỉnh Bà Rịa - Vũng Tàu</option>
+                <option value="hcm">Thành phố Hồ Chí Minh</option>
+                <option value="80">Tỉnh Long An</option>
+                <option value="82">Tỉnh Tiền Giang</option>
+                <option value="83">Tỉnh Bến Tre</option>
+                <option value="84">Tỉnh Trà Vinh</option>
+                <option value="86">Tỉnh Vĩnh Long</option>
+                <option value="87">Tỉnh Đồng Tháp</option>
+                <option value="89">Tỉnh An Giang</option>
+                <option value="91">Tỉnh Kiên Giang</option>
+                <option value="92">Thành phố Cần Thơ</option>
+                <option value="93">Tỉnh Hậu Giang</option>
+                <option value="94">Tỉnh Sóc Trăng</option>
+                <option value="95">Tỉnh Bạc Liêu</option>
+                <option value="96">Tỉnh Cà Mau</option>
+              </select>
             </div>
+            <div class="form-group">
+              <select
+                style="width: 100%; height: 34px"
+                data-param="district"
+                class="select2 form-control district selectFillter"
+                name="district"
+                id="district"
+              >
+                <option value="">Quận/Huyện</option>
+              </select>
+            </div>
+            <button class="btn" id="resetFilter" style="display: none">
+              &times; Bỏ Lọc
+            </button>
+          </div>
         </div>
-        <div class="row list-match ">
-            <div class="col-6 p-10" data-city="hanoi" data-district="tayho" data-img="images/fcnewway_team.jpg" data-team="FC NEWWAY" data-time="12-03-2025, 19:30" data-location="Sân Bóng Đông Đô, Tứ Liên, Tây Hồ, Hà Nội, Việt Nam" data-contact="Trần Dũng Tiến - 0967502525">
-                <div class="next-match-fixtures light" style="margin: 0 0 20px;">
-                    <ul class="match-teams-vs">
-                        <li class="team-logo">
-                            <img src="images/fcnewway_team.jpg" alt=""> 
-                            <strong style="font-size: 13px;">FC NEWWAY</strong> 
-                        </li>
-                        <li class="mvs">
-                            <p> 
-                            12-03-2025, 19:30                                       
-                            </p>
-                            <strong class="vs">VS</strong> 
-                        </li>
-                        <li class="team-logo">
-                            <p style="font-size: 30px; color: #ccc;">?</p>
-                            <strong style="font-size: 12px; color: #ccc;">Đang chờ đối</strong> 
-                        </li>
-                    </ul>
-                    <ul class="nmf-loc" style="display: flex;flex-direction: row; justify-content: space-between; align-items: center;">
-                        <li style="line-height: inherit;">
-                            <i style="font-size: 16px;" class="fa fa-location-arrow" aria-hidden="true"></i>
-                            Sân Bóng Đông Đô, Tứ Liên, Tây Hồ, Hà Nội, Việt Nam         </li>
-                        <li style="padding: 0px 10px; width: 111px; border-left: 1px solid #e1e1e1; text-align: center;" class="match-button">
-                            <a>Bắt đối</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>            
-            <div class="col-6 p-10" data-city="hanoi" data-district="hoankiem" data-team="NhatFC" data-time="28-02-2025, 08:44" data-location="Hà Nội, Việt Nam">
-                <div class="next-match-fixtures light" style="margin: 0 0 20px;">
-                    <ul class="match-teams-vs">
-                        <li class="team-logo">
-                            <img src="https://cdn.ketnoibongda.vn/media-c/50-50-100/upload/images/team/team-default.jpg" alt=""> 
-                            <strong style="font-size: 13px;">NhatFC</strong> 
-                        </li>
-                        <li class="mvs">
-                            <p> 
-                            28-02-2025, 08:44                                       
-                            </p>
-                            <strong class="vs">VS</strong> 
-                        </li>
-                        <li class="team-logo">
-                            <p style="font-size: 30px; color: #ccc;">?</p>
-                            <strong style="font-size: 12px; color: #ccc;">Đang chờ đối</strong> 
-                        </li>
-                    </ul>
-                    <ul class="nmf-loc" style="display: flex;flex-direction: row; justify-content: space-between; align-items: center;">
-                        <li style="line-height: inherit;">
-                            <i style="font-size: 16px;" class="fa fa-location-arrow" aria-hidden="true"></i>
-                            </li>
-                        <li style="padding: 0px 10px; width: 111px; border-left: 1px solid #e1e1e1; text-align: center;" class="match-button">
-                            <a>Bắt đối</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>            
-            <div class="col-6 p-10" data-city="hcm" data-district="quan1">
-                <div class="next-match-fixtures light" style="margin: 0 0 20px;">
-                    <ul class="match-teams-vs">
-                        <li class="team-logo">
-                                            <img src="https://cdn.ketnoibongda.vn/media-c/50-50-100/upload/images/team/img-0133-2024-12-29.jpeg" alt=""> 
-                                <strong style="font-size: 13px;">FC Vạn thiện </strong> 
-                                    </li>
-                        <li class="mvs">
-                            <p> 
-                            11-01-2025, 18:00                                       
-                            </p>
-                            <strong class="vs">VS</strong> 
-                        </li>
-                        <li class="team-logo">
-                                            <p style="font-size: 30px; color: #ccc;">?</p>
-                                <strong style="font-size: 12px; color: #ccc;">Đang chờ đối</strong> 
-                                    </li>
-                    </ul>
-                    <ul class="nmf-loc" style="display: flex;flex-direction: row; justify-content: space-between; align-items: center;">
-                        <li style="line-height: inherit;">
-                            <i style="font-size: 16px;" class="fa fa-location-arrow" aria-hidden="true"></i>
-                            Nhà Văn Hóa Nông Cống, Đường Bà Triệu, tt. Nông Cống, Nông Cống, Thanh Hóa, Việt Nam         </li>
-                        <li style="padding: 0px 10px; width: 111px; border-left: 1px solid #e1e1e1; text-align: center;" class="match-button">
-                            <a>Bắt đối</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-6 p-10" data-city="hcm" data-district="quan1">
-                <div class="next-match-fixtures light" style="margin: 0 0 20px;">
-                    <ul class="match-teams-vs">
-                        <li class="team-logo">
-                                            <img src="https://cdn.ketnoibongda.vn/media-c/50-50-100/upload/images/team/img-0133-2024-12-29.jpeg" alt=""> 
-                                <strong style="font-size: 13px;">FC Vạn thiện </strong> 
-                                    </li>
-                        <li class="mvs">
-                            <p> 
-                            11-01-2025, 18:00                                       
-                            </p>
-                            <strong class="vs">VS</strong> 
-                        </li>
-                        <li class="team-logo">
-                                            <p style="font-size: 30px; color: #ccc;">?</p>
-                                <strong style="font-size: 12px; color: #ccc;">Đang chờ đối</strong> 
-                                    </li>
-                    </ul>
-                    <ul class="nmf-loc" style="display: flex;flex-direction: row; justify-content: space-between; align-items: center;">
-                        <li style="line-height: inherit;">
-                            <i style="font-size: 16px;" class="fa fa-location-arrow" aria-hidden="true"></i>
-                            Nhà Văn Hóa Nông Cống, Đường Bà Triệu, tt. Nông Cống, Nông Cống, Thanh Hóa, Việt Nam         </li>
-                        <li style="padding: 0px 10px; width: 111px; border-left: 1px solid #e1e1e1; text-align: center;" class="match-button">
-                            <a>Bắt đối</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-6 p-10" data-city="kontum" data-district="tpkontum">
-                <div class="next-match-fixtures light" style="margin: 0 0 20px;">
-                    <ul class="match-teams-vs">
-                        <li class="team-logo">
-                                            <img src="https://cdn.ketnoibongda.vn/media-c/50-50-100/upload/images/team/img-0133-2024-12-29.jpeg" alt=""> 
-                                <strong style="font-size: 13px;">FC Vạn thiện </strong> 
-                                    </li>
-                        <li class="mvs">
-                            <p> 
-                            11-01-2025, 18:00                                       
-                            </p>
-                            <strong class="vs">VS</strong> 
-                        </li>
-                        <li class="team-logo">
-                                            <p style="font-size: 30px; color: #ccc;">?</p>
-                                <strong style="font-size: 12px; color: #ccc;">Đang chờ đối</strong> 
-                                    </li>
-                    </ul>
-                    <ul class="nmf-loc" style="display: flex;flex-direction: row; justify-content: space-between; align-items: center;">
-                        <li style="line-height: inherit;">
-                            <i style="font-size: 16px;" class="fa fa-location-arrow" aria-hidden="true"></i>
-                            Nhà Văn Hóa Nông Cống, Đường Bà Triệu, tt. Nông Cống, Nông Cống, Thanh Hóa, Việt Nam         </li>
-                        <li style="padding: 0px 10px; width: 111px; border-left: 1px solid #e1e1e1; text-align: center;" class="match-button">
-                            <a>Bắt đối</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+      </div>
+      <div class="row list-match">
+        <div
+          class="col-6 p-10"
+          data-city="hanoi"
+          data-district="tayho"
+          data-img="images/fcnewway_team.jpg"
+          data-team="FC NEWWAY"
+          data-time="12-03-2025, 19:30"
+          data-location="Sân Bóng Đông Đô, Tứ Liên, Tây Hồ, Hà Nội, Việt Nam"
+          data-contact="Trần Dũng Tiến - 0967502525"
+        >
+          <div class="next-match-fixtures light" style="margin: 0 0 20px">
+            <ul class="match-teams-vs">
+              <li class="team-logo">
+                <img src="images/fcnewway_team.jpg" alt="" />
+                <strong style="font-size: 13px">FC NEWWAY</strong>
+              </li>
+              <li class="mvs">
+                <p>12-03-2025, 19:30</p>
+                <strong class="vs">VS</strong>
+              </li>
+              <li class="team-logo">
+                <p style="font-size: 30px; color: #ccc">?</p>
+                <strong style="font-size: 12px; color: #ccc"
+                  >Đang chờ đối</strong
+                >
+              </li>
+            </ul>
+            <ul
+              class="nmf-loc"
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <li style="line-height: inherit">
+                <i
+                  style="font-size: 16px"
+                  class="fa fa-location-arrow"
+                  aria-hidden="true"
+                ></i>
+                Sân Bóng Đông Đô, Tứ Liên, Tây Hồ, Hà Nội, Việt Nam
+              </li>
+              <li
+                style="
+                  padding: 0px 10px;
+                  width: 111px;
+                  border-left: 1px solid #e1e1e1;
+                  text-align: center;
+                "
+                class="match-button"
+              >
+                <a>Bắt đối</a>
+              </li>
+            </ul>
+          </div>
         </div>
+        <div
+          class="col-6 p-10"
+          data-city="hanoi"
+          data-district="hoankiem"
+          data-team="NhatFC"
+          data-time="28-02-2025, 08:44"
+          data-location="Hà Nội, Việt Nam"
+        >
+          <div class="next-match-fixtures light" style="margin: 0 0 20px">
+            <ul class="match-teams-vs">
+              <li class="team-logo">
+                <img
+                  src="https://cdn.ketnoibongda.vn/media-c/50-50-100/upload/images/team/team-default.jpg"
+                  alt=""
+                />
+                <strong style="font-size: 13px">NhatFC</strong>
+              </li>
+              <li class="mvs">
+                <p>28-02-2025, 08:44</p>
+                <strong class="vs">VS</strong>
+              </li>
+              <li class="team-logo">
+                <p style="font-size: 30px; color: #ccc">?</p>
+                <strong style="font-size: 12px; color: #ccc"
+                  >Đang chờ đối</strong
+                >
+              </li>
+            </ul>
+            <ul
+              class="nmf-loc"
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <li style="line-height: inherit">
+                <i
+                  style="font-size: 16px"
+                  class="fa fa-location-arrow"
+                  aria-hidden="true"
+                ></i>
+              </li>
+              <li
+                style="
+                  padding: 0px 10px;
+                  width: 111px;
+                  border-left: 1px solid #e1e1e1;
+                  text-align: center;
+                "
+                class="match-button"
+              >
+                <a>Bắt đối</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-6 p-10" data-city="hcm" data-district="quan1">
+          <div class="next-match-fixtures light" style="margin: 0 0 20px">
+            <ul class="match-teams-vs">
+              <li class="team-logo">
+                <img
+                  src="https://cdn.ketnoibongda.vn/media-c/50-50-100/upload/images/team/img-0133-2024-12-29.jpeg"
+                  alt=""
+                />
+                <strong style="font-size: 13px">FC Vạn thiện </strong>
+              </li>
+              <li class="mvs">
+                <p>11-01-2025, 18:00</p>
+                <strong class="vs">VS</strong>
+              </li>
+              <li class="team-logo">
+                <p style="font-size: 30px; color: #ccc">?</p>
+                <strong style="font-size: 12px; color: #ccc"
+                  >Đang chờ đối</strong
+                >
+              </li>
+            </ul>
+            <ul
+              class="nmf-loc"
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <li style="line-height: inherit">
+                <i
+                  style="font-size: 16px"
+                  class="fa fa-location-arrow"
+                  aria-hidden="true"
+                ></i>
+                Nhà Văn Hóa Nông Cống, Đường Bà Triệu, tt. Nông Cống, Nông Cống,
+                Thanh Hóa, Việt Nam
+              </li>
+              <li
+                style="
+                  padding: 0px 10px;
+                  width: 111px;
+                  border-left: 1px solid #e1e1e1;
+                  text-align: center;
+                "
+                class="match-button"
+              >
+                <a>Bắt đối</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-6 p-10" data-city="hcm" data-district="quan1">
+          <div class="next-match-fixtures light" style="margin: 0 0 20px">
+            <ul class="match-teams-vs">
+              <li class="team-logo">
+                <img
+                  src="https://cdn.ketnoibongda.vn/media-c/50-50-100/upload/images/team/img-0133-2024-12-29.jpeg"
+                  alt=""
+                />
+                <strong style="font-size: 13px">FC Vạn thiện </strong>
+              </li>
+              <li class="mvs">
+                <p>11-01-2025, 18:00</p>
+                <strong class="vs">VS</strong>
+              </li>
+              <li class="team-logo">
+                <p style="font-size: 30px; color: #ccc">?</p>
+                <strong style="font-size: 12px; color: #ccc"
+                  >Đang chờ đối</strong
+                >
+              </li>
+            </ul>
+            <ul
+              class="nmf-loc"
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <li style="line-height: inherit">
+                <i
+                  style="font-size: 16px"
+                  class="fa fa-location-arrow"
+                  aria-hidden="true"
+                ></i>
+                Nhà Văn Hóa Nông Cống, Đường Bà Triệu, tt. Nông Cống, Nông Cống,
+                Thanh Hóa, Việt Nam
+              </li>
+              <li
+                style="
+                  padding: 0px 10px;
+                  width: 111px;
+                  border-left: 1px solid #e1e1e1;
+                  text-align: center;
+                "
+                class="match-button"
+              >
+                <a>Bắt đối</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-6 p-10" data-city="kontum" data-district="tpkontum">
+          <div class="next-match-fixtures light" style="margin: 0 0 20px">
+            <ul class="match-teams-vs">
+              <li class="team-logo">
+                <img
+                  src="https://cdn.ketnoibongda.vn/media-c/50-50-100/upload/images/team/img-0133-2024-12-29.jpeg"
+                  alt=""
+                />
+                <strong style="font-size: 13px">FC Vạn thiện </strong>
+              </li>
+              <li class="mvs">
+                <p>11-01-2025, 18:00</p>
+                <strong class="vs">VS</strong>
+              </li>
+              <li class="team-logo">
+                <p style="font-size: 30px; color: #ccc">?</p>
+                <strong style="font-size: 12px; color: #ccc"
+                  >Đang chờ đối</strong
+                >
+              </li>
+            </ul>
+            <ul
+              class="nmf-loc"
+              style="
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <li style="line-height: inherit">
+                <i
+                  style="font-size: 16px"
+                  class="fa fa-location-arrow"
+                  aria-hidden="true"
+                ></i>
+                Nhà Văn Hóa Nông Cống, Đường Bà Triệu, tt. Nông Cống, Nông Cống,
+                Thanh Hóa, Việt Nam
+              </li>
+              <li
+                style="
+                  padding: 0px 10px;
+                  width: 111px;
+                  border-left: 1px solid #e1e1e1;
+                  text-align: center;
+                "
+                class="match-button"
+              >
+                <a>Bắt đối</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </section>
 
     <div class="container match-detail">
-        <div class="match-header">
-            <div class="team" >
-                <img id="detail-img" class="team-logo">
-                <h2 id="detail-team"></h2>
-            </div>
-            <div class="vs">VS</div>
-            <div class="team waiting">
-                <h2>?</h2>
-                <p>Đang chờ đối</p>
-            </div>
-        </div>       
-        <ul class="nav-tabs">
-            <li><a href="#" class="tab-link active" data-tab="info">Thông tin</a></li>
-            <li><a href="#" class="tab-link" data-tab="dien-bien">Diễn biến</a></li>
-            <li><a href="#" class="tab-link" data-tab="tham-gia">Tham gia trận đấu</a></li>
-            <li><a href="#" class="tab-link" data-tab="highlight">Highlight</a></li>
-            <li><a href="#" class="tab-link" data-tab="full-tran">Full trận</a></li>
-        </ul>       
-        <div class="tab-content active" id="info">
-            <p id="detail-time"></p>
-            <p id="detail-location"></p>
-            <p id="detail-contact"></p>
+      <div class="match-header">
+        <div class="team">
+          <img id="detail-img" class="team-logo" />
+          <h2 id="detail-team"></h2>
         </div>
-        <div class="tab-content" id="dien-bien">
-            <p><i>Đang cập nhật dữ liệu</i></p>
+        <div class="vs">VS</div>
+        <div class="team waiting">
+          <h2>?</h2>
+          <p>Đang chờ đối</p>
         </div>
-        <div class="tab-content" id="tham-gia">
-            <p><i>Đang cập nhật dữ liệu</i></p>
-        </div>
-        <div class="tab-content" id="highlight">
-            <p><i>Đang cập nhật dữ liệu</i></p>
-        </div>
-        <div class="tab-content" id="full-tran">
-            <p><i>Đang cập nhật dữ liệu</i></p>
-        </div>
+      </div>
+      <ul class="nav-tabs">
+        <li>
+          <a href="#" class="tab-link active" data-tab="info">Thông tin</a>
+        </li>
+        <li><a href="#" class="tab-link" data-tab="dien-bien">Diễn biến</a></li>
+        <li>
+          <a href="#" class="tab-link" data-tab="tham-gia">Tham gia trận đấu</a>
+        </li>
+        <li><a href="#" class="tab-link" data-tab="highlight">Highlight</a></li>
+        <li><a href="#" class="tab-link" data-tab="full-tran">Full trận</a></li>
+      </ul>
+      <div class="tab-content active" id="info">
+        <p id="detail-time"></p>
+        <p id="detail-location"></p>
+        <p id="detail-contact"></p>
+      </div>
+      <div class="tab-content" id="dien-bien">
+        <p><i>Đang cập nhật dữ liệu</i></p>
+      </div>
+      <div class="tab-content" id="tham-gia">
+        <p><i>Đang cập nhật dữ liệu</i></p>
+      </div>
+      <div class="tab-content" id="highlight">
+        <p><i>Đang cập nhật dữ liệu</i></p>
+      </div>
+      <div class="tab-content" id="full-tran">
+        <p><i>Đang cập nhật dữ liệu</i></p>
+      </div>
     </div>
 
-   
-
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
         const citySelect = document.getElementById("city");
         const districtSelect = document.getElementById("district");
         const resetFilterButton = document.getElementById("resetFilter");
         const matchItems = document.querySelectorAll(".list-match .p-10");
-    
+
         const districtData = {
-            hanoi: {
-                "badinh": "Ba Đình",
-                "tayho": "Tây Hồ",
-                "hoankiem": "Hoàn Kiếm",
-                "longbien": "Long Biên",
-                "caugiay": "Cầu Giấy",
-                "dongda": "Đống Đa",
-                "haibatrung": "Hai Bà Trưng",
-                "hoangmai": "Hoàng Mai",
-                "thanhxuan": "Thanh Xuân",
-                "socson": "Sóc Sơn",
-                "donganh": "Đông Anh",
-                "gialam": "Gia Lâm", 
-                "namtuliem": "Nam Từ Liêm",
-                "thanhtri": "Thanh Trì",
-                "bactuliem": "Bắc Từ Liêm",
-                "hadong": "Hà Đông",
-                "sontay": "Sơn Tây",
-                "bavi": "Ba Vì",
-                "phuctho": "Phúc Thọ",
-                "danphuong": "Đan Phượng",
-                "hoaiduc": "Hoài Đức",
-                "quocoai": "Quốc Oai",
-                "thachthat": "Thạch Thất",
-                "chuongmy": "Chương Mỹ",
-                "thanhoai": "Thanh Oai",
-                "thuongtin": "Thường Tín",
-                "phuxuyen": "Phú Xuyên",
-                "unghoa": "Ứng Hòa",
-                "myduc": "Mỹ Đức"
-            },
-            hcm: {
-                "quan1": "Quận 1",
-                "quan2": "Quận 2",
-                "quan3": "Quận 3",
-                "quan4": "Quận 4",
-                "quan5": "Quận 5",
-                "quan6": "Quận 6",
-                "quan7": "Quận 7",
-                "quan8": "Quận 8",
-                "quan9": "Quận 9",
-                "quan10": "Quận 10",
-                "quan11": "Quận 11",
-                "quan12": "Quận 12",
-                "binhthanh": "Bình Thạnh",
-                "tanbinh": "Tân Bình",
-                "tanphu": "Tân Phú",
-                "govap": "Gò Vấp",
-                "phuNhuan": "Phú Nhuận",
-                "binhduong": "Bình Dương",
-                "nhaBe": "Nhà Bè",
-                "canGio": "Cần Giờ",
-                "hocMon": "Hóc Môn",
-                "binhchanh": "Bình Chánh",
-                "cuchi": "Củ Chi"
-            },
-            kontum: {
-                "tpkontum": "Thành Phố Kon Tum",
-                "dakto": "Đắk Tô",
-                "ngochoi": "Ngọc Hồi",
-                "saThay": "Sa Thầy",
-                "tumorong": "Tu Mơ Rông",
-                "dakglei": "Đắk Glei",
-                "konray": "Kon Rẫy",
-            },
-            danang: {
-                "haichau": "Hải Châu",
-                "sontra": "Sơn Trà",
-                "nguhanhson": "Ngũ Hành Sơn",
-                "camle": "Cẩm Lệ",
-                "lienchieu": "Liên Chiểu"
-            },
-            bacninh: {
-                "thuanthanh": "Thuận Thành",
-                "luongtai": "Lương Tài",
-                "tuson": "Từ Sơn",
-                "giatinh": "Gia Bình",
-                "yenphong": "Yên Phong",
-                "tiendu": "Tiên Du",
-                "tpbacninh": "Thành Phố Bắc Ninh",
-                "hiepkhoi": "Hiệp Khối",
-                "quevo": "Quế Võ",
-                "phulo": "Phù Lộ"
-            },
-            nghean: {
-                "vinh": "Vinh",
-                "concuong": "Con Cuông",
-                "quynhluu": "Quỳnh Lưu",
-                "thanhchuong": "Thanh Chương",
-                "diemchau": "Diễn Châu",
-                "nghiloc": "Nghi Lộc",
-                "anhoa": "An Hoa",
-                "quynhhien": "Quỳnh Hiền",
-                "tanky": "Tân Kỳ",
-                "tpnghean": "Thành Phố Nghệ An"
-            },
-            hatinh: {
-                "tphatinh": "Thành Phố Hà Tĩnh",
-                "locha": "Lộc Hà",
-                "canloc": "Can Lộc",
-                "huongson": "Hương Sơn",
-                "dongloc": "Đồng Lộc",
-                "kyanh": "Kỳ Anh",
-                "thachha": "Thạch Hà",
-                "cualo": "Cửa Lò",
-                "hoason": "Hoa Sơn",
-                "nothanh": "Nô Thanh"
-            },
-            thanhoa: {
-                "tpthanhHoa": "Thành Phố Thanh Hóa",
-                "hoanghoa": "Hoàng Hóa",
-                "dongson": "Đông Sơn",
-                "quangxuong": "Quảng Xương",
-                "thoxuan": "Thọ Xuân",
-                "hauloc": "Hậu Lộc",
-                "ngason": "Nga Sơn",
-                "tamdieu": "Tầm Diệu",
-                "bathuoc": "Bá Thước",
-                "ngoclac": "Ngọc Lặc",
-                "trieuson": "Triệu Sơn"
-            },
-            namdinh: {
-                "tpnamdinh": "Thành Phố Nam Định",
-                "myloc": "Mỹ Lộc",
-                "trucninh": "Trực Ninh",
-                "vian": "Vị An",
-                "xuantruong": "Xuân Trường",
-                "namtruc": "Nam Trực",
-                "giaothuy": "Giao Thủy",
-                "yendong": "Yên Đồng",
-                "vuxu": "Vụ Xu"
-            }
+          hanoi: {
+            badinh: "Ba Đình",
+            tayho: "Tây Hồ",
+            hoankiem: "Hoàn Kiếm",
+            longbien: "Long Biên",
+            caugiay: "Cầu Giấy",
+            dongda: "Đống Đa",
+            haibatrung: "Hai Bà Trưng",
+            hoangmai: "Hoàng Mai",
+            thanhxuan: "Thanh Xuân",
+            socson: "Sóc Sơn",
+            donganh: "Đông Anh",
+            gialam: "Gia Lâm",
+            namtuliem: "Nam Từ Liêm",
+            thanhtri: "Thanh Trì",
+            bactuliem: "Bắc Từ Liêm",
+            hadong: "Hà Đông",
+            sontay: "Sơn Tây",
+            bavi: "Ba Vì",
+            phuctho: "Phúc Thọ",
+            danphuong: "Đan Phượng",
+            hoaiduc: "Hoài Đức",
+            quocoai: "Quốc Oai",
+            thachthat: "Thạch Thất",
+            chuongmy: "Chương Mỹ",
+            thanhoai: "Thanh Oai",
+            thuongtin: "Thường Tín",
+            phuxuyen: "Phú Xuyên",
+            unghoa: "Ứng Hòa",
+            myduc: "Mỹ Đức",
+          },
+          hcm: {
+            quan1: "Quận 1",
+            quan2: "Quận 2",
+            quan3: "Quận 3",
+            quan4: "Quận 4",
+            quan5: "Quận 5",
+            quan6: "Quận 6",
+            quan7: "Quận 7",
+            quan8: "Quận 8",
+            quan9: "Quận 9",
+            quan10: "Quận 10",
+            quan11: "Quận 11",
+            quan12: "Quận 12",
+            binhthanh: "Bình Thạnh",
+            tanbinh: "Tân Bình",
+            tanphu: "Tân Phú",
+            govap: "Gò Vấp",
+            phuNhuan: "Phú Nhuận",
+            binhduong: "Bình Dương",
+            nhaBe: "Nhà Bè",
+            canGio: "Cần Giờ",
+            hocMon: "Hóc Môn",
+            binhchanh: "Bình Chánh",
+            cuchi: "Củ Chi",
+          },
+          kontum: {
+            tpkontum: "Thành Phố Kon Tum",
+            dakto: "Đắk Tô",
+            ngochoi: "Ngọc Hồi",
+            saThay: "Sa Thầy",
+            tumorong: "Tu Mơ Rông",
+            dakglei: "Đắk Glei",
+            konray: "Kon Rẫy",
+          },
+          danang: {
+            haichau: "Hải Châu",
+            sontra: "Sơn Trà",
+            nguhanhson: "Ngũ Hành Sơn",
+            camle: "Cẩm Lệ",
+            lienchieu: "Liên Chiểu",
+          },
+          bacninh: {
+            thuanthanh: "Thuận Thành",
+            luongtai: "Lương Tài",
+            tuson: "Từ Sơn",
+            giatinh: "Gia Bình",
+            yenphong: "Yên Phong",
+            tiendu: "Tiên Du",
+            tpbacninh: "Thành Phố Bắc Ninh",
+            hiepkhoi: "Hiệp Khối",
+            quevo: "Quế Võ",
+            phulo: "Phù Lộ",
+          },
+          nghean: {
+            vinh: "Vinh",
+            concuong: "Con Cuông",
+            quynhluu: "Quỳnh Lưu",
+            thanhchuong: "Thanh Chương",
+            diemchau: "Diễn Châu",
+            nghiloc: "Nghi Lộc",
+            anhoa: "An Hoa",
+            quynhhien: "Quỳnh Hiền",
+            tanky: "Tân Kỳ",
+            tpnghean: "Thành Phố Nghệ An",
+          },
+          hatinh: {
+            tphatinh: "Thành Phố Hà Tĩnh",
+            locha: "Lộc Hà",
+            canloc: "Can Lộc",
+            huongson: "Hương Sơn",
+            dongloc: "Đồng Lộc",
+            kyanh: "Kỳ Anh",
+            thachha: "Thạch Hà",
+            cualo: "Cửa Lò",
+            hoason: "Hoa Sơn",
+            nothanh: "Nô Thanh",
+          },
+          thanhoa: {
+            tpthanhHoa: "Thành Phố Thanh Hóa",
+            hoanghoa: "Hoàng Hóa",
+            dongson: "Đông Sơn",
+            quangxuong: "Quảng Xương",
+            thoxuan: "Thọ Xuân",
+            hauloc: "Hậu Lộc",
+            ngason: "Nga Sơn",
+            tamdieu: "Tầm Diệu",
+            bathuoc: "Bá Thước",
+            ngoclac: "Ngọc Lặc",
+            trieuson: "Triệu Sơn",
+          },
+          namdinh: {
+            tpnamdinh: "Thành Phố Nam Định",
+            myloc: "Mỹ Lộc",
+            trucninh: "Trực Ninh",
+            vian: "Vị An",
+            xuantruong: "Xuân Trường",
+            namtruc: "Nam Trực",
+            giaothuy: "Giao Thủy",
+            yendong: "Yên Đồng",
+            vuxu: "Vụ Xu",
+          },
         };
-    
+
         function filterMatches() {
-            const selectedCity = citySelect.value;
-            const selectedDistrict = districtSelect.value;
-    
-            matchItems.forEach((item) => {
-                const itemCity = item.getAttribute("data-city");
-                const itemDistrict = item.getAttribute("data-district");
-    
-                // Ẩn tất cả các mục
-                item.style.display = "none";
-    
-                // Kiểm tra nếu thành phố và quận phù hợp
-                if (
-                    (selectedCity === "" || itemCity === selectedCity) &&
-                    (selectedDistrict === "" || itemDistrict === selectedDistrict)
-                ) {
-                    item.style.display = "block";
-                }
-            });
-        }
-    
-        citySelect.addEventListener("change", function () {
-            const selectedCity = this.value;
-            districtSelect.innerHTML = '<option value="">Quận/Huyện</option>';
-    
-            if (districtData[selectedCity]) {
-                Object.entries(districtData[selectedCity]).forEach(([key, name]) => {
-                    const option = document.createElement("option");
-                    option.value = key;
-                    option.textContent = name;
-                    districtSelect.appendChild(option);
-                });
-                districtSelect.style.display = "inline-block";
-            } else {
-                districtSelect.style.display = "none";
+          const selectedCity = citySelect.value;
+          const selectedDistrict = districtSelect.value;
+
+          matchItems.forEach((item) => {
+            const itemCity = item.getAttribute("data-city");
+            const itemDistrict = item.getAttribute("data-district");
+
+            // Ẩn tất cả các mục
+            item.style.display = "none";
+
+            // Kiểm tra nếu thành phố và quận phù hợp
+            if (
+              (selectedCity === "" || itemCity === selectedCity) &&
+              (selectedDistrict === "" || itemDistrict === selectedDistrict)
+            ) {
+              item.style.display = "block";
             }
-    
-            filterMatches();
-            resetFilterButton.style.display = selectedCity ? "inline-block" : "none";
+          });
+        }
+
+        citySelect.addEventListener("change", function () {
+          const selectedCity = this.value;
+          districtSelect.innerHTML = '<option value="">Quận/Huyện</option>';
+
+          if (districtData[selectedCity]) {
+            Object.entries(districtData[selectedCity]).forEach(
+              ([key, name]) => {
+                const option = document.createElement("option");
+                option.value = key;
+                option.textContent = name;
+                districtSelect.appendChild(option);
+              }
+            );
+            districtSelect.style.display = "inline-block";
+          } else {
+            districtSelect.style.display = "none";
+          }
+
+          filterMatches();
+          resetFilterButton.style.display = selectedCity
+            ? "inline-block"
+            : "none";
         });
-    
+
         districtSelect.addEventListener("change", filterMatches);
-    
+
         resetFilterButton.addEventListener("click", function () {
-            citySelect.value = "";
-            districtSelect.innerHTML = '<option value="">Quận/Huyện</option>';
-            districtSelect.style.display = "block";
-            this.style.display = "none";
-            matchItems.forEach(item => item.style.display = "block");
+          citySelect.value = "";
+          districtSelect.innerHTML = '<option value="">Quận/Huyện</option>';
+          districtSelect.style.display = "block";
+          this.style.display = "none";
+          matchItems.forEach((item) => (item.style.display = "block"));
         });
-    });
-    
-</script>
+      });
+    </script>
 
-
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
         const matchButtons = document.querySelectorAll(".match-button");
         const matchDetail = document.querySelector(".match-detail");
         const backButton = document.createElement("button"); // Tạo nút quay lại
@@ -542,239 +749,251 @@
         const detailTime = document.getElementById("detail-time");
         const detailLocation = document.getElementById("detail-location");
         const detailContact = document.getElementById("detail-contact");
-    
+
         // Tạo nút quay lại và thêm vào trang
         backButton.textContent = "Quay lại";
         backButton.classList.add("back-button");
         matchDetail.appendChild(backButton);
-    
-        matchButtons.forEach(button => {
-            button.addEventListener("click", function() {
-                // Tìm phần tử cha chứa data attributes
-                const match = this.closest('.p-10');
-    
-                if (!match) {
-                    console.error("Không tìm thấy phần tử chứa dữ liệu!");
-                    return;
-                }
-    
-                // Lấy dữ liệu từ data attributes
-                const team = match.dataset.team || "Đội bóng chưa xác định";
-                const imgSrc = match.dataset.img || "Chưa có Logo đội bóng"
-                const time = match.dataset.time || "Chưa có thời gian cụ thể";
-                const location = match.dataset.location || "Chưa có địa điểm cụ thể";
-                const contact = match.dataset.contact || "Chưa có thông tin liên hệ";
-    
-                // Cập nhật nội dung
-                detailImg.src = imgSrc;
-                detailTeam.innerHTML = ` ${team}`;
-                detailTime.innerHTML = `<strong>Thời gian:</strong> ${time}`;
-                detailLocation.innerHTML = `<strong>Địa điểm:</strong> ${location}`;
-                detailContact.innerHTML = `<strong>Liên hệ:</strong> ${contact}`;
-    
-                // Hiển thị giao diện chi tiết trận đấu
-                matchContainer.style.display = "none";
-                matchDetail.style.display = "block";
-                backButton.style.display = "block";
-            });
-        });
-    
-        backButton.addEventListener("click", function() {
-            matchContainer.style.display = "block";
-            matchDetail.style.display = "none";
-        });
-    });
-    
 
+        matchButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            // Tìm phần tử cha chứa data attributes
+            const match = this.closest(".p-10");
 
-    document.addEventListener("DOMContentLoaded", function () {
+            if (!match) {
+              console.error("Không tìm thấy phần tử chứa dữ liệu!");
+              return;
+            }
+
+            // Lấy dữ liệu từ data attributes
+            const team = match.dataset.team || "Đội bóng chưa xác định";
+            const imgSrc = match.dataset.img || "Chưa có Logo đội bóng";
+            const time = match.dataset.time || "Chưa có thời gian cụ thể";
+            const location =
+              match.dataset.location || "Chưa có địa điểm cụ thể";
+            const contact =
+              match.dataset.contact || "Chưa có thông tin liên hệ";
+
+            // Cập nhật nội dung
+            detailImg.src = imgSrc;
+            detailTeam.innerHTML = ` ${team}`;
+            detailTime.innerHTML = `<strong>Thời gian:</strong> ${time}`;
+            detailLocation.innerHTML = `<strong>Địa điểm:</strong> ${location}`;
+            detailContact.innerHTML = `<strong>Liên hệ:</strong> ${contact}`;
+
+            // Hiển thị giao diện chi tiết trận đấu
+            matchContainer.style.display = "none";
+            matchDetail.style.display = "block";
+            backButton.style.display = "block";
+          });
+        });
+
+        backButton.addEventListener("click", function () {
+          matchContainer.style.display = "block";
+          matchDetail.style.display = "none";
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
         const tabs = document.querySelectorAll(".tab-link");
         const contents = document.querySelectorAll(".tab-content");
-    
-        tabs.forEach(tab => {
-            tab.addEventListener("click", function (e) {
-                e.preventDefault();
-                
-                tabs.forEach(t => t.classList.remove("active"));
-                this.classList.add("active");
-    
-                contents.forEach(content => content.classList.remove("active"));
-                document.getElementById(this.dataset.tab).classList.add("active");
-            });
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            tabs.forEach((t) => t.classList.remove("active"));
+            this.classList.add("active");
+
+            contents.forEach((content) => content.classList.remove("active"));
+            document.getElementById(this.dataset.tab).classList.add("active");
+          });
         });
-    });
-</script>
+      });
+    </script>
 
+    <!-- --------------------------------- LOG IN - LOG OUT ------------------------------------- -->
+    <!-- Placeholder for the modal -->
+    <div id="modal-placeholder"></div>
 
-
-
-
-
-
-<!-- --------------------------------- LOG IN - LOG OUT ------------------------------------- -->
-<!-- Placeholder for the modal -->
-<div id="modal-placeholder"></div>
-
-
-<!-- --------------------------------------- FOOTER -------------------------------------- -->
-<footer class="footer">
-    <div class="container-fluid">
+    <!-- --------------------------------------- FOOTER -------------------------------------- -->
+    <footer class="footer">
+      <div class="container-fluid">
         <div class="footer-container">
-            <div class="footer-left">
-                <p><i class="fa-solid fa-copyright"></i> Bản quyền thuộc Eternal Phoenix</p>
-                <p><i class="fas fa-futbol"></i>
-                    <span>SINH RA ĐỂ CHƠI,</span>
-                    <i class="fas fa-dumbbell"></i>
-                    <span>TẬP LUYỆN ĐỂ CHIẾN THẮNG</span>
-                    <i class="fas fa-trophy"></i>
-                </p>
-                <p><i class="fa-solid fa-file-export"></i>Chỉ được phát hành lại nội dung khi có sự đồng ý của Eternal Phoenix</p>
-                <div class="footer-apps">
-                    <a href="index.html"><img src="images/logo.png" alt="IT League"></a>
-                    <a href=""><img src="images/googleplay.png" alt="Google Play"></a>
-                    <a href=""><img src="images/appstore.png" alt="App Store"></a>
-                </div>
+          <div class="footer-left">
+            <p>
+              <i class="fa-solid fa-copyright"></i> Bản quyền thuộc Eternal
+              Phoenix
+            </p>
+            <p>
+              <i class="fas fa-futbol"></i>
+              <span>SINH RA ĐỂ CHƠI,</span>
+              <i class="fas fa-dumbbell"></i>
+              <span>TẬP LUYỆN ĐỂ CHIẾN THẮNG</span>
+              <i class="fas fa-trophy"></i>
+            </p>
+            <p>
+              <i class="fa-solid fa-file-export"></i>Chỉ được phát hành lại nội
+              dung khi có sự đồng ý của Eternal Phoenix
+            </p>
+            <div class="footer-apps">
+              <a href="index.html"
+                ><img src="images/logo.png" alt="IT League"
+              /></a>
+              <a href=""
+                ><img src="images/googleplay.png" alt="Google Play"
+              /></a>
+              <a href=""><img src="images/appstore.png" alt="App Store" /></a>
             </div>
-            <div class="footer-right">
-                <p><i class="fa fa-building" aria-hidden="true"></i> CÔNG TY CỔ PHẦN TỔ CHỨC SỰ KIỆN VÀ TRUYỀN THÔNG ETERNAL PHOENIX </p>
-                <p><i class="fa fa-map-marker" aria-hidden="true"></i> Số 185, Trần Đại Nghĩa, phường Đồng Tâm, quận Hai Bà Trưng, Hà Nội</p>
-                <p><i class="fa fa-phone" aria-hidden="true"></i> 0797102555</p>
-                <p><i class="fa fa-envelope" aria-hidden="true"></i> nguyenstorm2k5@gmail.com</p>
-            </div>
+          </div>
+          <div class="footer-right">
+            <p>
+              <i class="fa fa-building" aria-hidden="true"></i> CÔNG TY CỔ PHẦN
+              TỔ CHỨC SỰ KIỆN VÀ TRUYỀN THÔNG ETERNAL PHOENIX
+            </p>
+            <p>
+              <i class="fa fa-map-marker" aria-hidden="true"></i> Số 185, Trần
+              Đại Nghĩa, phường Đồng Tâm, quận Hai Bà Trưng, Hà Nội
+            </p>
+            <p><i class="fa fa-phone" aria-hidden="true"></i> 0797102555</p>
+            <p>
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              nguyenstorm2k5@gmail.com
+            </p>
+          </div>
         </div>
-    </div>
-    <div class="text-center mt-3">
+      </div>
+      <div class="text-center mt-3">
         <p class="mb-0">&copy; 2025 Eternal Phoenix. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- ------------------ BACK-TOP -------------------- -->
+    <div class="back-top" style="display: block">
+      <i class="fa-solid fa-circle-up"></i>
     </div>
-</footer>
 
-<!-- ------------------ BACK-TOP -------------------- -->
-<div class="back-top" style="display: block;">
-    <i class="fa-solid fa-circle-up"></i>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
         console.log("DOM đã sẵn sàng, script bắt đầu chạy!");
         const backToTop = document.querySelector(".back-top");
-    
+
         if (backToTop) {
-            // Ẩn nút khi chưa cuộn xuống
-            backToTop.style.display = "none";
-    
-            // Hiển thị nút khi cuộn xuống
-            window.addEventListener("scroll", function () {
-                if (window.scrollY > 500) {
-                    backToTop.style.display = "block";
-                } else {
-                    backToTop.style.display = "none";
-                }
-            });
-    
-            // Cuộn lên đầu khi nhấn vào nút
-            backToTop.addEventListener("click", function () {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            });
+          // Ẩn nút khi chưa cuộn xuống
+          backToTop.style.display = "none";
+
+          // Hiển thị nút khi cuộn xuống
+          window.addEventListener("scroll", function () {
+            if (window.scrollY > 500) {
+              backToTop.style.display = "block";
+            } else {
+              backToTop.style.display = "none";
+            }
+          });
+
+          // Cuộn lên đầu khi nhấn vào nút
+          backToTop.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
         }
-    });
-</script>
+      });
+    </script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.getElementById('menu-toggle');
-            const mainMenu = document.getElementById('main-menu');
-            const closeMenu = document.getElementById('close-menu');
-            const authToggle = document.getElementById('auth-toggle');
-            const authDropdown = document.getElementById('auth-dropdown');
-          
-            // 👉 Toggle menu trái
-            menuToggle.addEventListener('click', () => {
-              mainMenu.classList.add('active');
-              document.body.classList.add('menu-overlay-active');
-            });
-          
-            closeMenu.addEventListener('click', () => {
-              mainMenu.classList.remove('active');
-              document.body.classList.remove('menu-overlay-active');
-            });
-          
-            // 👉 Bấm ra ngoài để đóng menu trái
-            document.addEventListener('click', function (e) {
-              if (
-                mainMenu.classList.contains('active') &&
-                !mainMenu.contains(e.target) &&
-                !menuToggle.contains(e.target)
-              ) {
-                mainMenu.classList.remove('active');
-                document.body.classList.remove('menu-overlay-active');
-              }
-            });
-          
-            // 👉 Toggle auth dropdown bên phải
-            authToggle.addEventListener('click', () => {
-              authDropdown.classList.toggle('active');
-            });
-          
-            // 👉 Bấm ra ngoài để đóng auth menu
-            document.addEventListener('click', (e) => {
-              if (
-                !authToggle.contains(e.target) &&
-                !authDropdown.contains(e.target)
-              ) {
-                authDropdown.classList.remove('active');
-              }
-            });
-          });
-          
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuToggle = document.getElementById("menu-toggle");
+        const mainMenu = document.getElementById("main-menu");
+        const closeMenu = document.getElementById("close-menu");
+        const authToggle = document.getElementById("auth-toggle");
+        const authDropdown = document.getElementById("auth-dropdown");
+
+        // 👉 Toggle menu trái
+        menuToggle.addEventListener("click", () => {
+          mainMenu.classList.add("active");
+          document.body.classList.add("menu-overlay-active");
+        });
+
+        closeMenu.addEventListener("click", () => {
+          mainMenu.classList.remove("active");
+          document.body.classList.remove("menu-overlay-active");
+        });
+
+        // 👉 Bấm ra ngoài để đóng menu trái
+        document.addEventListener("click", function (e) {
+          if (
+            mainMenu.classList.contains("active") &&
+            !mainMenu.contains(e.target) &&
+            !menuToggle.contains(e.target)
+          ) {
+            mainMenu.classList.remove("active");
+            document.body.classList.remove("menu-overlay-active");
+          }
+        });
+
+        // 👉 Toggle auth dropdown bên phải
+        authToggle.addEventListener("click", () => {
+          authDropdown.classList.toggle("active");
+        });
+
+        // 👉 Bấm ra ngoài để đóng auth menu
+        document.addEventListener("click", (e) => {
+          if (
+            !authToggle.contains(e.target) &&
+            !authDropdown.contains(e.target)
+          ) {
+            authDropdown.classList.remove("active");
+          }
+        });
+      });
     </script>
     <script>
-        // 
-document.addEventListener("DOMContentLoaded", function () {
-    const img = document.querySelector(".pull-right img");
-    const modal = document.getElementById("modal-nockout");
-    const closeButton = document.querySelector(".close");
-    const body = document.body;
+      //
+      document.addEventListener("DOMContentLoaded", function () {
+        const img = document.querySelector(".pull-right img");
+        const modal = document.getElementById("modal-nockout");
+        const closeButton = document.querySelector(".close");
+        const body = document.body;
 
-    if (img && modal) {
-        img.addEventListener("click", function () {
+        if (img && modal) {
+          img.addEventListener("click", function () {
             modal.style.display = "block";
             modal.classList.add("show");
             modal.setAttribute("aria-hidden", "false");
             body.classList.add("modal-open"); // Làm mờ nền
             body.style.overflow = "hidden"; // Chặn cuộn trang
-        });
-    }
-
-    if (closeButton) {
-        closeButton.addEventListener("click", function () {
-            closeModal();
-        });
-    }
-
-    // Đóng modal khi nhấp ra ngoài hoặc nhấn phím ESC
-    window.addEventListener("click", function (event) {
-        if (event.target === modal) {
-            closeModal();
+          });
         }
-    });
 
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
+        if (closeButton) {
+          closeButton.addEventListener("click", function () {
             closeModal();
+          });
         }
-    });
 
-    function closeModal() {
-        modal.style.display = "none";
-        modal.classList.remove("show");
-        modal.setAttribute("aria-hidden", "true");
-        body.classList.remove("modal-open"); // Gỡ bỏ hiệu ứng mờ nền
-        body.style.overflow = ""; // Khôi phục cuộn trang
-    }
+        // Đóng modal khi nhấp ra ngoài hoặc nhấn phím ESC
+        window.addEventListener("click", function (event) {
+          if (event.target === modal) {
+            closeModal();
+          }
+        });
 
-    // Thêm CSS để làm mờ nền khi modal mở
-    const style = document.createElement("style");
-    style.innerHTML = `
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            closeModal();
+          }
+        });
+
+        function closeModal() {
+          modal.style.display = "none";
+          modal.classList.remove("show");
+          modal.setAttribute("aria-hidden", "true");
+          body.classList.remove("modal-open"); // Gỡ bỏ hiệu ứng mờ nền
+          body.style.overflow = ""; // Khôi phục cuộn trang
+        }
+
+        // Thêm CSS để làm mờ nền khi modal mở
+        const style = document.createElement("style");
+        style.innerHTML = `
         .modal-open::before {
             content: "";
             position: fixed;
@@ -786,86 +1005,87 @@ document.addEventListener("DOMContentLoaded", function () {
             z-index: 1040;
         }
     `;
-    document.head.appendChild(style);
-});
+        document.head.appendChild(style);
+      });
 
+      //
+      document.addEventListener("DOMContentLoaded", function () {
+        const backToTop = document.querySelector(".back-top");
 
-// 
-document.addEventListener("DOMContentLoaded", function () {
-    const backToTop = document.querySelector(".back-top");
+        if (backToTop) {
+          // Ẩn nút khi chưa cuộn xuống
+          backToTop.style.display = "none";
 
-    if (backToTop) {
-        // Ẩn nút khi chưa cuộn xuống
-        backToTop.style.display = "none";
-
-        // Hiển thị nút khi cuộn xuống
-        window.addEventListener("scroll", function () {
+          // Hiển thị nút khi cuộn xuống
+          window.addEventListener("scroll", function () {
             if (window.scrollY > 300) {
-                backToTop.style.display = "block";
+              backToTop.style.display = "block";
             } else {
-                backToTop.style.display = "none";
+              backToTop.style.display = "none";
             }
-        });
+          });
 
-        // Cuộn lên đầu khi nhấn vào nút
-        backToTop.addEventListener("click", function () {
+          // Cuộn lên đầu khi nhấn vào nút
+          backToTop.addEventListener("click", function () {
             window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-    }
-});
+          });
+        }
+      });
 
-// 
-document.addEventListener("DOMContentLoaded", function () {
-    const citySelect = document.getElementById("city");
-    const districtSelect = document.getElementById("district");
-    const resetButton = document.getElementById("resetFilter");
+      //
+      document.addEventListener("DOMContentLoaded", function () {
+        const citySelect = document.getElementById("city");
+        const districtSelect = document.getElementById("district");
+        const resetButton = document.getElementById("resetFilter");
 
-    // Danh sách quận/huyện theo từng thành phố
-    const districtsData = {
-        hanoi: [
+        // Danh sách quận/huyện theo từng thành phố
+        const districtsData = {
+          hanoi: [
             { value: "ba_dinh", text: "Quận Ba Đình" },
             { value: "hoan_kiem", text: "Quận Hoàn Kiếm" },
             { value: "tay_ho", text: "Quận Tây Hồ" },
             { value: "long_bien", text: "Quận Long Biên" },
-            { value: "cau_giay", text: "Quận Cầu Giấy" }
-        ],
-        hcm: [
+            { value: "cau_giay", text: "Quận Cầu Giấy" },
+          ],
+          hcm: [
             { value: "quan_1", text: "Quận 1" },
             { value: "quan_3", text: "Quận 3" },
             { value: "quan_5", text: "Quận 5" },
             { value: "quan_7", text: "Quận 7" },
-            { value: "thu_duc", text: "Thành phố Thủ Đức" }
-        ]
-    };
+            { value: "thu_duc", text: "Thành phố Thủ Đức" },
+          ],
+        };
 
-    // Khi chọn một thành phố
-    citySelect.addEventListener("change", function () {
-        const selectedCity = citySelect.value;
-        districtSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>'; // Reset danh sách
+        // Khi chọn một thành phố
+        citySelect.addEventListener("change", function () {
+          const selectedCity = citySelect.value;
+          districtSelect.innerHTML =
+            '<option value="">Chọn Quận/Huyện</option>'; // Reset danh sách
 
-        if (selectedCity && districtsData[selectedCity]) {
-            districtsData[selectedCity].forEach(district => {
-                const option = document.createElement("option");
-                option.value = district.value;
-                option.textContent = district.text;
-                districtSelect.appendChild(option);
+          if (selectedCity && districtsData[selectedCity]) {
+            districtsData[selectedCity].forEach((district) => {
+              const option = document.createElement("option");
+              option.value = district.value;
+              option.textContent = district.text;
+              districtSelect.appendChild(option);
             });
 
             resetButton.style.display = "block"; // Hiện nút "Bỏ Lọc"
-        } else {
+          } else {
             resetButton.style.display = "none"; // Ẩn nút nếu không chọn gì
-        }
-    });
+          }
+        });
 
-    // Khi nhấn nút "Bỏ Lọc"
-    resetButton.addEventListener("click", function () {
-        citySelect.value = "";
-        districtSelect.innerHTML = '<option value="">Chọn Quận/Huyện</option>';
-        resetButton.style.display = "none";
-    });
-});
+        // Khi nhấn nút "Bỏ Lọc"
+        resetButton.addEventListener("click", function () {
+          citySelect.value = "";
+          districtSelect.innerHTML =
+            '<option value="">Chọn Quận/Huyện</option>';
+          resetButton.style.display = "none";
+        });
+      });
     </script>
 
     <script src="js/script.js"></script>
-</body>
+  </body>
 </html>

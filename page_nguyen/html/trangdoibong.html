@@ -1,174 +1,249 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ITLeague - Hệ thống quản lý giải đấu chuyên nghiệp</title>
-    <meta name="description" content="Hệ thống quản lý giải đấu chuyên nghiệp. Hỗ trợ tổ chức giải đấu dễ dàng, đưa thông tin giải giái đấu chính xác đên mọi người">
-    <link rel="stylesheet" href="style4.css">
-    <link rel="stylesheet" href="css/fontawesome.css">
+    <meta
+      name="description"
+      content="Hệ thống quản lý giải đấu chuyên nghiệp. Hỗ trợ tổ chức giải đấu dễ dàng, đưa thông tin giải giái đấu chính xác đên mọi người"
+    />
+    <link rel="stylesheet" href="style4.css" />
+    <link rel="stylesheet" href="css/fontawesome.css" />
     <!-- Preloading fonts -->
-    <link rel="preload" href="https://ext.same-assets.com/2295336092/4023430471.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://ext.same-assets.com/2295336092/3190606095.false" as="font" type="font/woff" crossorigin>
-</head>
-<body>
+    <link
+      rel="preload"
+      href="https://ext.same-assets.com/2295336092/4023430471.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="https://ext.same-assets.com/2295336092/3190606095.false"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+  </head>
+  <body>
     <!-- Header Section -->
     <header>
-        <div class="top-header">
-            <div class="container">
-                <div class="logo-container">
-                    <a href="/index.html">
-                        <img src="/images/1.jpg" alt="FAGLeague Logo" class="logo">
-                    </a>
-                    <span class="header-text">Hệ thống được phát triển bởi ITG</span>
-                </div>
-            </div>
+      <div class="top-header">
+        <div class="container">
+          <div class="logo-container">
+            <a href="/">
+              <img src="/images/1.jpg" alt="FAGLeague Logo" class="logo" />
+            </a>
+            <span class="header-text">Hệ thống được phát triển bởi ITG</span>
+          </div>
+          <div class="auth-links">
+            <a href="/Web_Design_Group_1/index.html" class="auth-link"
+              >Đăng ký</a
+            >
+            <a href="/Web_Design_Group_1/index.html" class="auth-link"
+              >Đăng nhập</a
+            >
+          </div>
         </div>
-        <nav class="main-nav">
-            <div class="container">
-                <ul class="nav-menu">
-                    <li><a href="../../index.html">Trang chủ</a></li>
-                    <li><a href="../../tournament_progress.html">Giải đang diễn ra</a></li>
-                    <li><a href="../../tournament_monitor.html">Giải đang theo dõi</a></li>
-                    <li><a href="trangdoibong.html" class="active">Đội bóng</a></li>
-                    <li><a href="../../catch_team.html">Bắt đối</a></li>
-                    <li><a href="huongdantao.html">Hướng dẫn</a></li>
-                    <li><a href="../../phan cuoc thi/competition.html">Cuộc thi</a></li>
-             <!-- Tối kiên push xong điền vào -->
-                    <li><a href="//ketnoibongda.vn">Tin tức</a></li>
-                </ul>
-                <div class="mobile-menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </nav>
-        <div class="mobile-menu">
-            <div class="container">
-                <div class="mobile-logo">
-                    <a href="/index.html">
-                        <img src="https://ext.same-assets.com/2295336092/4261187031.png" alt="FAGLeague Logo" class="logo">
-                    </a>
-                </div>
-                <ul class="mobile-nav-links">
-                    <li><a href="/acount/register.html">Đăng ký</a></li>
-                    <li><a href="/acount/log-in.html">Đăng nhập</a></li>
-                </ul>
-                <ul class="mobile-nav-menu">
-                    <li><a href="https://fagleague.vn/dang-dien-ra">Giải đang diễn ra</a></li>
-                    <li><a href="https://fagleague.vn/sap-khoi-tranh">Giải sắp khởi tranh</a></li>
-                    <li><a href="https://fagleague.vn/da-ket-thuc">Giải đã kết thúc</a></li>
-                    <li><a href="https://ketnoibongda.vn/bong-da-phong-trao/gioi-thieu-he-thong-quan-ly-giai-dau-fagleaguevn.html">Giới thiệu</a></li>
-                    <li><a href="https://ketnoibongda.vn/goc-chien-thuat/huong-dan-tao-giai-dau-tren-he-thong-quan-ly-giai-fagleague-fagleaguevn.html">Hướng dẫn tạo giải</a></li>
-                    <li><a href="https://fagleague.vn/bang-gia.html">Bảng giá</a></li>
-                    <li><a href="//ketnoibongda.vn">Tin tức</a></li>
-                    <li><a href="https://fagleague.vn/cuoc-thi.html">Cuộc thi</a></li>
-                </ul>
-                <div class="app-download-links">
-                    <p>Tải ứng dụng Fagleague</p>
-                    <div class="store-links">
-                        <a href="https://play.google.com/store/apps/details?id=com.fagleague_v2" target="_blank">
-                            <img src="https://ext.same-assets.com/2295336092/2324019219.svg" alt="Google Play">
-                        </a>
-                        <a href="https://apps.apple.com/vn/app/fagleague/id6449701833?l=vi" target="_blank">
-                            <img src="https://ext.same-assets.com/2295336092/8238845.svg" alt="App Store">
-                        </a>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <nav class="main-nav">
+        <div class="container">
+          <ul class="nav-menu">
+            <li><a href="../../index.html">Trang chủ</a></li>
+            <li>
+              <a href="../../tournament_progress.html">Giải đang diễn ra</a>
+            </li>
+            <li>
+              <a href="../../tournament_monitor.html">Giải đang theo dõi</a>
+            </li>
+            <li><a href="trangdoibong.html" class="active">Đội bóng</a></li>
+            <li><a href="../../catch_team.html">Bắt đối</a></li>
+            <li><a href="huongdantao.html">Hướng dẫn</a></li>
+            <li><a href="https://fagleague.vn/cuoc-thi.html">Cuộc thi</a></li>
+            <!-- Tối kiên push xong điền vào -->
+            <li><a href="//ketnoibongda.vn">Tin tức</a></li>
+          </ul>
+          <div class="mobile-menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
+      </nav>
+      <div class="mobile-menu">
+        <div class="container">
+          <div class="mobile-logo">
+            <a href="/">
+              <img
+                src="https://ext.same-assets.com/2295336092/4261187031.png"
+                alt="FAGLeague Logo"
+                class="logo"
+              />
+            </a>
+          </div>
+          <ul class="mobile-nav-links">
+            <li><a href="/acount/register.html">Đăng ký</a></li>
+            <li><a href="/acount/log-in.html">Đăng nhập</a></li>
+          </ul>
+          <ul class="mobile-nav-menu">
+            <li>
+              <a href="https://fagleague.vn/dang-dien-ra">Giải đang diễn ra</a>
+            </li>
+            <li>
+              <a href="https://fagleague.vn/sap-khoi-tranh"
+                >Giải sắp khởi tranh</a
+              >
+            </li>
+            <li>
+              <a href="https://fagleague.vn/da-ket-thuc">Giải đã kết thúc</a>
+            </li>
+            <li>
+              <a
+                href="https://ketnoibongda.vn/bong-da-phong-trao/gioi-thieu-he-thong-quan-ly-giai-dau-fagleaguevn.html"
+                >Giới thiệu</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://ketnoibongda.vn/goc-chien-thuat/huong-dan-tao-giai-dau-tren-he-thong-quan-ly-giai-fagleague-fagleaguevn.html"
+                >Hướng dẫn tạo giải</a
+              >
+            </li>
+            <li><a href="https://fagleague.vn/bang-gia.html">Bảng giá</a></li>
+            <li><a href="//ketnoibongda.vn">Tin tức</a></li>
+            <li><a href="https://fagleague.vn/cuoc-thi.html">Cuộc thi</a></li>
+          </ul>
+          <div class="app-download-links">
+            <p>Tải ứng dụng Fagleague</p>
+            <div class="store-links">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.fagleague_v2"
+                target="_blank"
+              >
+                <img
+                  src="https://ext.same-assets.com/2295336092/2324019219.svg"
+                  alt="Google Play"
+                />
+              </a>
+              <a
+                href="https://apps.apple.com/vn/app/fagleague/id6449701833?l=vi"
+                target="_blank"
+              >
+                <img
+                  src="https://ext.same-assets.com/2295336092/8238845.svg"
+                  alt="App Store"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
 
     <!-- Page Title Section -->
     <section class="page-title">
-        <div class="container">
-            <h1>Hệ thống quản lý giải đấu chuyên nghiệp</h1>
-        </div>
+      <div class="container">
+        <h1>Hệ thống quản lý giải đấu chuyên nghiệp</h1>
+      </div>
     </section>
 
     <!-- Teams Grid Section -->
     <section class="teams-grid">
-        <div class="container">
-            <div class="teams-container">
-                <!-- Team Card -->
-                <div class="team-card">
-                    <a href="doibongitA.html" class="team-link">
-                        <div class="team-image">
-                            <img src="https://ext.same-assets.com/2295336092/933857334.jpeg" alt="A6">
-                        </div>
-                        <div class="team-rating">
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                        </div>
-                        <h3 class="team-name">FC IT65A</h3>
-                    </a>
-                </div>
+      <div class="container">
+        <div class="teams-container">
+          <!-- Team Card -->
+          <div class="team-card">
+            <a href="doibongitA.html" class="team-link">
+              <div class="team-image">
+                <img
+                  src="https://ext.same-assets.com/2295336092/933857334.jpeg"
+                  alt="A6"
+                />
+              </div>
+              <div class="team-rating">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+              </div>
+              <h3 class="team-name">FC IT65A</h3>
+            </a>
+          </div>
 
-                <!-- Team Card -->
-                <div class="team-card">
-                    <a href="doibong.html" class="team-link">
-                        <div class="team-image">
-                            <img src="https://ext.same-assets.com/2295336092/933857334.jpeg" alt="Hưng Thịnh Quảng Hợp">
-                        </div>
-                        <div class="team-rating">
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                        </div>
-                        <h3 class="team-name">FC TÚ SENA</h3>
-                    </a>
-                </div>
-            </div>
+          <!-- Team Card -->
+          <div class="team-card">
+            <a href="doibong.html" class="team-link">
+              <div class="team-image">
+                <img
+                  src="https://ext.same-assets.com/2295336092/933857334.jpeg"
+                  alt="Hưng Thịnh Quảng Hợp"
+                />
+              </div>
+              <div class="team-rating">
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+                <span class="star"></span>
+              </div>
+              <h3 class="team-name">FC TÚ SENA</h3>
+            </a>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Footer Section -->
     <footer>
-        <div class="footer-top">
-            <div class="container">
-                <div class="footer-widgets">
-                    <div class="footer-widget">
-                        <h3>LIÊN HỆ</h3>
-                        <ul>
-                            <li><a href="#">Liên hệ với chúng tôi</a></li>
-                            <li><a href="#">Liên hệ quảng cáo</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-widget">
-                        <h3>HỆ THỐNG QUẢN LÝ GIẢI ĐẤU</h3>
-                        <ul>
-                            <li><a href="#">ITLEAGUE.vn</a></li>
-                            <li><a href="#">Hotline: 0797 102 555</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-widget">
-                        <h3>VỀ CHÚNG TÔI</h3>
-                        <ul>
-                            <li><a href="#">Giới thiệu</a></li>
-                            <li><a href="#">Quy chế hoạt động</a></li>
-                            <li><a href="#">Điều khoản sử dụng</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="footer-social">
-                    <ul>
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                    </ul>
-                    <p>© 2019-2024 Kết nối bóng đá Việt Nam - All Rights Reserved</p>
-                </div>
+      <div class="footer-top">
+        <div class="container">
+          <div class="footer-widgets">
+            <div class="footer-widget">
+              <h3>LIÊN HỆ</h3>
+              <ul>
+                <li><a href="#">Liên hệ với chúng tôi</a></li>
+                <li><a href="#">Liên hệ quảng cáo</a></li>
+              </ul>
             </div>
+            <div class="footer-widget">
+              <h3>HỆ THỐNG QUẢN LÝ GIẢI ĐẤU</h3>
+              <ul>
+                <li><a href="#">ITLEAGUE.vn</a></li>
+                <li><a href="#">Hotline: 0797 102 555</a></li>
+              </ul>
+            </div>
+            <div class="footer-widget">
+              <h3>VỀ CHÚNG TÔI</h3>
+              <ul>
+                <li><a href="#">Giới thiệu</a></li>
+                <li><a href="#">Quy chế hoạt động</a></li>
+                <li><a href="#">Điều khoản sử dụng</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer-social">
+            <ul>
+              <li>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+              </li>
+            </ul>
+            <p>© 2019-2024 Kết nối bóng đá Việt Nam - All Rights Reserved</p>
+          </div>
         </div>
+      </div>
     </footer>
 
     <script src="script1.js"></script>
-</body>
+  </body>
 </html>
