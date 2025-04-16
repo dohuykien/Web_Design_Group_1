@@ -139,12 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('userProfile_phone', user.phone || '');
     }
 
-    // Clear logged-in user's profile info (on logout)
-
-
-    // Check if a user is currently logged in
-
-    // --- UI Update Functions ---
 
      // Helper to display messages within forms
      function displayMessage(formId, message, isError = false) {
@@ -264,9 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
             location.reload();
         } else {
             displayMessage('signin', 'Email hoặc mật khẩu không đúng.', true);
-             // Optionally clear profile in case of failed login attempt after previous success?
-             // clearUserProfile(); // Uncomment if strict logout on failure is desired
-             // updateHeaderUI();   // Uncomment if strict logout on failure is desired
         }
     }
 
@@ -277,7 +268,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Modal Loading and Initialization ---
 
     // Function to attach listeners to modal trigger buttons (Login/Register)
-    // This needs to be callable after the header UI is updated (e.g., on logout)
     function attachModalTriggers() {
          const openLoginBtn = document.getElementById("openLoginBtn");
          const openRegisterBtn = document.getElementById("openRegisterBtn");
@@ -377,20 +367,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // --- ADDED LOGIC: Auto-open modal if not logged in ---
-        if (!isLoggedIn()) {
-            console.log("User not logged in, automatically opening login modal.");
-            loginModal.style.display = "flex"; // Or "block", depending on your CSS for showing it
-            // Optional: Ensure the sign-in panel is active by default
-            if (container) {
-                 container.classList.remove("active");
-            }
-            // Optional: Clear any stray messages
-            displayMessage('signin', '');
-            displayMessage('signup', '');
-        }
-        // --- END ADDED LOGIC ---
-
         // Attach triggers now that modal exists (important for header buttons)
          attachModalTriggers();
 
@@ -401,9 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadLoginModal(); // Load the modal HTML first
     updateHeaderUI(); // Set initial header state (logged in or out)
 
-    // --- Other existing page functionalities ---
-    // (Your existing code for menus, sliders, etc.)
-    // ...
+
 
 });
 
