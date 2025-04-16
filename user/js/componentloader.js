@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log("Component Loader: DOMContentLoaded đã kích hoạt.");
 
   // Tải Header
-  loadComponent('/Web_Design_Group_1/user/userheader.html', 'header-container', () => {
+  loadComponent('/user/userheader.html', 'header-container', () => {
     console.log("Component Loader: Header callback đã thực thi.");
     // Nếu toggleDropdown không có sẵn trên toàn cục hoặc cần thiết lập:
     if (typeof initializeHeaderDropdown === 'function') { // Giả sử bạn tạo hàm này trong userheader.js
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Tải Sidebar
-  loadComponent('/Web_Design_Group_1/user/sidebar.html', 'sidebar-container', () => {
+  loadComponent('/user/sidebar.html', 'sidebar-container', () => {
     console.log("Component Loader: Sidebar callback đã thực thi.");
     // Khởi tạo các chức năng của sidebar SAU KHI HTML của nó được tải
 
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Tải Footer
-  loadComponent('/Web_Design_Group_1/user/userfooter.html', 'footer', () => {
+  loadComponent('/user/userfooter.html', 'footer', () => {
     console.log("Component Loader: Footer callback đã thực thi.");
      // Thêm bất kỳ khởi tạo JS dành riêng cho footer ở đây nếu cần
   });

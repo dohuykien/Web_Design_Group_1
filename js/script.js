@@ -24,7 +24,7 @@ function updateHeaderUI() {
     return;
   }
 
-  const defaultAvatar = "/Web_Design_Group_1/user/images/dhk.jpg"; // <<<--- PATH TO YOUR DEFAULT AVATAR
+  const defaultAvatar = "/user/images/dhk.png"; // <<<--- PATH TO YOUR DEFAULT AVATAR
 
   if (isLoggedIn()) {
     const username = localStorage.getItem("userProfile_username") || "User";
@@ -43,7 +43,7 @@ function updateHeaderUI() {
     authDropdown.innerHTML = `
             <span class="user-info">
                 <img src="${avatarSrc}" alt="Avatar" class="user-avatar">
-                <a href="/Web_Design_Group_1/user/Dashboard.html">${username}</a>
+                <a href="/user/Dashboard.html">${username}</a>
             </span>
             <button id="logoutBtn">ĐĂNG XUẤT</button>
         `;
@@ -314,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return; // Stop if placeholder is missing
              }
 
-            const response = await fetch('/Web_Design_Group_1/login_modal.html'); // Adjust path if needed
+            const response = await fetch('/login_modal.html'); // Adjust path if needed
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
