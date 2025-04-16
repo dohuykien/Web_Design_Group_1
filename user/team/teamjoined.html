@@ -1,61 +1,64 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trang danh sách đội tham gia</title>
-  <link rel="icon" type="logo.png" href="images/logo.png" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-  />
-  <link rel="stylesheet" href="/user/css/sidebar.css" />
-  <link rel="stylesheet" href="/user/css/userheader.css" />
-  <link rel="stylesheet" href="/user/css/userfooter.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang danh sách đội tham gia</title>
+    <link rel="icon" type="logo.png" href="images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/userheader.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/userfooter.css" />
 
-  <link rel="stylesheet" href="/user/team/css/teamjoined.css" />
+    <link
+      rel="stylesheet"
+      href="/Web_Design_Group_1/user/team/css/teamjoined.css"
+    />
+  </head>
+  <body>
+    <header id="header-container" class="header">
+      <!-- Header sẽ được tải ở đây -->
+    </header>
 
-</head>
-<body>
-  <header id="header-container" class="header">
-    <!-- Header sẽ được tải ở đây -->
-  </header>
+    <div class="container">
+      <div id="sidebar-container">
+        <!-- Sidebar sẽ được tải ở đây -->
+      </div>
 
-  <div class="container">
-    <div id="sidebar-container">
-      <!-- Sidebar sẽ được tải ở đây -->
+      <div class="content-wrapper">
+        <!-- Khu vực Nội dung chính -->
+        <section class="content">
+          <!-- Tiêu đề danh sách -->
+          <div class="list-league">
+            <span class="list-league_left"
+              ><i class="fa-solid fa-list"></i>Danh sách đội bạn tham gia</span
+            >
+          </div>
+
+          <!-- Vùng chứa danh sách đội -->
+          <div id="team-list-container">
+            <!-- Các thẻ đội sẽ được chèn vào đây bằng JavaScript -->
+          </div>
+
+          <!-- Footer -->
+          <footer id="footer" class="footer">
+            <!-- Footer sẽ được tải ở đây -->
+          </footer>
+        </section>
+      </div>
     </div>
 
-    <div class="content-wrapper">
-      <!-- Khu vực Nội dung chính -->
-      <section class="content">
-        <!-- Tiêu đề danh sách -->
-        <div class="list-league">
-          <span class="list-league_left"><i class="fa-solid fa-list"></i>Danh sách đội bạn tham gia</span>
-        </div>
-
-        <!-- Vùng chứa danh sách đội -->
-        <div id="team-list-container">
-          <!-- Các thẻ đội sẽ được chèn vào đây bằng JavaScript -->
-        </div>
-
-        <!-- Footer -->
-        <footer id="footer" class="footer">
-          <!-- Footer sẽ được tải ở đây -->
-        </footer>
-
-      </section>
-    </div>
-  </div>
-
-  <!-- Tải các tệp JavaScript -->
-  <script src="/user/js/sidebar.js"></script>
-  <script src="/user/js/userheader.js"></script>
-  <script src="/user/js/componentloader.js"></script>
-  <script src="/user/team/js/teamjoined.js"></script>
-</body>
+    <!-- Tải các tệp JavaScript -->
+    <script src="/Web_Design_Group_1/user/js/sidebar.js"></script>
+    <script src="/Web_Design_Group_1/user/js/userheader.js"></script>
+    <script src="/Web_Design_Group_1/user/js/componentloader.js"></script>
+    <script src="/Web_Design_Group_1/user/team/js/teamjoined.js"></script>
+  </body>
 </html>

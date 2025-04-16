@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trang phân quyền</title>
-    <link rel="icon" type="logo.png" href="/images/logo.png" />
+    <link
+      rel="icon"
+      type="logo.png"
+      href="/Web_Design_Group_1/images/logo.png"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
       rel="stylesheet"
@@ -13,12 +17,14 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
-    <link rel="stylesheet" href="/user/css/sidebar.css" />
-    <link rel="stylesheet" href="/user/css/userheader.css" />
-    <link rel="stylesheet" href="/user/css/userfooter.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/userheader.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/userfooter.css" />
 
-    <link rel="stylesheet" href="/user/seasonManagement/css/management-actions.css"/>
-
+    <link
+      rel="stylesheet"
+      href="/Web_Design_Group_1/user/seasonManagement/css/management-actions.css"
+    />
 
     <style>
       * {
@@ -31,7 +37,6 @@
       body {
         background-color: white;
       }
-    
 
       /*----------------------Layout-------------------------*/
       .container {
@@ -40,7 +45,7 @@
       }
 
       /*----------content: list-league + footer------------ */
-      
+
       .content-wrapper {
         flex: 1;
         display: block;
@@ -108,7 +113,6 @@
         border-top: 3px solid #d2d6de; /* Subtle top border like AdminLTE */
         font-family: "Source Sans Pro", sans-serif;
       }
-
 
       /* Styles for the search input and dropdown */
       .add-manager-section {
@@ -276,7 +280,7 @@
   </head>
   <body>
     <header id="header-container" class="header">
-        <!-- Header will be loaded here -->
+      <!-- Header will be loaded here -->
     </header>
     <div class="container">
       <div id="sidebar-container">
@@ -309,7 +313,10 @@
               <i class="fa-solid fa-newspaper"></i>
               <span>TIN TỨC-THÔNG BÁO</span>
             </a>
-            <a href="/user/EditSeason.html" class="action-button">
+            <a
+              href="/Web_Design_Group_1/user/EditSeason.html"
+              class="action-button"
+            >
               <i class="fa-solid fa-gears"></i>
               <span>CẤU HÌNH MÙA GIẢI</span>
             </a>
@@ -323,9 +330,9 @@
         </div>
         <section class="content">
           <div class="list-league">
-            
             <span class="list-league_left"
-              ><i class="fa-solid fa-list"></i>Danh sách tài khoản quản lý giải</span
+              ><i class="fa-solid fa-list"></i>Danh sách tài khoản quản lý
+              giải</span
             >
           </div>
 
@@ -372,16 +379,14 @@
             </div>
           </div>
 
-          <footer id="footer" class="footer">
-
-          </footer>
+          <footer id="footer" class="footer"></footer>
         </section>
       </div>
     </div>
 
-    <script src="/user/js/sidebar.js"></script>
-    <script src="/user/js/userheader.js"></script>
-    <script src="/user/js/componentloader.js"></script>
+    <script src="/Web_Design_Group_1/user/js/sidebar.js"></script>
+    <script src="/Web_Design_Group_1/user/js/userheader.js"></script>
+    <script src="/Web_Design_Group_1/user/js/componentloader.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const users = [
@@ -422,7 +427,10 @@
             const allManagersData = JSON.parse(
               localStorage.getItem("managersSeasonData") || "[]"
             );
-            return allManagersData.filter((m) => m.leagueId === currentLeagueId && m.seasonId === currentSeasonId);
+            return allManagersData.filter(
+              (m) =>
+                m.leagueId === currentLeagueId && m.seasonId === currentSeasonId
+            );
           } catch (error) {
             console.error(
               "Error reading managersSeasonData from localStorage:",
@@ -567,10 +575,10 @@
           const seasonsData = getSeasonData();
           const currentSeason = seasonsData.find(
             (season) => season.id === currentSeasonId
-          )
+          );
           const currentLeague = leaguesData.find(
             (league) => league.id === currentLeagueId
-          )
+          );
           if (!currentSeasonId) {
             console.error(`Season ${currentSeasonId} not found.`);
             tableBody.innerHTML = `<tr><td colspan="4">...</td></tr>`;
@@ -590,7 +598,10 @@
             console.warn(`Creator ${currentUser.id} not found.`);
           }
 
-          const managerRelations = getManagersForTeam(currentSeasonId, currentLeagueId);
+          const managerRelations = getManagersForTeam(
+            currentSeasonId,
+            currentLeagueId
+          );
           managerRelations.forEach((relation) => {
             const manager = findUserById(relation.userId);
             if (manager && manager.id !== currentUser.id) {
@@ -651,7 +662,11 @@
                 );
                 const updatedManagersData = managersData.filter(
                   (m) =>
-                    !(m.seasonId === currentSeasonId && m.leagueId === currentLeagueId && m.userId === userIdToDelete)
+                    !(
+                      m.seasonId === currentSeasonId &&
+                      m.leagueId === currentLeagueId &&
+                      m.userId === userIdToDelete
+                    )
                 );
                 localStorage.setItem(
                   "managersSeasonData",
@@ -726,7 +741,10 @@
 
             // Check if this user is ALREADY a manager for THIS team
             const alreadyExists = managersData.some(
-              (m) => m.seasonId === currentSeasonId && m.leagueId === currentLeagueId && m.userId === userToAdd.id
+              (m) =>
+                m.seasonId === currentSeasonId &&
+                m.leagueId === currentLeagueId &&
+                m.userId === userToAdd.id
             );
 
             if (alreadyExists) {
@@ -743,8 +761,15 @@
             }
 
             // Add the new manager relationship
-            managersData.push({ seasonId: currentSeasonId, leagueId: currentLeagueId, userId: userToAdd.id });
-            localStorage.setItem("managersSeasonData", JSON.stringify(managersData));
+            managersData.push({
+              seasonId: currentSeasonId,
+              leagueId: currentLeagueId,
+              userId: userToAdd.id,
+            });
+            localStorage.setItem(
+              "managersSeasonData",
+              JSON.stringify(managersData)
+            );
 
             console.log(
               `Added manager relationship: User ${userToAdd.id} for Season ${currentSeasonId}`

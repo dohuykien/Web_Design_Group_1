@@ -1,141 +1,209 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thêm Đội Bóng</title>
-  <link rel="icon" type="logo.png" href="images/logo.png" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-  />
-  <link rel="stylesheet" href="/user/css/sidebar.css" />
-  <link rel="stylesheet" href="/user/css/userheader.css" />
-  <link rel="stylesheet" href="/user/css/userfooter.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thêm Đội Bóng</title>
+    <link rel="icon" type="logo.png" href="images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/userheader.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/userfooter.css" />
 
-  <link rel="stylesheet" href="./css/addteam.css" />
-</head>
-<body>
-  <header id="header-container" class="header">
-    <!-- Header sẽ được chèn ở đây -->
-  </header>
+    <link rel="stylesheet" href="./css/addteam.css" />
+  </head>
+  <body>
+    <header id="header-container" class="header">
+      <!-- Header sẽ được chèn ở đây -->
+    </header>
 
-  <div class="container">
-    <div id="sidebar-container">
-      <!-- Sidebar sẽ được chèn ở đây -->
-    </div>
-    <div class="content-wrapper">
-      <section class="content">
-        <!-- Tiêu đề và nút bấm -->
-        <div class="list-league">
-          <span class="list-league_left"><i class="fa-solid fa-check"></i>Thêm đội bóng</span>
-          <div>
-            <button id="saveButton" type="button" class="save"><i class="fas fa-save"></i> Lưu</button>
-            <button type="button" class="retry"><i class="fas fa-sync-alt"></i> Nhập lại</button>
-            <a href ="teamuser.html" style="text-decoration: none;">
-              <button type="button" class="return"><i class="fas fa-arrow-left"></i> Danh sách đội bóng</button>
-            </a>
-          </div>
-        </div>
-
-        <!-- Khu vực Form Chính -->
-        <form>
-          <div class="form-layout">
-
-            <!-- Phần Trái: Khu vực Trường Form -->
-            <div class="form-fields-area">
-
-              <!-- Tên đội trên hàng riêng -->
-              <div class="form-group">
-                <label for="teamName">Tên đội bóng</label>
-                <input type="text" id="teamName" name="teamName" class="form-control" placeholder="Nhập tên đội bóng (Bắt buộc)" required>
-              </div>
-
-              <!-- Lưới cho các trường còn lại -->
-              <div class="form-grid">
-                <!-- Cột Trái -->
-                <div class="form-column">
-                  <div class="form-group">
-                    <label for="managerName">Người quản lý</label>
-                    <input type="text" id="managerName" name="managerName" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" class="form-control" placeholder="you@example.com">
-                  </div>
-                  <div class="form-group">
-                    <label>Trang phục sân nhà</label>
-                    <label for="homeKitFile" class="file-upload-label kit-upload">
-                      <i class="fas fa-upload"></i> Chọn ảnh...
-                    </label>
-                    <input type="file" id="homeKitFile" name="homeKitFile" accept="image/*" style="display: none;">
-                    <div id="homeKitPreview" class="kit-preview"></div>
-                  </div>
-                </div>
-
-                <!-- Cột Phải -->
-                <div class="form-column">
-                  <div class="form-group">
-                    <label for="phone">Điện thoại</label>
-                    <input type="tel" id="phone" name="phone" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label for="facebook">Facebook</label>
-                    <input type="url" id="facebook" name="facebook" class="form-control" placeholder="https://facebook.com/yourpage">
-                  </div>
-                  <div class="form-group">
-                    <label>Trang phục sân khách</label>
-                    <label for="awayKitFile" class="file-upload-label kit-upload">
-                      <i class="fas fa-upload"></i> Chọn ảnh...
-                    </label>
-                    <input type="file" id="awayKitFile" name="awayKitFile" accept="image/*" style="display: none;">
-                    <div id="awayKitPreview" class="kit-preview"></div>
-                  </div>
-                </div>
-              </div>
-
+    <div class="container">
+      <div id="sidebar-container">
+        <!-- Sidebar sẽ được chèn ở đây -->
+      </div>
+      <div class="content-wrapper">
+        <section class="content">
+          <!-- Tiêu đề và nút bấm -->
+          <div class="list-league">
+            <span class="list-league_left"
+              ><i class="fa-solid fa-check"></i>Thêm đội bóng</span
+            >
+            <div>
+              <button id="saveButton" type="button" class="save">
+                <i class="fas fa-save"></i> Lưu
+              </button>
+              <button type="button" class="retry">
+                <i class="fas fa-sync-alt"></i> Nhập lại
+              </button>
+              <a href="teamuser.html" style="text-decoration: none">
+                <button type="button" class="return">
+                  <i class="fas fa-arrow-left"></i> Danh sách đội bóng
+                </button>
+              </a>
             </div>
+          </div>
 
-            <!-- Phần Phải: Khu vực Tải lên -->
-            <div class="form-upload-area">
-              <div class="upload-section">
-                <label for="logoFile" class="file-upload-label logo-upload">
-                  <i class="fas fa-upload"></i> Upload ảnh Logo...
-                </label>
-                <input type="file" id="logoFile" name="logoFile" accept="image/*" style="display: none;">
-                <div class="image-preview" id="logoPreview">
-                  <img src="images/logo.png" alt="Default Logo Preview" style="max-width: 150px; max-height: 150px; border-radius: 5px;"/>
+          <!-- Khu vực Form Chính -->
+          <form>
+            <div class="form-layout">
+              <!-- Phần Trái: Khu vực Trường Form -->
+              <div class="form-fields-area">
+                <!-- Tên đội trên hàng riêng -->
+                <div class="form-group">
+                  <label for="teamName">Tên đội bóng</label>
+                  <input
+                    type="text"
+                    id="teamName"
+                    name="teamName"
+                    class="form-control"
+                    placeholder="Nhập tên đội bóng (Bắt buộc)"
+                    required
+                  />
+                </div>
+
+                <!-- Lưới cho các trường còn lại -->
+                <div class="form-grid">
+                  <!-- Cột Trái -->
+                  <div class="form-column">
+                    <div class="form-group">
+                      <label for="managerName">Người quản lý</label>
+                      <input
+                        type="text"
+                        id="managerName"
+                        name="managerName"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="you@example.com"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Trang phục sân nhà</label>
+                      <label
+                        for="homeKitFile"
+                        class="file-upload-label kit-upload"
+                      >
+                        <i class="fas fa-upload"></i> Chọn ảnh...
+                      </label>
+                      <input
+                        type="file"
+                        id="homeKitFile"
+                        name="homeKitFile"
+                        accept="image/*"
+                        style="display: none"
+                      />
+                      <div id="homeKitPreview" class="kit-preview"></div>
+                    </div>
+                  </div>
+
+                  <!-- Cột Phải -->
+                  <div class="form-column">
+                    <div class="form-group">
+                      <label for="phone">Điện thoại</label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        class="form-control"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="facebook">Facebook</label>
+                      <input
+                        type="url"
+                        id="facebook"
+                        name="facebook"
+                        class="form-control"
+                        placeholder="https://facebook.com/yourpage"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label>Trang phục sân khách</label>
+                      <label
+                        for="awayKitFile"
+                        class="file-upload-label kit-upload"
+                      >
+                        <i class="fas fa-upload"></i> Chọn ảnh...
+                      </label>
+                      <input
+                        type="file"
+                        id="awayKitFile"
+                        name="awayKitFile"
+                        accept="image/*"
+                        style="display: none"
+                      />
+                      <div id="awayKitPreview" class="kit-preview"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="upload-section">
-                <label for="coverFile" class="file-upload-label cover-upload">
-                  <i class="fas fa-upload"></i> Upload ảnh bìa...
-                </label>
-                <input type="file" id="coverFile" name="coverFile" accept="image/*" style="display: none;">
-                <div class="image-preview" id="coverPreview">
+
+              <!-- Phần Phải: Khu vực Tải lên -->
+              <div class="form-upload-area">
+                <div class="upload-section">
+                  <label for="logoFile" class="file-upload-label logo-upload">
+                    <i class="fas fa-upload"></i> Upload ảnh Logo...
+                  </label>
+                  <input
+                    type="file"
+                    id="logoFile"
+                    name="logoFile"
+                    accept="image/*"
+                    style="display: none"
+                  />
+                  <div class="image-preview" id="logoPreview">
+                    <img
+                      src="images/logo.png"
+                      alt="Default Logo Preview"
+                      style="
+                        max-width: 150px;
+                        max-height: 150px;
+                        border-radius: 5px;
+                      "
+                    />
+                  </div>
+                </div>
+                <div class="upload-section">
+                  <label for="coverFile" class="file-upload-label cover-upload">
+                    <i class="fas fa-upload"></i> Upload ảnh bìa...
+                  </label>
+                  <input
+                    type="file"
+                    id="coverFile"
+                    name="coverFile"
+                    accept="image/*"
+                    style="display: none"
+                  />
+                  <div class="image-preview" id="coverPreview"></div>
                 </div>
               </div>
             </div>
+          </form>
+        </section>
 
-          </div>
-        </form>
-
-      </section>
-
-      <footer id="footer" class="footer">
-        <!-- Footer sẽ được chèn ở đây -->
-      </footer>
-
+        <footer id="footer" class="footer">
+          <!-- Footer sẽ được chèn ở đây -->
+        </footer>
+      </div>
     </div>
-  </div>
 
-  <script src="/user/js/sidebar.js"></script>
-  <script src="/user/js/userheader.js"></script>
-  <script src="/user/js/componentloader.js"></script>
-  <script src="/user/team/js/addteam.js"></script>
-</body>
+    <script src="/Web_Design_Group_1/user/js/sidebar.js"></script>
+    <script src="/Web_Design_Group_1/user/js/userheader.js"></script>
+    <script src="/Web_Design_Group_1/user/js/componentloader.js"></script>
+    <script src="/Web_Design_Group_1/user/team/js/addteam.js"></script>
+  </body>
 </html>

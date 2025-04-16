@@ -1,699 +1,965 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="logo.png" href="images/logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Raleway:wght@400;700&family=Lobster&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="logo.png" href="images/logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Raleway:wght@400;700&family=Lobster&family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
     <title>WEBSITE SOCCER</title>
-</head>
-<body>
-<!-- ------------------------------- HEADER ------------------------ -->
-<header class="header">
-    <div class="container-fluid">
+  </head>
+  <body>
+    <!-- ------------------------------- HEADER ------------------------ -->
+    <header class="header">
+      <div class="container-fluid">
         <div class="navbar">
-            <div class="navbar-top">
-                <button class="navbar-toggler" id="menu-toggle">☰</button>
-                <div class="logo">
-                    <a href="index.html"><img src="images/logo.png" alt="Logo"></a> 
-                </div>
-                <span class="developed-by">Hệ thống được phát triển bởi Eternal Phoenix</span>
-                <div class="auth-menu-wrapper">
-                    <div class="auth-toggler" id="auth-toggle">
-                        <a href="/user/Dashboard.html">👤</a>
-                        <button id="logout2Btn" style="background-color: transparent; border: none; font-size: 24px; margin-left: -20px;">🚪</button>
-                    </div>
-                    <div class="auth-dropdown" id="auth-dropdown">
-                      <button id="openRegisterBtn">ĐĂNG KÝ</button> | 
-                      <button id="openLoginBtn">ĐĂNG NHẬP</button>
-                    </div>
-                </div>
+          <div class="navbar-top">
+            <button class="navbar-toggler" id="menu-toggle">☰</button>
+            <div class="logo">
+              <a href="index.html"><img src="images/logo.png" alt="Logo" /></a>
             </div>
-            <div class="navbar-bottom" id="main-menu">
-                <button class="close-menu" id="close-menu">✖</button>
-                <div class="navbar-collapse">
-                  <ul class="navbar-nav">
-                    <li class="nav-item"><a href="index.html" class="nav-link">TRANG CHỦ</a></li>
-                    <li class="nav-item"><a href="tournament_progress.html" class="nav-link">GIẢI ĐANG DIỄN RA</a></li>
-                    <li class="nav-item"><a href="tournament_monitor.html" class="nav-link">GIẢI ĐANG THEO DÕI</a></li>
-                    <li class="nav-item"><a href="page_nguyen/html/doibong.html" class="nav-link">ĐỘI BÓNG</a></li>
-                    <li class="nav-item"><a href="catch_team.html" class="nav-link">BẮT ĐỐI</a></li>
-                    <li class="nav-item"><a href="page_nguyen/html/huongdantao.html" class="nav-link">HƯỚNG DẪN</a></li>
-                    <li class="nav-item"><a href="phan cuoc thi/competition.html" class="nav-link">CUỘC THI</a></li>
-                    <li class="nav-item"><a href="https://www.24h.com.vn/the-thao-c101.html" class="nav-link">TIN TỨC</a></li>
-                  </ul>
-                </div>
+            <span class="developed-by"
+              >Hệ thống được phát triển bởi Eternal Phoenix</span
+            >
+            <div class="auth-menu-wrapper">
+              <div class="auth-toggler" id="auth-toggle">
+                <a href="/Web_Design_Group_1/user/Dashboard.html">👤</a>
+                <button
+                  id="logout2Btn"
+                  style="
+                    background-color: transparent;
+                    border: none;
+                    font-size: 24px;
+                    margin-left: -20px;
+                  "
+                >
+                  🚪
+                </button>
               </div>
-        </div>
-    </div>
-</header> 
-
-<!-- -------------------------------- BACKGROUND ----------------- -->
-    <section class="container-fluid">
-        <div class="banner">
-            <h1>Hệ Thống Quản Lý Giải Đấu Chuyên Nghiệp</h1>
-            <div class="search-bar">
-                <input type="text" placeholder="Tìm giải đấu của bạn">
-                <button><i class="fa fa-search"></i></button>
+              <div class="auth-dropdown" id="auth-dropdown">
+                <button id="openRegisterBtn">ĐĂNG KÝ</button> |
+                <button id="openLoginBtn">ĐĂNG NHẬP</button>
+              </div>
             </div>
+          </div>
+          <div class="navbar-bottom" id="main-menu">
+            <button class="close-menu" id="close-menu">✖</button>
+            <div class="navbar-collapse">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a href="index.html" class="nav-link">TRANG CHỦ</a>
+                </li>
+                <li class="nav-item">
+                  <a href="tournament_progress.html" class="nav-link"
+                    >GIẢI ĐANG DIỄN RA</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="tournament_monitor.html" class="nav-link"
+                    >GIẢI ĐANG THEO DÕI</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="page_nguyen/html/doibong.html" class="nav-link"
+                    >ĐỘI BÓNG</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="catch_team.html" class="nav-link">BẮT ĐỐI</a>
+                </li>
+                <li class="nav-item">
+                  <a href="page_nguyen/html/huongdantao.html" class="nav-link"
+                    >HƯỚNG DẪN</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a href="phan cuoc thi/competition.html" class="nav-link"
+                    >CUỘC THI</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    href="https://www.24h.com.vn/the-thao-c101.html"
+                    class="nav-link"
+                    >TIN TỨC</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </div>
+    </header>
+
+    <!-- -------------------------------- BACKGROUND ----------------- -->
+    <section class="container-fluid">
+      <div class="banner">
+        <h1>Hệ Thống Quản Lý Giải Đấu Chuyên Nghiệp</h1>
+        <div class="search-bar">
+          <input type="text" placeholder="Tìm giải đấu của bạn" />
+          <button><i class="fa fa-search"></i></button>
+        </div>
+      </div>
     </section>
 
+    <!-- --------------------- GIAI DAU --------------- -->
+    <section class="container row tournament">
+      <div class="list-league">
+        <div class="col-4">
+          <div class="tournament-containers">
+            <div class="tournament-card" id="card1">
+              <div class="tournament-front">
+                <div class="tournament-cover">
+                  <img
+                    class="tournament-banner"
+                    src="images/stadium_1.jpg"
+                    alt="Stadium"
+                  />
+                </div>
 
+                <div class="tournament-logo-container">
+                  <a href=""
+                    ><img
+                      class="tournament-logo"
+                      src="images/logo.png"
+                      alt="Logo"
+                  /></a>
+                </div>
+                <div class="tournament-content">
+                  <div class="tournament-info">
+                    <div class="tournament-info-rating">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="tournament-info-category">--- Bóng đá ---</p>
+                    <h3 class="tournament-info-title">
+                      <a href="">FIT CUP SEASON 1</a>
+                    </h3>
+                    <p class="tournament-info-date tournament-info-category">
+                      📅 Từ 14-03-2025 đến 14-04-2025
+                    </p>
+                    <button class="tournament-info-follow-btn">
+                      Bỏ Theo dõi
+                    </button>
+                  </div>
+                  <div class="tournament-footer">
+                    <div class="tournament-footer-left">
+                      <i class="fa fa-users" aria-hidden="true"></i> 15 Đội
+                    </div>
+                    <div class="tournament-footer-right">
+                      <a href="detail_league.html">
+                        Thông tin
+                        <i
+                          class="fa fa-long-arrow-right"
+                          aria-hidden="true"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="tournament-containers">
+            <div class="tournament-card" id="card1">
+              <div class="tournament-front">
+                <div class="tournament-cover">
+                  <img
+                    class="tournament-banner"
+                    src="images/stadium_1.jpg"
+                    alt="Stadium"
+                  />
+                </div>
 
-<!-- --------------------- GIAI DAU --------------- -->
-<section class="container row tournament">
-    <div class="list-league">
-        <div class="col-4">
-            <div class="tournament-containers">
-                <div class="tournament-card" id="card1">
-                    <div class="tournament-front">
-                        <div class="tournament-cover">
-                            <img class="tournament-banner" src="images/stadium_1.jpg" alt="Stadium">
-                        </div>
-                        
-                        <div class="tournament-logo-container">
-                            <a href=""><img class="tournament-logo" src="images/logo.png" alt="Logo"></a>
-                        </div>
-                        <div class="tournament-content">
-                            <div class="tournament-info">
-                                <div class="tournament-info-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="tournament-info-category">--- Bóng đá ---</p>
-                                <h3 class="tournament-info-title"><a href="">FIT CUP SEASON 1</a></h3>
-                                <p class="tournament-info-date tournament-info-category">
-                                    📅 Từ 14-03-2025 đến 14-04-2025
-                                </p>
-                                <button class="tournament-info-follow-btn">Bỏ Theo dõi</button>
-                            </div>
-                            <div class="tournament-footer">
-                                <div class="tournament-footer-left">
-                                    <i class="fa fa-users" aria-hidden="true"></i> 15 Đội
-                                </div>
-                                <div class="tournament-footer-right">
-                                    <a href="detail_league.html"> Thông tin
-                                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="tournament-logo-container">
+                  <a href=""
+                    ><img
+                      class="tournament-logo"
+                      src="images/logo.png"
+                      alt="Logo"
+                  /></a>
                 </div>
+                <div class="tournament-content">
+                  <div class="tournament-info">
+                    <div class="tournament-info-rating">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="tournament-info-category">--- Bóng đá ---</p>
+                    <h3 class="tournament-info-title">
+                      <a href="">U20 Mở Rộng 2025</a>
+                    </h3>
+                    <p class="tournament-info-date tournament-info-category">
+                      📅 Từ 25-03-2025 đến 25-03-2025
+                    </p>
+                    <button class="tournament-info-follow-btn">
+                      Bỏ Theo dõi
+                    </button>
+                  </div>
+                  <div class="tournament-footer">
+                    <div class="tournament-footer-left">
+                      <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
+                    </div>
+                    <div class="tournament-footer-right">
+                      <a href="detail_league.html">
+                        Thông tin
+                        <i
+                          class="fa fa-long-arrow-right"
+                          aria-hidden="true"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
         <div class="col-4">
-            <div class="tournament-containers">
-                <div class="tournament-card" id="card1">
-                    <div class="tournament-front">
-                        <div class="tournament-cover">
-                            <img class="tournament-banner" src="images/stadium_1.jpg" alt="Stadium">
-                        </div>
-                        
-                        <div class="tournament-logo-container">
-                            <a href=""><img class="tournament-logo" src="images/logo.png" alt="Logo"></a>
-                        </div>
-                        <div class="tournament-content">
-                            <div class="tournament-info">
-                                <div class="tournament-info-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="tournament-info-category">--- Bóng đá ---</p>
-                                <h3 class="tournament-info-title"><a href="">U20 Mở Rộng 2025</a></h3>
-                                <p class="tournament-info-date tournament-info-category">
-                                    📅 Từ 25-03-2025 đến 25-03-2025
-                                </p>
-                                <button class="tournament-info-follow-btn">Bỏ Theo dõi</button>
-                            </div>
-                            <div class="tournament-footer">
-                                <div class="tournament-footer-left">
-                                    <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
-                                </div>
-                                <div class="tournament-footer-right">
-                                    <a href="detail_league.html"> Thông tin
-                                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          <div class="tournament-containers">
+            <div class="tournament-card" id="card1">
+              <div class="tournament-front">
+                <div class="tournament-cover">
+                  <img
+                    class="tournament-banner"
+                    src="images/stadium_1.jpg"
+                    alt="Stadium"
+                  />
                 </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="tournament-containers">
-                <div class="tournament-card" id="card1">
-                    <div class="tournament-front">
-                        <div class="tournament-cover">
-                            <img class="tournament-banner" src="images/stadium_1.jpg" alt="Stadium">
-                        </div>
-                        
-                        <div class="tournament-logo-container">
-                            <a href=""><img class="tournament-logo" src="images/logo.png" alt="Logo"></a>
-                        </div>
-                        <div class="tournament-content">
-                            <div class="tournament-info">
-                                <div class="tournament-info-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="tournament-info-category">--- Bóng đá ---</p>
-                                <h3 class="tournament-info-title"><a href="">U20 Mở Rộng 2025</a></h3>
-                                <p class="tournament-info-date tournament-info-category">
-                                    📅 Từ 25-03-2025 đến 25-03-2025
-                                </p>
-                                <button class="tournament-info-follow-btn">Bỏ Theo dõi</button>
-                            </div>
-                            <div class="tournament-footer">
-                                <div class="tournament-footer-left">
-                                    <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
-                                </div>
-                                <div class="tournament-footer-right">
-                                    <a href="detail_league.html"> Thông tin
-                                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="tournament-containers">
-                <div class="tournament-card" id="card1">
-                    <div class="tournament-front">
-                        <div class="tournament-cover">
-                            <img class="tournament-banner" src="images/stadium_1.jpg" alt="Stadium">
-                        </div>
-                        
-                        <div class="tournament-logo-container">
-                            <a href=""><img class="tournament-logo" src="images/logo.png" alt="Logo"></a>
-                        </div>
-                        <div class="tournament-content">
-                            <div class="tournament-info">
-                                <div class="tournament-info-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="tournament-info-category">--- Bóng đá ---</p>
-                                <h3 class="tournament-info-title"><a href="">U20 Mở Rộng 2025</a></h3>
-                                <p class="tournament-info-date tournament-info-category">
-                                    📅 Từ 25-03-2025 đến 25-03-2025
-                                </p>
-                                <button class="tournament-info-follow-btn">Bỏ Theo dõi</button>
-                            </div>
-                            <div class="tournament-footer">
-                                <div class="tournament-footer-left">
-                                    <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
-                                </div>
-                                <div class="tournament-footer-right">
-                                    <a href="detail_league.html"> Thông tin
-                                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="tournament-containers">
-                <div class="tournament-card" id="card1">
-                    <div class="tournament-front">
-                        <div class="tournament-cover">
-                            <img class="tournament-banner" src="images/stadium_1.jpg" alt="Stadium">
-                        </div>
-                        
-                        <div class="tournament-logo-container">
-                            <a href=""><img class="tournament-logo" src="images/logo.png" alt="Logo"></a>
-                        </div>
-                        <div class="tournament-content">
-                            <div class="tournament-info">
-                                <div class="tournament-info-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="tournament-info-category">--- Bóng đá ---</p>
-                                <h3 class="tournament-info-title"><a href="">U20 Mở Rộng 2025</a></h3>
-                                <p class="tournament-info-date tournament-info-category">
-                                    📅 Từ 25-03-2025 đến 25-03-2025
-                                </p>
-                                <button class="tournament-info-follow-btn">Bỏ Theo dõi</button>
-                            </div>
-                            <div class="tournament-footer">
-                                <div class="tournament-footer-left">
-                                    <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
-                                </div>
-                                <div class="tournament-footer-right">
-                                    <a href="detail_league.html"> Thông tin
-                                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="tournament-containers">
-                <div class="tournament-card" id="card1">
-                    <div class="tournament-front">
-                        <div class="tournament-cover">
-                            <img class="tournament-banner" src="images/stadium_1.jpg" alt="Stadium">
-                        </div>
-                        
-                        <div class="tournament-logo-container">
-                            <a href=""><img class="tournament-logo" src="images/logo.png" alt="Logo"></a>
-                        </div>
-                        <div class="tournament-content">
-                            <div class="tournament-info">
-                                <div class="tournament-info-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="tournament-info-category">--- Bóng đá ---</p>
-                                <h3 class="tournament-info-title"><a href="">U20 Mở Rộng 2025</a></h3>
-                                <p class="tournament-info-date tournament-info-category">
-                                    📅 Từ 25-03-2025 đến 25-03-2025
-                                </p>
-                                <button class="tournament-info-follow-btn">Bỏ Theo dõi</button>
-                            </div>
-                            <div class="tournament-footer">
-                                <div class="tournament-footer-left">
-                                    <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
-                                </div>
-                                <div class="tournament-footer-right">
-                                    <a href="detail_league.html"> Thông tin
-                                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="tournament-containers">
-                <div class="tournament-card" id="card1">
-                    <div class="tournament-front">
-                        <div class="tournament-cover">
-                            <img class="tournament-banner" src="images/stadium_1.jpg" alt="Stadium">
-                        </div>
-                        
-                        <div class="tournament-logo-container">
-                            <a href=""><img class="tournament-logo" src="images/logo.png" alt="Logo"></a>
-                        </div>
-                        <div class="tournament-content">
-                            <div class="tournament-info">
-                                <div class="tournament-info-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="tournament-info-category">--- Bóng đá ---</p>
-                                <h3 class="tournament-info-title"><a href="">U20 Mở Rộng 2025</a></h3>
-                                <p class="tournament-info-date tournament-info-category">
-                                    📅 Từ 25-03-2025 đến 25-03-2025
-                                </p>
-                                <button class="tournament-info-follow-btn">Bỏ Theo dõi</button>
-                            </div>
-                            <div class="tournament-footer">
-                                <div class="tournament-footer-left">
-                                    <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
-                                </div>
-                                <div class="tournament-footer-right">
-                                    <a href="detail_league.html"> Thông tin
-                                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="tournament-containers">
-                <div class="tournament-card" id="card1">
-                    <div class="tournament-front">
-                        <div class="tournament-cover">
-                            <img class="tournament-banner" src="images/stadium_1.jpg" alt="Stadium">
-                        </div>
-                        
-                        <div class="tournament-logo-container">
-                            <a href=""><img class="tournament-logo" src="images/logo.png" alt="Logo"></a>
-                        </div>
-                        <div class="tournament-content">
-                            <div class="tournament-info">
-                                <div class="tournament-info-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="tournament-info-category">--- Bóng đá ---</p>
-                                <h3 class="tournament-info-title"><a href="">U20 Mở Rộng 2025</a></h3>
-                                <p class="tournament-info-date tournament-info-category">
-                                    📅 Từ 25-03-2025 đến 25-03-2025
-                                </p>
-                                <button class="tournament-info-follow-btn">Bỏ Theo dõi</button>
-                            </div>
-                            <div class="tournament-footer">
-                                <div class="tournament-footer-left">
-                                    <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
-                                </div>
-                                <div class="tournament-footer-right">
-                                    <a href="detail_league.html"> Thông tin
-                                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="tournament-containers">
-                <div class="tournament-card" id="card1">
-                    <div class="tournament-front">
-                        <div class="tournament-cover">
-                            <img class="tournament-banner" src="images/stadium_1.jpg" alt="Stadium">
-                        </div>
-                        
-                        <div class="tournament-logo-container">
-                            <a href=""><img class="tournament-logo" src="images/logo.png" alt="Logo"></a>
-                        </div>
-                        <div class="tournament-content">
-                            <div class="tournament-info">
-                                <div class="tournament-info-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="tournament-info-category">--- Bóng đá ---</p>
-                                <h3 class="tournament-info-title"><a href="">U20 Mở Rộng 2025</a></h3>
-                                <p class="tournament-info-date tournament-info-category">
-                                    📅 Từ 25-03-2025 đến 25-03-2025
-                                </p>
-                                <button class="tournament-info-follow-btn">Bỏ Theo dõi</button>
-                            </div>
-                            <div class="tournament-footer">
-                                <div class="tournament-footer-left">
-                                    <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
-                                </div>
-                                <div class="tournament-footer-right">
-                                    <a href="detail_league.html"> Thông tin
-                                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="tournament-containers">
-                <div class="tournament-card" id="card1">
-                    <div class="tournament-front">
-                        <div class="tournament-cover">
-                            <img class="tournament-banner" src="images/stadium_1.jpg" alt="Stadium">
-                        </div>
-                        
-                        <div class="tournament-logo-container">
-                            <a href=""><img class="tournament-logo" src="images/logo.png" alt="Logo"></a>
-                        </div>
-                        <div class="tournament-content">
-                            <div class="tournament-info">
-                                <div class="tournament-info-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="tournament-info-category">--- Bóng đá ---</p>
-                                <h3 class="tournament-info-title"><a href="">U20 Mở Rộng 2025</a></h3>
-                                <p class="tournament-info-date tournament-info-category">
-                                    📅 Từ 25-03-2025 đến 25-03-2025
-                                </p>
-                                <button class="tournament-info-follow-btn">Bỏ Theo dõi</button>
-                            </div>
-                            <div class="tournament-footer">
-                                <div class="tournament-footer-left">
-                                    <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
-                                </div>
-                                <div class="tournament-footer-right">
-                                    <a href="detail_league.html"> Thông tin
-                                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="tournament-containers">
-                <div class="tournament-card" id="card1">
-                    <div class="tournament-front">
-                        <div class="tournament-cover">
-                            <img class="tournament-banner" src="images/stadium_1.jpg" alt="Stadium">
-                        </div>
-                        
-                        <div class="tournament-logo-container">
-                            <a href=""><img class="tournament-logo" src="images/logo.png" alt="Logo"></a>
-                        </div>
-                        <div class="tournament-content">
-                            <div class="tournament-info">
-                                <div class="tournament-info-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="tournament-info-category">--- Bóng đá ---</p>
-                                <h3 class="tournament-info-title"><a href="">U20 Mở Rộng 2025</a></h3>
-                                <p class="tournament-info-date tournament-info-category">
-                                    📅 Từ 25-03-2025 đến 25-03-2025
-                                </p>
-                                <button class="tournament-info-follow-btn">Bỏ Theo dõi</button>
-                            </div>
-                            <div class="tournament-footer">
-                                <div class="tournament-footer-left">
-                                    <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
-                                </div>
-                                <div class="tournament-footer-right">
-                                    <a href="detail_league.html"> Thông tin
-                                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="tournament-containers">
-                <div class="tournament-card" id="card1">
-                    <div class="tournament-front">
-                        <div class="tournament-cover">
-                            <img class="tournament-banner" src="images/stadium_1.jpg" alt="Stadium">
-                        </div>
-                        
-                        <div class="tournament-logo-container">
-                            <a href=""><img class="tournament-logo" src="images/logo.png" alt="Logo"></a>
-                        </div>
-                        <div class="tournament-content">
-                            <div class="tournament-info">
-                                <div class="tournament-info-rating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                </div>
-                                <p class="tournament-info-category">--- Bóng đá ---</p>
-                                <h3 class="tournament-info-title"><a href="">U20 Mở Rộng 2025</a></h3>
-                                <p class="tournament-info-date tournament-info-category">
-                                    📅 Từ 25-03-2025 đến 25-03-2025
-                                </p>
-                                <button class="tournament-info-follow-btn">Bỏ Theo dõi</button>
-                            </div>
-                            <div class="tournament-footer">
-                                <div class="tournament-footer-left">
-                                    <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
-                                </div>
-                                <div class="tournament-footer-right">
-                                    <a href="detail_league.html"> Thông tin
-                                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-</section>
-    
 
+                <div class="tournament-logo-container">
+                  <a href=""
+                    ><img
+                      class="tournament-logo"
+                      src="images/logo.png"
+                      alt="Logo"
+                  /></a>
+                </div>
+                <div class="tournament-content">
+                  <div class="tournament-info">
+                    <div class="tournament-info-rating">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="tournament-info-category">--- Bóng đá ---</p>
+                    <h3 class="tournament-info-title">
+                      <a href="">U20 Mở Rộng 2025</a>
+                    </h3>
+                    <p class="tournament-info-date tournament-info-category">
+                      📅 Từ 25-03-2025 đến 25-03-2025
+                    </p>
+                    <button class="tournament-info-follow-btn">
+                      Bỏ Theo dõi
+                    </button>
+                  </div>
+                  <div class="tournament-footer">
+                    <div class="tournament-footer-left">
+                      <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
+                    </div>
+                    <div class="tournament-footer-right">
+                      <a href="detail_league.html">
+                        Thông tin
+                        <i
+                          class="fa fa-long-arrow-right"
+                          aria-hidden="true"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="tournament-containers">
+            <div class="tournament-card" id="card1">
+              <div class="tournament-front">
+                <div class="tournament-cover">
+                  <img
+                    class="tournament-banner"
+                    src="images/stadium_1.jpg"
+                    alt="Stadium"
+                  />
+                </div>
 
+                <div class="tournament-logo-container">
+                  <a href=""
+                    ><img
+                      class="tournament-logo"
+                      src="images/logo.png"
+                      alt="Logo"
+                  /></a>
+                </div>
+                <div class="tournament-content">
+                  <div class="tournament-info">
+                    <div class="tournament-info-rating">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="tournament-info-category">--- Bóng đá ---</p>
+                    <h3 class="tournament-info-title">
+                      <a href="">U20 Mở Rộng 2025</a>
+                    </h3>
+                    <p class="tournament-info-date tournament-info-category">
+                      📅 Từ 25-03-2025 đến 25-03-2025
+                    </p>
+                    <button class="tournament-info-follow-btn">
+                      Bỏ Theo dõi
+                    </button>
+                  </div>
+                  <div class="tournament-footer">
+                    <div class="tournament-footer-left">
+                      <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
+                    </div>
+                    <div class="tournament-footer-right">
+                      <a href="detail_league.html">
+                        Thông tin
+                        <i
+                          class="fa fa-long-arrow-right"
+                          aria-hidden="true"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="tournament-containers">
+            <div class="tournament-card" id="card1">
+              <div class="tournament-front">
+                <div class="tournament-cover">
+                  <img
+                    class="tournament-banner"
+                    src="images/stadium_1.jpg"
+                    alt="Stadium"
+                  />
+                </div>
 
-<!-- --------------------------------- LOG IN - LOG OUT ------------------------------------- -->
-<div id="modal-placeholder"></div>
+                <div class="tournament-logo-container">
+                  <a href=""
+                    ><img
+                      class="tournament-logo"
+                      src="images/logo.png"
+                      alt="Logo"
+                  /></a>
+                </div>
+                <div class="tournament-content">
+                  <div class="tournament-info">
+                    <div class="tournament-info-rating">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="tournament-info-category">--- Bóng đá ---</p>
+                    <h3 class="tournament-info-title">
+                      <a href="">U20 Mở Rộng 2025</a>
+                    </h3>
+                    <p class="tournament-info-date tournament-info-category">
+                      📅 Từ 25-03-2025 đến 25-03-2025
+                    </p>
+                    <button class="tournament-info-follow-btn">
+                      Bỏ Theo dõi
+                    </button>
+                  </div>
+                  <div class="tournament-footer">
+                    <div class="tournament-footer-left">
+                      <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
+                    </div>
+                    <div class="tournament-footer-right">
+                      <a href="detail_league.html">
+                        Thông tin
+                        <i
+                          class="fa fa-long-arrow-right"
+                          aria-hidden="true"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="tournament-containers">
+            <div class="tournament-card" id="card1">
+              <div class="tournament-front">
+                <div class="tournament-cover">
+                  <img
+                    class="tournament-banner"
+                    src="images/stadium_1.jpg"
+                    alt="Stadium"
+                  />
+                </div>
 
-<!-- --------------------------------------- FOOTER -------------------------------------- -->
-<footer class="footer">
-    <div class="container-fluid">
+                <div class="tournament-logo-container">
+                  <a href=""
+                    ><img
+                      class="tournament-logo"
+                      src="images/logo.png"
+                      alt="Logo"
+                  /></a>
+                </div>
+                <div class="tournament-content">
+                  <div class="tournament-info">
+                    <div class="tournament-info-rating">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="tournament-info-category">--- Bóng đá ---</p>
+                    <h3 class="tournament-info-title">
+                      <a href="">U20 Mở Rộng 2025</a>
+                    </h3>
+                    <p class="tournament-info-date tournament-info-category">
+                      📅 Từ 25-03-2025 đến 25-03-2025
+                    </p>
+                    <button class="tournament-info-follow-btn">
+                      Bỏ Theo dõi
+                    </button>
+                  </div>
+                  <div class="tournament-footer">
+                    <div class="tournament-footer-left">
+                      <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
+                    </div>
+                    <div class="tournament-footer-right">
+                      <a href="detail_league.html">
+                        Thông tin
+                        <i
+                          class="fa fa-long-arrow-right"
+                          aria-hidden="true"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="tournament-containers">
+            <div class="tournament-card" id="card1">
+              <div class="tournament-front">
+                <div class="tournament-cover">
+                  <img
+                    class="tournament-banner"
+                    src="images/stadium_1.jpg"
+                    alt="Stadium"
+                  />
+                </div>
+
+                <div class="tournament-logo-container">
+                  <a href=""
+                    ><img
+                      class="tournament-logo"
+                      src="images/logo.png"
+                      alt="Logo"
+                  /></a>
+                </div>
+                <div class="tournament-content">
+                  <div class="tournament-info">
+                    <div class="tournament-info-rating">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="tournament-info-category">--- Bóng đá ---</p>
+                    <h3 class="tournament-info-title">
+                      <a href="">U20 Mở Rộng 2025</a>
+                    </h3>
+                    <p class="tournament-info-date tournament-info-category">
+                      📅 Từ 25-03-2025 đến 25-03-2025
+                    </p>
+                    <button class="tournament-info-follow-btn">
+                      Bỏ Theo dõi
+                    </button>
+                  </div>
+                  <div class="tournament-footer">
+                    <div class="tournament-footer-left">
+                      <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
+                    </div>
+                    <div class="tournament-footer-right">
+                      <a href="detail_league.html">
+                        Thông tin
+                        <i
+                          class="fa fa-long-arrow-right"
+                          aria-hidden="true"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="tournament-containers">
+            <div class="tournament-card" id="card1">
+              <div class="tournament-front">
+                <div class="tournament-cover">
+                  <img
+                    class="tournament-banner"
+                    src="images/stadium_1.jpg"
+                    alt="Stadium"
+                  />
+                </div>
+
+                <div class="tournament-logo-container">
+                  <a href=""
+                    ><img
+                      class="tournament-logo"
+                      src="images/logo.png"
+                      alt="Logo"
+                  /></a>
+                </div>
+                <div class="tournament-content">
+                  <div class="tournament-info">
+                    <div class="tournament-info-rating">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="tournament-info-category">--- Bóng đá ---</p>
+                    <h3 class="tournament-info-title">
+                      <a href="">U20 Mở Rộng 2025</a>
+                    </h3>
+                    <p class="tournament-info-date tournament-info-category">
+                      📅 Từ 25-03-2025 đến 25-03-2025
+                    </p>
+                    <button class="tournament-info-follow-btn">
+                      Bỏ Theo dõi
+                    </button>
+                  </div>
+                  <div class="tournament-footer">
+                    <div class="tournament-footer-left">
+                      <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
+                    </div>
+                    <div class="tournament-footer-right">
+                      <a href="detail_league.html">
+                        Thông tin
+                        <i
+                          class="fa fa-long-arrow-right"
+                          aria-hidden="true"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="tournament-containers">
+            <div class="tournament-card" id="card1">
+              <div class="tournament-front">
+                <div class="tournament-cover">
+                  <img
+                    class="tournament-banner"
+                    src="images/stadium_1.jpg"
+                    alt="Stadium"
+                  />
+                </div>
+
+                <div class="tournament-logo-container">
+                  <a href=""
+                    ><img
+                      class="tournament-logo"
+                      src="images/logo.png"
+                      alt="Logo"
+                  /></a>
+                </div>
+                <div class="tournament-content">
+                  <div class="tournament-info">
+                    <div class="tournament-info-rating">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="tournament-info-category">--- Bóng đá ---</p>
+                    <h3 class="tournament-info-title">
+                      <a href="">U20 Mở Rộng 2025</a>
+                    </h3>
+                    <p class="tournament-info-date tournament-info-category">
+                      📅 Từ 25-03-2025 đến 25-03-2025
+                    </p>
+                    <button class="tournament-info-follow-btn">
+                      Bỏ Theo dõi
+                    </button>
+                  </div>
+                  <div class="tournament-footer">
+                    <div class="tournament-footer-left">
+                      <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
+                    </div>
+                    <div class="tournament-footer-right">
+                      <a href="detail_league.html">
+                        Thông tin
+                        <i
+                          class="fa fa-long-arrow-right"
+                          aria-hidden="true"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="tournament-containers">
+            <div class="tournament-card" id="card1">
+              <div class="tournament-front">
+                <div class="tournament-cover">
+                  <img
+                    class="tournament-banner"
+                    src="images/stadium_1.jpg"
+                    alt="Stadium"
+                  />
+                </div>
+
+                <div class="tournament-logo-container">
+                  <a href=""
+                    ><img
+                      class="tournament-logo"
+                      src="images/logo.png"
+                      alt="Logo"
+                  /></a>
+                </div>
+                <div class="tournament-content">
+                  <div class="tournament-info">
+                    <div class="tournament-info-rating">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="tournament-info-category">--- Bóng đá ---</p>
+                    <h3 class="tournament-info-title">
+                      <a href="">U20 Mở Rộng 2025</a>
+                    </h3>
+                    <p class="tournament-info-date tournament-info-category">
+                      📅 Từ 25-03-2025 đến 25-03-2025
+                    </p>
+                    <button class="tournament-info-follow-btn">
+                      Bỏ Theo dõi
+                    </button>
+                  </div>
+                  <div class="tournament-footer">
+                    <div class="tournament-footer-left">
+                      <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
+                    </div>
+                    <div class="tournament-footer-right">
+                      <a href="detail_league.html">
+                        Thông tin
+                        <i
+                          class="fa fa-long-arrow-right"
+                          aria-hidden="true"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="tournament-containers">
+            <div class="tournament-card" id="card1">
+              <div class="tournament-front">
+                <div class="tournament-cover">
+                  <img
+                    class="tournament-banner"
+                    src="images/stadium_1.jpg"
+                    alt="Stadium"
+                  />
+                </div>
+
+                <div class="tournament-logo-container">
+                  <a href=""
+                    ><img
+                      class="tournament-logo"
+                      src="images/logo.png"
+                      alt="Logo"
+                  /></a>
+                </div>
+                <div class="tournament-content">
+                  <div class="tournament-info">
+                    <div class="tournament-info-rating">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="tournament-info-category">--- Bóng đá ---</p>
+                    <h3 class="tournament-info-title">
+                      <a href="">U20 Mở Rộng 2025</a>
+                    </h3>
+                    <p class="tournament-info-date tournament-info-category">
+                      📅 Từ 25-03-2025 đến 25-03-2025
+                    </p>
+                    <button class="tournament-info-follow-btn">
+                      Bỏ Theo dõi
+                    </button>
+                  </div>
+                  <div class="tournament-footer">
+                    <div class="tournament-footer-left">
+                      <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
+                    </div>
+                    <div class="tournament-footer-right">
+                      <a href="detail_league.html">
+                        Thông tin
+                        <i
+                          class="fa fa-long-arrow-right"
+                          aria-hidden="true"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="tournament-containers">
+            <div class="tournament-card" id="card1">
+              <div class="tournament-front">
+                <div class="tournament-cover">
+                  <img
+                    class="tournament-banner"
+                    src="images/stadium_1.jpg"
+                    alt="Stadium"
+                  />
+                </div>
+
+                <div class="tournament-logo-container">
+                  <a href=""
+                    ><img
+                      class="tournament-logo"
+                      src="images/logo.png"
+                      alt="Logo"
+                  /></a>
+                </div>
+                <div class="tournament-content">
+                  <div class="tournament-info">
+                    <div class="tournament-info-rating">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="tournament-info-category">--- Bóng đá ---</p>
+                    <h3 class="tournament-info-title">
+                      <a href="">U20 Mở Rộng 2025</a>
+                    </h3>
+                    <p class="tournament-info-date tournament-info-category">
+                      📅 Từ 25-03-2025 đến 25-03-2025
+                    </p>
+                    <button class="tournament-info-follow-btn">
+                      Bỏ Theo dõi
+                    </button>
+                  </div>
+                  <div class="tournament-footer">
+                    <div class="tournament-footer-left">
+                      <i class="fa fa-users" aria-hidden="true"></i> 8 Đội
+                    </div>
+                    <div class="tournament-footer-right">
+                      <a href="detail_league.html">
+                        Thông tin
+                        <i
+                          class="fa fa-long-arrow-right"
+                          aria-hidden="true"
+                        ></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------- LOG IN - LOG OUT ------------------------------------- -->
+    <div id="modal-placeholder"></div>
+
+    <!-- --------------------------------------- FOOTER -------------------------------------- -->
+    <footer class="footer">
+      <div class="container-fluid">
         <div class="footer-container">
-            <div class="footer-left">
-                <p><i class="fa-solid fa-copyright"></i> Bản quyền thuộc Eternal Phoenix</p>
-                <p><i class="fas fa-futbol"></i>
-                    <span>SINH RA ĐỂ CHƠI,</span>
-                    <i class="fas fa-dumbbell"></i>
-                    <span>TẬP LUYỆN ĐỂ CHIẾN THẮNG</span>
-                    <i class="fas fa-trophy"></i>
-                </p>
-                <p><i class="fa-solid fa-file-export"></i>Chỉ được phát hành lại nội dung khi có sự đồng ý của Eternal Phoenix</p>
-                <div class="footer-apps">
-                    <a href="index.html"><img src="images/logo.png" alt="IT League"></a>
-                    <a href=""><img src="images/googleplay.png" alt="Google Play"></a>
-                    <a href=""><img src="images/appstore.png" alt="App Store"></a>
-                </div>
+          <div class="footer-left">
+            <p>
+              <i class="fa-solid fa-copyright"></i> Bản quyền thuộc Eternal
+              Phoenix
+            </p>
+            <p>
+              <i class="fas fa-futbol"></i>
+              <span>SINH RA ĐỂ CHƠI,</span>
+              <i class="fas fa-dumbbell"></i>
+              <span>TẬP LUYỆN ĐỂ CHIẾN THẮNG</span>
+              <i class="fas fa-trophy"></i>
+            </p>
+            <p>
+              <i class="fa-solid fa-file-export"></i>Chỉ được phát hành lại nội
+              dung khi có sự đồng ý của Eternal Phoenix
+            </p>
+            <div class="footer-apps">
+              <a href="index.html"
+                ><img src="images/logo.png" alt="IT League"
+              /></a>
+              <a href=""
+                ><img src="images/googleplay.png" alt="Google Play"
+              /></a>
+              <a href=""><img src="images/appstore.png" alt="App Store" /></a>
             </div>
-            <div class="footer-right">
-                <p><i class="fa fa-building" aria-hidden="true"></i> CÔNG TY CỔ PHẦN TỔ CHỨC SỰ KIỆN VÀ TRUYỀN THÔNG ETERNAL PHOENIX </p>
-                <p><i class="fa fa-map-marker" aria-hidden="true"></i> Số 185, Trần Đại Nghĩa, phường Đồng Tâm, quận Hai Bà Trưng, Hà Nội</p>
-                <p><i class="fa fa-phone" aria-hidden="true"></i> 0797102555</p>
-                <p><i class="fa fa-envelope" aria-hidden="true"></i> nguyenstorm2k5@gmail.com</p>
-            </div>
+          </div>
+          <div class="footer-right">
+            <p>
+              <i class="fa fa-building" aria-hidden="true"></i> CÔNG TY CỔ PHẦN
+              TỔ CHỨC SỰ KIỆN VÀ TRUYỀN THÔNG ETERNAL PHOENIX
+            </p>
+            <p>
+              <i class="fa fa-map-marker" aria-hidden="true"></i> Số 185, Trần
+              Đại Nghĩa, phường Đồng Tâm, quận Hai Bà Trưng, Hà Nội
+            </p>
+            <p><i class="fa fa-phone" aria-hidden="true"></i> 0797102555</p>
+            <p>
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              nguyenstorm2k5@gmail.com
+            </p>
+          </div>
         </div>
-    </div>
-    <div class="text-center mt-3">
+      </div>
+      <div class="text-center mt-3">
         <p class="mb-0">&copy; 2025 Eternal Phoenix. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- ------------------ BACK-TOP -------------------- -->
+    <div class="back-top" style="display: block">
+      <i class="fa-solid fa-circle-up"></i>
     </div>
-</footer>
 
-<!-- ------------------ BACK-TOP -------------------- -->
-<div class="back-top" style="display: block;">
-    <i class="fa-solid fa-circle-up"></i>
-</div>
-
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
         console.log("DOM đã sẵn sàng, script bắt đầu chạy!");
         const backToTop = document.querySelector(".back-top");
-    
+
         if (backToTop) {
-            // Ẩn nút khi chưa cuộn xuống
-            backToTop.style.display = "none";
-    
-            // Hiển thị nút khi cuộn xuống
-            window.addEventListener("scroll", function () {
-                if (window.scrollY > 500) {
-                    backToTop.style.display = "block";
-                } else {
-                    backToTop.style.display = "none";
-                }
-            });
-    
-            // Cuộn lên đầu khi nhấn vào nút
-            backToTop.addEventListener("click", function () {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            });
+          // Ẩn nút khi chưa cuộn xuống
+          backToTop.style.display = "none";
+
+          // Hiển thị nút khi cuộn xuống
+          window.addEventListener("scroll", function () {
+            if (window.scrollY > 500) {
+              backToTop.style.display = "block";
+            } else {
+              backToTop.style.display = "none";
+            }
+          });
+
+          // Cuộn lên đầu khi nhấn vào nút
+          backToTop.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
         }
-    });
-</script>
-<script src="js/script.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuToggle = document.getElementById('menu-toggle');
-        const mainMenu = document.getElementById('main-menu');
-        const closeMenu = document.getElementById('close-menu');
-        const authToggle = document.getElementById('auth-toggle');
-        const authDropdown = document.getElementById('auth-dropdown');
-      
+      });
+    </script>
+    <script src="js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuToggle = document.getElementById("menu-toggle");
+        const mainMenu = document.getElementById("main-menu");
+        const closeMenu = document.getElementById("close-menu");
+        const authToggle = document.getElementById("auth-toggle");
+        const authDropdown = document.getElementById("auth-dropdown");
+
         // 👉 Toggle menu trái
-        menuToggle.addEventListener('click', () => {
-          mainMenu.classList.add('active');
-          document.body.classList.add('menu-overlay-active');
+        menuToggle.addEventListener("click", () => {
+          mainMenu.classList.add("active");
+          document.body.classList.add("menu-overlay-active");
         });
-      
-        closeMenu.addEventListener('click', () => {
-          mainMenu.classList.remove('active');
-          document.body.classList.remove('menu-overlay-active');
+
+        closeMenu.addEventListener("click", () => {
+          mainMenu.classList.remove("active");
+          document.body.classList.remove("menu-overlay-active");
         });
-      
+
         // 👉 Bấm ra ngoài để đóng menu trái
-        document.addEventListener('click', function (e) {
+        document.addEventListener("click", function (e) {
           if (
-            mainMenu.classList.contains('active') &&
+            mainMenu.classList.contains("active") &&
             !mainMenu.contains(e.target) &&
             !menuToggle.contains(e.target)
           ) {
-            mainMenu.classList.remove('active');
-            document.body.classList.remove('menu-overlay-active');
+            mainMenu.classList.remove("active");
+            document.body.classList.remove("menu-overlay-active");
           }
         });
-      
+
         // 👉 Toggle auth dropdown bên phải
-        authToggle.addEventListener('click', () => {
-          authDropdown.classList.toggle('active');
+        authToggle.addEventListener("click", () => {
+          authDropdown.classList.toggle("active");
         });
-      
+
         // 👉 Bấm ra ngoài để đóng auth menu
-        document.addEventListener('click', (e) => {
+        document.addEventListener("click", (e) => {
           if (
             !authToggle.contains(e.target) &&
             !authDropdown.contains(e.target)
           ) {
-            authDropdown.classList.remove('active');
+            authDropdown.classList.remove("active");
           }
         });
       });
-      
-    
-</script>
+    </script>
     <script src="js/script.js"></script>
-</body>
+  </body>
 </html>

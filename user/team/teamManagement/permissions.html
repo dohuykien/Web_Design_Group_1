@@ -1,94 +1,103 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Danh sách tài khoản quản lý đội</title>
-  <link rel="icon" type="logo.png" href="../images/logo.png" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-  />
-  <link rel="stylesheet" href="/user/css/sidebar.css" />
-  <link rel="stylesheet" href="/user/css/userheader.css" />
-  <link rel="stylesheet" href="/user/css/userfooter.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Danh sách tài khoản quản lý đội</title>
+    <link rel="icon" type="logo.png" href="../images/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/sidebar.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/userheader.css" />
+    <link rel="stylesheet" href="/Web_Design_Group_1/user/css/userfooter.css" />
 
-  <link rel="stylesheet" href="/user/team/teamManagement/css/managementNav.css" />
+    <link
+      rel="stylesheet"
+      href="/Web_Design_Group_1/user/team/teamManagement/css/managementNav.css"
+    />
 
-  <link rel="stylesheet" href="./css/permissions.css">
-</head>
-<body>
-  <header id="header-container" class="header">
-    <!-- Header sẽ được tải ở đây -->
-  </header>
+    <link rel="stylesheet" href="./css/permissions.css" />
+  </head>
+  <body>
+    <header id="header-container" class="header">
+      <!-- Header sẽ được tải ở đây -->
+    </header>
 
+    <div class="container">
+      <div id="sidebar-container">
+        <!-- Sidebar sẽ được tải ở đây -->
+      </div>
+      <div class="content-wrapper">
+        <section class="content">
+          <!-- Tiêu đề và các nút hành động -->
+          <div id="management-nav-placeholder">
+            <!-- Nav sẽ được tải ở đây -->
+          </div>
+          <div class="list-league">
+            <span class="list-league_left"
+              ><i class="fa-solid fa-list"></i>Danh sách tài khoản quản lý
+              đội</span
+            >
+          </div>
 
-  <div class="container">
-    <div id="sidebar-container">
-       <!-- Sidebar sẽ được tải ở đây -->
-    </div>
-    <div class="content-wrapper">
-      <section class="content">
-        <!-- Tiêu đề và các nút hành động -->
-        <div id="management-nav-placeholder">
-          <!-- Nav sẽ được tải ở đây -->
-        </div>
-        <div class="list-league">
-          <span class="list-league_left"><i class="fa-solid fa-list"></i>Danh sách tài khoản quản lý đội</span>
-        </div>
-
-
-        <div class="content-box"> <!-- Vùng chứa hiện có -->
-          <div class="management-container">
-            <!-- Phần được cập nhật để thêm quản lý -->
-            <div class="add-manager-section">
-              <div class="search-container"> <!-- Vùng bao bọc mới -->
-                <input type="text" id="addManagerInput" placeholder="Thêm quản lý theo tên hoặc email..." autocomplete="off">
-                <div id="userDropdown" class="user-dropdown">
-                  <!-- Kết quả tìm kiếm sẽ được thêm động vào đây -->
+          <div class="content-box">
+            <!-- Vùng chứa hiện có -->
+            <div class="management-container">
+              <!-- Phần được cập nhật để thêm quản lý -->
+              <div class="add-manager-section">
+                <div class="search-container">
+                  <!-- Vùng bao bọc mới -->
+                  <input
+                    type="text"
+                    id="addManagerInput"
+                    placeholder="Thêm quản lý theo tên hoặc email..."
+                    autocomplete="off"
+                  />
+                  <div id="userDropdown" class="user-dropdown">
+                    <!-- Kết quả tìm kiếm sẽ được thêm động vào đây -->
+                  </div>
                 </div>
+                <button id="addManagerBtn" class="add-btn">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
               </div>
-              <button id="addManagerBtn" class="add-btn"><i class="fa-solid fa-plus"></i></button>
-            </div>
-            <!-- Kết thúc Phần được cập nhật -->
+              <!-- Kết thúc Phần được cập nhật -->
 
-            <div class="table-responsive">
-              <table id="managerTable" class="data-table">
-                <thead>
-                  <tr>
-                    <th>STT</th>
-                    <th>Tài Khoản - Email</th>
-                    <th>Vai trò</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Các hàng người dùng sẽ được chèn vào đây bởi JavaScript -->
-                </tbody>
-              </table>
+              <div class="table-responsive">
+                <table id="managerTable" class="data-table">
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th>Tài Khoản - Email</th>
+                      <th>Vai trò</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Các hàng người dùng sẽ được chèn vào đây bởi JavaScript -->
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-      </section>
-
-      <footer id="footer" class="footer">
-
-      </footer>
-
+        <footer id="footer" class="footer"></footer>
+      </div>
     </div>
-  </div>
 
-  <script src="/user/js/sidebar.js"></script>
-  <script src="/user/js/userheader.js"></script>
-  <script src="/user/js/componentloader.js"></script>
+    <script src="/Web_Design_Group_1/user/js/sidebar.js"></script>
+    <script src="/Web_Design_Group_1/user/js/userheader.js"></script>
+    <script src="/Web_Design_Group_1/user/js/componentloader.js"></script>
 
-  <script src="js/managementNav.js"></script>
+    <script src="js/managementNav.js"></script>
 
-  <script src="js/permissions.js"></script>
-</body>
+    <script src="js/permissions.js"></script>
+  </body>
 </html>
