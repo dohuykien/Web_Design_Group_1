@@ -575,7 +575,7 @@
       // --- Configuration ---
       const USERS_STORAGE_KEY = "users"; // Key for the array of all users
       const LOGGED_IN_USER_ID_KEY = "userProfile_id"; // Key for the logged-in user's ID
-      const DEFAULT_AVATAR = "/user/images/dhk.jpg"; // Default avatar path
+      const DEFAULT_AVATAR = "/Web_Design_Group_1/user/images/dhk.jpg"; // Default avatar path
 
       // --- Utility Functions --- (Keep these as they are)
       function getUsersFromStorage() {
@@ -984,17 +984,6 @@
               localStorage.setItem("userProfile_address", userToUpdate.address);
               localStorage.setItem("userProfile_avatar", finalAvatarSrc); // Use the final source
 
-              // --- Password: Decide if you REALLY want to store it individually ---
-              // Storing password directly like this is insecure. Prefer keeping it only in the 'users' array (and even that is bad if plain text).
-              // If you absolutely must, uncomment the line below BUT BE AWARE OF THE RISK.
-              // if (newPasswordPlain !== null) {
-              //    localStorage.setItem("userProfile_password", newPasswordPlain);
-              //    console.warn("Updated insecure userProfile_password item.");
-              // } else {
-              // Optionally remove the individual password if it wasn't changed,
-              // or if the user unchecks the change box (though clearing on hide is better)
-              // localStorage.removeItem("userProfile_password");
-              // }
               console.log("Individual userProfile_* items updated.");
             } catch (e) {
               console.error(

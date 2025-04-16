@@ -199,8 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
         firstname: "", // Set empty initially
         lastname: "", // Set empty initially
         address: "", // Set empty initially
-        // !!! SECURITY WARNING: Storing plain text passwords is highly insecure!
-        // In a real application, ALWAYS hash passwords securely on the server-side.
         password: password,
         avatar: null, // Set to null or a default placeholder base64 string
         phone: "", // Add phone field, empty initially
@@ -316,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return; // Stop if placeholder is missing
              }
 
-            const response = await fetch('/login_modal.html'); // Adjust path if needed
+            const response = await fetch('/Web_Design_Group_1/login_modal.html'); // Adjust path if needed
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }

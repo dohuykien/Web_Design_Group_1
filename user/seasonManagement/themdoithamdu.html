@@ -572,7 +572,12 @@
             teams = [];
           }
 
-          const currentUser = { id: 1, name: "Nguyen Hai Dang" }; // Nên lấy từ hệ thống login
+          let userIdString = localStorage.getItem("userProfile_id");
+          let userIdInt = Number(userIdString);
+          const currentUser = {
+            id: userIdInt,
+            name: localStorage.getItem("userProfile_username"),
+          };
 
           const teamNameInput = document.getElementById("teamName");
           const teamName = teamNameInput.value.trim();

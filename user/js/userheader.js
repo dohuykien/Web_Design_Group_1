@@ -41,7 +41,7 @@ function updateHeaderDisplay(data) {
   // Tìm các element trong cấu trúc HTML header của bạn
   const headerImage = document.querySelector(".user-info img");
   const headerNameSpan = document.querySelector(".user-info span"); // Span chứa cả tên và icon
-  const defaultAvatar = "/user/images/dhk.jpg"; // *** THAY ĐỔI NẾU CẦN: Đường dẫn ảnh mặc định của bạn
+  const defaultAvatar = "/Web_Design_Group_1/user/images/dhk.jpg"; // *** THAY ĐỔI NẾU CẦN: Đường dẫn ảnh mặc định của bạn
 
   // --- Cập nhật Avatar ---
   if (headerImage) {

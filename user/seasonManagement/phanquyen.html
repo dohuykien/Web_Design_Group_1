@@ -389,17 +389,25 @@
     <script src="/Web_Design_Group_1/user/js/componentloader.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const users = [
-          { id: 1, email: "haidang@gmail.com", name: "Nguyễn Hải Đăng" }, // Team Creator for team123
-          { id: 2, email: "duckhai289@gmail.com", name: "ddd12345" }, // Manager for team123
-          { id: 3, email: "anothercreator@example.com", name: "Creator 2" }, // Creator for team456
-          { id: 4, email: "manager_only@example.com", name: "Manager X" }, // A user not assigned yet
-        ];
+        let users = [];
+        try {
+          const usersJson = localStorage.getItem("users");
+          users = usersJson ? JSON.parse(usersJson) : [];
+          if (!Array.isArray(users)) { // Đảm bảo đó là một mảng
+            console.error("Loaded 'users' from localStorage is not an array. Resetting.");
+            users = [];
+            localStorage.setItem("users", JSON.stringify(users)); // Tùy chọn: xóa dữ liệu không hợp lệ
+          }
+        } catch (e) {
+          console.error("Error parsing users from localStorage:", e);
+          users = []; // Sử dụng mảng trống khi có lỗi
+        }
 
+        let userIdString = localStorage.getItem("userProfile_id");
+        let userIdInt = Number(userIdString);
         const currentUser = {
-          id: 1,
-          email: "haidang@gmail.com",
-          name: "Nguyễn Hải Đăng",
+          id: userIdInt,
+          name: localStorage.getItem("userProfile_username"),
         };
 
         // 1. Get currentTeamId from URL

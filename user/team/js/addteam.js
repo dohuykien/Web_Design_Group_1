@@ -72,7 +72,7 @@ document.getElementById("saveButton").addEventListener("click", async function (
   }
 
   const teamData = {
-    id: `team-${teams.length + 1}`,
+    id: Date.now().toString(),
     userId: currentUser.id,
     teamName: document.getElementById("teamName").value,
     managerName: document.getElementById("managerName").value,

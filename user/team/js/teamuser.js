@@ -67,6 +67,8 @@ function removeMembersForTeam(teamIdToDelete) {
     }
 }
 
+
+
 // ----- User and Global Data -----
 let userIdString = localStorage.getItem("userProfile_id");
 let userIdInt = Number(userIdString);
