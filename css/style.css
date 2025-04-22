@@ -432,6 +432,9 @@ p {
       order: 2;
       flex-grow: 1;
       text-align: center;
+      left: auto !important;
+      align-items: center !important;
+      justify-content: center !important;
     }
   
     .auth-menu-wrapper {
