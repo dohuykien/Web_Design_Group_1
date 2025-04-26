@@ -928,6 +928,14 @@ p {
     box-shadow: 0px 4px 10px rgba(255, 111, 0, 0.5);
     transform: scale(1.05);
 }
+.tournament-info-follow-btn.following {
+  background-color: var(--color-bg-bottom);
+}
+.tournament-info-follow-btn.following:hover {
+    background-color: var(--color--bg-top);
+    box-shadow: 0px 4px 10px rgba(255, 111, 0, 0.5);
+    transform: scale(1.05);
+}
 .tournament-footer {
     width: 100%;
     height: 40px;

@@ -804,7 +804,7 @@ td, th {
 }
 .media-header {
     position: absolute;
-    top: 39px;
+    top: 32px;
     left: 0;
     background: var(--color--bg-top);
     color: white;

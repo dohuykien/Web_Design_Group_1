@@ -1330,6 +1330,24 @@
     </div>
 
     <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const followBtns = document.querySelectorAll(".tournament-info-follow-btn");
+      
+        followBtns.forEach(function(btn) {
+          btn.addEventListener("click", function() {
+            btn.classList.toggle("following");
+      
+            if (btn.classList.contains("following")) {
+              btn.textContent = "Đang theo dõi";
+            } else {
+              btn.textContent = "Theo dõi";
+            }
+          });
+        });
+      });
+      
+    </script>
+    <script>
       document.addEventListener("DOMContentLoaded", function () {
         console.log("DOM đã sẵn sàng, script bắt đầu chạy!");
         const backToTop = document.querySelector(".back-top");
