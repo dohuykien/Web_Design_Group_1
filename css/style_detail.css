@@ -469,7 +469,7 @@
 }
 .sponsor-header {
     position: absolute;
-    top: 39px;
+    top: 32px;
     left: 0;
     background: var(--color--bg-top);
     color: white;
@@ -523,7 +523,7 @@
     border-top: 1px solid #ddd;
 }
 .item-center-title {
-    padding-bottom: 40px;
+    padding-bottom: 46px;
 }
 .item-center-title-header {
     position: absolute;
