@@ -1328,6 +1328,31 @@
     <div class="back-top" style="display: block">
       <i class="fa-solid fa-circle-up"></i>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        console.log("DOM đã sẵn sàng, script bắt đầu chạy!");
+        const backToTop = document.querySelector(".back-top");
+
+        if (backToTop) {
+          // Ẩn nút khi chưa cuộn xuống
+          backToTop.style.display = "none";
+
+          // Hiển thị nút khi cuộn xuống
+          window.addEventListener("scroll", function () {
+            if (window.scrollY > 500) {
+              backToTop.style.display = "block";
+            } else {
+              backToTop.style.display = "none";
+            }
+          });
+
+          // Cuộn lên đầu khi nhấn vào nút
+          backToTop.addEventListener("click", function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          });
+        }
+      });
+    </script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function() {
